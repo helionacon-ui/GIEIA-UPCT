@@ -65,18 +65,87 @@ footer p{margin:4px 0}
 .theme{position:fixed;top:12px;right:12px;font:inherit;font-size:13px;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
 [hidden]{display:none!important}
 @media (max-width:520px){header{padding-top:44px}.grid{grid-template-columns:1fr}}
+
+/* ===== más visual y espaciado ===== */
+body{line-height:1.65}
+.wrap{max-width:1120px;padding:0 20px}
+header.hero{position:relative;margin:64px 0 20px;padding:44px 44px 40px;border-radius:28px;overflow:hidden;
+  background:radial-gradient(120% 140% at 100% 0%,color-mix(in srgb,var(--accent) 22%,transparent) 0%,transparent 55%),
+             radial-gradient(90% 120% at 0% 100%,color-mix(in srgb,var(--c3) 14%,transparent) 0%,transparent 60%),var(--card);
+  border:1px solid var(--line);box-shadow:var(--shadow)}
+header.hero .art{position:absolute;right:-30px;top:50%;transform:translateY(-50%);width:340px;height:340px;opacity:.9;pointer-events:none}
+header.hero>*:not(.art){position:relative;max-width:640px}
+h1{margin:14px 0 18px}
+.lede{font-size:18px;line-height:1.7}
+.stats{gap:14px;margin:30px 0 0}
+.stats>div{background:color-mix(in srgb,var(--card) 70%,transparent);border:1px solid var(--line);border-radius:16px;padding:14px 18px;min-width:130px;backdrop-filter:blur(4px)}
+.stats b{font-size:34px;margin-bottom:6px}
+.sect-t{font-family:"Bricolage Grotesque",sans-serif;font-size:26px;margin:52px 0 6px}
+.sect-s{color:var(--muted);margin:0 0 18px}
+.feat{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.feat a{position:relative;display:flex;gap:18px;align-items:flex-start;padding:22px 22px 20px;border-radius:22px;text-decoration:none;color:var(--fg);
+  background:linear-gradient(135deg,color-mix(in srgb,var(--k) 16%,var(--card)),var(--card) 70%);border:1px solid color-mix(in srgb,var(--k) 35%,var(--line));box-shadow:var(--shadow);transition:transform .15s ease,border-color .15s}
+.feat a:hover{transform:translateY(-3px);border-color:var(--k)}
+.feat a:focus-visible{outline:3px solid var(--k);outline-offset:3px}
+.feat .ic{flex:none;width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:var(--k);color:#fff;font:800 20px/1 "Bricolage Grotesque",sans-serif}
+.feat .ft{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:20px;line-height:1.2}
+.feat .fc{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--k);font-weight:600;margin-bottom:4px}
+.feat .fd{font-size:14.5px;color:var(--muted);margin:8px 0 12px}
+.feat .go{font-weight:600;font-size:14px;color:var(--k)}
+.bar{margin:28px 0 10px;gap:12px}
+.bar input{padding:14px 18px;border-radius:14px;font-size:16px}
+.chip{padding:10px 18px}
+.acc-tools{margin:8px 0 6px}
+details.curso{margin:20px 0;border-radius:22px;border-left:6px solid var(--k)}
+details.curso>summary{padding:20px 24px;gap:16px;border-radius:22px;flex-wrap:wrap}
+details.curso .n{width:46px;height:46px;border-radius:14px;font-size:19px}
+details.curso .nm{font-size:23px}
+details.curso .pr{flex:1 1 140px;max-width:220px;margin-left:auto;display:flex;flex-direction:column;gap:6px}
+details.curso .ct{margin-left:0;text-align:right}
+details.curso .pb{height:7px;border-radius:999px;background:color-mix(in srgb,var(--k) 15%,var(--line));overflow:hidden}
+details.curso .pb i{display:block;height:100%;background:var(--k);border-radius:999px}
+details.curso .grid{padding:6px 24px 26px;gap:16px}
+.card{padding:18px 18px 16px;border-radius:18px;min-height:128px;gap:8px}
+.card .mono{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font:700 14px/1 "Bricolage Grotesque",sans-serif;background:color-mix(in srgb,var(--k) 14%,transparent);color:var(--k);margin-bottom:4px}
+.card.soon .mono{background:color-mix(in srgb,var(--muted) 12%,transparent);color:var(--muted)}
+.card.ready{border-left:4px solid var(--k);background:linear-gradient(160deg,color-mix(in srgb,var(--k) 10%,var(--card)),var(--card) 60%)}
+.card.ready .st{color:var(--k)}
+footer{margin:64px 0 40px;padding-top:22px}
+@media (max-width:720px){
+  header.hero{margin-top:56px;padding:30px 22px 26px;border-radius:22px}
+  header.hero .art{display:none}
+  .stats>div{min-width:0;flex:1 1 30%;padding:12px 12px}
+  .stats b{font-size:26px}
+  details.curso>summary{padding:16px 16px}
+  details.curso .pr{max-width:none;flex-basis:100%;margin-left:0}
+  details.curso .ct{text-align:left}
+  details.curso .grid{padding:4px 14px 18px}
+  .feat{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 <button class="theme" id="theme" type="button" aria-label="Cambiar entre tema claro y oscuro">◐ Tema</button>
 <div class="wrap">
-<header>
+<header class="hero">
+<svg class="art" viewBox="-170 -170 340 340" aria-hidden="true">
+<circle r="150" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+<circle r="110" fill="color-mix(in srgb,var(--accent) 10%,transparent)" stroke="var(--accent)" stroke-width="2.5"/>
+<line x1="-160" y1="0" x2="160" y2="0" stroke="var(--line)" stroke-width="1.5"/><line x1="0" y1="-160" x2="0" y2="160" stroke="var(--line)" stroke-width="1.5"/>
+<path d="M-150 60 C-110 -40,-70 -40,-30 60 S50 160,90 60 S150 -40,170 0" fill="none" stroke="var(--c3)" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+<g stroke="var(--c4)" stroke-width="3.5" stroke-linecap="round"><path d="M48 -66 l14 14 M62 -66 l-14 14"/><path d="M48 52 l14 14 M62 52 l-14 14"/></g>
+<circle cx="-62" cy="0" r="8" fill="none" stroke="var(--c2)" stroke-width="3"/>
+<text x="0" y="-122" text-anchor="middle" font-family="IBM Plex Sans,sans-serif" font-size="13" fill="var(--muted)">|z| = 1</text>
+</svg>
+
   <div class="eyebrow">UPCT · Escuela de Industriales · GIEyA</div>
   <h1>Guías para <span>aprobar</span></h1>
   <p class="lede">Guías de estudio interactivas de las asignaturas del Grado en Ingeniería Electrónica Industrial y Automática: teoría explicada desde cero, simuladores, formularios y exámenes resueltos paso a paso. Funcionan en el móvil y sin conexión.</p>
   <div class="stats"><div><b id="s-ready">1</b><span>guías publicadas</span></div><div><b id="s-total">0</b><span>asignaturas del grado</span></div><div><b>4</b><span>cursos</span></div></div>
 </header>
 
+<section aria-labelledby="ft-t"><h2 class="sect-t" id="ft-t">Guías publicadas</h2><p class="sect-s">Ábrelas directamente o búscalas por curso más abajo.</p><div class="feat" id="feat"></div></section>
+<h2 class="sect-t">Todas las asignaturas por curso</h2><p class="sect-s">Despliega un curso para ver sus asignaturas.</p>
 <div class="bar" role="search">
   <input id="q" type="search" placeholder="Buscar asignatura…" aria-label="Buscar asignatura" autocomplete="off">
   <button class="chip" type="button" data-f="all" aria-pressed="true">Todas</button>
@@ -108,8 +177,7 @@ const CURSOS = [
   {n:3, nombre:'Tercer curso', color:'var(--c3)', asig:[
     {t:'Control por computador', url:'https://helionacon-ui.github.io/Control-por-computador-GIEIA/',
      d:'Muestreo, transformada Z, estabilidad, Ragazzini y deadbeat. 24 simuladores y exámenes 2012–2026 resueltos.'},
-    {t:'Tecnología medioambiental', url:'https://helionacon-ui.github.io/Tecnolog-a-Medioambiental/',
-     d:'Legislación UE, parámetros del agua, potabilización, fangos activos, dispersión de contaminantes y ruido. Problemas resueltos, parcial 2024, banco de preguntas y simulador de examen.'},{t:'Electrónica digital'},{t:'Informática para la automatización industrial'},
+    {t:'Tecnología medioambiental'},{t:'Electrónica digital'},{t:'Informática para la automatización industrial'},
     {t:'Modelado y simulación de sistemas'},{t:'Electrónica analógica'},{t:'Sistemas basados en microprocesador'},
     {t:'Programación de sistemas en tiempo real'},{t:'Sistemas robotizados'},{t:'Automatización industrial'},
     {t:'Ingeniería de control', url:'https://helionacon-ui.github.io/Ingenieria-de-control/',
@@ -125,6 +193,17 @@ const q = document.getElementById('q');
 const empty = document.getElementById('empty');
 let filtro = 'all';
 
+function mono(t){ const w=t.replace(/\b(de|del|la|las|los|y|e|en|para|por|a)\b/gi,'').split(/\s+/).filter(Boolean); const r=(w[0]||'')[0]+((w[1]||'')[0]||''); return /\b(I{1,3})$/.test(t)? (w[0][0]+t.match(/(I{1,3})$/)[1]).slice(0,3) : r.toUpperCase(); }
+function featured(){ const f=document.getElementById('feat'); f.textContent='';
+  for (const c of CURSOS) for (const a of c.asig) if (a.url){
+    const el=document.createElement('a'); el.href=a.url; el.style.setProperty('--k', c.color);
+    const ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=mono(a.t);
+    const bx=document.createElement('span');
+    const fc=document.createElement('div'); fc.className='fc'; fc.textContent=c.nombre;
+    const ft=document.createElement('div'); ft.className='ft'; ft.textContent=a.t;
+    const fd=document.createElement('div'); fd.className='fd'; fd.textContent=a.d||'';
+    const go=document.createElement('div'); go.className='go'; go.textContent='Abrir la guía →';
+    bx.append(fc,ft,fd,go); el.append(ic,bx); f.append(el); } }
 function norm(s){ return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(); }
 
 const abiertos = new Set();
@@ -138,17 +217,20 @@ function render(){
   for (const c of CURSOS){
     const items = c.asig.filter(a => (filtro==='all' || a.url) && (!term || norm(a.t).includes(term)));
     if (!items.length) continue;
-    const det = document.createElement('details'); det.className='curso';
+    const det = document.createElement('details'); det.className='curso'; det.style.setProperty('--k', c.color);
     const conGuia = c.asig.filter(a=>a.url).length;
     if (term || filtro==='ready' || abiertos.has(c.n) || (primera && conGuia)) det.open = true;
     const sm = document.createElement('summary');
     const n = document.createElement('span'); n.className='n'; n.style.background=c.color; n.textContent=c.n+'º';
     const nm = document.createElement('span'); nm.className='nm'; nm.textContent=c.nombre;
+    const pr = document.createElement('span'); pr.className='pr';
     const ct = document.createElement('span'); ct.className='ct';
     const b = document.createElement('b'); b.textContent = conGuia;
     ct.append(b, document.createTextNode(' de '+c.asig.length+' con guía'));
+    const pb = document.createElement('span'); pb.className='pb'; const pi=document.createElement('i'); pi.style.width=(100*conGuia/c.asig.length)+'%'; pb.append(pi);
+    pr.append(ct, pb);
     const ch = document.createElement('span'); ch.className='chev'; ch.setAttribute('aria-hidden','true');
-    sm.append(n, nm, ct, ch);
+    sm.append(n, nm, pr, ch);
     det.addEventListener('toggle', () => {
       if (term || filtro==='ready') return;
       det.open ? abiertos.add(c.n) : abiertos.delete(c.n);
@@ -159,8 +241,10 @@ function render(){
       const el = document.createElement(a.url ? 'a' : 'div');
       el.className = 'card ' + (a.url ? 'ready' : 'soon');
       if (a.url){ el.href = a.url; }
+      el.style.setProperty('--k', c.color);
+      const mo = document.createElement('div'); mo.className='mono'; mo.setAttribute('aria-hidden','true'); mo.textContent=mono(a.t);
       const t = document.createElement('div'); t.className='t'; t.textContent=a.t;
-      el.append(t);
+      el.append(mo, t);
       if (a.d){ const d=document.createElement('div'); d.className='d'; d.textContent=a.d; el.append(d); }
       const st = document.createElement('div'); st.className='st';
       const dot = document.createElement('span'); dot.className='dot';
@@ -196,6 +280,7 @@ document.getElementById('theme').addEventListener('click', () => {
   try { localStorage.setItem('hub-theme', root.dataset.theme); } catch(e) {}
 });
 
+featured();
 render();
 </script>
 </body>
