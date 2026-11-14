@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T3 Teoremas fundamentales en continua · Análisis de Circuitos · Guía para aprobar</title>
+<meta name="description" content="Análisis de Circuitos (UPCT, GIEyA): tema 3, Teoremas fundamentales en continua">
+<meta name="theme-color" content="#b06a00">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, boletines y prácticas) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Análisis de Circuitos</a><span class="sep">›</span><span>Primer parcial · continua y fasores</span><span class="sep">›</span><span>T3 · Teoremas fundamentales en continua</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Primer parcial · continua y fasores</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes eléctricas</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos de corriente continua: reducción de redes</a><a href="tema-03.html" style="--tc:var(--c4)" class="on" aria-current="page">T3 Teoremas fundamentales en continua</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Ondas periódicas, señal senoidal y fasor</a><a href="tema-05.html" style="--tc:var(--c6)">T5 R, L y C en alterna: impedancia y admitancia</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Potencia en corriente alterna</a><div class="grp">Segundo parcial · alterna, transitorios y trifásica</div><a href="tema-07.html" style="--tc:var(--c8)">T7 Teoremas fundamentales en alterna</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Régimen transitorio</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Sistemas trifásicos equilibrados</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Potencia en sistemas trifásicos</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
+<div class="sh"><span aria-hidden="true" class="badge">3</span><div class="shx"><p class="kick">Primer parcial · continua y fasores · Tema 3</p><h2 id="t3">Teoremas fundamentales en continua</h2><div class="tags"><span class="tag">Primer parcial · continua y fasores</span><span class="tag">Primer parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Resolver circuitos por mallas (Maxwell) y por nudos, y aplicar superposición, Thévenin, Norton, Millman y la máxima transferencia de potencia.</p><p><b>Número de ecuaciones independientes</b>: con \(r\) ramas y \(n\) nudos, hay \(n-1\) ecuaciones de nudo y \(r-(n-1)\) de malla. Elige el método con menos ecuaciones.</p>
+<p><b>Método de las mallas (Maxwell)</b>: se asignan corrientes de malla (todas en el mismo sentido, p. ej. horario) y se plantea para cada una \(\sum E=\sum IR\): en la diagonal, la suma de resistencias de la malla; fuera, menos la resistencia compartida por la corriente vecina. En forma matricial \([R][I]=[E]\) con \([R]\) simétrica. La corriente de rama compartida es la DIFERENCIA de las dos corrientes de malla.</p>
+<p><b>Método de los nudos</b>: se toma un nudo de referencia (masa) y se plantea LCK en los demás en función de los potenciales: \(\left(\sum G\right)V_a-\sum G_{ab}V_b=\sum I_{fuentes}\). Es el dual del anterior y suele ser más corto cuando hay fuentes de corriente.</p>
+<p><b>Superposición</b> (solo en circuitos lineales): la respuesta con varias fuentes es la suma de las respuestas con cada una por separado, <b>anulando</b> las demás: las fuentes de tensión se cortocircuitan y las de corriente se abren. Ojo: la potencia NO se puede superponer (es cuadrática).</p>
+<p><b>Thévenin</b>: cualquier red lineal vista desde dos terminales equivale a una fuente \(V_{th}\) (tensión en vacío entre a y b) en serie con \(R_{th}\) (resistencia vista desde a-b con las fuentes anuladas). <b>Norton</b>: la dual, \(I_N=V_{th}/R_{th}\) (corriente de cortocircuito) en paralelo con \(R_{th}\).</p>
+<p><b>Millman</b>: varias ramas con fuente y resistencia en paralelo entre dos nudos: \(V_{ab}=\dfrac{\sum E_i/R_i}{\sum1/R_i}\) (es el método de nudos con un solo nudo).</p>
+<p><b>Máxima transferencia de potencia</b>: con la carga \(R_L=R_{th}\), \(P_{max}=\dfrac{V_{th}^2}{4R_{th}}\) y el rendimiento es solo del 50 %. Es el apartado b) de casi todos los problemas de los boletines 3 y 7.</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 3 <span class="src">5 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">[R][I]=[E]</td><td>Sistema de mallas (matriz simetrica)</td><td class="u"></td></tr><tr><td class="sym">G</td><td>Conductancia para el metodo nodal</td><td class="u">S</td></tr><tr><td class="sym">Vth, Rth</td><td>Equivalente Thevenin</td><td class="u">V; Ohm</td></tr><tr><td class="sym">IN</td><td>Corriente Norton = Vth/Rth</td><td class="u">A</td></tr><tr><td class="sym">MTP</td><td>R_L = R_th, P = Vth^2/4Rth</td><td class="u"></td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - Thevenin, Norton y maxima transferencia</p><div data-sim="thevenin"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
+<h3 id="t3-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>Mallas: \([R][I]=[E]\), \(R_{ii}=\sum R\) de la malla, \(R_{ij}=-R\) compartida.</li>
+<li>Nudos: \(\left(\sum G\right)V_a-\sum G\,V_{vecino}=\sum I\); \(G=1/R\).</li>
+<li>Thévenin: \(V_{th}=V_{ab}\) en vacío; \(R_{th}=R_{ab}\) con fuentes anuladas; Norton \(I_N=V_{th}/R_{th}\).</li>
+<li>Millman: \(V_{ab}=\dfrac{\sum E_i/R_i}{\sum 1/R_i}\).</li>
+<li>MTP: \(R_L=R_{th}\Rightarrow P_{max}=\dfrac{V_{th}^2}{4R_{th}}\), η = 50 %.</li></ul></div>
+<h3 id="t3-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li>Cuenta nudos y mallas y elige el método con menos incógnitas.</li><li>Mallas: todas las corrientes en el mismo sentido y matriz simétrica (si no sale simétrica, hay un error de signo).</li><li>Thévenin: 1) quita la carga; 2) calcula \(V_{ab}\) en vacío; 3) anula fuentes y calcula \(R_{ab}\); 4) vuelve a poner la carga en el circuito simple.</li><li>Comprueba el resultado por otro camino (p. ej. Norton o superposición): es lo que hace el profesor en clase.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Anular mal las fuentes: la de tensión se SUSTITUYE POR UN CABLE y la de corriente por un HUECO.</li><li>Sumar potencias en superposición.</li><li>Olvidar que la corriente de una rama compartida es la diferencia de dos corrientes de malla.</li><li>Calcular \(R_{th}\) sin quitar antes la resistencia de carga.</li></ul></div>
+<h3 id="t3-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Tipo boletín T3, problemas 7 y 8)</b> Dos fuentes: E₁ = 20 V en serie con R₁ = 5 Ω, en paralelo con una rama de E₂ = 10 V y R₂ = 10 Ω; entre a y b se conectará una carga \(R_L\). a) Equivalente Thévenin. b) \(R_L\) para máxima transferencia y su potencia.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>a) <b>Tensión en vacío</b> (Millman, que es lo mismo que nudos con un solo nudo): \(V_{th}=\dfrac{20/5+10/10}{1/5+1/10}=\dfrac{4+1}{0{,}3}=\mathbf{16{,}67\ V}\).</p>
+<p><b>Resistencia</b>: anulando las dos fuentes de tensión (cortocircuito), quedan R₁ ∥ R₂: \(R_{th}=\dfrac{5\cdot10}{15}=\mathbf{3{,}33\ \Omega}\).</p>
+<p>b) MTP con \(R_L=R_{th}=\mathbf{3{,}33\ \Omega}\): \(P_{max}=\dfrac{V_{th}^2}{4R_{th}}=\dfrac{16{,}67^2}{13{,}33}=\mathbf{20{,}8\ W}\). Comprobación: \(I=16{,}67/6{,}67=2{,}5\) A y \(P=I^2R_L=2{,}5^2\cdot3{,}33=20{,}8\) W ✓.</p></div></details></div>
+<h3 id="t3-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Cómo se anulan las fuentes para calcular \(R_{th}\)?</summary><div class="inner"><p>Las de tensión se cortocircuitan (se sustituyen por un cable) y las de corriente se abren.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Por qué no se puede superponer la potencia?</summary><div class="inner"><p>Porque \(P=I^2R\) no es lineal: \((I_1+I_2)^2\neq I_1^2+I_2^2\). Se superponen corrientes y tensiones, y con el total se calcula la potencia.</p></div></details><details class="paso"><summary><span class="pn">3</span>Equivalente Norton de \(V_{th}=12\) V, \(R_{th}=4\ \Omega\).</summary><div class="inner"><p>\(I_N=3\) A en paralelo con 4 Ω.</p></div></details><details class="paso"><summary><span class="pn">4</span>En MTP, ¿cuánto vale el rendimiento?</summary><div class="inner"><p>50 %: la mitad de la potencia se disipa en \(R_{th}\). Por eso en potencia eléctrica no se busca MTP sino máximo rendimiento.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Cuántas ecuaciones de nudo hacen falta en un circuito de 4 nudos y 6 ramas?</summary><div class="inner"><p>\(n-1=3\) de nudo (y \(6-3=3\) de malla: aquí da igual el método).</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-02.html"><small>← Anterior</small>T2 · Circuitos de corriente continua: reducción de redes</a><a class="nx" href="tema-04.html"><small>Siguiente →</small>T4 · Ondas periódicas, señal senoidal y fasor</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Análisis de Circuitos (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, boletines y prácticas) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

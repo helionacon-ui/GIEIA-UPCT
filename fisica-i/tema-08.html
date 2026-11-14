@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T8 Estática del sólido rígido · Física I · Guía para aprobar</title>
+<meta name="description" content="Física I (UPCT, GIEyA): tema 8, Estática del sólido rígido">
+<meta name="theme-color" content="#b4232f">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Física I</a><span class="sep">›</span><span>Parcial 2</span><span class="sep">›</span><span>T8 · Estática del sólido rígido</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Parcial 1</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes, unidades y vectores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Cinemática y movimiento relativo</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Dinámica, fuerzas de inercia y gravitación</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Trabajo y energía</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Movimiento oscilatorio</a><div class="grp">Parcial 2</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Sistemas de partículas</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Dinámica y estática del sólido rígido</a><a href="tema-08.html" style="--tc:var(--c1)" class="on" aria-current="page">T8 Estática del sólido rígido</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Estática de fluidos</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Equilibrio termodinámico y temperatura</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Primer y segundo principio de la termodinámica</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones teóricas de examen</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Recopilación por temas</a><a href="laboratorio.html" style="--tc:var(--c7)">Laboratorio y prácticas</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c1);--tcs:var(--c1s)">
+<div class="sh"><span aria-hidden="true" class="badge">8</span><div class="shx"><p class="kick">Parcial 2 · Tema 8</p><h2 id="t8">Estática del sólido rígido</h2><div class="tags"><span class="tag">Parcial 2</span><span class="tag">Problemas</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Calcular reacciones en apoyos y equilibrar sólidos sometidos a fuerzas y pares.</p><p>La estática es el caso particular de la dinámica con \(\sum\vec F=0\) y \(\sum\vec M=0\) (fuerzas y momentos externos). Es básica en estructuras, por eso se estudia aparte.</p>
+<p><b>Ligaduras</b>: fuerzas que limitan el movimiento (3.ª ley): normal, tensión, y las de los apoyos: rodillo o superficie lisa (una fuerza de dirección conocida), articulación o pasador (fuerza de dirección desconocida: dos componentes), superficie rugosa (normal + rozamiento), empotramiento (fuerza y par), bisagra (3 fuerzas y 2 momentos, no soporta carga axial).</p>
+<p>Herramienta clave: el <b>diagrama de sólido libre</b>.</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 8 <span class="src">4 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(R_A,R_B\)</td><td>Reacciones en apoyos</td><td class="u">N</td></tr><tr><td class="sym">\(M\)</td><td>Momento de una fuerza o par</td><td class="u">N·m</td></tr><tr><td class="sym">\(d\)</td><td>Brazo del par</td><td class="u">m</td></tr><tr><td class="sym">\(\mu_e\)</td><td>Rozamiento estático</td><td class="u">sin dimensiones</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Simulador · reacciones de una viga apoyada</p><div data-sim="viga"></div><figcaption>Mueve los controles y observa cómo cambian las magnitudes del recuadro.</figcaption></figure>
+<h3 id="t8-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>Plano: \(\sum F_x=0\), \(\sum F_y=0\), \(\sum M_O=0\) (3 ecuaciones → 3 incógnitas). Espacio: 6 ecuaciones.</li>
+<li>Par de fuerzas: momento \(Fd\), independiente del punto.</li>
+<li>Rozamiento en equilibrio: \(F_r\le\mu_eN\) (el valor \(\mu_eN\) solo en el límite de deslizamiento).</li>
+<li>Escalera contra pared: tomar momentos en el apoyo del suelo; con pared lisa, \(N_B\) horizontal.</li>
+<li>Cilindro en pendiente sujeto por cuerda horizontal (recopilación 1.7, n.º 8): \(\theta_{max}=77{,}3^\circ\) con \(\mu=0{,}8\).</li></ul></div>
+<h3 id="t8-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li>Aísla cada sólido y dibuja todas las fuerzas (incluidas las reacciones según el tipo de apoyo).</li><li>Toma momentos en el punto por el que pasen más incógnitas.</li><li>Si hay rozamiento y piden valores máximos, impón \(F_r=\mu_eN\) solo en el cuerpo que está a punto de deslizar.</li><li>En 3D, usa productos vectoriales para los momentos de cables y cargas.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Poner reacciones que el apoyo no puede dar (p. ej. una componente horizontal en un rodillo).</li><li>Olvidar el peso propio de la barra, aplicado en su centro.</li><li>Dar \(F_r=\mu N\) cuando el sistema está en equilibrio con margen.</li></ul></div>
+<h3 id="t8-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Recopilación 1.7, n.º 6)</b> Una viga homogénea OB de 200 N y 12 m está articulada en O (suelo) y sujeta por un cable AB a la pared; la viga forma 60° con el suelo y el cable es horizontal. Tensión del cable y reacciones en O.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>Momentos respecto a O: el peso (200 N en el centro) tiene brazo \(6\cos60=3\) m; la tensión horizontal en B tiene brazo \(12\sin60=10{,}39\) m. \(T\cdot10{,}39=200\cdot3\Rightarrow T=57{,}7\) N. Fuerzas: \(R_x=T=57{,}7\) N, \(R_y=200\) N. <span class="src">Oficial: \(T=57{,}74\) N, \(\vec R=57{,}7\hat\imath+200\hat\jmath\) N.</span></p>
+<p><b>(n.º 1, oficial)</b> Bloque de 200 kg en el suelo (\(\mu=0{,}25\)) sujeto por cuerdas a 45° a una masa M colgante de 30 kg: \(F_r=294\) N, \(T_1=T_2=294\) N, \(T_3=416\) N, \(M_{max}=50\) kg.</p></div></details></div>
+<h3 id="t8-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Qué reacciones da una bisagra que no soporta carga axial?</summary><div class="inner"><p>Dos fuerzas perpendiculares a su eje y los momentos que impidan girar fuera de su eje; ninguna fuerza a lo largo del eje.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Por qué conviene tomar momentos en la articulación?</summary><div class="inner"><p>Porque sus dos componentes de reacción tienen brazo nulo y desaparecen de la ecuación.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-07.html"><small>← Anterior</small>T7 · Dinámica y estática del sólido rígido</a><a class="nx" href="tema-09.html"><small>Siguiente →</small>T9 · Estática de fluidos</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Física I (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

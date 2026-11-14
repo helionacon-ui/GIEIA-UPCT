@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Análisis de Circuitos · Guía para aprobar</title>
+<meta name="description" content="Guía para aprobar Análisis de Circuitos (UPCT, GIEyA): continua, teoremas, fasores, potencia, transitorios y trifásica con figuras interactivas y problemas resueltos">
+<meta name="theme-color" content="#b06a00">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, boletines y prácticas) · página creada en noviembre de 2026</p></div>
+<header class="hero"><div class="hero-in"><div class="hero-txt">
+<div class="eyebrow">UPCT · GIEyA · 1.º curso · 2.º cuatrimestre</div>
+<h1>Análisis de <span>Circuitos</span></h1><p class="sub">Guía para aprobar</p>
+<div class="stats"><div><b>10</b><span>temas, de la ley de Ohm a la trifásica</span></div><div><b>10</b><span>figuras interactivas que resuelven el circuito contigo</span></div><div><b>11</b><span>problemas tipo resueltos paso a paso</span></div><div><b>19</b><span>cuestiones de teoría respondidas</span></div></div>
+<div class="cta"><a class="btn pri" href="#cero">Empieza desde cero</a><a class="btn" href="cuestiones.html">Teoría</a><a class="btn" href="examenes.html">Problemas</a><a class="btn" href="problemas.html">Boletines</a><a class="btn" href="plan.html">Evaluación</a><a class="btn" href="formulario.html">Formulario</a></div>
+</div>
+<div aria-hidden="true" class="hero-art"><svg class="zart" viewBox="-120 -120 240 240">
+<rect x="-90" y="-60" width="180" height="120" fill="none" stroke="var(--line)" stroke-width="2" rx="4"></rect>
+<rect x="-26" y="-68" width="52" height="16" fill="var(--bg)" stroke="var(--accent)" stroke-width="2.5"></rect>
+<circle cx="-90" cy="0" r="14" fill="none" stroke="var(--accent)" stroke-width="2.5"></circle>
+<line x1="-99" y1="0" x2="-81" y2="0" stroke="var(--accent)" stroke-width="2"></line>
+<line x1="-90" y1="-9" x2="-90" y2="9" stroke="var(--accent)" stroke-width="2"></line>
+<rect x="64" y="-26" width="16" height="52" fill="var(--bg)" stroke="var(--warn)" stroke-width="2.5"></rect>
+<g class="orbit" style="transform-origin:0 0"><circle cx="0" cy="-86" r="6" fill="var(--warn)"></circle></g>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="12" text-anchor="middle" x="0" y="92">Z = R + jX</text>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="12" text-anchor="middle" x="0" y="-96">P = √3·V·I·cos φ</text></svg>
+<p class="art-cap">Teoría y prácticas se aprueban por separado y la nota de cada parte se guarda de un curso a otro.</p></div></div></header><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)" class="on" aria-current="page">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)" class="on" aria-current="page">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)" class="on" aria-current="page">Tu progreso</a><div class="grp">Primer parcial · continua y fasores</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes eléctricas</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos de corriente continua: reducción de redes</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Teoremas fundamentales en continua</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Ondas periódicas, señal senoidal y fasor</a><a href="tema-05.html" style="--tc:var(--c6)">T5 R, L y C en alterna: impedancia y admitancia</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Potencia en corriente alterna</a><div class="grp">Segundo parcial · alterna, transitorios y trifásica</div><a href="tema-07.html" style="--tc:var(--c8)">T7 Teoremas fundamentales en alterna</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Régimen transitorio</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Sistemas trifásicos equilibrados</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Potencia en sistemas trifásicos</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
+<div class="sh"><span aria-hidden="true" class="badge">0</span><div class="shx"><p class="kick">Empezar</p><h2 id="cero">Empieza aquí desde cero</h2></div></div>
+<div class="zero"><p class="ft">Cómo usar la guía</p>
+<ol><li>Lee cada tema y <b>juega con su figura</b>: la reducción de redes, Thévenin con su curva de máxima transferencia, los fasores, la impedancia con la resonancia, el triángulo de potencias, las mallas resueltas con su matriz, los transitorios y la trifásica con Aarón calculan exactamente lo que harás en el examen.</li>
+<li>Repasa las <a href="cuestiones.html">cuestiones de teoría</a>: son 3 o 4 en el examen y se contestan de memoria si las has leído dos veces.</li>
+<li>Haz los <a href="examenes.html">problemas tipo</a> en papel antes de mirar la solución, y después recorre los <a href="problemas.html">boletines oficiales</a> tema a tema con la estrategia que te indico en cada bloque.</li>
+<li>Lleva el <a href="formulario.html">formulario</a> a mano hasta que te lo sepas.</li>
+<li>No descuides las <a href="laboratorio.html">prácticas</a>: se aprueban aparte y sin ellas no hay asignatura.</li></ol></div>
+<h3 id="mapa">Mapa de temas</h3>
+<div class="map"><a href="tema-01.html"><b>T1</b>Magnitudes eléctricas</a><a href="tema-02.html"><b>T2</b>Circuitos de corriente continua: reducción de redes</a><a href="tema-03.html"><b>T3</b>Teoremas fundamentales en continua</a><a href="tema-04.html"><b>T4</b>Ondas periódicas, señal senoidal y fasor</a><a href="tema-05.html"><b>T5</b>R, L y C en alterna: impedancia y admitancia</a><a href="tema-06.html"><b>T6</b>Potencia en corriente alterna</a><a href="tema-07.html"><b>T7</b>Teoremas fundamentales en alterna</a><a href="tema-08.html"><b>T8</b>Régimen transitorio</a><a href="tema-09.html"><b>T9</b>Sistemas trifásicos equilibrados</a><a href="tema-10.html"><b>T10</b>Potencia en sistemas trifásicos</a></div>
+<div class="box key"><p><b>De dónde sale esta guía.</b> El temario y los apuntes de teoría de <b>M.ª Josefa Martínez Lorente</b> publicados en el aula virtual (2021/22): temas 1 a 10 con sus problemas resueltos; los <b>boletines oficiales de problemas</b> de los temas 2, 3, 7, 8 y 9-10; los cuadernos de las <b>5 prácticas</b> de laboratorio con las hojas de toma de datos; el documento de evaluación de prácticas; y los tomos de recopilación (teoría, problemas y exámenes) de tu carpeta.</p></div>
+<div class="box trap"><h4>Cómo es el examen</h4><p>Prueba escrita (80-90 % de la nota): <b>3 o 4 cuestiones de teoría</b> (conceptos y definiciones) y <b>6 o 7 problemas</b> de media o larga extensión. Primer parcial: temas 1 a 6 (continua, teoremas, fasores, impedancia y potencia). Segundo parcial: temas 7 a 10 (teoremas en alterna, transitorios y trifásica). Las <b>prácticas</b> (10-20 %) se aprueban por separado y su nota se conserva entre cursos: la asignatura no está aprobada hasta tener las dos partes.</p></div>
+<h3 id="progreso">Tu progreso</h3>
+<p class="muted">Se guarda en este navegador.</p>
+<div class="bar"><i id="prog-bar"></i></div><p id="prog-txt" class="muted"></p>
+<div class="check"><input type="checkbox" id="c1"><label for="c1">T1 · Magnitudes eléctricas</label></div><div class="check"><input type="checkbox" id="c2"><label for="c2">T2 · Circuitos de corriente continua: reducción de redes</label></div><div class="check"><input type="checkbox" id="c3"><label for="c3">T3 · Teoremas fundamentales en continua</label></div><div class="check"><input type="checkbox" id="c4"><label for="c4">T4 · Ondas periódicas, señal senoidal y fasor</label></div><div class="check"><input type="checkbox" id="c5"><label for="c5">T5 · R, L y C en alterna: impedancia y admitancia</label></div><div class="check"><input type="checkbox" id="c6"><label for="c6">T6 · Potencia en corriente alterna</label></div><div class="check"><input type="checkbox" id="c7"><label for="c7">T7 · Teoremas fundamentales en alterna</label></div><div class="check"><input type="checkbox" id="c8"><label for="c8">T8 · Régimen transitorio</label></div><div class="check"><input type="checkbox" id="c9"><label for="c9">T9 · Sistemas trifásicos equilibrados</label></div><div class="check"><input type="checkbox" id="c10"><label for="c10">T10 · Potencia en sistemas trifásicos</label></div>
+</section><p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Análisis de Circuitos (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, boletines y prácticas) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

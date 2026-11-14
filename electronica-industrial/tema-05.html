@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T5 Amplificadores operacionales · Fundamentos de Electrónica Industrial · Guía para aprobar</title>
+<meta name="description" content="Fundamentos de Electrónica Industrial (UPCT, GIEyA): tema 5, Amplificadores operacionales">
+<meta name="theme-color" content="#5f7f1e">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (guiones de teoría, prácticas y exámenes de diciembre de 2022 y enero de 2023) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Fundamentos de Electrónica Industrial</a><span class="sep">›</span><span>Transistores y amplificadores</span><span class="sep">›</span><span>T5 · Amplificadores operacionales</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Diodos</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Introducción a la electrónica</a><a href="tema-02.html" style="--tc:var(--c3)">T2 El diodo rectificador</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Otros diodos: zener, LED y fotodiodos</a><div class="grp">Transistores y amplificadores</div><a href="tema-04.html" style="--tc:var(--c5)">T4 El transistor: BJT y MOSFET</a><a href="tema-05.html" style="--tc:var(--c6)" class="on" aria-current="page">T5 Amplificadores operacionales</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y evaluación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
+<div class="sh"><span aria-hidden="true" class="badge">5</span><div class="shx"><p class="kick">Transistores y amplificadores · Tema 5</p><h2 id="t5">Amplificadores operacionales</h2><div class="tags"><span class="tag">Transistores y amplificadores</span><span class="tag">Transistores y AO · 2.º parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Analizar y diseñar las configuraciones básicas del AO (inversor, no inversor, seguidor, sumador, restador), aplicar el cortocircuito virtual, acondicionar señales y usar comparadores.</p><p>El <b>AO ideal</b>: ganancia en lazo abierto infinita, impedancia de entrada infinita (\(i_+=i_-=0\)) e impedancia de salida nula. Con <b>realimentación negativa</b> (resistencia de la salida a la entrada inversora) aparece el <b>cortocircuito virtual</b>: \(V_+=V_-\). Esas dos reglas resuelven casi todos los circuitos.</p>
+<p>La salida está limitada por la alimentación: \(\pm V_{sat}\). En el TL084 de los exámenes, \(+V_{sat}=V_{CC}-2\) y \(-V_{sat}=-V_{CC}+2\); y la corriente de salida máxima es 40 mA (hay que comprobarla al elegir las resistencias).</p>
+<p><b>Configuraciones básicas</b>:</p>
+<ul><li><b>No inversor</b>: \(V_o=V_i\left(1+\dfrac{R_f}{R_1}\right)\), entrada de impedancia muy alta.</li>
+<li><b>Seguidor</b> (caso particular con \(R_f=0\)): \(V_o=V_i\). Sirve para <b>adaptar impedancias</b> y eliminar el efecto de carga.</li>
+<li><b>Inversor</b>: \(V_o=-V_i\dfrac{R_f}{R_1}\), con impedancia de entrada \(R_1\).</li>
+<li><b>Sumador inversor</b>: \(V_o=-R_f\left(\dfrac{V_1}{R_1}+\dfrac{V_2}{R_2}+\cdots\right)\). Con una entrada a una tensión fija de referencia, permite <b>desplazar el nivel</b> (offset).</li>
+<li><b>Restador / diferencial</b>: \(V_o=\dfrac{R_f}{R_1}(V_2-V_1)\) si las parejas de resistencias son iguales.</li>
+<li><b>Integrador</b> (C en realimentación) y <b>derivador</b> (C a la entrada).</li></ul>
+<p><b>Acondicionamiento de señal</b> (el problema estrella del examen): llevar la salida de un sensor \(V_A\in[V_{A\,min},V_{A\,max}]\) al rango que necesita un ADC \(V_B\in[V_{B\,min},V_{B\,max}]\) con una recta \(V_B=m\,V_A+n\):</p>
+<p>\(m=\dfrac{V_{B\,max}-V_{B\,min}}{V_{A\,max}-V_{A\,min}}\) y \(n=V_{B\,min}-m\,V_{A\,min}\)</p>
+<p>y después se realiza con una etapa de <b>ganancia</b> (m) y otra de <b>offset</b> (n), normalmente con un sumador inversor o un diferencial. Conviene terminar con un <b>seguidor</b> y proteger la entrada del ADC con diodos o zeners.</p>
+<p><b>Comparadores</b> (sin realimentación negativa): la salida salta a \(+V_{sat}\) o \(-V_{sat}\) según el signo de \(V_+-V_-\). Con realimentación <b>positiva</b> se obtiene el <b>Schmitt trigger</b>, con dos umbrales (histéresis), que evita las conmutaciones múltiples con señales ruidosas.</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 5 <span class="src">9 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">A_V</td><td>Ganancia de tensión</td><td class="u"></td></tr><tr><td class="sym">V₊ = V₋</td><td>Cortocircuito virtual</td><td class="u">con realimentación negativa</td></tr><tr><td class="sym">i₊ = i₋ = 0</td><td>No entra corriente por las entradas</td><td class="u"></td></tr><tr><td class="sym">no inversor</td><td>A = 1 + R_f/R₁</td><td class="u"></td></tr><tr><td class="sym">inversor</td><td>A = −R_f/R₁</td><td class="u"></td></tr><tr><td class="sym">seguidor</td><td>A = 1, adapta impedancias</td><td class="u"></td></tr><tr><td class="sym">±V_sat</td><td>Límite de la salida</td><td class="u">≈ ±(Vcc − 2) V</td></tr><tr><td class="sym">I_o max</td><td>Corriente máxima de salida</td><td class="u">TL084: 40 mA</td></tr><tr><td class="sym">V_B = m·V_A + n</td><td>Acondicionamiento de sensor</td><td class="u"></td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - configuraciones del amplificador operacional</p><div data-sim="ao"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
+<h3 id="t5-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>Reglas: \(V_+=V_-\) (cortocircuito virtual) e \(i_+=i_-=0\), con realimentación negativa.</li>
+<li>No inversor \(V_o=V_i\left(1+\frac{R_f}{R_1}\right)\) · Inversor \(V_o=-\frac{R_f}{R_1}V_i\) · Seguidor \(V_o=V_i\).</li>
+<li>Sumador \(V_o=-R_f\sum\frac{V_i}{R_i}\) · Restador \(V_o=\frac{R_f}{R_1}(V_2-V_1)\).</li>
+<li>Acondicionamiento \(V_B=mV_A+n\) con \(m=\frac{\Delta V_B}{\Delta V_A}\), \(n=V_{B\,min}-mV_{A\,min}\).</li>
+<li>Saturación: \(\pm V_{sat}=\pm(V_{CC}-2)\); \(I_{salida}\le40\) mA.</li>
+<li>Schmitt: umbrales \(\pm V_{sat}\frac{R_1}{R_1+R_2}\).</li></ul></div>
+<h3 id="t5-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li>Comprueba si hay <b>realimentación negativa</b>: si la hay, aplica \(V_+=V_-\); si no (o es positiva), es un comparador y la salida sólo puede valer \(\pm V_{sat}\).</li><li>Plantea la corriente en el nudo inversor (no entra corriente al AO) y despeja \(V_o\).</li><li>En diseño: calcula m y n, reparte en una etapa de ganancia y otra de offset, elige resistencias de valor razonable (kΩ) y comprueba la corriente de salida y la saturación.</li><li>Añade seguidores entre etapas y protección (zeners o diodos) donde el enunciado lo pida.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Aplicar \(V_+=V_-\) en un comparador (sin realimentación negativa no hay cortocircuito virtual).</li><li>Olvidar que la salida no puede superar \(\pm V_{sat}\).</li><li>No comprobar la corriente de salida del AO (40 mA) con resistencias pequeñas.</li><li>Confundir el signo: el inversor invierte, y eso importa al encadenar etapas.</li><li>Olvidar que el sumador inversor suma con signo negativo (hay que compensar con otra inversión).</li></ul></div>
+<h3 id="t5-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Problema 2 del examen de enero de 2023)</b> Un sensor da 10 mV/°C y se quiere medir de 0 a 45 °C con un ADC de 0 a 5 V. a) Diseñar el acondicionamiento. b) Añadir protección para que la entrada del ADC no supere 5 V ni baje de −0,7 V, sabiendo que la temperatura puede llegar a 55 °C o bajar a −15 °C, <b>sin alterar el valor</b> en el rango normal.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>a) El sensor da \(V_A=0\) V a 0 °C y \(V_A=0{,}45\) V a 45 °C. Se quiere \(V_B=0\) V y 5 V ⇒</p>
+<p>\(m=\dfrac{5-0}{0{,}45-0}=\mathbf{11{,}1}\) y \(n=0-11{,}1\cdot0=\mathbf{0}\).</p>
+<p>Como no hace falta offset, basta un <b>amplificador no inversor</b> de ganancia 11,1:</p>
+<p>\(1+\dfrac{R_f}{R_1}=11{,}1\) ⇒ con \(R_1=10\) kΩ, \(R_f=101\) kΩ ⇒ valor comercial <b>100 kΩ</b> (ganancia 11, error del 1 %), o 100 kΩ + ajuste.</p>
+<p>Se elige el no inversor (y no el inversor) porque <b>no invierte el signo</b> y porque su impedancia de entrada es altísima: no carga al sensor.</p>
+<p>b) <b>Protección</b> con los componentes del enunciado: una <b>resistencia serie</b> (1 kΩ) entre el AO y el ADC y dos caminos a masa:</p>
+<ul><li>el <b>zener de 4,3 V en inversa, en serie con un diodo rectificador en directa</b>, que empieza a conducir en \(4{,}3+0{,}7=5{,}0\) V y recorta por arriba justo en el límite del ADC;</li>
+<li>un <b>diodo rectificador de masa al nudo</b> (ánodo a masa), que recorta por abajo en −0,7 V.</li></ul>
+<p>La clave de «no alterar la medida» es que en el rango normal (0 a 5 V) <b>ninguno de los dos caminos conduce</b>: no circula corriente por la resistencia serie, no hay caída y la tensión llega intacta al ADC.</p>
+<p><b>Comprobación de los extremos</b>: a 55 °C el acondicionador daría \(0{,}55\cdot11{,}1=6{,}1\) V, que la pareja zener + diodo recorta en 5,0 V ✓; a −15 °C daría −1,67 V, que el diodo recorta a −0,7 V ✓.</p></div></details></div>
+<h3 id="t5-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Cuándo se puede aplicar el cortocircuito virtual?</summary><div class="inner"><p>Sólo con realimentación NEGATIVA (camino de la salida a la entrada inversora) y mientras el AO no esté saturado. Entonces \(V_+=V_-\) e \(i_+=i_-=0\).</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Para qué sirve un seguidor de tensión si su ganancia es 1?</summary><div class="inner"><p>Para adaptar impedancias: su entrada no consume corriente y su salida es de baja impedancia, de modo que elimina el efecto de carga entre etapas. Es la solución al apartado «que la corriente de entrada no altere el valor».</p></div></details><details class="paso"><summary><span class="pn">3</span>Diseña una etapa que convierta −5…+5 V en 0…5 V.</summary><div class="inner"><p>\(m=\frac{5-0}{5-(-5)}=0{,}5\) y \(n=0-0{,}5(-5)=2{,}5\) ⇒ \(V_B=0{,}5V_A+2{,}5\): una etapa de ganancia 0,5 y un sumador que añada 2,5 V de referencia (con la inversión compensada).</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué diferencia hay entre un comparador y un Schmitt trigger?</summary><div class="inner"><p>El comparador conmuta en un único umbral; el Schmitt trigger realimenta positivamente y tiene DOS umbrales (histéresis), lo que evita conmutaciones múltiples cuando la señal es ruidosa.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Qué limita la salida de un AO real alimentado a ±15 V?</summary><div class="inner"><p>La saturación: \(\pm V_{sat}=\pm13\) V en el TL084 (\(V_{CC}-2\)), y la corriente máxima de salida (40 mA), que obliga a no poner cargas demasiado pequeñas.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-04.html"><small>← Anterior</small>T4 · El transistor: BJT y MOSFET</a><a class="nx" href="cuestiones.html"><small>Siguiente →</small>Cuestiones de teoría</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Fundamentos de Electrónica Industrial (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guiones de teoría, prácticas y exámenes de diciembre de 2022 y enero de 2023) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

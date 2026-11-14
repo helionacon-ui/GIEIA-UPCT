@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T4 El transistor: BJT y MOSFET · Fundamentos de Electrónica Industrial · Guía para aprobar</title>
+<meta name="description" content="Fundamentos de Electrónica Industrial (UPCT, GIEyA): tema 4, El transistor: BJT y MOSFET">
+<meta name="theme-color" content="#5f7f1e">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (guiones de teoría, prácticas y exámenes de diciembre de 2022 y enero de 2023) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Fundamentos de Electrónica Industrial</a><span class="sep">›</span><span>Transistores y amplificadores</span><span class="sep">›</span><span>T4 · El transistor: BJT y MOSFET</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Diodos</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Introducción a la electrónica</a><a href="tema-02.html" style="--tc:var(--c3)">T2 El diodo rectificador</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Otros diodos: zener, LED y fotodiodos</a><div class="grp">Transistores y amplificadores</div><a href="tema-04.html" style="--tc:var(--c5)" class="on" aria-current="page">T4 El transistor: BJT y MOSFET</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Amplificadores operacionales</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y evaluación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c5);--tcs:var(--c5s)">
+<div class="sh"><span aria-hidden="true" class="badge">4</span><div class="shx"><p class="kick">Transistores y amplificadores · Tema 4</p><h2 id="t4">El transistor: BJT y MOSFET</h2><div class="tags"><span class="tag">Transistores y amplificadores</span><span class="tag">Transistores y AO · 2.º parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Polarizar y analizar transistores bipolares y MOSFET, distinguir sus zonas de trabajo, trazar la recta de carga y diseñar circuitos de conmutación.</p><p><b>BJT</b>: tres terminales (base, colector, emisor) y dos uniones. En un NPN, con \(V_{BE}>0{,}7\) V conduce y \(I_C=\beta I_B\). Las <b>tres zonas</b>:</p>
+<ul><li><b>Corte</b>: \(V_{BE}<V_\gamma\) ⇒ \(I_B=I_C=0\), \(V_{CE}=V_{CC}\) (interruptor abierto).</li>
+<li><b>Activa</b>: \(V_{BE}\approx0{,}7\) V y \(I_C=\beta I_B\) con \(V_{CE}>V_{CE\,sat}\) (amplificador).</li>
+<li><b>Saturación</b>: \(V_{CE}=V_{CE\,sat}\approx0{,}2\) V, \(I_C<\beta I_B\) (interruptor cerrado).</li></ul>
+<p><b>Método</b>: se supone zona activa, se calcula \(I_B\) en la malla de entrada (con Thévenin si hay divisor), \(I_C=\beta I_B\) y después \(V_{CE}=V_{CC}-I_CR_C-I_ER_E\). <b>Si sale \(V_{CE}<V_{CE\,sat}\), el transistor está en saturación</b> y hay que rehacer el cálculo con \(V_{CE}=0{,}2\) V. Es el error más repetido del tema.</p>
+<p><b>Recta de carga</b> de la malla de salida: \(V_{CE}=V_{CC}-I_C(R_C+R_E)\), que corta los ejes en \(I_C=V_{CC}/(R_C+R_E)\) (saturación) y \(V_{CE}=V_{CC}\) (corte). El <b>punto Q</b> es la intersección con la característica correspondiente a \(I_B\).</p>
+<p><b>Polarización por divisor de tensión</b>: la más estable frente a variaciones de β. Con \(V_{th}\) y \(R_{th}\) del divisor:</p>
+<p>\(I_B=\dfrac{V_{th}-V_{BE}}{R_{th}+(\beta+1)R_E}\) e \(I_C\approx\dfrac{V_{th}-V_{BE}}{R_E}\) si \(R_{th}\ll\beta R_E\).</p>
+<p><b>Conmutación</b> (lo que más cae): para accionar un relé, un motor o un LED desde un microcontrolador se lleva el transistor a <b>saturación</b>, sobredimensionando \(I_B\) con un factor de 2 a 10 sobre el mínimo \(I_B=I_C/\beta_{min}\), y se añade el <b>diodo volante</b> si la carga es inductiva.</p>
+<p><b>MOSFET</b>: controlado por <b>tensión</b> (la puerta no consume corriente). En un NMOS de enriquecimiento:</p>
+<ul><li><b>Corte</b>: \(V_{GS}<V_T\) ⇒ \(I_D=0\).</li>
+<li><b>Saturación</b> (zona activa, la de amplificación): \(V_{GS}>V_T\) y \(V_{DS}\ge V_{GS}-V_T\) ⇒ \(I_D=\dfrac{K}{2}(V_{GS}-V_T)^2\) — en los problemas de la asignatura se da K en mA/V².</li>
+<li><b>Óhmica</b>: \(V_{DS}<V_{GS}-V_T\), se comporta como una resistencia controlada (conmutación).</li></ul>
+<p>Como por la puerta no circula corriente, si la puerta se alimenta por una resistencia \(R_G\) sin corriente, \(V_G\) es directamente la tensión del divisor. Ventajas del MOSFET: control por tensión, muy baja potencia de mando y conmutación rápida; por eso domina en electrónica de potencia.</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 4 <span class="src">9 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">I_B, I_C, I_E</td><td>Corrientes del BJT</td><td class="u">I_E = I_B + I_C</td></tr><tr><td class="sym">β = h_FE</td><td>Ganancia de corriente</td><td class="u">BC547: 110-800</td></tr><tr><td class="sym">V_BE</td><td>Tensión base-emisor</td><td class="u">0,7 V (0,8-0,9 saturado)</td></tr><tr><td class="sym">V_CE sat</td><td>Tensión de saturación</td><td class="u">≈0,1-0,2 V</td></tr><tr><td class="sym">recta de carga</td><td>V_CE = Vcc − I_C(R_C+R_E)</td><td class="u"></td></tr><tr><td class="sym">punto Q</td><td>Punto de trabajo en reposo</td><td class="u"></td></tr><tr><td class="sym">V_GS, V_T</td><td>Puerta-fuente y umbral del MOSFET</td><td class="u">V</td></tr><tr><td class="sym">K</td><td>Constante del MOSFET</td><td class="u">mA/V²</td></tr><tr><td class="sym">I_D = (K/2)(V_GS−V_T)²</td><td>Corriente de drenador en saturación</td><td class="u"></td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - recta de carga y punto Q del BJT</p><div data-sim="bjt"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
+<h3 id="t4-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>BJT activa: \(I_C=\beta I_B\), \(I_E=I_C+I_B\), \(V_{BE}\approx0{,}7\) V.</li>
+<li>Saturación: \(V_{CE}=V_{CE\,sat}\approx0{,}2\) V ⇒ \(I_{C\,sat}=\dfrac{V_{CC}-V_{CE\,sat}}{R_C+R_E}\); se satura si \(\beta I_B>I_{C\,sat}\).</li>
+<li>Recta de carga: \(V_{CE}=V_{CC}-I_C(R_C+R_E)\).</li>
+<li>Divisor: \(V_{th}=V_{CC}\frac{R_2}{R_1+R_2}\), \(R_{th}=R_1\parallel R_2\), \(I_B=\frac{V_{th}-V_{BE}}{R_{th}+(\beta+1)R_E}\).</li>
+<li>MOSFET saturación: \(I_D=\frac{K}{2}(V_{GS}-V_T)^2\); óhmica si \(V_{DS}<V_{GS}-V_T\).</li>
+<li>Potencia: \(P=V_{CE}I_C\le P_{C\,max}\).</li></ul></div>
+<h3 id="t4-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li>Reduce la malla de entrada con Thévenin si hay divisor.</li><li><b>Supón zona activa</b>, calcula \(I_B\), \(I_C=\beta I_B\) y \(V_{CE}\).</li><li><b>Comprueba</b>: si \(V_{CE}\) sale menor que \(V_{CE\,sat}\) (o negativa), el transistor está SATURADO: recalcula con \(V_{CE}=0{,}2\) V.</li><li>Dibuja la recta de carga y sitúa el punto Q; comprueba \(I_C\), \(V_{CE}\) y la potencia frente a los máximos.</li><li>En MOSFET: como \(I_G=0\), \(V_{GS}\) sale del divisor directamente; después \(I_D\) con la ecuación cuadrática y se comprueba la zona con \(V_{DS}\) frente a \(V_{GS}-V_T\).</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Dar por buena la zona activa sin comprobar \(V_{CE}\): si sale negativa, está saturado.</li><li>Usar \(I_C=\beta I_B\) en saturación (ahí \(I_C\) la fija el circuito exterior, no β).</li><li>Olvidar \((\beta+1)R_E\) en la malla de base cuando hay resistencia de emisor.</li><li>Suponer que la puerta de un MOSFET consume corriente.</li><li>Olvidar el diodo volante al conmutar cargas inductivas.</li></ul></div>
+<h3 id="t4-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Problema 3 del examen de enero de 2023 + diseño de relé)</b> a) MOSFET con \(V_{DD}=12\) V, \(R_D=2\) kΩ, \(R_G=10\) kΩ conectada a la puerta, \(K=0{,}48\) mA/V², \(V_T=3\) V, con el divisor que da \(V_G=6\) V: hallar \(V_{GS}\), \(I_D\), \(V_{DS}\) y la zona de trabajo. b) Diseñar el ataque de un relé (bobina 70 Ω a 5 V) desde un microcontrolador que da 4,5 V y 40 mA máximos, con LED indicador y protección.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>a) Por la puerta <b>no circula corriente</b> ⇒ no hay caída en \(R_G\) ⇒ \(V_{GS}=V_G=\mathbf{6\ V}\).</p>
+<p>Suponiendo saturación (zona activa): \(I_D=\dfrac{K}{2}(V_{GS}-V_T)^2=\dfrac{0{,}48}{2}(6-3)^2=0{,}24\cdot9=\mathbf{2{,}16\ mA}\).</p>
+<p>\(V_{DS}=V_{DD}-I_DR_D=12-2{,}16\cdot2=\mathbf{7{,}68\ V}\).</p>
+<p><b>Comprobación de la zona</b>: \(V_{GS}-V_T=3\) V y \(V_{DS}=7{,}68>3\) ✓ ⇒ efectivamente está en <b>saturación</b> (zona de amplificación).</p>
+<p>Recta de carga: \(V_{DS}=12-2I_D\) (kΩ, mA), que corta en \(I_D=6\) mA y \(V_{DS}=12\) V; el punto Q es (7,68 V; 2,16 mA).</p>
+<p>b) <b>Diseño del ataque del relé</b>:</p>
+<p>Corriente de la bobina: \(I_C=\dfrac{5-0{,}2}{70}=68{,}6\) mA — demasiado para el microcontrolador (40 mA máx) ⇒ hace falta un <b>transistor en saturación</b> (p. ej. PN2222, \(\beta_{min}=150\), \(I_C\) hasta 600 mA).</p>
+<p>\(I_{B\,min}=\dfrac{68{,}6}{150}=0{,}46\) mA; con un factor de sobreexcitación de 5 ⇒ \(I_B\approx2{,}3\) mA.</p>
+<p>\(R_B=\dfrac{4{,}5-0{,}9}{2{,}3\ \text{mA}}=1{,}57\) kΩ ⇒ <b>1,5 kΩ</b> (y el micro entrega sólo 2,4 mA ✓).</p>
+<p><b>Diodo volante</b> 1N4001 en antiparalelo con la bobina (cátodo a +5 V): absorbe el pico inductivo al cortar.</p>
+<p><b>LED indicador</b> en serie con su resistencia, en paralelo con la bobina (así luce sólo cuando el relé está activado): \(R=\dfrac{5-2{,}1-0{,}2}{0{,}02}=135\ \Omega\) ⇒ <b>150 Ω</b> (I ≈ 18 mA). (La corriente total del transistor pasa entonces a ≈89 mA, aún muy por debajo de los 600 mA del PN2222.)</p></div></details></div>
+<h3 id="t4-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Cómo se sabe si un BJT está en saturación?</summary><div class="inner"><p>Suponiendo activa y calculando \(V_{CE}=V_{CC}-I_C(R_C+R_E)\) con \(I_C=\beta I_B\): si sale menor que \(V_{CE\,sat}\) (≈0,2 V) o negativa, la hipótesis es falsa y el transistor está saturado, con \(I_C\) fijada por el circuito exterior.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Por qué la polarización por divisor es más estable?</summary><div class="inner"><p>Porque fija \(V_B\) y, con \(R_E\), la corriente queda \(I_C\approx(V_{th}-V_{BE})/R_E\), <b>casi independiente de β</b>, que varía mucho entre unidades y con la temperatura.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Qué diferencia fundamental hay entre BJT y MOSFET?</summary><div class="inner"><p>El BJT se controla por <b>corriente</b> de base (\(I_C=\beta I_B\)) y el MOSFET por <b>tensión</b> de puerta (\(I_G=0\)). El MOSFET no consume potencia de mando y conmuta más rápido.</p></div></details><details class="paso"><summary><span class="pn">4</span>Un MOSFET con \(V_{GS}=5\) V, \(V_T=3\) V y \(V_{DS}=1\) V: ¿en qué zona está?</summary><div class="inner"><p>\(V_{GS}-V_T=2\) V y \(V_{DS}=1<2\) ⇒ está en la <b>zona óhmica</b> (como una resistencia controlada), no en saturación.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Para qué sirve sobreexcitar la base en conmutación?</summary><div class="inner"><p>Para garantizar la saturación aunque β sea el mínimo de la hoja y aunque varíe con la temperatura: se toma \(I_B\) de 2 a 10 veces \(I_C/\beta_{min}\).</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-03.html"><small>← Anterior</small>T3 · Otros diodos: zener, LED y fotodiodos</a><a class="nx" href="tema-05.html"><small>Siguiente →</small>T5 · Amplificadores operacionales</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Fundamentos de Electrónica Industrial (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guiones de teoría, prácticas y exámenes de diciembre de 2022 y enero de 2023) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

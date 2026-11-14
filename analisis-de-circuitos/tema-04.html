@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T4 Ondas periódicas, señal senoidal y fasor · Análisis de Circuitos · Guía para aprobar</title>
+<meta name="description" content="Análisis de Circuitos (UPCT, GIEyA): tema 4, Ondas periódicas, señal senoidal y fasor">
+<meta name="theme-color" content="#b06a00">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, boletines y prácticas) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Análisis de Circuitos</a><span class="sep">›</span><span>Primer parcial · continua y fasores</span><span class="sep">›</span><span>T4 · Ondas periódicas, señal senoidal y fasor</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Primer parcial · continua y fasores</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes eléctricas</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos de corriente continua: reducción de redes</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Teoremas fundamentales en continua</a><a href="tema-04.html" style="--tc:var(--c5)" class="on" aria-current="page">T4 Ondas periódicas, señal senoidal y fasor</a><a href="tema-05.html" style="--tc:var(--c6)">T5 R, L y C en alterna: impedancia y admitancia</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Potencia en corriente alterna</a><div class="grp">Segundo parcial · alterna, transitorios y trifásica</div><a href="tema-07.html" style="--tc:var(--c8)">T7 Teoremas fundamentales en alterna</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Régimen transitorio</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Sistemas trifásicos equilibrados</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Potencia en sistemas trifásicos</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c5);--tcs:var(--c5s)">
+<div class="sh"><span aria-hidden="true" class="badge">4</span><div class="shx"><p class="kick">Primer parcial · continua y fasores · Tema 4</p><h2 id="t4">Ondas periódicas, señal senoidal y fasor</h2><div class="tags"><span class="tag">Primer parcial · continua y fasores</span><span class="tag">Primer parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Manejar valor medio, eficaz y factores de forma y cresta, y representar una senoide como fasor pasando del dominio del tiempo al de la frecuencia.</p><p><b>Onda periódica</b>: \(f(t)=f(t+T)\). Parámetros: período T, frecuencia \(f=1/T\) (Hz), pulsación \(\omega=2\pi f\) (rad/s), valor de pico \(A_m\), pico a pico, fase inicial φ.</p>
+<p><b>Valor medio</b>: \(F_{med}=\dfrac1T\int_0^Tf\,dt\) (en una senoide completa es CERO; por eso se da el medio del semiperíodo: \(2A_m/\pi=0{,}637A_m\)). <b>Valor eficaz</b> (RMS): el de la continua que produce el mismo calor, \(F_{ef}=\sqrt{\dfrac1T\int_0^Tf^2dt}\); para la senoide \(\boxed{F_{ef}=A_m/\sqrt2=0{,}707A_m}\). Los polímetros y los datos de red (230 V) son eficaces.</p>
+<p><b>Factores</b>: de forma \(k_f=F_{ef}/F_{med}=1{,}11\) y de cresta \(k_c=A_m/F_{ef}=\sqrt2\) para la senoide.</p>
+<p><b>Fasor</b>: a una senoide \(v(t)=V_m\operatorname{sen}(\omega t+\varphi)\) se le asocia el número complejo \(\overline V=V_{ef}\angle\varphi\) (en estos apuntes se trabaja en eficaces). Todas las señales del circuito tienen la MISMA ω, así que basta guardar módulo y fase: derivar equivale a multiplicar por \(j\omega\) e integrar a dividir por \(j\omega\). Así las ecuaciones diferenciales se vuelven algebraicas con complejos.</p>
+<p><b>Operaciones</b>: forma polar \(A\angle\theta\) para multiplicar y dividir (módulos se multiplican/dividen, ángulos se suman/restan); forma binómica \(a+jb\) para sumar y restar. Paso: \(a=A\cos\theta\), \(b=A\operatorname{sen}\theta\); \(A=\sqrt{a^2+b^2}\), \(\theta=\arctan(b/a)\) (¡cuidado con el cuadrante!).</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 4 <span class="src">5 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">T, f, omega</td><td>Periodo, frecuencia, pulsacion</td><td class="u">s; Hz; rad/s</td></tr><tr><td class="sym">Vm, V</td><td>Valor de pico y eficaz (Vm/raiz2)</td><td class="u">V</td></tr><tr><td class="sym">phi</td><td>Fase inicial</td><td class="u">grados</td></tr><tr><td class="sym">fasor</td><td>V con modulo eficaz y fase</td><td class="u"></td></tr><tr><td class="sym">kf, kc</td><td>Factor de forma 1,11 y de cresta 1,414</td><td class="u"></td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - suma de fasores y ondas</p><div data-sim="fasor"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
+<h3 id="t4-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>\(\omega=2\pi f=2\pi/T\); \(v=V_m\operatorname{sen}(\omega t+\varphi)\).</li>
+<li>Eficaz senoidal \(V=V_m/\sqrt2\); medio de semiperíodo \(2V_m/\pi\); \(k_f=1{,}11\), \(k_c=1{,}414\).</li>
+<li>Fasor: \(v(t)=V_m\operatorname{sen}(\omega t+\varphi)\Rightarrow\overline V=\dfrac{V_m}{\sqrt2}\angle\varphi\).</li>
+<li>\(\dfrac{d}{dt}\to j\omega\); \(\int dt\to\dfrac1{j\omega}\); \(j=1\angle90^\circ\), \(1/j=-j\).</li>
+<li>\(A\angle\alpha\cdot B\angle\beta=AB\angle(\alpha+\beta)\); \(\dfrac{A\angle\alpha}{B\angle\beta}=\dfrac AB\angle(\alpha-\beta)\).</li></ul></div>
+<h3 id="t4-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li>Pasa TODAS las fuentes al mismo formato (seno o coseno) y a eficaces antes de fasorizar.</li><li>Dibuja el diagrama fasorial: te dice de un vistazo si el resultado tiene sentido (adelanto/retraso).</li><li>Suma y resta en binómica; multiplica y divide en polar. Con la calculadora en modo complejo, comprueba siempre el cuadrante.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Mezclar valores de pico y eficaces en la misma ecuación.</li><li>Dar el ángulo con el arcotangente sin mirar el cuadrante (−3−j4 está en el tercero: 233°, no 53°).</li><li>Olvidar que el fasor solo vale si todo el circuito tiene la misma frecuencia.</li></ul></div>
+<h3 id="t4-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Tipo tema 4)</b> Dadas \(v(t)=150\operatorname{sen}(314t+40^\circ)\) V e \(i(t)=10\operatorname{sen}(314t-20^\circ)\) A: a) frecuencia y período; b) valores eficaces; c) fasores y desfase; d) \(\overline V/\overline I\).</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>a) \(f=\omega/2\pi=314/6{,}283=\mathbf{50\ Hz}\); \(T=20\) ms.</p>
+<p>b) \(V=150/\sqrt2=\mathbf{106{,}1\ V}\); \(I=10/\sqrt2=\mathbf{7{,}07\ A}\).</p>
+<p>c) \(\overline V=106{,}1\angle40^\circ\) V, \(\overline I=7{,}07\angle-20^\circ\) A. Desfase \(\varphi=40-(-20)=\mathbf{60^\circ}\): la tensión adelanta a la corriente ⇒ circuito <b>inductivo</b>.</p>
+<p>d) \(\overline Z=\dfrac{106{,}1\angle40^\circ}{7{,}07\angle-20^\circ}=15\angle60^\circ=7{,}5+j12{,}99\ \Omega\): es decir \(R=7{,}5\ \Omega\) y \(X_L=13\ \Omega\) (con 50 Hz, \(L=41{,}4\) mH).</p></div></details></div>
+<h3 id="t4-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Por qué el valor medio de una senoide completa es cero y qué se usa en su lugar?</summary><div class="inner"><p>Porque el semiciclo positivo cancela al negativo; se usa el valor medio del semiperíodo \(2V_m/\pi=0{,}637V_m\) (y para los cálculos energéticos, el eficaz).</p></div></details><details class="paso"><summary><span class="pn">2</span>La red española es de 230 V, 50 Hz: ¿valor de pico y período?</summary><div class="inner"><p>\(V_m=230\sqrt2=325\) V; \(T=20\) ms.</p></div></details><details class="paso"><summary><span class="pn">3</span>Pasa \(8+j6\) a polar y \(20\angle-120^\circ\) a binómica.</summary><div class="inner"><p>\(10\angle36{,}87^\circ\); \(-10-j17{,}32\).</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué le hace al fasor multiplicar por j?</summary><div class="inner"><p>Lo gira +90° (adelanto); dividir por j (o multiplicar por −j) lo retrasa 90°.</p></div></details><details class="paso"><summary><span class="pn">5</span>Dos tensiones \(100\angle0^\circ\) y \(100\angle90^\circ\): ¿suma?</summary><div class="inner"><p>\(100+j100=141{,}4\angle45^\circ\) V (NO 200 V: son fasores).</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-03.html"><small>← Anterior</small>T3 · Teoremas fundamentales en continua</a><a class="nx" href="tema-05.html"><small>Siguiente →</small>T5 · R, L y C en alterna: impedancia y admitancia</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Análisis de Circuitos (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, boletines y prácticas) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

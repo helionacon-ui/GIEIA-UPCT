@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fundamentos de Electrónica Industrial · Guía para aprobar</title>
+<meta name="description" content="Guía para aprobar Fundamentos de Electrónica Industrial (UPCT, GIEyA): diodos, rectificadores, zener, LED y LDR, transistores BJT y MOSFET y amplificadores operacionales, con figuras interactivas y exámenes resueltos">
+<meta name="theme-color" content="#5f7f1e">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (guiones de teoría, prácticas y exámenes de diciembre de 2022 y enero de 2023) · página creada en noviembre de 2026</p></div>
+<header class="hero"><div class="hero-in"><div class="hero-txt">
+<div class="eyebrow">UPCT · GIEyA · 2.º curso · 1.er cuatrimestre</div>
+<h1>Fundamentos de <span>Electrónica Industrial</span></h1><p class="sub">Diodos, transistores y amplificadores operacionales · Guía para aprobar</p>
+<div class="stats"><div><b>5</b><span>temas, del diodo al operacional</span></div><div><b>6</b><span>figuras interactivas que calculan contigo</span></div><div><b>8</b><span>problemas de examen resueltos</span></div><div><b>22</b><span>cuestiones de teoría respondidas</span></div></div>
+<div class="cta"><a class="btn pri" href="#cero">Empieza desde cero</a><a class="btn" href="cuestiones.html">Teoría</a><a class="btn" href="examenes.html">Exámenes</a><a class="btn" href="problemas.html">Problemas</a><a class="btn" href="laboratorio.html">Prácticas</a><a class="btn" href="formulario.html">Formulario</a></div>
+</div>
+<div aria-hidden="true" class="hero-art"><svg class="zart" viewBox="-120 -120 240 240">
+<rect x="-100" y="-70" width="200" height="140" rx="10" fill="none" stroke="var(--line)" stroke-width="2"></rect>
+<line stroke="var(--line)" stroke-width="1.5" x1="-100" x2="-60" y1="-30" y2="-30"></line>
+<g fill="var(--accent)"><polygon points="-60,-45 -60,-15 -30,-30"></polygon></g>
+<line stroke="var(--accent)" stroke-width="3" x1="-30" x2="-30" y1="-48" y2="-12"></line>
+<line stroke="var(--line)" stroke-width="1.5" x1="-30" x2="20" y1="-30" y2="-30"></line>
+<g fill="none" stroke="var(--warn)" stroke-width="2.5"><polyline points="20,-30 40,-30 40,-55 70,-30 40,-5 40,-30"></polyline></g>
+<line stroke="var(--line)" stroke-width="1.5" x1="70" x2="95" y1="-30" y2="-30"></line>
+<g stroke="var(--accent)" stroke-width="2.5" fill="none"><line x1="-70" x2="-40" y1="40" y2="40"></line><line x1="-40" x2="-40" y1="20" y2="60"></line><line x1="-40" x2="-10" y1="28" y2="14"></line><line x1="-40" x2="-10" y1="52" y2="66"></line><line x1="-10" x2="-10" y1="0" y2="14"></line><line x1="-10" x2="-10" y1="66" y2="80"></line></g>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle" x="40" y="46">Av = 1 + Rf/R1</text>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle" x="0" y="-92">I = βI_B</text></svg>
+<p class="art-cap">Diodo, transistor y operacional: con esos tres bloques se resuelve todo el examen.</p></div></div></header><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)" class="on" aria-current="page">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)" class="on" aria-current="page">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)" class="on" aria-current="page">Tu progreso</a><div class="grp">Diodos</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Introducción a la electrónica</a><a href="tema-02.html" style="--tc:var(--c3)">T2 El diodo rectificador</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Otros diodos: zener, LED y fotodiodos</a><div class="grp">Transistores y amplificadores</div><a href="tema-04.html" style="--tc:var(--c5)">T4 El transistor: BJT y MOSFET</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Amplificadores operacionales</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y evaluación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
+<div class="sh"><span aria-hidden="true" class="badge">0</span><div class="shx"><p class="kick">Empezar</p><h2 id="cero">Empieza aquí desde cero</h2></div></div>
+<div class="zero"><p class="ft">Cómo usar la guía</p>
+<ol><li>Lee cada tema y <b>juega con su figura</b>: la curva del diodo con los cuatro modelos, el rectificador con su <b>rizado</b> y su condensador, el <b>regulador zener</b> con sus límites de corriente y potencia, la <b>recta de carga</b> con el punto Q del transistor y las configuraciones del <b>operacional</b> con su saturación.</li>
+<li>Aprende el <b>método</b>: en electrónica casi todo se resuelve igual — <i>supón un estado, resuelve el circuito lineal y COMPRUEBA la hipótesis</i>. Diodo ON/OFF, transistor en activa o saturado, zener regulando o cortado.</li>
+<li>Haz los <a href="examenes.html">problemas de examen resueltos</a> (enero de 2023 y diciembre de 2022) en papel antes de mirar la solución: son de <b>diseño</b>, no de análisis.</li>
+<li>Recorre los <a href="problemas.html">problemas propuestos</a> tema a tema con la estrategia indicada.</li>
+<li>No descuides el <b>40 % que no es examen</b>: las <a href="laboratorio.html">prácticas (30 %)</a> y los ejercicios de clase (10 %) salvan muchas asignaturas.</li></ol></div>
+<h3 id="mapa">Mapa de temas</h3>
+<div class="map"><a href="tema-01.html"><b>T1</b>Introducción a la electrónica</a><a href="tema-02.html"><b>T2</b>El diodo rectificador</a><a href="tema-03.html"><b>T3</b>Otros diodos: zener, LED y fotodiodos</a><a href="tema-04.html"><b>T4</b>El transistor: BJT y MOSFET</a><a href="tema-05.html"><b>T5</b>Amplificadores operacionales</a></div>
+<div class="box key"><p><b>De dónde sale esta guía.</b> Los <b>guiones de teoría</b> de los cinco temas del curso 2022/23, los boletines de problemas propuestos de diodos, BJT, MOSFET y amplificadores operacionales, los guiones de prácticas (Multisim, montaje y Arduino) y los exámenes del aula virtual: <b>diciembre de 2022</b> y <b>enero de 2023</b>, resueltos aquí paso a paso con las hojas de características que da el enunciado (TL084, 1N4001, BZX85C, BC547/PN2222A/BC557).</p></div>
+<div class="box trap"><h4>Cómo es la evaluación</h4><p><b>Prueba escrita 60 %</b> (con <b>mínimo de 4 sobre 10</b> para que promedie), <b>prácticas 30 %</b> y <b>ejercicios de clase 10 %</b>. En evaluación final el examen sube al 70 % (60 % de prueba escrita más un 10 % con un problema de diseño) y las prácticas mantienen el 30 %. Los problemas piden <b>diseñar</b> y <b>razonar</b>: elegir componentes de una lista dada, dar valores o rangos y comprobar corrientes y potencias.</p></div>
+<h3 id="progreso">Tu progreso</h3>
+<p class="muted">Se guarda en este navegador.</p>
+<div class="bar"><i id="prog-bar"></i></div><p id="prog-txt" class="muted"></p>
+<div class="check"><input type="checkbox" id="c1"><label for="c1">T1 · Introducción a la electrónica</label></div><div class="check"><input type="checkbox" id="c2"><label for="c2">T2 · El diodo rectificador</label></div><div class="check"><input type="checkbox" id="c3"><label for="c3">T3 · Otros diodos: zener, LED y fotodiodos</label></div><div class="check"><input type="checkbox" id="c4"><label for="c4">T4 · El transistor: BJT y MOSFET</label></div><div class="check"><input type="checkbox" id="c5"><label for="c5">T5 · Amplificadores operacionales</label></div>
+</section><p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Fundamentos de Electrónica Industrial (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guiones de teoría, prácticas y exámenes de diciembre de 2022 y enero de 2023) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

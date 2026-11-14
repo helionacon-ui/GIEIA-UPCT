@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T3 Dinámica, fuerzas de inercia y gravitación · Física I · Guía para aprobar</title>
+<meta name="description" content="Física I (UPCT, GIEyA): tema 3, Dinámica, fuerzas de inercia y gravitación">
+<meta name="theme-color" content="#b4232f">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Física I</a><span class="sep">›</span><span>Parcial 1</span><span class="sep">›</span><span>T3 · Dinámica, fuerzas de inercia y gravitación</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Parcial 1</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes, unidades y vectores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Cinemática y movimiento relativo</a><a href="tema-03.html" style="--tc:var(--c4)" class="on" aria-current="page">T3 Dinámica, fuerzas de inercia y gravitación</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Trabajo y energía</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Movimiento oscilatorio</a><div class="grp">Parcial 2</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Sistemas de partículas</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Dinámica y estática del sólido rígido</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Estática del sólido rígido</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Estática de fluidos</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Equilibrio termodinámico y temperatura</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Primer y segundo principio de la termodinámica</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones teóricas de examen</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Recopilación por temas</a><a href="laboratorio.html" style="--tc:var(--c7)">Laboratorio y prácticas</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
+<div class="sh"><span aria-hidden="true" class="badge">3</span><div class="shx"><p class="kick">Parcial 1 · Tema 3</p><h2 id="t3">Dinámica, fuerzas de inercia y gravitación</h2><div class="tags"><span class="tag">Parcial 1</span><span class="tag">Problemas</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Aplicar las leyes de Newton, el rozamiento, los momentos lineal y angular y la ley de gravitación.</p><p><b>Masa inerte</b> (resistencia a cambiar de movimiento) y <b>masa gravitatoria</b> (la que atrae y es atraída) coinciden. <b>Fuerza</b>: causa del cambio de movimiento o de la deformación.</p>
+<p>Leyes de Newton: inercia; \(\sum\vec F=m\vec a\) (más general: \(\sum\vec F=d\vec p/dt\), válida aunque la masa varíe); acción y reacción.</p>
+<p><b>Rozamiento entre sólidos</b>: se opone al movimiento o a su tendencia, no depende del área; mientras no hay deslizamiento \(F_r=F_{aplicada}\le\mu_eN\), y al deslizar \(F_r=\mu_dN\) con \(\mu_d<\mu_e\). <b>En un fluido</b>: \(F_r=-k\eta\vec v\) (proporcional a la velocidad), lo que da una <b>velocidad límite</b>.</p>
+<p>En un <b>sistema no inercial</b> hay que añadir fuerzas ficticias (\(-m\vec a_0\); centrífuga \(m\omega^2r\); Coriolis). El profesor recomienda plantear siempre desde el sistema inercial.</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 3 <span class="src">6 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(N\)</td><td>Fuerza normal</td><td class="u">N</td></tr><tr><td class="sym">\(\mu_e,\mu_d\)</td><td>Coeficientes de rozamiento estático y dinámico</td><td class="u">sin dimensiones</td></tr><tr><td class="sym">\(\vec p\)</td><td>Momento lineal</td><td class="u">kg·m/s</td></tr><tr><td class="sym">\(\vec L_O\)</td><td>Momento angular respecto a O</td><td class="u">kg·m²/s</td></tr><tr><td class="sym">\(G\)</td><td>Constante de gravitación</td><td class="u">6,67·10⁻¹¹ N·m²/kg²</td></tr><tr><td class="sym">\(g_0\)</td><td>Gravedad en la superficie</td><td class="u">9,8 m/s²</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Simulador · fuerzas en un plano inclinado</p><div data-sim="plano"></div><figcaption>Mueve los controles y observa cómo cambian las magnitudes del recuadro.</figcaption></figure>
+<h3 id="t3-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>Rozamiento: \(F_e\le\mu_eN\), \(F_d=\mu_dN\). Plano inclinado que empieza a deslizar: \(\mu_e=\tan\theta_{crit}\).</li>
+<li>Viscoso: \(m\,dv/dt=mg-kv\Rightarrow v=\dfrac{mg}{k}\left(1-e^{-kt/m}\right)\), \(v_{lim}=mg/k\).</li>
+<li>Momento lineal \(\vec p=m\vec v\); \(\sum\vec F=d\vec p/dt\); si \(\sum\vec F=0\), \(\vec p\) constante. Impulso \(\vec I=\int\vec F\,dt=\Delta\vec p\).</li>
+<li>Momento angular \(\vec L_O=\vec r\times\vec p\); \(d\vec L_O/dt=\vec M_O\). Se conserva si \(\vec M_O=0\) (fuerzas centrales), aunque \(\sum\vec F\ne0\).</li>
+<li>Curva peraltada con rozamiento: \(r_{min}=\dfrac{v^2(\cos\theta-\mu\sin\theta)}{g(\sin\theta+\mu\cos\theta)}\). Péndulo en el punto más bajo: \(T=m(g+v^2/r)\).</li>
+<li>Gravitación: \(\vec F_{12}=-G\dfrac{m_1m_2}{r^2}\hat r\); campo \(\vec g=-GM/r^2\,\hat r\); órbita circular \(v=\sqrt{GM/r}\), \(T^2=4\pi^2r^3/(GM)\) (satélite geoestacionario: \(r=42{,}2\) Mm).</li></ul></div>
+<h3 id="t3-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li>Diagrama de sólido libre de cada cuerpo (peso, normal, tensión, rozamiento, fuerzas aplicadas).</li><li>Ejes según el movimiento: en planos inclinados, paralelo y perpendicular al plano; en giros, radial (hacia el centro) y tangencial.</li><li>\(\sum F=ma\) por componentes; en movimiento circular la radial es \(mv^2/r=m\omega^2 r\).</li><li>Si hay cuerda, misma aceleración (en módulo) para los cuerpos unidos; polea ideal, misma tensión.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Poner \(F_r=\mu N\) cuando el cuerpo está parado sin deslizamiento inminente.</li><li>Suponer \(N=mg\) en planos inclinados o cuando hay fuerzas con componente vertical.</li><li>Confundir \(\mu_e\) y \(\mu_d\): el estático decide si se mueve; el dinámico, cuánto frena.</li><li>Poner la fuerza centrífuga desde el sistema inercial: desde fuera solo hay fuerzas reales.</li></ul></div>
+<h3 id="t3-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Recopilación 1.3, n.º 9)</b> Un cuerpo está sobre un plano que se va elevando; empieza a deslizar cuando el plano forma 30°, y en la bajada recorre 3 m en 3 s. Calcula \(\mu_e\) y \(\mu_d\).</p>
+<p><b>(n.º 11)</b> Un cuerpo de 1 kg cae desde el reposo con rozamiento del aire \(F=0{,}1v\). Velocidad en función del tiempo y velocidad límite.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>Inicio del deslizamiento: \(mg\sin30=\mu_e mg\cos30\Rightarrow\mu_e=\tan30^\circ=0{,}58\). En la bajada \(d=\tfrac12at^2\Rightarrow a=2\cdot3/9=0{,}667\) m/s²; \(a=g(\sin30-\mu_d\cos30)\Rightarrow\mu_d=\dfrac{\sin30-a/g}{\cos30}=\dfrac{0{,}5-0{,}068}{0{,}866}=0{,}50\). <span class="src">Oficial: \(\mu_d=0{,}5\), \(\mu_e=0{,}58\).</span></p>
+<p>Caída: \(m\dfrac{dv}{dt}=mg-0{,}1v\). Separando variables e integrando desde \(v=0\): \(v=\dfrac{mg}{0{,}1}\left(1-e^{-0{,}1t/m}\right)=98\left(1-e^{-t/10}\right)\) m/s; \(v_{lim}=98\) m/s. <span class="src">Oficial: coincide.</span></p></div></details></div>
+<h3 id="t3-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Un cuerpo gira en círculo a velocidad constante. ¿Realiza trabajo la fuerza que produce su aceleración? (cuestión oficial 2)</summary><div class="inner"><p>No: la fuerza es centrípeta, perpendicular a la velocidad en todo instante, luego \(\vec F\cdot d\vec r=0\) y la energía cinética no cambia.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Puede conservarse \(\vec L\) sin que se conserve \(\vec p\)?</summary><div class="inner"><p>Sí: basta que el momento de las fuerzas respecto al punto sea nulo (fuerzas centrales, como la gravitatoria), aunque la fuerza neta no lo sea.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Qué es la velocidad límite?</summary><div class="inner"><p>La que alcanza un cuerpo que cae con rozamiento proporcional a la velocidad cuando \(F_r=mg\): \(v_{lim}=mg/k\).</p></div></details><details class="paso"><summary><span class="pn">4</span>Plataforma a 2 vueltas/s y \(\mu=0{,}4\): ¿distancia máxima al eje sin salir despedido? (recopilación 1.3 n.º 16)</summary><div class="inner"><p>\(\mu mg=m\omega^2r\Rightarrow r=\mu g/\omega^2=0{,}4\cdot9{,}8/(4\pi)^2=0{,}025\) m = 2,5 cm.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-02.html"><small>← Anterior</small>T2 · Cinemática y movimiento relativo</a><a class="nx" href="tema-04.html"><small>Siguiente →</small>T4 · Trabajo y energía</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Física I (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

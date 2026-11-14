@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estadística Aplicada · Guía para aprobar</title>
+<meta name="description" content="Guía para aprobar Estadística Aplicada (UPCT, GIEyA): descriptiva, probabilidad, variables aleatorias, muestreo, intervalos de confianza, contrastes, bondad de ajuste y regresión, con figuras interactivas y exámenes resueltos">
+<meta name="theme-color" content="#6a4fa3">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, hojas de problemas, prácticas de R y exámenes de 2014 a 2022) · página creada en noviembre de 2026</p></div>
+<header class="hero"><div class="hero-in"><div class="hero-txt">
+<div class="eyebrow">UPCT · GIEyA · 1.º curso · 2.º cuatrimestre</div>
+<h1>Estadística <span>Aplicada</span></h1><p class="sub">Guía para aprobar</p>
+<div class="stats"><div><b>8</b><span>temas, de la media a la regresión</span></div><div><b>10</b><span>figuras interactivas que calculan como R</span></div><div><b>10</b><span>problemas de examen resueltos</span></div><div><b>28</b><span>cuestiones de teoría respondidas</span></div></div>
+<div class="cta"><a class="btn pri" href="#cero">Empieza desde cero</a><a class="btn" href="cuestiones.html">Teoría</a><a class="btn" href="examenes.html">Exámenes</a><a class="btn" href="problemas.html">Hojas</a><a class="btn" href="laboratorio.html">Prácticas R</a><a class="btn" href="formulario.html">Formulario y tablas</a></div>
+</div>
+<div aria-hidden="true" class="hero-art"><svg class="zart" viewBox="-120 -120 240 240">
+<path d="M -100 40 C -60 40 -45 -60 0 -60 C 45 -60 60 40 100 40" fill="none" stroke="var(--accent)" stroke-width="3"></path>
+<line stroke="var(--line)" stroke-width="2" x1="-105" x2="105" y1="40" y2="40"></line>
+<line stroke="var(--warn)" stroke-dasharray="5 4" stroke-width="2" x1="0" x2="0" y1="40" y2="-62"></line>
+<g fill="var(--accent)" opacity="0.18"><path d="M 36 40 C 52 36 70 40 100 40 L 100 40 Z"></path></g>
+<g class="orbit" style="transform-origin:0 0"><circle cx="0" cy="-96" fill="var(--accent)" r="5"></circle></g>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="12" text-anchor="middle" x="0" y="70">p-valor &lt; α ⇒ rechazo H₀</text>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="12" text-anchor="middle" x="0" y="-96">x̄ ± t·S/√n</text></svg>
+<p class="art-cap">Casi todo el examen se reduce a elegir bien el estadístico y leer el p-valor.</p></div></div></header><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)" class="on" aria-current="page">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)" class="on" aria-current="page">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)" class="on" aria-current="page">Tu progreso</a><div class="grp">UD1 · Descriptiva y probabilidad</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Estadística descriptiva</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Introducción a la probabilidad</a><div class="grp">UD2 · Variables aleatorias y modelos</div><a href="tema-03.html" style="--tc:var(--c4)">T3 Variables aleatorias unidimensionales</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Variables aleatorias bidimensionales</a><div class="grp">UD3 · Muestreo e inferencia</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Muestreo y distribuciones muestrales</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Estimación puntual y por intervalos</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Contrastes de hipótesis y bondad de ajuste</a><div class="grp">UD4 · Regresión</div><a href="tema-08.html" style="--tc:var(--c1)">T8 El modelo de regresión lineal simple</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
+<div class="sh"><span aria-hidden="true" class="badge">0</span><div class="shx"><p class="kick">Empezar</p><h2 id="cero">Empieza aquí desde cero</h2></div></div>
+<div class="zero"><p class="ft">Cómo usar la guía</p>
+<ol><li>Lee cada tema y <b>juega con su figura</b>: la caja y bigotes que marca los atípicos, el árbol de Bayes, los modelos de probabilidad con el área sombreada, la tabla conjunta, el <b>teorema central del límite</b> simulado, los intervalos de confianza, la región crítica con el <b>p-valor</b> y la regresión con sus residuos e intervalos de predicción.</li>
+<li>Usa la <a href="formulario.html">calculadora de tablas</a> (N, t, χ² y F) cuando no tengas las tablas delante: hace lo mismo que <code>pnorm</code>, <code>qt</code> o <code>pchisq</code> en R.</li>
+<li>Repasa las <a href="cuestiones.html">cuestiones de teoría</a> y haz los <a href="examenes.html">exámenes resueltos</a> en papel antes de mirar la solución.</li>
+<li>Recorre las <a href="problemas.html">hojas de problemas</a> con la estrategia de cada bloque.</li>
+<li>No descuides las <a href="laboratorio.html">prácticas con R</a>: valen el 15 % de la prueba escrita más el 10 % de informes.</li></ol></div>
+<h3 id="mapa">Mapa de temas</h3>
+<div class="map"><a href="tema-01.html"><b>T1</b>Estadística descriptiva</a><a href="tema-02.html"><b>T2</b>Introducción a la probabilidad</a><a href="tema-03.html"><b>T3</b>Variables aleatorias unidimensionales</a><a href="tema-04.html"><b>T4</b>Variables aleatorias bidimensionales</a><a href="tema-05.html"><b>T5</b>Muestreo y distribuciones muestrales</a><a href="tema-06.html"><b>T6</b>Estimación puntual y por intervalos</a><a href="tema-07.html"><b>T7</b>Contrastes de hipótesis y bondad de ajuste</a><a href="tema-08.html"><b>T8</b>El modelo de regresión lineal simple</a></div>
+<div class="box key"><p><b>De dónde sale esta guía.</b> Los apuntes de teoría de <b>Antonio Guillamón Frutos</b> (temas 1 a 8), el <b>formulario oficial</b> de intervalos de confianza, las hojas de problemas con sus soluciones, los cuadernos de las <b>7 prácticas de R y R-Commander</b> y los exámenes resueltos del aula virtual: julio 2016, prácticas de junio 2014 y el segundo parcial de mayo 2022.</p></div>
+<div class="box trap"><h4>Cómo es la evaluación</h4><p><b>Prueba escrita individual (75 %)</b>: 60 % de cuestiones y problemas teórico-prácticos + <b>15 % de prácticas con software estadístico</b>. <b>Informes de laboratorio (10 %)</b> y <b>otras actividades (15 %)</b>: entre 2 y 4 pruebas cortas o cuestionarios a lo largo del curso, cuya nota <b>se conserva</b> para junio, septiembre y febrero del curso siguiente. Se aprueba con más de 50 sobre 100 sumando todo. Quien no haga evaluación continua puede pedir una <b>prueba global</b> (80 % teoría-problemas + 20 % prácticas), solicitándola al Departamento de Matemática Aplicada y Estadística.</p></div>
+<h3 id="progreso">Tu progreso</h3>
+<p class="muted">Se guarda en este navegador.</p>
+<div class="bar"><i id="prog-bar"></i></div><p id="prog-txt" class="muted"></p>
+<div class="check"><input type="checkbox" id="c1"><label for="c1">T1 · Estadística descriptiva</label></div><div class="check"><input type="checkbox" id="c2"><label for="c2">T2 · Introducción a la probabilidad</label></div><div class="check"><input type="checkbox" id="c3"><label for="c3">T3 · Variables aleatorias unidimensionales</label></div><div class="check"><input type="checkbox" id="c4"><label for="c4">T4 · Variables aleatorias bidimensionales</label></div><div class="check"><input type="checkbox" id="c5"><label for="c5">T5 · Muestreo y distribuciones muestrales</label></div><div class="check"><input type="checkbox" id="c6"><label for="c6">T6 · Estimación puntual y por intervalos</label></div><div class="check"><input type="checkbox" id="c7"><label for="c7">T7 · Contrastes de hipótesis y bondad de ajuste</label></div><div class="check"><input type="checkbox" id="c8"><label for="c8">T8 · El modelo de regresión lineal simple</label></div>
+</section><p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Estadística Aplicada (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, hojas, prácticas de R y exámenes de 2014 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

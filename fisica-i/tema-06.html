@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T6 Sistemas de partículas · Física I · Guía para aprobar</title>
+<meta name="description" content="Física I (UPCT, GIEyA): tema 6, Sistemas de partículas">
+<meta name="theme-color" content="#b4232f">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Física I</a><span class="sep">›</span><span>Parcial 2</span><span class="sep">›</span><span>T6 · Sistemas de partículas</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Parcial 1</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes, unidades y vectores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Cinemática y movimiento relativo</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Dinámica, fuerzas de inercia y gravitación</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Trabajo y energía</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Movimiento oscilatorio</a><div class="grp">Parcial 2</div><a href="tema-06.html" style="--tc:var(--c7)" class="on" aria-current="page">T6 Sistemas de partículas</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Dinámica y estática del sólido rígido</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Estática del sólido rígido</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Estática de fluidos</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Equilibrio termodinámico y temperatura</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Primer y segundo principio de la termodinámica</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones teóricas de examen</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Recopilación por temas</a><a href="laboratorio.html" style="--tc:var(--c7)">Laboratorio y prácticas</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c7);--tcs:var(--c7s)">
+<div class="sh"><span aria-hidden="true" class="badge">6</span><div class="shx"><p class="kick">Parcial 2 · Tema 6</p><h2 id="t6">Sistemas de partículas</h2><div class="tags"><span class="tag">Parcial 2</span><span class="tag">Problemas</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Calcular el centro de masas y aplicar la conservación del momento lineal y angular a sistemas y colisiones.</p><p>Las <b>fuerzas internas</b> se cancelan por pares (3.ª ley) en la fuerza total, por eso \(\sum\vec F_{ext}=M\vec a_{CM}\); pero sí cuentan para la energía cinética o la deformación del sistema.</p>
+<p>El <b>centro de masas</b> es el promedio de posiciones ponderado con la masa; en figuras continuas se integra con \(dm=\rho\,dV\), \(\sigma\,dS\) o \(\lambda\,dl\). Ejemplos del curso: triángulo rectángulo \(x_{CM}=a/3\), \(y_{CM}=b/3\); cono \(z_{CM}=3h/4\) desde el vértice (\(h/4\) desde la base); figuras con huecos: masa negativa.</p>
+<p><b>Colisiones</b> (cuestión oficial 13): en todas se conserva \(\vec p\); elástica: también \(E_c\) (\(e=1\)); perfectamente inelástica: quedan juntos, pérdida máxima de \(E_c\) compatible con \(\vec p\) (\(e=0\)); inelástica general: \(0&lt;e&lt;1\) y se usa la ecuación del coeficiente de restitución por componentes.</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 6 <span class="src">5 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(\vec r_{cm}\)</td><td>Centro de masas</td><td class="u">m</td></tr><tr><td class="sym">\(M\)</td><td>Masa total</td><td class="u">kg</td></tr><tr><td class="sym">\(\vec P\)</td><td>Momento lineal total</td><td class="u">kg·m/s</td></tr><tr><td class="sym">\(e\)</td><td>Coeficiente de restitución</td><td class="u">0 a 1</td></tr><tr><td class="sym">\(dm\)</td><td>Elemento de masa (continuo)</td><td class="u">kg</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Simulador · choque en una dimensión</p><div data-sim="choque"></div><figcaption>Mueve los controles y observa cómo cambian las magnitudes del recuadro.</figcaption></figure>
+<h3 id="t6-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>\(\vec r_{CM}=\dfrac{\sum m_i\vec r_i}{M}=\dfrac1M\int\vec r\,dm\); \(\vec v_{CM}=\vec P/M\); \(\sum\vec F_{ext}=M\vec a_{CM}\).</li>
+<li>\(\vec L_O=\sum\vec r_i\times m_i\vec v_i\); \(d\vec L_O/dt=\sum\vec M_{O,ext}\).</li>
+<li>Sistema CM: \(\vec P'=0\); \(E_c=E_{c,CM}+\tfrac12Mv_{CM}^2\) (König); \(\vec L_O=\vec L'+\vec r_{CM}\times M\vec v_{CM}\).</li>
+<li>Coeficiente de restitución \(e=\dfrac{v_2'-v_1'}{v_1-v_2}\). Choque frontal con blanco en reposo: fracción de energía perdida \(=\dfrac{100(1-e^2)}{1+m_A/m_B}\%\).</li>
+<li>Péndulo balístico: \(mv=(m+M)V\) y luego \(\tfrac12(m+M)V^2=(m+M)gL(1-\cos\theta)\).</li>
+<li>Masa variable (vagón que se llena de lluvia): \(\vec p\) constante, \(v(t)=\dfrac{m_0v_0}{m_0+\dot m t}\).</li></ul></div>
+<h3 id="t6-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li>Centro de masas: elige ejes con simetría, divide en figuras simples (huecos con masa negativa).</li><li>Choques: conserva \(\vec p\) por componentes; añade \(E_c\) solo si es elástico, o la ecuación de e si te lo dan.</li><li>Barcas y trineos sin rozamiento: \(x_{CM}\) no se mueve.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Conservar la energía cinética en choques inelásticos.</li><li>Olvidar que en el péndulo balístico la energía solo se conserva después del impacto, no durante.</li><li>Tomar la velocidad del objeto respecto al trineo como si fuera respecto al suelo.</li></ul></div>
+<h3 id="t6-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Problema de examen n.º 7)</b> Una bola de billar a 2 m/s choca oblicuamente con otra idéntica en reposo. Tras el choque una se mueve a 1,5 m/s formando 30° con la dirección inicial. a) Velocidad de la otra. b) ¿Es elástico?</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>a) \(\vec p\): \(2\hat\imath=1{,}5(\cos30,\sin30)+\vec v_2\Rightarrow\vec v_2=(0{,}70,-0{,}75)\) m/s: \(|\vec v_2|=1{,}03\) m/s a \(-46{,}9^\circ\) (al otro lado).</p>
+<p>b) \(E_c\) (por unidad de \(m/2\)): antes \(2^2=4\); después \(1{,}5^2+1{,}03^2=3{,}30\). Se pierde el 17 %: <b>no es elástico</b> (en el elástico entre masas iguales las velocidades finales formarían 90°).</p>
+<p><b>(Recopilación 1.5, n.º 10, oficial)</b> Péndulo balístico de 2 kg y 1 m, proyectil de 20 g, ángulo 30°: \(v=163{,}7\) m/s, \(\Delta E_c=265{,}3\) J.</p></div></details></div>
+<h3 id="t6-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Se conserva la energía cinética de un sistema sin fuerzas externas? (cuestión 18b)</summary><div class="inner"><p>No necesariamente: las fuerzas internas pueden transformarla (explosión, choque inelástico). Lo que se conserva es \(\vec p\).</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Es nulo el momento lineal respecto al sistema del centro de masas? (cuestión 18d)</summary><div class="inner"><p>Verdadero: \(\vec P'=\sum m_i\vec v_i'=M\vec v_{CM}'=0\).</p></div></details><details class="paso"><summary><span class="pn">3</span>Tipos de colisiones y ecuaciones (cuestión 13).</summary><div class="inner"><p>Elástica: \(\vec p\) y \(E_c\). Perfectamente inelástica: \(\vec p\) y \(\vec v_1'=\vec v_2'\). Inelástica: \(\vec p\) y \(e=(v_2'-v_1')/(v_1-v_2)\).</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Dónde está el centro de masas de un cono macizo de altura h?</summary><div class="inner"><p>A \(3h/4\) del vértice (\(h/4\) de la base), integrando discos \(dm=\rho\pi r^2dz\) con \(r=Rz/h\).</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-05.html"><small>← Anterior</small>T5 · Movimiento oscilatorio</a><a class="nx" href="tema-07.html"><small>Siguiente →</small>T7 · Dinámica y estática del sólido rígido</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Física I (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

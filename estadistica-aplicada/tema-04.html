@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T4 Variables aleatorias bidimensionales · Estadística Aplicada · Guía para aprobar</title>
+<meta name="description" content="Estadística Aplicada (UPCT, GIEyA): tema 4, Variables aleatorias bidimensionales">
+<meta name="theme-color" content="#6a4fa3">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, hojas de problemas, prácticas de R y exámenes de 2014 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Estadística Aplicada</a><span class="sep">›</span><span>UD2 · Variables aleatorias y modelos</span><span class="sep">›</span><span>T4 · Variables aleatorias bidimensionales</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">UD1 · Descriptiva y probabilidad</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Estadística descriptiva</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Introducción a la probabilidad</a><div class="grp">UD2 · Variables aleatorias y modelos</div><a href="tema-03.html" style="--tc:var(--c4)">T3 Variables aleatorias unidimensionales</a><a href="tema-04.html" style="--tc:var(--c5)" class="on" aria-current="page">T4 Variables aleatorias bidimensionales</a><div class="grp">UD3 · Muestreo e inferencia</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Muestreo y distribuciones muestrales</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Estimación puntual y por intervalos</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Contrastes de hipótesis y bondad de ajuste</a><div class="grp">UD4 · Regresión</div><a href="tema-08.html" style="--tc:var(--c1)">T8 El modelo de regresión lineal simple</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c5);--tcs:var(--c5s)">
+<div class="sh"><span aria-hidden="true" class="badge">4</span><div class="shx"><p class="kick">UD2 · Variables aleatorias y modelos · Tema 4</p><h2 id="t4">Variables aleatorias bidimensionales</h2><div class="tags"><span class="tag">UD2 · Variables aleatorias y modelos</span><span class="tag">Primer parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Trabajar con distribuciones conjuntas, marginales y condicionadas, estudiar la independencia y calcular covarianza y correlación.</p><p>Un <b>vector aleatorio</b> \((X,Y)\) describe dos características medidas sobre el mismo individuo. En el caso <b>discreto</b> se da la <b>función puntual conjunta</b> \(p(x_i,y_j)=P(X=x_i,Y=y_j)\) en una tabla de doble entrada, con \(\sum\sum p=1\); en el <b>continuo</b>, la <b>densidad conjunta</b> \(f(x,y)\ge0\) con \(\iint f=1\).</p>
+<p><b>Marginales</b>: se obtienen sumando (o integrando) la otra variable: \(p_X(x_i)=\sum_j p(x_i,y_j)\), \(f_X(x)=\int f(x,y)\,dy\). En la tabla son, literalmente, los totales de filas y columnas.</p>
+<p><b>Condicionadas</b>: \(p(y_j\mid x_i)=\dfrac{p(x_i,y_j)}{p_X(x_i)}\) y \(f(y\mid x)=\dfrac{f(x,y)}{f_X(x)}\): es volver a normalizar una fila (o columna) para que sume 1.</p>
+<p><b>Independencia</b>: \(X\) e \(Y\) son independientes si \(p(x,y)=p_X(x)\,p_Y(y)\) <b>para todos</b> los pares (o \(f(x,y)=f_X(x)f_Y(y)\)). Basta que falle en una casilla para que haya dependencia. Si la tabla tiene algún cero y las marginales no, ya son dependientes.</p>
+<p><b>Covarianza</b>: \(Cov(X,Y)=E[XY]-E[X]E[Y]\). Mide la relación <b>lineal</b> y tiene las unidades del producto. El <b>coeficiente de correlación</b> \(\rho=\dfrac{Cov(X,Y)}{\sigma_X\sigma_Y}\in[-1,1]\) es adimensional: ±1 indica dependencia lineal exacta y 0, ausencia de relación lineal.</p>
+<p><b>Cuidado</b>: independencia ⇒ \(\rho=0\), pero <b>\(\rho=0\) no implica independencia</b> (puede haber una relación no lineal perfecta con correlación nula).</p>
+<p><b>Sumas</b>: \(E[X+Y]=E[X]+E[Y]\) siempre; \(Var(X+Y)=Var(X)+Var(Y)+2Cov(X,Y)\), que se reduce a la suma de varianzas <b>si son independientes</b>. Para combinaciones: \(Var(aX+bY)=a^2Var(X)+b^2Var(Y)+2ab\,Cov(X,Y)\).</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 4 <span class="src">6 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">p(x,y)</td><td>Función puntual conjunta</td><td class="u"></td></tr><tr><td class="sym">pₓ(x), p_y(y)</td><td>Marginales (sumas de filas y columnas)</td><td class="u"></td></tr><tr><td class="sym">p(y|x)</td><td>Condicionada: fila / su total</td><td class="u"></td></tr><tr><td class="sym">Cov(X,Y)</td><td>E[XY] − E[X]E[Y]</td><td class="u"></td></tr><tr><td class="sym">ρ</td><td>Cov/(σₓσ_y)</td><td class="u">entre −1 y 1</td></tr><tr><td class="sym">Var(X±Y)</td><td>VarX + VarY ± 2Cov</td><td class="u"></td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - tabla conjunta: marginales, condicionadas y covarianza</p><div data-sim="bidim"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
+<h3 id="t4-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>Marginal: \(p_X(x_i)=\sum_j p(x_i,y_j)\) · \(f_X(x)=\int f(x,y)dy\).</li>
+<li>Condicionada: \(p(y\mid x)=\dfrac{p(x,y)}{p_X(x)}\).</li>
+<li>Independencia: \(p(x,y)=p_X(x)p_Y(y)\ \forall(x,y)\).</li>
+<li>\(Cov(X,Y)=E[XY]-E[X]E[Y]\) · \(\rho=\dfrac{Cov}{\sigma_X\sigma_Y}\).</li>
+<li>\(Var(aX+bY)=a^2Var(X)+b^2Var(Y)+2ab\,Cov(X,Y)\).</li></ul></div>
+<h3 id="t4-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li>Completa la tabla con los totales de filas y columnas: son las marginales.</li><li>Para una condicionada, divide la fila (o columna) por su total.</li><li>Independencia: comprueba \(p(x,y)=p_X\cdot p_Y\) en todas las casillas; si falla una, son dependientes.</li><li>Covarianza: calcula \(E[XY]=\sum\sum x_iy_jp(x_i,y_j)\) y resta el producto de medias.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Concluir independencia porque la igualdad se cumple en una casilla.</li><li>Deducir independencia de \(\rho=0\) (sólo es cierto al revés).</li><li>Sumar varianzas cuando las variables están correlacionadas.</li><li>Olvidar normalizar al calcular una condicionada.</li></ul></div>
+<h3 id="t4-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Ejemplo de los apuntes, tema 4)</b> Se lanza 3 veces una moneda trucada con \(P(C)=2/3\). Sea \(X\) = caras en el primer lanzamiento (0 o 1) e \(Y\) = caras totales. La conjunta es: \(p(0,0)=1/27\), \(p(0,1)=4/27\), \(p(0,2)=4/27\), \(p(1,1)=2/27\), \(p(1,2)=8/27\), \(p(1,3)=8/27\). Hallar las marginales, comprobar la independencia y calcular \(Cov(X,Y)\).</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>Marginales</b>: \(p_X(0)=\frac{1+4+4}{27}=\frac{9}{27}=\frac13\) y \(p_X(1)=\frac{2+8+8}{27}=\frac{18}{27}=\frac23\) ✓ (es una Bernoulli con p = 2/3).</p>
+<p>\(p_Y(0)=\frac1{27}\), \(p_Y(1)=\frac{6}{27}\), \(p_Y(2)=\frac{12}{27}\), \(p_Y(3)=\frac{8}{27}\) ✓ (binomial \(B(3,2/3)\)).</p>
+<p><b>Independencia</b>: \(p(0,3)=0\) pero \(p_X(0)p_Y(3)=\frac13\cdot\frac8{27}\neq0\) ⇒ <b>dependientes</b> (lógico: si la primera es cara, no puede haber 0 caras totales).</p>
+<p><b>Covarianza</b>: \(E[X]=\frac23\), \(E[Y]=np=3\cdot\frac23=2\).</p>
+<p>\(E[XY]=\frac{1\cdot1\cdot2+1\cdot2\cdot8+1\cdot3\cdot8}{27}=\frac{2+16+24}{27}=\frac{42}{27}=1{,}5556\).</p>
+<p>\(Cov=1{,}5556-\frac23\cdot2=1{,}5556-1{,}3333=\mathbf{0{,}2222}=\frac29\) &gt; 0: si sale cara la primera, el total tiende a ser mayor.</p>
+<p>Comprobación: \(\sigma_X^2=\frac29\), \(\sigma_Y^2=3\cdot\frac23\cdot\frac13=\frac23\) ⇒ \(\rho=\dfrac{2/9}{\sqrt{2/9}\sqrt{2/3}}=\mathbf{0{,}577}\).</p></div></details></div>
+<h3 id="t4-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Cómo se obtienen las marginales de una tabla de doble entrada?</summary><div class="inner"><p>Sumando cada fila (marginal de X) y cada columna (marginal de Y): son los totales del margen, de ahí el nombre.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿\(\rho=0\) implica independencia?</summary><div class="inner"><p>No. Implica ausencia de relación LINEAL. Puede haber dependencia perfecta no lineal (p. ej. \(Y=X^2\) con X simétrica) y salir \(\rho=0\). Lo contrario sí: independientes ⇒ \(\rho=0\).</p></div></details><details class="paso"><summary><span class="pn">3</span>\(Var(X-Y)\) si X e Y son independientes con varianzas 4 y 9.</summary><div class="inner"><p>\(Var(X-Y)=Var(X)+Var(Y)=13\) (¡se SUMAN, no se restan!); con covarianza no nula habría que restar \(2Cov\).</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué significa una condicionada \(p(y\mid x)\)?</summary><div class="inner"><p>La distribución de Y restringida a los individuos con \(X=x\), renormalizada para que sume 1. Es una distribución de probabilidad por sí misma.</p></div></details><details class="paso"><summary><span class="pn">5</span>Si la tabla conjunta tiene un cero y las dos marginales correspondientes son positivas, ¿qué puedes afirmar?</summary><div class="inner"><p>Que las variables son DEPENDIENTES, sin necesidad de comprobar nada más: \(0\neq p_X\cdot p_Y>0\).</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-03.html"><small>← Anterior</small>T3 · Variables aleatorias unidimensionales</a><a class="nx" href="tema-05.html"><small>Siguiente →</small>T5 · Muestreo y distribuciones muestrales</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Estadística Aplicada (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, hojas, prácticas de R y exámenes de 2014 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

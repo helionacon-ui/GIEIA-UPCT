@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T2 Potencial electrostático y energía · Física II · Guía para aprobar</title>
+<meta name="description" content="Física II (UPCT, GIEyA): tema 2, Potencial electrostático y energía">
+<meta name="theme-color" content="#b4232f">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en los cursos <time datetime="2021-09">2021/22</time> y <time datetime="2024-01">2023/24</time> (apuntes y exámenes) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Física II</a><span class="sep">›</span><span>UD1 · Electrostática y continua</span><span class="sep">›</span><span>T2 · Potencial electrostático y energía</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">UD1 · Electrostática y continua</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Campo electrostático</a><a href="tema-02.html" style="--tc:var(--c3)" class="on" aria-current="page">T2 Potencial electrostático y energía</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conductores, condensadores y dieléctricos</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Corriente continua y circuitos</a><div class="grp">UD2 · Magnetismo y alterna</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Campo magnético</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Inducción electromagnética</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Magnetismo en la materia</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Corriente alterna</a><div class="grp">UD3 · Ondas</div><a href="tema-09.html" style="--tc:var(--c2)">T9 Movimiento ondulatorio y ondas</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Teoría de examen respondida (el 30 %)</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Las hojas oficiales con resultado</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
+<div class="sh"><span aria-hidden="true" class="badge">2</span><div class="shx"><p class="kick">UD1 · Electrostática y continua · Tema 2</p><h2 id="t2">Potencial electrostático y energía</h2><div class="tags"><span class="tag">UD1 · Electrostática y continua</span><span class="tag">Primer parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Calcular potenciales de cargas y distribuciones, relacionar V con E, aplicar el trabajo W = qΔV y la energía de configuraciones.</p><p>El campo electrostático es conservativo: se define el <b>potencial</b> \(V\) tal que \(W_{A\to B}=q(V_A-V_B)\) y \(\vec E=-\nabla V\) (\(E_x=-dV/dx\)); en una dimensión \(V_A-V_B=\int_A^B\vec E\cdot d\vec l\). Unidad: voltio. Para una carga puntual \(V=kQ/r\) (origen en el infinito); para varias, se suman <b>escalarmente</b>.</p>
+<p><b>Superficies equipotenciales</b>: perpendiculares a las líneas de campo; en un conductor en equilibrio todo el volumen es equipotencial. Moverse perpendicular al campo no cuesta trabajo (pregunta 3 del test: cuesta trabajo alejar una carga negativa de una positiva en trayectoria paralela al campo).</p>
+<p><b>Distribuciones</b>: esfera conductora de radio R con carga Q: \(V=kQ/r\) fuera y \(V=kQ/R\) constante dentro. Esfera uniforme no conductora: \(V_{int}=\frac{kQ}{2R}\left(3-\frac{r^2}{R^2}\right)\). Hilo/cilindro: \(V=-2k\lambda\ln(r/r_0)+V_0\) (el problema 7 de la hoja: cilindro a potencial \(V_0\): dentro \(V=V_0\)... para un conductor; fuera decae logarítmicamente).</p>
+<p><b>Energía</b>: de un par de cargas \(U=kq_1q_2/r\); de una configuración, suma sobre pares. El problema 5 de la hoja (cuatro cargas Q en un cuadrado que se liberan una a una) se resuelve restando energías de configuración: la primera se lleva \(kQ^2(4+\sqrt2)/2L\)… y la última nada. Energía del campo: densidad \(u=\frac12\varepsilon_0E^2\).</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 2 <span class="src">5 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">V</td><td>Potencial</td><td class="u">V = J/C</td></tr><tr><td class="sym">W</td><td>Trabajo W = qΔV</td><td class="u">J</td></tr><tr><td class="sym">U</td><td>Energía potencial</td><td class="u">J</td></tr><tr><td class="sym">eV</td><td>1,602×10⁻¹⁹ J</td><td class="u"></td></tr><tr><td class="sym">∇V</td><td>E = −dV/dx</td><td class="u">V/m</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva · potencial de dos cargas a lo largo del eje</p><div data-sim="potencial"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
+<h3 id="t2-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>\(V=k\dfrac{Q}{r}\); \(V=\sum kq_i/r_i\); \(W_{A\to B}=q(V_A-V_B)\); \(\vec E=-\nabla V\).</li>
+<li>\(V_A-V_B=\int_A^B\vec E\cdot d\vec l\); campo uniforme: \(V=E\,d\).</li>
+<li>Esfera conductora: \(V_{sup}=kQ/R\); uniforme: \(V_{centro}=\frac32kQ/R\).</li>
+<li>Energía de pares: \(U=\sum_{i<j}\dfrac{kq_iq_j}{r_{ij}}\); densidad \(u=\frac12\varepsilon_0E^2\).</li>
+<li>1 eV \(=1{,}602\times10^{-19}\) J.</li></ul></div>
+<h3 id="t2-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li>Para V de varias cargas: suma escalar con signos (más fácil que el campo).</li><li>De E a V: integra desde la referencia; de V a E: deriva y cambia el signo.</li><li>Energías de configuración: cuenta TODOS los pares una sola vez; para «soltar» cargas, resta configuraciones antes/después.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Sumar potenciales vectorialmente o campos escalarmente.</li><li>Olvidar que dentro de una esfera conductora V es constante (no cero).</li><li>Confundir energía potencial de una carga (qV de las demás) con la energía total de la configuración (pares).</li></ul></div>
+<h3 id="t2-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Problema 6 de la hoja, modelo del examen de marzo de 2024)</b> Dos cortezas metálicas concéntricas de radios a y b (b &gt; a); la exterior tiene carga Q y la interior está conectada a tierra (V = 0). Calcular la carga q de la corteza interior.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>El potencial de la corteza interior es la suma del creado por su propia carga q (\(kq/a\)) y el de la exterior (\(kQ/b\), constante en su interior): \(V_a=\frac{kq}{a}+\frac{kQ}{b}=0\Rightarrow\boxed{q=-\frac{a}{b}Q}\) (resultado oficial). El campo entre cortezas es \(kq/r^2\) (solo la interior encierra), y fuera \(k(q+Q)/r^2\).</p></div></details></div>
+<h3 id="t2-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Problema 5 de la hoja: energías cinéticas finales al liberar una a una las cuatro cargas Q de un cuadrado.</summary><div class="inner"><p>a) \(kQ^2(4+\sqrt2)/2L\); b) \(kQ^2(2+\sqrt2)/2L\); c) \(kQ^2/L\); d) 0 (cada carga se lleva su energía de interacción con las que quedan).</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Cuánto trabajo cuesta mover 2 µC entre dos puntos con ΔV = 100 V?</summary><div class="inner"><p>\(W=q\Delta V=2\times10^{-6}\cdot100=2\times10^{-4}\) J.</p></div></details><details class="paso"><summary><span class="pn">3</span>Esfera conductora de 10 cm con Q = 1 nC: ¿V en la superficie y en el centro?</summary><div class="inner"><p>\(V=kQ/R=90\) V en la superficie y el mismo valor en el centro (equipotencial).</p></div></details><details class="paso"><summary><span class="pn">4</span>(Test) ¿Cuesta trabajo mover una carga por una equipotencial?</summary><div class="inner"><p>No: \(W=q\Delta V=0\); el campo es perpendicular al desplazamiento.</p></div></details><details class="paso"><summary><span class="pn">5</span>Del potencial \(V=3x^2\) V, ¿campo?</summary><div class="inner"><p>\(E_x=-dV/dx=-6x\) V/m.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-01.html"><small>← Anterior</small>T1 · Campo electrostático</a><a class="nx" href="tema-03.html"><small>Siguiente →</small>T3 · Conductores, condensadores y dieléctricos</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Física II (UPCT, GIEyA) · Datos tomados en los cursos <time datetime="2021-09">2021/22</time> y <time datetime="2024-01">2023/24</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

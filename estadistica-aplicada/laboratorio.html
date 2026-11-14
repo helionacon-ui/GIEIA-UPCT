@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prácticas con R · Estadística Aplicada · Guía para aprobar</title>
+<meta name="description" content="Prácticas de R y R-Commander de Estadística Aplicada (UPCT, GIEyA)">
+<meta name="theme-color" content="#6a4fa3">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, hojas de problemas, prácticas de R y exámenes de 2014 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Estadística Aplicada</a><span class="sep">›</span><span>Practicar</span><span class="sep">›</span><span>Prácticas R</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">UD1 · Descriptiva y probabilidad</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Estadística descriptiva</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Introducción a la probabilidad</a><div class="grp">UD2 · Variables aleatorias y modelos</div><a href="tema-03.html" style="--tc:var(--c4)">T3 Variables aleatorias unidimensionales</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Variables aleatorias bidimensionales</a><div class="grp">UD3 · Muestreo e inferencia</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Muestreo y distribuciones muestrales</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Estimación puntual y por intervalos</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Contrastes de hipótesis y bondad de ajuste</a><div class="grp">UD4 · Regresión</div><a href="tema-08.html" style="--tc:var(--c1)">T8 El modelo de regresión lineal simple</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)" class="on" aria-current="page">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec" style="--tc:var(--c7);--tcs:var(--c7s)">
+<div class="sh"><span aria-hidden="true" class="badge">R</span><div class="shx"><p class="kick">Practicar</p><h2 id="lab">Prácticas con R y R-Commander</h2><div class="tags"><span class="tag">15 % de la prueba escrita</span><span class="tag w">+ 10 % de informes</span></div></div></div>
+<h3>Las 7 prácticas con R y R-Commander (15 % de la prueba escrita + 10 % de informes)</h3><p><b>P1. Introducción a R y R-Commander. Manejo de ficheros.</b> Interfaz, menús e importación de datos: <code>Datos → Importar datos → desde archivo de texto</code> (ojo al separador decimal y a si la primera fila tiene nombres). Equivalente en consola: <code>datos &lt;- read.table("fichero.txt", header=TRUE, dec=",")</code> y <code>attach(datos)</code>.<br>
+<b>P2. Estadística descriptiva.</b> <code>summary()</code>, <code>mean</code>, <code>median</code>, <code>sd</code> (cuasidesviación), <code>var</code>, <code>quantile</code>, <code>IQR</code>; gráficos <code>hist()</code>, <code>boxplot()</code> y <code>barplot()</code>. En R-Commander: <i>Estadísticos → Resúmenes → Resúmenes numéricos</i>.<br>
+<b>P3. Distribuciones de probabilidad.</b> Las cuatro familias de funciones: <code>d</code> (densidad o puntual), <code>p</code> (acumulada), <code>q</code> (cuantil) y <code>r</code> (simulación): <code>dbinom</code>, <code>pbinom</code>, <code>qnorm</code>, <code>rnorm</code>, <code>ppois</code>, <code>pexp</code>… En R-Commander, <i>Distribuciones</i> con sus gráficas.<br>
+<b>P4. Fiabilidad de sistemas.</b> Simulación de configuraciones en serie, paralelo y mixtas a partir de la fiabilidad de cada componente: se generan muchas réplicas con <code>runif</code> o <code>rbinom</code> y se estima la proporción de sistemas que funcionan, contrastándola con \(R=\prod R_i\) y \(R=1-\prod(1-R_i)\).<br>
+<b>P5. Estimación y contrastes paramétricos.</b> <code>t.test(x, mu=..., alternative=..., conf.level=...)</code> para una y dos muestras, <code>var.test</code> para comparar varianzas y <code>prop.test</code> para proporciones. Se observa cómo afectan n y el nivel de confianza a la amplitud del intervalo.<br>
+<b>P6. Test de bondad de ajuste.</b> <code>chisq.test</code> con probabilidades teóricas, <code>ks.test</code> para Kolmogorov-Smirnov y <code>shapiro.test</code> + <code>qqnorm</code>/<code>qqline</code> para normalidad.<br>
+<b>P7. Regresión lineal simple: diagnosis, validación y modelos linealizables.</b> <code>lm()</code>, <code>summary()</code> (coeficientes, t, p-valores y R²), <code>confint()</code>, <code>predict(..., interval="confidence"/"prediction")</code>, residuos con <code>residuals()</code> y <code>fitted()</code>, y <code>dwtest()</code> (paquete lmtest) para Durbin-Watson. Finalmente, transformación de los datos para linealizar.</p><h3>Cómo leer una salida de R en el examen</h3><p>En <code>summary(lm(y ~ x))</code>:</p>
+<ul><li><b>Estimate</b>: \(\hat\beta_0\) (Intercept) y \(\hat\beta_1\) (la pendiente, con el nombre de la variable x).</li>
+<li><b>Std. Error</b>: error típico de cada estimación, el denominador del estadístico t.</li>
+<li><b>t value</b> = Estimate / Std. Error, y <b>Pr(&gt;|t|)</b> es el p-valor del contraste <b>bilateral</b> \(H_0:\beta=0\). Si el contraste que te piden es unilateral, <b>divide ese p-valor entre 2</b> (comprobando el signo).</li>
+<li><b>Residual standard error</b>: \(\hat\sigma\), con sus <b>n−2</b> grados de libertad.</li>
+<li><b>Multiple R-squared</b>: \(R^2\). El <b>F-statistic</b> contrasta el modelo completo (en regresión simple equivale al t de la pendiente).</li></ul>
+<p>En <code>t.test</code>: el <code>t</code>, los <code>df</code>, el <code>p-value</code> y el intervalo de confianza con el nivel indicado. En <code>shapiro.test</code> y <code>dwtest</code>: sólo hay que leer el p-valor y decidir con α = 0,05.</p>
+<p class="note">Consejo de examen: escribe siempre la hipótesis nula que corresponde a cada p-valor que leas. Media página de interpretación correcta vale más que una captura de pantalla.</p>
+<figure class="fig"><p class="ft">Figura interactiva · lo que hace la práctica 2 (descriptiva y boxplot)</p><div data-sim="descriptiva"></div><figcaption>Sube el dato mayor y mira cómo cambian el bigote, los atípicos y la media: es exactamente la pregunta 2 del examen de prácticas de junio 2014.</figcaption></figure>
+<figure class="fig"><p class="ft">Figura interactiva · lo que hace la práctica 6 (bondad de ajuste)</p><div data-sim="bondad"></div><figcaption>Compara frecuencias observadas y esperadas, agrupa las clases con E &lt; 5 y lee el p-valor como lo daría chisq.test.</figcaption></figure>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="problemas.html"><small>← Anterior</small>Las hojas</a><a class="nx" href="formulario.html"><small>Siguiente →</small>Formulario y tablas</a></nav><p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Estadística Aplicada (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, hojas, prácticas de R y exámenes de 2014 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

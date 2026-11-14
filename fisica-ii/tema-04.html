@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T4 Corriente continua y circuitos · Física II · Guía para aprobar</title>
+<meta name="description" content="Física II (UPCT, GIEyA): tema 4, Corriente continua y circuitos">
+<meta name="theme-color" content="#b4232f">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en los cursos <time datetime="2021-09">2021/22</time> y <time datetime="2024-01">2023/24</time> (apuntes y exámenes) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Física II</a><span class="sep">›</span><span>UD1 · Electrostática y continua</span><span class="sep">›</span><span>T4 · Corriente continua y circuitos</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">UD1 · Electrostática y continua</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Campo electrostático</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Potencial electrostático y energía</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conductores, condensadores y dieléctricos</a><a href="tema-04.html" style="--tc:var(--c5)" class="on" aria-current="page">T4 Corriente continua y circuitos</a><div class="grp">UD2 · Magnetismo y alterna</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Campo magnético</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Inducción electromagnética</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Magnetismo en la materia</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Corriente alterna</a><div class="grp">UD3 · Ondas</div><a href="tema-09.html" style="--tc:var(--c2)">T9 Movimiento ondulatorio y ondas</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Teoría de examen respondida (el 30 %)</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Las hojas oficiales con resultado</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c5);--tcs:var(--c5s)">
+<div class="sh"><span aria-hidden="true" class="badge">4</span><div class="shx"><p class="kick">UD1 · Electrostática y continua · Tema 4</p><h2 id="t4">Corriente continua y circuitos</h2><div class="tags"><span class="tag">UD1 · Electrostática y continua</span><span class="tag">Primer parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Manejar resistividad y resistencia, la ley de Ohm, potencia y ley de Joule, fem con resistencia interna, leyes de Kirchhoff y transitorios RC.</p><p><b>Corriente</b> \(I=dQ/dt\); densidad \(J=I/A=nev_d\) (modelo clásico: los electrones sufren choques y se mueven con <b>velocidad de arrastre constante</b> \(v_d\) — pregunta 5 del test). <b>Resistencia</b>: \(R=\rho L/A\); la resistividad depende del material y la temperatura \(\rho=\rho_0[1+\alpha(T-T_0)]\). Ley de Ohm \(V=IR\); un cable de 1 m y 4 mm² NO tiene la misma R que uno de 6 mm² (test, pregunta 6).</p>
+<p><b>Potencia</b>: \(P=VI=I^2R=V^2/R\) (ley de Joule). Una batería de fem ε y resistencia interna r entrega \(V=\varepsilon-Ir\); energía almacenada \(U=\varepsilon Q\) (problema 2: batería de 12 V y 160 Ah almacena \(6{,}9\times10^6\) J y alimenta 150 W durante 12,8 h).</p>
+<p><b>Kirchhoff</b>: nudos (\(\sum I=0\)) y mallas (\(\sum\varepsilon=\sum IR\)). Método de mallas: asigna sentidos, recorre cada malla sumando fem (signo según salgas por +) y caídas IR (positivas a favor del sentido). Las resistencias compartidas llevan la diferencia de corrientes.</p>
+<p><b>Circuito RC</b>: carga \(q(t)=Q_f(1-e^{-t/\tau})\), descarga \(q=Q_0e^{-t/\tau}\), con \(\tau=RC\). La corriente inicial trata los condensadores como cables (descargados) y la final como circuitos abiertos (cargados): así se resuelven los problemas 6 y 7 de la hoja y el <b>problema 2 del examen de marzo de 2024</b>. Tiempos característicos: al 90 % de la carga, \(t=\tau\ln10\approx2{,}3\tau\); a la mitad de la corriente, \(t=\tau\ln2\).</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 4 <span class="src">5 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">I, J</td><td>Corriente; densidad J = I/A</td><td class="u">A; A/m²</td></tr><tr><td class="sym">ρ, α</td><td>Resistividad y su coef. térmico</td><td class="u">Ω·m; K⁻¹</td></tr><tr><td class="sym">ε, r</td><td>Fem y resistencia interna</td><td class="u">V; Ω</td></tr><tr><td class="sym">τ = RC</td><td>Constante de tiempo</td><td class="u">s</td></tr><tr><td class="sym">v_d</td><td>Velocidad de arrastre</td><td class="u">m/s</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva · carga y descarga RC con τ, ln 10 y ln 2</p><div data-sim="circuitorc"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
+<h3 id="t4-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>\(R=\rho L/A\); \(\rho(T)=\rho_0[1+\alpha\Delta T]\); serie \(R_{eq}=\sum R_i\); paralelo \(1/R_{eq}=\sum1/R_i\).</li>
+<li>\(P=VI=I^2R=V^2/R\); batería: \(V=\varepsilon-Ir\), \(P_{bat}=\varepsilon I\), \(U=\varepsilon Q\).</li>
+<li>Kirchhoff: \(\sum I_{nudo}=0\); \(\sum\varepsilon=\sum IR\) por malla.</li>
+<li>RC: \(\tau=RC\); carga \(1-e^{-t/\tau}\); descarga \(e^{-t/\tau}\); \(I_0=V/R\); \(t_{90\%}=\tau\ln10\), \(t_{1/2}=\tau\ln2\).</li>
+<li>\(J=nev_d\); \(v_d=\dfrac{J}{ne}\).</li></ul></div>
+<h3 id="t4-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li>Reduce resistencias por pasos; con varias fems, Kirchhoff por mallas con sentidos claros.</li><li>En RC: dibuja el circuito en t = 0 (condensador = cable) y en t = ∞ (condensador = abierto); entre medias, exponenciales con τ = R<sub>vista</sub>·C.</li><li>Comprueba el balance de potencias: \(\sum P_{fem}=\sum I^2R\) (una fem recorrida contra corriente absorbe, problema 5).</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Olvidar la resistencia interna: la V en bornes no es la fem si circula corriente.</li><li>En RC, usar como R de τ la total del circuito en vez de la que «ve» el condensador.</li><li>Signos de Kirchhoff inconsistentes: fija un criterio y no lo cambies a mitad.</li></ul></div>
+<h3 id="t4-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Problema 2 del examen del 11/03/2024, resuelto)</b> R = 100 Ω, V = 12 V, C₁ = C₂ = C₃ = 6 µF. Con el interruptor a cerrado la fuente carga C₁∥C₃ a través de R; C₂ se conecta con b. a) ¿Tiempo para cargar al 90 %? b) ¿Carga y potencial finales? c) Se abre a y se cierra b: ¿I₀ por R? d) ¿Tiempo para que I caiga a la mitad? e) ¿Energía disipada?</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>a) \(C_{eq}=C_1+C_3=12\) µF; \(\tau=RC_{eq}=1{,}2\) ms; \(q=Q_f(1-e^{-t/\tau})=0{,}9Q_f\Rightarrow t=\tau\ln10=\) <b>2,76 ms</b>.</p>
+<p>b) \(V=12\) V en cada uno; \(Q_1=Q_3=72\) µC (total 144 µC).</p>
+<p>c) Al conectar C₂ (descargado) a través de R, la corriente inicial la fija la tensión del grupo cargado: \(I_0=12/100=\) <b>0,12 A</b>.</p>
+<p>d) La descarga ve \(C'=\dfrac{C_{12}\cdot C_2}{C_{12}+C_2}=\dfrac{12\cdot6}{18}=4\) µF ⇒ \(\tau'=0{,}4\) ms; \(t_{1/2}=\tau'\ln2=\) <b>0,28 ms</b>.</p>
+<p>e) Equilibrio final: los 144 µC se reparten a V común \(=144/18=8\) V; \(U_i=\frac12\cdot12\mu\cdot12^2=864\) µJ, \(U_f=\frac12\cdot18\mu\cdot8^2=576\) µJ: se disipan <b>288 µJ</b> en R. (Interpretación del circuito según la figura del examen; el método — τ, ln 10, reparto de cargas, balance de energía — es lo que puntúa.)</p></div></details></div>
+<h3 id="t4-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Problema 1 de la hoja: Cu (80 m) + Fe (49 m), d = 1 mm, I = 2 A: ¿E, V y R?</summary><div class="inner"><p>\(E=\rho J\): 0,0433 V/m (Cu) y 0,255 V/m (Fe); \(V=EL\): 3,46 V y 12,5 V; \(R_{eq}=V_{tot}/I=7{,}97\ \Omega=R_1+R_2\).</p></div></details><details class="paso"><summary><span class="pn">2</span>Problema 3: nicrom 8 Ω a 0 °C, 120 V, 1000 °C y α = 4×10⁻⁴ K⁻¹.</summary><div class="inner"><p>a) \(I_0=15\) A; b) \(R=8(1+0{,}4)=11{,}2\ \Omega\); c) \(P=V^2/R=1282\) W (oficial).</p></div></details><details class="paso"><summary><span class="pn">3</span>Problema 4: hilo cuyo radio crece linealmente de a a b: ¿R?</summary><div class="inner"><p>\(R=\int_0^L\frac{\rho\,dx}{\pi r(x)^2}=\frac{\rho L}{\pi ab}\) (oficial).</p></div></details><details class="paso"><summary><span class="pn">4</span>Problema 6: circuito con dos condensadores: ¿I inicial, I final y cargas?</summary><div class="inner"><p>t = 0: condensadores en cortocircuito → I = 3,42 A; t → ∞: abiertos → I = 0,962 A; cargas finales 260 µC y 130 µC (oficial).</p></div></details><details class="paso"><summary><span class="pn">5</span>Problema 7: ¿V del condensador, I(t) al desconectar y tiempo hasta 1 V?</summary><div class="inner"><p>a) 20 V; b) \(I=-0{,}6e^{-t/3{,}33\times10^{-4}}\) A; c) \(t=\tau\ln20=9{,}99\times10^{-4}\) s (oficial).</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-03.html"><small>← Anterior</small>T3 · Conductores, condensadores y dieléctricos</a><a class="nx" href="tema-05.html"><small>Siguiente →</small>T5 · Campo magnético</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Física II (UPCT, GIEyA) · Datos tomados en los cursos <time datetime="2021-09">2021/22</time> y <time datetime="2024-01">2023/24</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

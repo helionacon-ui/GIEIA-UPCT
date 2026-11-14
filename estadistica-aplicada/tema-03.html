@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T3 Variables aleatorias unidimensionales · Estadística Aplicada · Guía para aprobar</title>
+<meta name="description" content="Estadística Aplicada (UPCT, GIEyA): tema 3, Variables aleatorias unidimensionales">
+<meta name="theme-color" content="#6a4fa3">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, hojas de problemas, prácticas de R y exámenes de 2014 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Estadística Aplicada</a><span class="sep">›</span><span>UD2 · Variables aleatorias y modelos</span><span class="sep">›</span><span>T3 · Variables aleatorias unidimensionales</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">UD1 · Descriptiva y probabilidad</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Estadística descriptiva</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Introducción a la probabilidad</a><div class="grp">UD2 · Variables aleatorias y modelos</div><a href="tema-03.html" style="--tc:var(--c4)" class="on" aria-current="page">T3 Variables aleatorias unidimensionales</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Variables aleatorias bidimensionales</a><div class="grp">UD3 · Muestreo e inferencia</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Muestreo y distribuciones muestrales</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Estimación puntual y por intervalos</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Contrastes de hipótesis y bondad de ajuste</a><div class="grp">UD4 · Regresión</div><a href="tema-08.html" style="--tc:var(--c1)">T8 El modelo de regresión lineal simple</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
+<div class="sh"><span aria-hidden="true" class="badge">3</span><div class="shx"><p class="kick">UD2 · Variables aleatorias y modelos · Tema 3</p><h2 id="t3">Variables aleatorias unidimensionales</h2><div class="tags"><span class="tag">UD2 · Variables aleatorias y modelos</span><span class="tag">Primer parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Manejar funciones de distribución, puntual de probabilidad y densidad, calcular media y varianza, y usar los modelos discretos y continuos y las distribuciones asociadas a la normal.</p><p><b>Variable aleatoria</b>: aplicación \(X:\Omega\to\mathbb R\). Su <b>función de distribución</b> \(F(x)=P(X\le x)\) es no decreciente, continua por la derecha, con \(F(-\infty)=0\) y \(F(+\infty)=1\).</p>
+<p><b>Discreta</b>: función puntual de probabilidad \(p(x_i)=P(X=x_i)\ge0\) con \(\sum p(x_i)=1\); \(F\) es escalonada. <b>Continua</b>: función de densidad \(f(x)\ge0\) con \(\int_{-\infty}^{\infty}f=1\), \(F(x)=\int_{-\infty}^xf\), \(f=F'\) y \(P(a<X\le b)=F(b)-F(a)\). En una continua, \(P(X=a)=0\): da igual &lt; que ≤.</p>
+<p><b>Media y varianza</b>: \(E[X]=\sum x_ip(x_i)\) o \(\int xf(x)dx\); \(Var(X)=E[X^2]-(E[X])^2\). Propiedades: \(E[aX+b]=aE[X]+b\) y \(Var(aX+b)=a^2Var(X)\).</p>
+<p><b>Desigualdad de Tchebychev</b>: \(P(|X-\mu|\ge k\sigma)\le\dfrac1{k^2}\), válida <b>sin conocer la distribución</b>: por eso el examen la pide cuando sólo dan media y desviación típica («¿podrías dar una cota de la probabilidad…?»).</p>
+<p><b>Modelos discretos</b>:</p>
+<ul><li><b>Bernoulli</b> \(B(1,p)\): un ensayo, \(E=p\), \(Var=pq\).</li>
+<li><b>Binomial</b> \(B(n,p)\): número de éxitos en n ensayos independientes, \(P(X=k)=\binom nk p^kq^{n-k}\), \(E=np\), \(Var=npq\).</li>
+<li><b>Geométrica</b>: número de fracasos (o ensayos) hasta el primer éxito, \(E=q/p\) (o \(1/p\)); sin memoria.</li>
+<li><b>Poisson</b> \(P(\lambda)\): sucesos raros en un intervalo, \(P(X=k)=e^{-\lambda}\lambda^k/k!\), \(E=Var=\lambda\). Es el límite de la binomial con n grande y p pequeño (\(\lambda=np\)).</li>
+<li><b>Hipergeométrica</b>: extracciones sin reemplazamiento.</li></ul>
+<p><b>Modelos continuos</b>:</p>
+<ul><li><b>Uniforme</b> \(U(a,b)\): \(f=1/(b-a)\), \(E=(a+b)/2\), \(Var=(b-a)^2/12\).</li>
+<li><b>Exponencial</b> \(Exp(\lambda)\): tiempo entre sucesos de Poisson, \(f=\lambda e^{-\lambda x}\), \(F=1-e^{-\lambda x}\), \(E=1/\lambda\), \(Var=1/\lambda^2\); <b>sin memoria</b>: \(P(X>s+t\mid X>s)=P(X>t)\).</li>
+<li><b>Normal</b> \(N(\mu,\sigma)\): campana simétrica; se tipifica con \(Z=\frac{X-\mu}{\sigma}\sim N(0,1)\) y se usa la tabla.</li></ul>
+<p><b>Teorema de DeMoivre-Laplace</b>: si \(X\sim B(n,p)\) con \(np>5\) y \(nq>5\), entonces \(X\approx N(np,\sqrt{npq})\). Con la <b>corrección por continuidad</b>: \(P(X\ge k)\approx P(Y\ge k-0{,}5)\).</p>
+<p><b>Distribuciones asociadas a la normal</b>: \(\chi^2_n\) (suma de n normales tipificadas al cuadrado), <b>t de Student</b> \(t_n\) (simétrica, colas más pesadas, tiende a la N(0,1)) y <b>F de Snedecor</b> \(F_{n,m}\) (cociente de chi-cuadrados). Son las que aparecen en todos los intervalos y contrastes del segundo bloque.</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 3 <span class="src">8 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">F(x)</td><td>Función de distribución P(X ≤ x)</td><td class="u"></td></tr><tr><td class="sym">p(x), f(x)</td><td>Puntual de probabilidad / densidad</td><td class="u"></td></tr><tr><td class="sym">E[X], Var(X)</td><td>Media y varianza</td><td class="u"></td></tr><tr><td class="sym">B(n,p)</td><td>Binomial</td><td class="u">E = np, Var = npq</td></tr><tr><td class="sym">P(λ)</td><td>Poisson</td><td class="u">E = Var = λ</td></tr><tr><td class="sym">Exp(λ)</td><td>Exponencial</td><td class="u">E = 1/λ, sin memoria</td></tr><tr><td class="sym">N(μ,σ)</td><td>Normal</td><td class="u">Z = (X−μ)/σ</td></tr><tr><td class="sym">Tchebychev</td><td>P(|X−μ| ≥ kσ) ≤ 1/k²</td><td class="u"></td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - modelos de probabilidad y calculo con tablas</p><div data-sim="distribuciones"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
+<h3 id="t3-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>\(F(x)=P(X\le x)\); continua: \(f=F'\), \(P(a<X<b)=F(b)-F(a)\).</li>
+<li>\(E[X]=\sum x_ip_i\) o \(\int xf\); \(Var=E[X^2]-\mu^2\); \(E[aX+b]=aE[X]+b\), \(Var(aX+b)=a^2Var\).</li>
+<li>Tchebychev: \(P(|X-\mu|\ge k\sigma)\le1/k^2\).</li>
+<li>Binomial \(E=np\), \(Var=npq\) · Poisson \(E=Var=\lambda\) · Exponencial \(E=1/\lambda\), \(Var=1/\lambda^2\).</li>
+<li>Tipificación \(Z=\frac{X-\mu}{\sigma}\); \(P(Z\le-z)=1-P(Z\le z)\).</li>
+<li>DeMoivre: \(B(n,p)\approx N(np,\sqrt{npq})\) si \(np>5\) y \(nq>5\) (con corrección ±0,5).</li></ul></div>
+<h3 id="t3-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li>Identifica el modelo por el enunciado: «número de … en n pruebas» (binomial), «número de … por unidad de tiempo» (Poisson), «tiempo entre sucesos» (exponencial), «medida física con campana» (normal).</li><li>Para una densidad por tramos: impón \(\int f=1\) (o continuidad de F) para hallar la constante, y después integra para E[X].</li><li>Para la normal, tipifica SIEMPRE y dibuja la campana sombreando lo que buscas antes de ir a la tabla.</li><li>Si n es grande en una binomial, comprueba \(np>5\) y \(nq>5\) y aproxima por la normal con corrección por continuidad.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Olvidar la corrección por continuidad al aproximar una binomial por una normal.</li><li>Usar \(\lambda\) como «media en horas» cuando la exponencial se parametriza con la tasa: si la media es 12 h, \(\lambda=1/12\).</li><li>En una variable continua, preocuparse por si el signo es &lt; o ≤.</li><li>Aplicar Tchebychev cuando SÍ se conoce la distribución: entonces se calcula la probabilidad exacta, no una cota.</li></ul></div>
+<h3 id="t3-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Problemas 3 y 4 del examen de julio 2016)</b> a) Al puerto llegan cruceros según Poisson de media 2/día y sólo caben 3; ¿probabilidad de tener que desviar alguno? b) El tiempo entre llegadas es exponencial de media 12 h: ¿probabilidad de que pasen más de 6 h? Si a las 12 a.m. no ha llegado ninguno, ¿probabilidad de que pasen 6 h más? c) El volumen de zumo es \(N(370,10)\) ml y la norma exige entre 356 y 384 ml: porcentaje válido, y probabilidad de que de 360 botes al menos 290 cumplan.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p>a) \(X\sim P(2)\). \(P(X>3)=1-P(X\le3)=1-e^{-2}\left(1+2+2+\tfrac43\right)=1-0{,}8571=\mathbf{0{,}1429}\).</p>
+<p>b) \(T\sim Exp\) con media 12 ⇒ \(\lambda=1/12\). \(P(T>6)=e^{-6/12}=e^{-0{,}5}=\mathbf{0{,}6065}\). Por la <b>falta de memoria</b>, la segunda pregunta da lo mismo: \(P(T>6+6\mid T>6)=P(T>6)=\mathbf{0{,}6065}\).</p>
+<p>c) \(P(356<X<384)=P\!\left(\frac{356-370}{10}<Z<\frac{384-370}{10}\right)=P(-1{,}4<Z<1{,}4)=2(0{,}9192)-1=\mathbf{0{,}8384}\) (83,84 %).</p>
+<p>Botes: \(Y\sim B(360,\ 0{,}8384)\) con \(np=301{,}8>5\) y \(nq=58{,}2>5\) ⇒ \(Y\approx N(301{,}8;\ \sqrt{360\cdot0{,}8384\cdot0{,}1616}=6{,}98)\).</p>
+<p>\(P(Y\ge290)\approx P\!\left(Z\ge\frac{289{,}5-301{,}8}{6{,}98}\right)=P(Z\ge-1{,}76)=\mathbf{0{,}9608}\) (con corrección por continuidad).</p></div></details></div>
+<h3 id="t3-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Qué propiedad caracteriza a la exponencial y a la geométrica?</summary><div class="inner"><p>La falta de memoria: \(P(X>s+t\mid X>s)=P(X>t)\). El dispositivo «no envejece»: lo que ha durado no influye en lo que le queda.</p></div></details><details class="paso"><summary><span class="pn">2</span>(Examen 2016) Volumen de media 370 y desviación 10. ¿Cota de la probabilidad de incumplir la norma 356-384 sin conocer la distribución?</summary><div class="inner"><p>Tchebychev con \(k=1{,}4\): \(P(|X-370|\ge14)\le1/1{,}4^2=\mathbf{0{,}51}\). Es sólo una cota (la probabilidad exacta con normalidad resulta 0,16).</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Cuándo se aproxima una binomial por una Poisson y cuándo por una normal?</summary><div class="inner"><p>Por Poisson si n es grande y p muy pequeño (\(\lambda=np\le5\)); por normal si \(np>5\) y \(nq>5\), con corrección por continuidad.</p></div></details><details class="paso"><summary><span class="pn">4</span>Si \(X\sim N(\mu,\sigma)\), ¿qué distribución sigue \(\sum_{i=1}^n\left(\frac{X_i-\mu}{\sigma}\right)^2\)?</summary><div class="inner"><p>Una chi-cuadrado con n grados de libertad, \(\chi^2_n\). Es la base del intervalo para la varianza y del test de bondad de ajuste.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿En qué se diferencia la t de Student de la normal estándar?</summary><div class="inner"><p>Es simétrica y centrada en 0 pero con colas más pesadas (más probabilidad en los extremos) porque estima σ con la muestra; al crecer n tiende a la N(0,1) (a partir de n ≈ 30 son casi iguales).</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-02.html"><small>← Anterior</small>T2 · Introducción a la probabilidad</a><a class="nx" href="tema-04.html"><small>Siguiente →</small>T4 · Variables aleatorias bidimensionales</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Estadística Aplicada (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, hojas, prácticas de R y exámenes de 2014 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>
