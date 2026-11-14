@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T5 Máquinas de alterna y vectores espaciales · Electrotecnia · Guía para aprobar</title>
+<meta name="description" content="Electrotecnia (UPCT, GIEyA): tema 5, Máquinas de alterna y vectores espaciales">
+<meta name="theme-color" content="#4440a0">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, apuntes de las ocho unidades, formulario y colecciones de problemas de examen de 2012 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Electrotecnia</a><span class="sep">›</span><span>Alterna: vectores espaciales y máquinas de CA</span><span class="sep">›</span><span>T5 · Máquinas de alterna y vectores espaciales</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Continua: circuitos magnéticos y máquinas de CC</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Accionamientos y requerimientos mecánicos</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos magnéticos y transformadores</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conversión de energía electromecánica</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Máquinas de corriente continua</a><div class="grp">Alterna: vectores espaciales y máquinas de CA</div><a href="tema-05.html" style="--tc:var(--c6)" class="on" aria-current="page">T5 Máquinas de alterna y vectores espaciales</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Máquinas asíncronas</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Máquinas síncronas de imanes permanentes</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Motores de reluctancia variable</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y evaluación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
+<div class="sh"><span aria-hidden="true" class="badge">5</span><div class="shx"><p class="kick">Alterna: vectores espaciales y máquinas de CA · Tema 5</p><h2 id="t5">Máquinas de alterna y vectores espaciales</h2><div class="tags"><span class="tag">Alterna: vectores espaciales y máquinas de CA</span><span class="tag">2.ª prueba (35 %)</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> entender cómo tres corrientes alternas desfasadas 120° crean un campo magnético giratorio, y manejar la herramienta que lo describe: el vector espacial, con el que se escriben las ecuaciones de tensiones y de par de todas las máquinas de alterna.</p><ul>
+<li>Todas las máquinas de alterna tienen el <b>mismo estátor</b>: tres devanados idénticos con los ejes magnéticos a 120°. Lo que cambia es el rotor (imanes, devanado de continua, jaula de ardilla o devanado trifásico).</li>
+<li>Un solo devanado alimentado con alterna crea un campo <b>pulsante</b>: la onda se queda en su eje y cambia de amplitud. Los <b>tres juntos</b> crean una onda de <b>amplitud constante que gira</b> a la velocidad de la red.</li>
+<li>El <b>vector espacial</b> \(\vec i_s=i_a+i_be^{j120^\circ}+i_ce^{j240^\circ}\) resume las tres corrientes en un único número complejo. En régimen senoidal equilibrado su módulo es \(1{,}5\hat I\) (1,5 veces el valor de pico de fase) y gira a \(\omega\).</li>
+<li>Para volver atrás: la magnitud de una fase es <b>2/3 de la proyección</b> del vector espacial sobre el eje magnético de esa fase.</li>
+<li>Cuidado con el convenio: en esta asignatura los <b>fasores se escriben con el valor de pico</b> (de ahí los \(\sqrt2\cdot230\) de los enunciados), porque es lo que encaja con los vectores espaciales.</li>
+<li><b>Velocidad de sincronismo</b>: \(n_s=\dfrac{120f}{p}\) rpm, o \(\omega_s=\dfrac{2\pi f}{p/2}\) rad/s mecánicos. Con 50 Hz y 2 polos, 3000 rpm.</li>
+<li>Si se <b>permutan dos fases</b> la secuencia pasa a ser inversa y el campo gira al revés: así se invierte el giro de un motor trifásico.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 5 <span class="src">9 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">i⃗_s</td><td>Vector espacial de intensidad</td><td class="u">módulo 1,5·Î</td></tr><tr><td class="sym">Î</td><td>Valor de pico de fase</td><td class="u">A</td></tr><tr><td class="sym">ω_s = 2πf/(p/2)</td><td>Velocidad de sincronismo</td><td class="u">rad/s mec</td></tr><tr><td class="sym">n_s = 120f/p</td><td>Sincronismo</td><td class="u">rpm</td></tr><tr><td class="sym">L_m</td><td>Inductancia de magnetización</td><td class="u">H</td></tr><tr><td class="sym">L_ls</td><td>Inductancia de dispersión</td><td class="u">H</td></tr><tr><td class="sym">λ⃗</td><td>Vector de enlaces de flujo</td><td class="u"></td></tr><tr><td class="sym">2/3</td><td>Factor para volver a las fases</td><td class="u"></td></tr><tr><td class="sym">e⃗_ms</td><td>Vector de fem de magnetización</td><td class="u">V</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - vectores espaciales y campo magnetico giratorio</p><div data-sim="vectesp"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
+<h3 id="t5-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>Vector espacial de intensidad: \(\vec i_s=i_a+i_be^{j\frac{2\pi}{3}}+i_ce^{j\frac{4\pi}{3}}\); en RES equilibrado \(|\vec i_s|=\frac32\hat I\).</li>
+<li>Vuelta a las fases: \(i_a=\frac23\mathrm{Re}\{\vec i_s\}\) (y análogamente proyectando sobre cada eje).</li>
+<li>Vector espacial de fmm y de campo: \(\vec F_s=\dfrac{N_s}{p}\vec i_s\), \(\vec B_s=\dfrac{\mu_0}{l_g}\vec F_s\).</li>
+<li>Ecuación de tensiones del estátor: \(\vec v_s=R_s\vec i_s+L_{ls}\dfrac{d\vec i_s}{dt}+\vec e_{ms}\), con \(\vec e_{ms}=\dfrac{d\vec\lambda_{ms}}{dt}\).</li>
+<li>Enlaces: \(\vec\lambda_{ms}=L_m(\vec i_s+\vec i_r')\), \(\vec\lambda_s=L_{ls}\vec i_s+\vec\lambda_{ms}=L_s\vec i_s+L_m\vec i_r'\) con \(L_s=L_{ls}+L_m\).</li>
+<li>En RES equilibrado, sin campo de rotor: \(\bar V_a=j\omega L_m\bar I_{ma}\) ⇒ el circuito es <b>una sola bobina</b> \(L_m\).</li>
+<li>Par: \(T_{em}=\dfrac{\pi}{2}\dfrac{p}{2}\dfrac{l_g\,r\,l}{\mu_0}\,|\vec B_{ms}\times\vec B_r|\), o en función de vectores espaciales \(T_{em}=\dfrac{3}{2}\dfrac{p}{2}L_m\,\mathrm{Im}\{\vec i_r'^{*}\vec i_s\}\).</li>
+<li>Sincronismo: \(n_s=\dfrac{120f}{p}\); relación de ángulos \(\theta=\dfrac{p}{2}\theta_m\).</li>
+</ul></div>
+<h3 id="t5-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li>Identifica el <b>convenio</b> del enunciado: si dice \(\bar V_a=\sqrt2\cdot230\angle20^\circ\), está dando el <b>pico</b>.</li>
+<li>Si el rotor no crea campo y se desprecian \(R_s\) y \(L_{ls}\), el circuito por fase es <b>una bobina \(L_m\)</b>: \(\bar I_m=\dfrac{\bar V}{j\omega L_m}\) (la corriente atrasa 90°).</li>
+<li>Escribe los <b>tres fasores</b> restando 120° y 240° al de la fase a.</li>
+<li>Para el vector espacial en un instante: calcula las tres corrientes instantáneas y súmalas con sus \(e^{j120^\circ}\); o, más rápido, \(\vec i_s(t)=\frac32\hat I\,e^{j(\omega t+\varphi_a)}\).</li>
+<li>Dibuja los ejes a, b y c a 120° y sitúa el vector. Comprueba con la regla de los <b>2/3</b>.</li>
+<li>Para el campo, multiplica por \(N_s/p\) y por \(\mu_0/l_g\); el vector de \(\vec B\) va <b>siempre alineado</b> con el de la fmm.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li><b>Confundir fasor con vector espacial.</b> El fasor es un número complejo que representa una senoide en el tiempo; el vector espacial es una magnitud que apunta en una <b>dirección física</b> del entrehierro. Su módulo es 1,5 veces el pico del fasor.</li>
+<li>Usar valores eficaces donde el enunciado da picos (o al revés). Si aparece \(\sqrt2\), es pico.</li>
+<li>Olvidar el factor 2/3 al volver del vector espacial a las fases.</li>
+<li>Pensar que un devanado monofásico crea campo giratorio: crea un campo <b>pulsante</b>, que puede descomponerse en dos giratorios de sentidos opuestos.</li>
+<li>Equivocar el <b>sentido de giro</b>: con secuencia directa a-b-c gira en el sentido a→b→c; con secuencia inversa, al contrario.</li>
+<li>Calcular \(n_s\) con \(p\) = pares de polos en vez de polos. Con 50 Hz: 2 polos ⇒ 3000 rpm, 4 polos ⇒ 1500 rpm.</li>
+</ul></div>
+<h3 id="t5-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Examen de junio de 2012.)</b> En una máquina de CA trifásica, \(\bar V_a=\sqrt2\cdot230\angle20^\circ\) V con el <b>rotor en circuito abierto</b> (no crea campo). La inductancia de magnetización vale \(L_m=60\) mH, el sistema es senoidal equilibrado a <b>50 Hz</b> y se desprecian la resistencia y la inductancia de dispersión del estátor.</p>
+<ol><li>Calcula y dibuja los tres fasores de la corriente de magnetización.</li>
+<li>Calcula y dibuja los vectores espaciales \(\vec e_{ms}\) y \(\vec i_{ms}\) en el instante \(t=0\).</li></ol></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Fasores de corriente.</b> Al despreciar \(R_s\) y \(L_{ls}\) y no haber campo de rotor, el circuito por fase se reduce a la bobina \(L_m\):</p>
+\[X_m=\omega L_m=2\pi\cdot50\cdot0{,}06=18{,}85\ \Omega\]
+\[\bar I_{ma}=\frac{\bar V_a}{jX_m}=\frac{325{,}27\angle20^\circ}{18{,}85\angle90^\circ}=\mathbf{17{,}26\angle-70^\circ\ A}\ (\text{pico})\]
+<p>Y las otras dos, restando 120° y 240°:</p>
+\[\bar I_{mb}=17{,}26\angle-190^\circ=17{,}26\angle170^\circ\ \text{A},\qquad \bar I_{mc}=17{,}26\angle50^\circ\ \text{A}\]
+<p>La corriente <b>atrasa 90°</b> respecto a la tensión, como corresponde a una bobina pura. En valor eficaz serían 12,2 A.</p>
+<p><b>2) Vectores espaciales en t = 0.</b> En régimen senoidal equilibrado el vector espacial tiene módulo <b>1,5 veces el pico</b> y su ángulo, en \(t=0\), es la fase inicial de la fase a:</p>
+\[\vec i_{ms}(0)=\tfrac32\cdot17{,}26\angle-70^\circ=\mathbf{25{,}88\angle-70^\circ\ A}\]
+\[\vec e_{ms}(0)=\tfrac32\cdot325{,}27\angle20^\circ=\mathbf{487{,}9\angle20^\circ\ V}\]
+<p>Los dos giran a \(\omega=314{,}16\) rad/s manteniendo 90° entre ellos: \(\vec e_{ms}\) va <b>90° adelantado</b> respecto a \(\vec i_{ms}\), igual que en el fasor.</p>
+<p><b>Comprobación con la regla de los 2/3.</b> La proyección de \(\vec i_{ms}\) sobre el eje a es \(25{,}88\cos(-70^\circ)=8{,}85\); multiplicando por 2/3 sale 5,90 A, que es exactamente \(17{,}26\cos(-70^\circ)\), el valor instantáneo de \(i_a\) en \(t=0\). ✓</p></div></details></div>
+<h3 id="t5-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Qué es un vector espacial y en qué se diferencia de un fasor?</summary><div class="inner"><p>El fasor describe la <b>evolución temporal</b> de una magnitud senoidal de una fase; el vector espacial describe la <b>distribución espacial</b> conjunta de las tres fases en el entrehierro: su dirección es una dirección física de la máquina. Su módulo es 1,5 veces el pico del fasor.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Por qué aparece el factor 1,5?</summary><div class="inner"><p>Porque al sumar las tres contribuciones \(\hat I\cos(\omega t)+\hat I\cos(\omega t-120^\circ)e^{j120^\circ}+\dots\) los términos de secuencia inversa se cancelan y los de secuencia directa se suman tres veces a la mitad: \(3/2\).</p></div></details><details class="paso"><summary><span class="pn">3</span>Un devanado monofásico con alterna: ¿campo giratorio?</summary><div class="inner"><p>No: campo <b>pulsante</b> sobre su propio eje. Se puede descomponer en dos campos giratorios iguales y de sentidos opuestos, y de ahí que un motor monofásico no arranque solo.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿A qué velocidad gira el campo de un motor de 6 polos a 50 Hz?</summary><div class="inner"><p>\(n_s=120\cdot50/6=1000\) rpm. Para una frecuencia dada, más polos significa menos velocidad.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Cómo se invierte el giro de un motor trifásico?</summary><div class="inner"><p>Permutando dos de las tres fases: la secuencia pasa de directa a inversa y el campo giratorio cambia de sentido.</p></div></details><details class="paso"><summary><span class="pn">6</span>Si el enunciado da \(\bar V_a=\sqrt2\cdot230\angle0^\circ\), ¿cuánto marca un voltímetro?</summary><div class="inner"><p>230 V, el valor <b>eficaz</b>. El enunciado está dando el pico (325,3 V) porque el convenio de la asignatura usa fasores de pico para poder relacionarlos con los vectores espaciales.</p></div></details><details class="paso"><summary><span class="pn">7</span>¿Dónde está el vector espacial de \(\vec B\) respecto al de la corriente?</summary><div class="inner"><p><b>Alineado</b> con el de la fmm, que a su vez es \(\frac{N_s}{p}\vec i_s\): los tres vectores (corriente, fmm y densidad de flujo) apuntan en la misma dirección y sólo difieren en un factor de escala.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-04.html"><small>← Anterior</small>T4 · Máquinas de corriente continua</a><a class="nx" href="tema-06.html"><small>Siguiente →</small>T6 · Máquinas asíncronas</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Electrotecnia (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, apuntes de las ocho unidades, formulario y colecciones de problemas de examen de 2012 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T3 Conversión de energía electromecánica · Electrotecnia · Guía para aprobar</title>
+<meta name="description" content="Electrotecnia (UPCT, GIEyA): tema 3, Conversión de energía electromecánica">
+<meta name="theme-color" content="#4440a0">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, apuntes de las ocho unidades, formulario y colecciones de problemas de examen de 2012 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Electrotecnia</a><span class="sep">›</span><span>Continua: circuitos magnéticos y máquinas de CC</span><span class="sep">›</span><span>T3 · Conversión de energía electromecánica</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Continua: circuitos magnéticos y máquinas de CC</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Accionamientos y requerimientos mecánicos</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos magnéticos y transformadores</a><a href="tema-03.html" style="--tc:var(--c4)" class="on" aria-current="page">T3 Conversión de energía electromecánica</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Máquinas de corriente continua</a><div class="grp">Alterna: vectores espaciales y máquinas de CA</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Máquinas de alterna y vectores espaciales</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Máquinas asíncronas</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Máquinas síncronas de imanes permanentes</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Motores de reluctancia variable</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y evaluación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
+<div class="sh"><span aria-hidden="true" class="badge">3</span><div class="shx"><p class="kick">Continua: circuitos magnéticos y máquinas de CC · Tema 3</p><h2 id="t3">Conversión de energía electromecánica</h2><div class="tags"><span class="tag">Continua: circuitos magnéticos y máquinas de CC</span><span class="tag">1.ª prueba (35 %)</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> saber de dónde sale el par de cualquier máquina eléctrica: cómo se produce el campo en el entrehierro, cómo aparece la fuerza sobre los conductores (Lorentz) y la fuerza electromotriz inducida (Faraday), y cómo se cierra el balance de energía.</p><ul>
+<li>Toda máquina rotativa tiene <b>estátor</b>, <b>rotor</b> y <b>entrehierro</b>. El entrehierro se hace lo más pequeño posible (del orden de 1 mm para 10 kW) porque es donde se gasta casi toda la fuerza magnetomotriz.</li>
+<li>Los devanados se distribuyen de forma <b>senoidal</b> en las ranuras para que la densidad de flujo en el entrehierro sea senoidal: \(B_a(\theta)=\hat B_a\cos\theta\). Con esto, \(F\), \(H\) y \(B\) tienen la <b>misma forma de onda</b> y sólo se diferencian en un factor.</li>
+<li><b>Fuerza de Lorentz</b> \(\vec f=i\,\vec l\times\vec B\): es la que produce el par sobre los conductores. <b>Ley de Faraday</b> \(e=Blu\): es la que produce la fem inducida al moverse el conductor en el campo.</li>
+<li>Las dos leyes son <b>las dos caras de la misma moneda</b>: la potencia eléctrica \(e\,i\) que entra por los bornes es exactamente la potencia mecánica \(T\omega\) que sale por el eje (si no hay pérdidas ni almacenamiento).</li>
+<li>El <b>par</b> entre dos campos senoidales es proporcional al producto de sus amplitudes y al <b>seno del ángulo</b> que forman: máximo a 90° eléctricos, nulo cuando están alineados.</li>
+<li>Ángulos: \(\theta_{elec}=\dfrac{p}{2}\theta_{mec}\). Un polo magnético son 180° eléctricos.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 3 <span class="src">9 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">l_g</td><td>Longitud del entrehierro</td><td class="u">m</td></tr><tr><td class="sym">N_s</td><td>Espiras por fase del estátor</td><td class="u"></td></tr><tr><td class="sym">p</td><td>Número de polos</td><td class="u">2, 4, 6…</td></tr><tr><td class="sym">θ, θ_m</td><td>Ángulo eléctrico y mecánico</td><td class="u">θ = (p/2)θ_m</td></tr><tr><td class="sym">F̂ = Ni/p</td><td>fmm de pico</td><td class="u">A·v</td></tr><tr><td class="sym">B̂ = μ₀F̂/l_g</td><td>Densidad de flujo de pico</td><td class="u">T</td></tr><tr><td class="sym">r, l</td><td>Radio y longitud axial</td><td class="u">m</td></tr><tr><td class="sym">δ</td><td>Ángulo entre los dos campos</td><td class="u">eléctrico</td></tr><tr><td class="sym">e = Blu</td><td>fem inducida</td><td class="u">V</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - campos en el entrehierro y par electromagnetico</p><div data-sim="conversion"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
+<h3 id="t3-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>Densidad de conductores (máquina de \(p\) polos, \(N_s\) espiras por fase): \(n_s(\theta)=\dfrac{N_s}{p}\operatorname{sen}\theta\).</li>
+<li>Campo de una fase: \(H_a(\theta)=\dfrac{N_si_a}{p\,l_g}\cos\theta\), \(\hat B_a=\dfrac{\mu_0N_si_a}{p\,l_g}\), fmm de pico \(\hat F_a=\dfrac{N_si_a}{p}=\dfrac{\hat B_al_g}{\mu_0}\).</li>
+<li>Inductancia de magnetización: \(L_m=\dfrac{\pi\mu_0N_s^2rl}{p^2l_g}\) (con \(r\) radio y \(l\) longitud axial).</li>
+<li>Flujo por polo: \(\phi_{polo}=\dfrac{2}{p}\cdot2rl\hat B\); enlaces \(\lambda=\dfrac{\pi N_srl\hat B}{p}\).</li>
+<li>Fuerza y fem: \(f=B\,i\,l\), \(e=B\,l\,u\) con \(u=\omega_m r\).</li>
+<li>Par entre dos campos separados un ángulo \(\delta\) eléctrico: \(T_{em}=\pi rl\dfrac{l_g}{\mu_0}\hat B_s\hat B_r\operatorname{sen}\delta=\pi rl\dfrac{\mu_0}{l_g}\hat F_s\hat F_r\operatorname{sen}\delta\).</li>
+<li>Balance: \(p_{elec}=p_{mec}+\dfrac{dW_{campo}}{dt}+p_{perdidas}\); \(e\,i=T\omega_m\) en la conversión ideal.</li>
+<li>Valores asignados: los de la placa (tensión, corriente, potencia, velocidad), limitados por el <b>calentamiento</b> (corriente) y por el <b>aislamiento y la saturación</b> (tensión).</li>
+</ul></div>
+<h3 id="t3-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li>Pasa los ángulos a <b>eléctricos</b>: \(\theta=\frac{p}{2}\theta_m\). Todo lo demás se hace en eléctricos.</li>
+<li>Calcula la <b>fmm de pico</b> de cada devanado: \(\hat F=\dfrac{Ni}{p}\), y de ahí \(\hat B=\mu_0\hat F/l_g\).</li>
+<li>Sitúa cada campo en su <b>eje magnético</b> y mide el ángulo \(\delta\) entre ellos (el del rotor se mueve con \(\theta_m\)).</li>
+<li>Aplica la fórmula del par y comprueba el <b>signo</b>: el par tiende siempre a <b>alinear</b> los dos campos.</li>
+<li>Si piden la fem, usa \(e=d\lambda/dt\) con \(\lambda\) de la fórmula de enlaces; si piden fuerza sobre un conductor, \(f=Bil\).</li>
+<li>Cierra con el <b>balance de potencias</b> para comprobar.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li><b>Mezclar grados eléctricos y mecánicos.</b> En una máquina de 4 polos, 45° mecánicos son 90° eléctricos. Es el error más caro del tema.</li>
+<li>Olvidar que el entrehierro se atraviesa <b>dos veces</b> al aplicar Ampère (de ahí el 2 en el denominador cuando \(p=2\)).</li>
+<li>Pensar que el par es máximo cuando los campos están alineados: es justo al contrario, ahí es <b>nulo</b> (y es la posición de equilibrio estable).</li>
+<li>Usar \(N_s\) como número de conductores en vez de <b>espiras por fase</b>.</li>
+<li>Confundir la amplitud de la distribución con su valor medio: \(B(\theta)\) es senoidal, su pico está en el eje magnético.</li>
+</ul></div>
+<h3 id="t3-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Ejemplo de los apuntes, unidad 3.)</b> Una máquina de <b>2 polos</b> tiene \(l_g=1\) mm, radio del rotor \(r=6\) cm y longitud \(l=24\) cm. El estátor tiene \(N_s=100\) espiras por fase y por su fase a circula \(i_a=10\) A; el rotor tiene \(N_r=50\) espiras y circula \(i_r=5\) A, con el rotor en la posición \(\theta_m=20^\circ\).</p>
+<p>Calcula las amplitudes de las dos distribuciones de densidad de flujo y el par sobre el rotor.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>Fuerzas magnetomotrices de pico.</b> Con \(p=2\):</p>
+\[\hat F_s=\frac{N_si_a}{p}=\frac{100\cdot10}{2}=500\ \text{A·v},\qquad \hat F_r=\frac{50\cdot5}{2}=125\ \text{A·v}\]
+<p><b>Densidades de flujo.</b> Cada fmm se gasta en el entrehierro:</p>
+\[\hat B_s=\frac{\mu_0\hat F_s}{l_g}=\frac{4\pi\cdot10^{-7}\cdot500}{0{,}001}=\mathbf{0{,}628\ T},\qquad \hat B_r=\frac{4\pi\cdot10^{-7}\cdot125}{0{,}001}=\mathbf{0{,}157\ T}\]
+<p>Ambas son razonables: por debajo de 1,8 T no hay saturación.</p>
+<p><b>Par.</b> Con 2 polos, \(\delta=\theta_{elec}=\theta_m=20^\circ\):</p>
+\[T_{em}=\pi rl\frac{l_g}{\mu_0}\hat B_s\hat B_r\operatorname{sen}\delta=\pi\cdot0{,}06\cdot0{,}24\cdot\frac{0{,}001}{4\pi\cdot10^{-7}}\cdot0{,}628\cdot0{,}157\cdot\operatorname{sen}20^\circ\]
+\[T_{em}=\mathbf{1{,}22\ N\cdot m}\]
+<p>El par tiende a <b>alinear</b> el campo del rotor con el del estátor, es decir, a reducir \(\theta_m\). Si el rotor estuviese a 90°, el par sería máximo: \(1{,}22/\operatorname{sen}20^\circ=3{,}55\) N·m. A 0° o 180°, nulo.</p>
+<p class="muted">La misma fórmula, escrita en función de las fmm, da idéntico resultado: \(T=\pi rl\frac{\mu_0}{l_g}\hat F_s\hat F_r\operatorname{sen}\delta\). Úsala cuando los datos sean corrientes y espiras, y la de los campos cuando el dato sea B.</p></div></details></div>
+<h3 id="t3-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Por qué los devanados se distribuyen senoidalmente?</summary><div class="inner"><p>Para que el campo en el entrehierro sea senoidal en el espacio. Así se eliminan armónicos (menos pérdidas y vibraciones) y, sobre todo, el análisis se simplifica enormemente: todo se reduce a vectores espaciales.</p></div></details><details class="paso"><summary><span class="pn">2</span>En una máquina de 6 polos, ¿cuántos grados eléctricos son 30° mecánicos?</summary><div class="inner"><p>\(\theta=\frac{p}{2}\theta_m=3\cdot30=90^\circ\) eléctricos. Con 6 polos cada vuelta mecánica son tres vueltas eléctricas.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Dónde está el par máximo entre dos campos?</summary><div class="inner"><p>A <b>90° eléctricos</b> de separación, porque \(T\propto\operatorname{sen}\delta\). Alineados el par es nulo y la posición es de equilibrio estable; a 180°, equilibrio inestable.</p></div></details><details class="paso"><summary><span class="pn">4</span>Dos conductores con la misma corriente, uno en el estátor y otro en el rotor. ¿Qué par siente cada uno?</summary><div class="inner"><p>Iguales en módulo y <b>de sentido contrario</b> (tercera ley de Newton). El del estátor lo absorbe el anclaje de la carcasa; el del rotor mueve el eje.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Por qué conviene un entrehierro pequeño?</summary><div class="inner"><p>Porque \(\hat B=\mu_0\hat F/l_g\): a menor \(l_g\), menos corriente hace falta para la misma densidad de flujo, lo que reduce las pérdidas en el cobre y sube el rendimiento. El límite lo pone la mecánica (tolerancias, dilataciones, excentricidad).</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Qué limita los valores asignados de una máquina?</summary><div class="inner"><p>La <b>corriente</b> la limita el calentamiento (pérdidas en el cobre y capacidad de evacuar calor); la <b>tensión</b>, el aislamiento y la saturación del hierro. El producto de ambos da la potencia de placa.</p></div></details><details class="paso"><summary><span class="pn">7</span>¿Qué papel juega el laminado del hierro?</summary><div class="inner"><p>Reduce las <b>corrientes de Foucault</b>: al aislar las láminas entre sí se cortan los caminos de las corrientes inducidas en el hierro, que de otro modo disiparían mucha potencia.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-02.html"><small>← Anterior</small>T2 · Circuitos magnéticos y transformadores</a><a class="nx" href="tema-04.html"><small>Siguiente →</small>T4 · Máquinas de corriente continua</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Electrotecnia (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, apuntes de las ocho unidades, formulario y colecciones de problemas de examen de 2012 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

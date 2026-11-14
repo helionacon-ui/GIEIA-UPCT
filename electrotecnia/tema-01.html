@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T1 Accionamientos y requerimientos mecánicos · Electrotecnia · Guía para aprobar</title>
+<meta name="description" content="Electrotecnia (UPCT, GIEyA): tema 1, Accionamientos y requerimientos mecánicos">
+<meta name="theme-color" content="#4440a0">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, apuntes de las ocho unidades, formulario y colecciones de problemas de examen de 2012 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Electrotecnia</a><span class="sep">›</span><span>Continua: circuitos magnéticos y máquinas de CC</span><span class="sep">›</span><span>T1 · Accionamientos y requerimientos mecánicos</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Continua: circuitos magnéticos y máquinas de CC</div><a href="tema-01.html" style="--tc:var(--c2)" class="on" aria-current="page">T1 Accionamientos y requerimientos mecánicos</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos magnéticos y transformadores</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conversión de energía electromecánica</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Máquinas de corriente continua</a><div class="grp">Alterna: vectores espaciales y máquinas de CA</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Máquinas de alterna y vectores espaciales</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Máquinas asíncronas</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Máquinas síncronas de imanes permanentes</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Motores de reluctancia variable</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y evaluación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
+<div class="sh"><span aria-hidden="true" class="badge">1</span><div class="shx"><p class="kick">Continua: circuitos magnéticos y máquinas de CC · Tema 1</p><h2 id="t1">Accionamientos y requerimientos mecánicos</h2><div class="tags"><span class="tag">Continua: circuitos magnéticos y máquinas de CC</span><span class="tag">1.ª prueba (35 %)</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> entender qué es un accionamiento eléctrico, saber traducir lo que pide la carga (par y velocidad) a lo que debe dar el motor, y tener a punto el repaso de circuitos de alterna y trifásica que se usa en toda la asignatura.</p><ul>
+<li>Un <b>accionamiento eléctrico</b> es el conjunto <b>UPP + motor + carga + control</b>. La unidad de procesado de potencia (UPP) toma la red (amplitud y frecuencia fijas) y entrega al motor una tensión de <b>amplitud y frecuencia ajustables</b>. Esto es lo que permite trabajar a la velocidad que interesa en vez de estrangular una válvula, y es la razón de que los motores pasen del 43-46 % del consumo eléctrico a consumir bastante menos.</li>
+<li>Lo que <b>fija el tamaño</b> del accionamiento no es la velocidad, es el <b>par</b>: \(T=J\frac{d\omega}{dt}+B\omega+T_{carga}\). El pico aparece durante la aceleración, no en régimen.</li>
+<li>Al poner un <b>reductor</b> de relación \(n\) el par se multiplica por \(n\) y la velocidad se divide por \(n\); las <b>inercias</b> del lado de la carga se reflejan divididas por \(n^2\).</li>
+<li>Hay cuatro <b>cuadrantes</b> de funcionamiento en el plano par-velocidad. Si \(T\) y \(\omega\) tienen el mismo signo la máquina es motor; si tienen signo contrario, es <b>generador</b> y devuelve energía (frenado regenerativo).</li>
+<li>Repaso imprescindible: fasores con <b>valores eficaces</b> para potencias, \(S=VI^*\), \(f.d.p.=\cos\varphi\) y el <b>monofásico equivalente</b> de un sistema trifásico equilibrado en estrella.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 1 <span class="src">9 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">T</td><td>Par</td><td class="u">N·m</td></tr><tr><td class="sym">ω</td><td>Velocidad angular</td><td class="u">rad/s = n·π/30</td></tr><tr><td class="sym">J</td><td>Momento de inercia</td><td class="u">kg·m²</td></tr><tr><td class="sym">B</td><td>Coeficiente de fricción viscosa</td><td class="u">N·m·s</td></tr><tr><td class="sym">n</td><td>Relación del reductor</td><td class="u">ω_motor/ω_carga</td></tr><tr><td class="sym">UPP</td><td>Unidad de procesado de potencia</td><td class="u">el convertidor</td></tr><tr><td class="sym">P = Tω</td><td>Potencia mecánica</td><td class="u">W</td></tr><tr><td class="sym">f.d.p.</td><td>cos φ</td><td class="u"></td></tr><tr><td class="sym">S = P + jQ</td><td>Potencia compleja</td><td class="u">VA</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - perfil de velocidad y par que debe dar el motor</p><div data-sim="accion"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
+<h3 id="t1-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>Dinámica: \(T_{em}-T_{carga}-B\omega=J\dfrac{d\omega}{dt}\); potencia mecánica \(P=T\omega\).</li>
+<li>Inercias: cilindro macizo \(J=\frac12 mR^2\); masa en traslación con tambor de radio \(R\): \(J_{eq}=mR^2\); teorema de Steiner \(J=J_G+md^2\).</li>
+<li>Reductor de relación \(n=\omega_{motor}/\omega_{carga}\): \(T_{motor}=\dfrac{T_{carga}}{n\,\eta}\), \(J_{ref}=\dfrac{J_{carga}}{n^2}\).</li>
+<li>Tipos de carga: <b>par constante</b> (grúas, cintas, extrusoras), <b>par proporcional a \(\omega^2\)</b> (ventiladores y bombas, donde \(P\propto\omega^3\)) y <b>potencia constante</b> (bobinadoras, tracción por encima de la velocidad base).</li>
+<li>Rozamientos: seco de Coulomb \(T_f=\mu N R\) (independiente de \(\omega\)), viscoso \(T_f=B\omega\), y de ventilación \(\propto\omega^2\).</li>
+<li>Alterna: \(\bar V=V_{ef}\angle\varphi_v\), \(\bar S=\bar V\bar I^{*}=P+jQ\), \(X_L=\omega L\), \(X_C=1/\omega C\).</li>
+<li>Trifásica equilibrada en estrella: \(V_{linea}=\sqrt3\,V_{fase}\), \(P=3V_fI_f\cos\varphi=\sqrt3\,V_LI_L\cos\varphi\).</li>
+</ul></div>
+<h3 id="t1-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li><b>Dibuja el perfil de velocidad</b> que pide el proceso: aceleración, crucero, deceleración y parada.</li>
+<li><b>Refleja todo al eje del motor</b>: pares divididos por \(n\eta\), inercias por \(n^2\). Suma la inercia del propio motor.</li>
+<li>Calcula el par en cada tramo con \(T=J\frac{d\omega}{dt}+B\omega+T_L\). El de <b>aceleración</b> es el que dimensiona.</li>
+<li>Comprueba la <b>potencia</b> \(P=T\omega\) en el punto de mayor producto, no en el de mayor par.</li>
+<li>Decide el <b>cuadrante</b> de cada tramo: si en la deceleración el par sale negativo con \(\omega>0\), la UPP tiene que ser capaz de devolver energía.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li><b>Confundir \(J\) de la carga con \(J\) reflejada</b>: con un reductor 1:10 una inercia de 2 kg·m² se ve como 0,02 kg·m². Es casi siempre el error que decide el problema.</li>
+<li>Dimensionar por el par de crucero y olvidar el <b>pico de aceleración</b>.</li>
+<li>Usar valores de pico en las fórmulas de potencia: \(P=VI\cos\varphi\) exige <b>valores eficaces</b>.</li>
+<li>Olvidar el <b>rendimiento del reductor</b> (o aplicarlo al revés: al subir del motor a la carga se multiplica, al bajar se divide).</li>
+<li>En trifásica, mezclar tensión de línea y de fase en el monofásico equivalente.</li>
+</ul></div>
+<h3 id="t1-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Un montacargas sube una carga de <b>200 kg</b> a <b>0,5 m/s</b> mediante un tambor de <b>radio 0,1 m</b> acoplado al motor a través de un reductor de relación <b>1:10</b> con rendimiento <b>0,9</b>. La inercia del motor es <b>0,01 kg·m²</b> y se desprecia la del tambor. Se quiere alcanzar la velocidad de régimen en <b>0,5 s</b>.</p>
+<p>Calcula: a) el par y la velocidad que debe dar el motor en régimen; b) la inercia total vista por el motor; c) el par durante la aceleración; d) la potencia de pico. Toma g = 9,81 m/s².</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>a) Régimen.</b> La fuerza a vencer es el peso: \(F=mg=200\cdot9{,}81=1962\) N. En el tambor, \(T_t=F\cdot R=196{,}2\) N·m y \(\omega_t=v/R=0{,}5/0{,}1=5\) rad/s (47,7 rpm).</p>
+<p>Reflejando al motor: \(\omega_m=n\,\omega_t=50\) rad/s (<b>477 rpm</b>) y \(T_m=\dfrac{T_t}{n\,\eta}=\dfrac{196{,}2}{10\cdot0{,}9}=\mathbf{21{,}8}\) <b>N·m</b>.</p>
+<p><b>b) Inercia.</b> La masa en traslación equivale a \(J=mR^2=200\cdot0{,}1^2=2\) kg·m² en el tambor, que reflejada al motor son \(2/10^2=0{,}02\) kg·m². Con la del motor: \(J_{total}=0{,}01+0{,}02=\mathbf{0{,}03}\) <b>kg·m²</b>.</p>
+<p><b>c) Aceleración.</b> \(T_{ac}=J\dfrac{\Delta\omega}{\Delta t}=0{,}03\cdot\dfrac{50}{0{,}5}=3{,}0\) N·m, que se <b>suma</b> al de la carga: \(T_{pico}=21{,}8+3{,}0=\mathbf{24{,}8}\) <b>N·m</b>.</p>
+<p><b>d) Potencia.</b> En crucero \(P=21{,}8\cdot50=1090\) W; el pico se da al final de la aceleración, \(P=24{,}8\cdot50=\mathbf{1240}\) <b>W</b>. Hay que elegir un motor que dé 24,8 N·m de forma transitoria y 21,8 N·m de forma continua a 477 rpm.</p>
+<p class="muted">Observa que la carga de un montacargas es de <b>par constante</b> y además <b>activa</b>: al bajar, el peso arrastra al motor y el accionamiento pasa al cuarto cuadrante (frenado regenerativo).</p></div></details></div>
+<h3 id="t1-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Qué hace exactamente la UPP de un accionamiento?</summary><div class="inner"><p>Convertir la tensión de red, de amplitud y frecuencia <b>fijas</b>, en una tensión de amplitud y frecuencia <b>ajustables</b> para el motor, en respuesta a la consigna de velocidad o posición que da el control.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Por qué un ventilador con variador ahorra tanta energía frente a estrangular la válvula?</summary><div class="inner"><p>Porque en un ventilador o bomba el par va con \(\omega^2\) y la potencia con \(\omega^3\): bajar la velocidad al 80 % reduce la potencia al 51 %. Estrangulando, el motor sigue girando a velocidad nominal y la energía se disipa en la válvula.</p></div></details><details class="paso"><summary><span class="pn">3</span>Un reductor 1:20 une motor y carga. Si la carga tiene 10 kg·m², ¿cuánto ve el motor?</summary><div class="inner"><p>\(J_{ref}=10/20^2=0{,}025\) kg·m². Las inercias se reflejan divididas por el cuadrado de la relación, lo que hace que un reductor "esconda" inercias enormes.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Cuándo está la máquina en el segundo cuadrante?</summary><div class="inner"><p>Cuando \(\omega>0\) y \(T<0\): gira en sentido positivo pero su par se opone al giro, así que <b>frena generando</b>. La potencia mecánica es negativa y la energía va de la carga a la red.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Por qué el par de aceleración es el que dimensiona el motor?</summary><div class="inner"><p>Porque es el máximo del perfil: \(T=J\,d\omega/dt+B\omega+T_L\). En régimen sólo hay que vencer carga y fricción; durante la aceleración se añade el término inercial, que con tiempos cortos puede ser varias veces mayor.</p></div></details><details class="paso"><summary><span class="pn">6</span>Un motor gira a 1500 rpm. ¿Cuánto es en rad/s?</summary><div class="inner"><p>\(\omega=1500\cdot\frac{2\pi}{60}=157{,}1\) rad/s. La conversión \(\omega=n\pi/30\) aparece en casi todos los problemas de la asignatura.</p></div></details><details class="paso"><summary><span class="pn">7</span>¿Qué diferencia hay entre rozamiento de Coulomb y viscoso de cara al arranque?</summary><div class="inner"><p>El de Coulomb es <b>independiente de la velocidad</b> y existe ya a velocidad nula (hay que vencerlo para arrancar); el viscoso es proporcional a \(\omega\) y es nulo en el arranque.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="plan.html"><small>← Anterior</small>Cómo es la evaluación</a><a class="nx" href="tema-02.html"><small>Siguiente →</small>T2 · Circuitos magnéticos y transformadores</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Electrotecnia (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, apuntes de las ocho unidades, formulario y colecciones de problemas de examen de 2012 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

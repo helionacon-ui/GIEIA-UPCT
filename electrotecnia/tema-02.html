@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T2 Circuitos magnéticos y transformadores · Electrotecnia · Guía para aprobar</title>
+<meta name="description" content="Electrotecnia (UPCT, GIEyA): tema 2, Circuitos magnéticos y transformadores">
+<meta name="theme-color" content="#4440a0">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, apuntes de las ocho unidades, formulario y colecciones de problemas de examen de 2012 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Electrotecnia</a><span class="sep">›</span><span>Continua: circuitos magnéticos y máquinas de CC</span><span class="sep">›</span><span>T2 · Circuitos magnéticos y transformadores</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Continua: circuitos magnéticos y máquinas de CC</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Accionamientos y requerimientos mecánicos</a><a href="tema-02.html" style="--tc:var(--c3)" class="on" aria-current="page">T2 Circuitos magnéticos y transformadores</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conversión de energía electromecánica</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Máquinas de corriente continua</a><div class="grp">Alterna: vectores espaciales y máquinas de CA</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Máquinas de alterna y vectores espaciales</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Máquinas asíncronas</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Máquinas síncronas de imanes permanentes</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Motores de reluctancia variable</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y evaluación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
+<div class="sh"><span aria-hidden="true" class="badge">2</span><div class="shx"><p class="kick">Continua: circuitos magnéticos y máquinas de CC · Tema 2</p><h2 id="t2">Circuitos magnéticos y transformadores</h2><div class="tags"><span class="tag">Continua: circuitos magnéticos y máquinas de CC</span><span class="tag">1.ª prueba (35 %)</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> resolver un circuito magnético con entrehierro por analogía con los circuitos eléctricos, obtener inductancias, y manejar el circuito equivalente del transformador: sus parámetros a partir de los ensayos de vacío y cortocircuito, y su comportamiento en carga.</p><ul>
+<li>Las líneas de \(\vec B\) son <b>cerradas</b> (\(\nabla\cdot\vec B=0\)). Con materiales de alta permeabilidad se canalizan por donde interesa: eso es un <b>circuito magnético</b>.</li>
+<li>La <b>analogía</b> con los circuitos eléctricos: la fuerza magnetomotriz \(F=Ni\) hace de fuente de tensión, el flujo \(\phi\) de intensidad y la <b>reluctancia</b> \(\Re=l/(\mu A)\) de resistencia. Se resuelve con las mismas leyes de Kirchhoff.</li>
+<li>Un <b>entrehierro de 1 mm</b> puede tener más reluctancia que un metro de hierro, porque \(\mu_{Fe}=\mu_r\mu_0\) con \(\mu_r\) de 2000 a 6000. Casi todo el "esfuerzo" magnético se gasta en el aire.</li>
+<li>El <b>transformador</b> transmite energía entre circuitos aislados por acoplamiento magnético. Su circuito equivalente tiene una <b>rama serie</b> (resistencia de los devanados y dispersión) y una <b>rama paralelo</b> (magnetización y pérdidas en el hierro).</li>
+<li>Dos ensayos dan los parámetros: el de <b>vacío</b>, a tensión nominal, mide las pérdidas del <b>hierro</b>; el de <b>cortocircuito</b>, a corriente nominal, mide las del <b>cobre</b>.</li>
+<li>Los parámetros salen referidos al lado donde se hace el ensayo. Pasar de un lado a otro: las impedancias se multiplican por \(a^2\) al subir y se dividen al bajar, con \(a=N_1/N_2\).</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 2 <span class="src">10 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">F = Ni</td><td>Fuerza magnetomotriz</td><td class="u">A·v</td></tr><tr><td class="sym">ℜ = l/μA</td><td>Reluctancia</td><td class="u">A·v/Wb</td></tr><tr><td class="sym">φ</td><td>Flujo magnético</td><td class="u">Wb</td></tr><tr><td class="sym">λ = Nφ</td><td>Enlaces de flujo</td><td class="u">Wb·v</td></tr><tr><td class="sym">L = N²/ℜ</td><td>Autoinducción</td><td class="u">H</td></tr><tr><td class="sym">μ_r</td><td>Permeabilidad relativa</td><td class="u">2000-6000 en hierro</td></tr><tr><td class="sym">a = N₁/N₂</td><td>Relación de transformación</td><td class="u"></td></tr><tr><td class="sym">R_c, X_m</td><td>Rama de magnetización</td><td class="u">del ensayo de vacío</td></tr><tr><td class="sym">R_eq, X_eq</td><td>Rama serie</td><td class="u">del ensayo de cortocircuito</td></tr><tr><td class="sym">l_g</td><td>Entrehierro</td><td class="u">mm</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - circuito magnetico con entrehierro y transformador en carga</p><div data-sim="trafo"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
+<h3 id="t2-formulas">Lo que tienes que saber</h3>
+<div class="box key"><ul>
+<li>Ampère: \(\oint\vec H\,d\vec l=\sum Ni\); Faraday: \(e=\dfrac{d\lambda}{dt}=N\dfrac{d\phi}{dt}\); \(\vec B=\mu\vec H\).</li>
+<li>Reluctancia \(\Re=\dfrac{l}{\mu A}\) [A·v/Wb]; en serie se suman, en paralelo se combinan como resistencias.</li>
+<li>\(\phi=\dfrac{F}{\Re}=\dfrac{Ni}{\Re}\), \(B=\dfrac{\phi}{A}\), \(\lambda=N\phi\), \(L=\dfrac{\lambda}{i}=\dfrac{N^2}{\Re}\).</li>
+<li>Dos bobinas: \(L_{12}=\dfrac{N_1N_2}{\Re}\) (sólo el flujo común); energía \(W=\frac12Li^2=\dfrac{B^2}{2\mu}\,\mathrm{Vol}\).</li>
+<li>Transformador ideal: \(\dfrac{V_1}{V_2}=\dfrac{N_1}{N_2}=a\), \(\dfrac{I_1}{I_2}=\dfrac1a\), \(Z'=a^2Z\).</li>
+<li>Vacío: \(R_c=\dfrac{V_{oc}^2}{P_{oc}}\), \(Q_{oc}=\sqrt{(V_{oc}I_{oc})^2-P_{oc}^2}\), \(X_m=\dfrac{V_{oc}^2}{Q_{oc}}\).</li>
+<li>Cortocircuito: \(Z_{eq}=\dfrac{V_{sc}}{I_{sc}}\), \(R_{eq}=\dfrac{P_{sc}}{I_{sc}^2}\), \(X_{eq}=\sqrt{Z_{eq}^2-R_{eq}^2}\).</li>
+<li>Caída de tensión: \(\bar V_1=\bar V_2'+(R_{eq}+jX_{eq})\bar I_2'\); rendimiento \(\eta=\dfrac{P_{salida}}{P_{salida}+P_{Fe}+P_{Cu}}\), máximo cuando \(P_{Cu}=P_{Fe}\).</li>
+<li>Imanes permanentes: recta de carga \(B=B_r\left(1+\dfrac{H}{H_c}\right)\) cortada con la del circuito magnético.</li>
+</ul></div>
+<h3 id="t2-metodo">Cómo se resuelve</h3>
+<ol class="steps"><li><b>Circuito magnético:</b> identifica los tramos de sección y material constantes, calcula \(\Re_i=l_i/(\mu_iA_i)\) de cada uno (midiendo \(l\) por la <b>línea media</b>) y dibuja el circuito eléctrico análogo.</li>
+<li>Resuélvelo con Kirchhoff: \(\phi=F/\Re_{total}\) si es serie; con ramas en paralelo, divisores de flujo.</li>
+<li>De \(\phi\) sal a \(B=\phi/A\) y comprueba que no pase de ≈1,8 T (saturación). Las inductancias, con \(L=N^2/\Re\) y \(L_{12}=N_1N_2/\Re\).</li>
+<li><b>Ensayos:</b> apunta en qué lado se hace cada uno. Vacío ⇒ rama paralelo; cortocircuito ⇒ rama serie. Si hace falta, refiere con \(a^2\).</li>
+<li><b>Carga:</b> calcula \(\bar I_2\) desde \(\bar S=P+jQ\) (ojo: \(\bar I=(\bar S/\bar V)^*\)), refiérela al primario, y recorre el circuito sumando caídas hasta \(\bar V_1\).</li>
+<li>Comprueba el balance de potencias: \(P_1=P_2+P_{Cu}+P_{Fe}\).</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li><b>Olvidar el entrehierro</b> o meterlo con la sección del hierro: si hay dispersión se usa una sección efectiva algo mayor, pero el enunciado suele decir «las líneas no se dispersan».</li>
+<li>Usar \(\mu_0\) en el hierro o \(\mu_r\mu_0\) en el aire. En el aire siempre \(\mu_0=4\pi\cdot10^{-7}\).</li>
+<li>Confundir \(L=N^2/\Re\) con \(N/\Re\). Y recordar que la mutua lleva \(N_1N_2\), no \(N^2\).</li>
+<li>En los ensayos, <b>tomar la potencia como aparente</b>: el vatímetro mide \(P\); la reactiva hay que sacarla con \(Q=\sqrt{S^2-P^2}\).</li>
+<li>Referir mal: al pasar del lado de baja al de alta las impedancias se <b>multiplican</b> por \(a^2\). Con 2400/240, \(a=10\) y \(a^2=100\).</li>
+<li>Tomar el ángulo de \(\bar I\) con signo equivocado: carga inductiva ⇒ la corriente <b>atrasa</b> (\(\varphi<0\) respecto a la tensión).</li>
+</ul></div>
+<h3 id="t2-problema">Problema tipo</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Examen de junio de 2012.)</b> Calcula los parámetros del circuito equivalente de un transformador de <b>50 Hz, 100 kVA, 2400:240 V</b> con los siguientes resultados de ensayo:</p>
+<ul><li>Ensayo de <b>circuito abierto</b> con el lado de alta abierto: \(V_{oc}=240\) V, \(I_{oc}=6\) A, \(P_{oc}=500\) W.</li>
+<li>Ensayo de <b>cortocircuito</b> con el lado de baja cortocircuitado: \(V_{sc}=100\) V, \(I_{sc}=40\) A, \(P_{sc}=800\) W.</li></ul></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>Paso 0. ¿En qué lado está cada ensayo?</b> El de vacío se hace <b>por baja</b> (la alta está abierta) ⇒ la rama paralelo saldrá referida a <b>240 V</b>. El de cortocircuito se hace <b>por alta</b> (la baja está cortocircuitada) ⇒ la rama serie sale referida a <b>2400 V</b>. Corrientes nominales: \(100000/2400=41{,}7\) A en alta y \(100000/240=417\) A en baja, coherente con medir 40 A en alta.</p>
+<p><b>Rama paralelo (vacío).</b> \(S_{oc}=240\cdot6=1440\) VA, \(\cos\varphi=500/1440=0{,}347\) (muy bajo, como debe ser en vacío).</p>
+\[R_c=\frac{V_{oc}^2}{P_{oc}}=\frac{240^2}{500}=\mathbf{115{,}2\ \Omega}\]
+\[Q_{oc}=\sqrt{1440^2-500^2}=1350\ \text{var}\quad\Rightarrow\quad X_m=\frac{240^2}{1350}=\mathbf{42{,}7\ \Omega}\]
+<p>Referidos al lado de alta habría que multiplicar por \(a^2=100\): \(R_c'=11{,}5\) kΩ y \(X_m'=4265\) Ω.</p>
+<p><b>Rama serie (cortocircuito).</b></p>
+\[Z_{eq}=\frac{100}{40}=2{,}5\ \Omega,\qquad R_{eq}=\frac{800}{40^2}=\mathbf{0{,}5\ \Omega},\qquad X_{eq}=\sqrt{2{,}5^2-0{,}5^2}=\mathbf{2{,}449\ \Omega}\]
+<p>referidos al <b>lado de alta</b>. En el lado de baja serían 5 mΩ y 24,5 mΩ.</p>
+<p><b>Lectura física.</b> Las pérdidas en el hierro son los 500 W del ensayo de vacío (constantes, porque la tensión es nominal) y las del cobre a plena carga son \(R_{eq}I_n^2=0{,}5\cdot41{,}7^2=869\) W. El rendimiento a plena carga con f.d.p. 0,8 sale \(\eta=\frac{80000}{80000+869+500}=98{,}3\;\%\).</p></div></details></div>
+<h3 id="t2-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Por qué el ensayo de vacío se hace a tensión nominal y el de cortocircuito a corriente nominal?</summary><div class="inner"><p>Porque las pérdidas en el <b>hierro</b> dependen de la tensión (del flujo) y las del <b>cobre</b> de la corriente. Para medir cada una hay que poner nominal la magnitud que la provoca y dejar la otra pequeña.</p></div></details><details class="paso"><summary><span class="pn">2</span>En el ensayo de vacío el f.d.p. sale 0,35. ¿Es un error?</summary><div class="inner"><p>No, es lo normal: en vacío la corriente es casi toda magnetizante (reactiva), así que el f.d.p. es muy bajo. En cortocircuito también es bajo, pero por el otro motivo: predomina la reactancia de dispersión.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Cuánto vale una impedancia de 0,5 Ω del lado de alta vista desde baja en un 2400/240?</summary><div class="inner"><p>\(a=10\), así que desde baja son \(0{,}5/100=5\) mΩ. Las impedancias se dividen por \(a^2\) al bajar de tensión.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Cuándo es máximo el rendimiento de un transformador?</summary><div class="inner"><p>Cuando las pérdidas en el cobre (variables con \(I^2\)) igualan a las del hierro (constantes). Por eso un transformador muy cargado no es el de mejor rendimiento.</p></div></details><details class="paso"><summary><span class="pn">5</span>Añades 1 mm de entrehierro a un núcleo de hierro de 40 cm de línea media y \(\mu_r=2000\). ¿Qué pasa con L?</summary><div class="inner"><p>La reluctancia del hierro era \(0{,}4/(2000\mu_0A)\) y la del aire es \(0{,}001/(\mu_0A)\), es decir, <b>cinco veces mayor</b>. L cae a menos de la sexta parte: el entrehierro domina.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Por qué conviene un entrehierro aunque reduzca L?</summary><div class="inner"><p>Porque <b>linealiza</b> el circuito (la característica depende del aire, no del hierro), evita la saturación y permite almacenar más energía. Es lo que se hace en las inductancias de los convertidores.</p></div></details><details class="paso"><summary><span class="pn">7</span>¿Qué mide realmente el vatímetro en el ensayo de cortocircuito?</summary><div class="inner"><p>La potencia <b>activa</b> disipada, que con tensión reducida es prácticamente toda pérdida en el cobre (el flujo es pequeño, así que las pérdidas en el hierro son despreciables). De ahí \(R_{eq}=P_{sc}/I_{sc}^2\).</p></div></details><details class="paso"><summary><span class="pn">8</span>¿Qué es la caída de tensión o regulación y de qué depende?</summary><div class="inner"><p>La diferencia relativa entre la tensión de salida en vacío y en carga. Depende de \(R_{eq}\), \(X_{eq}\), de la corriente y <b>del f.d.p.</b>: con carga inductiva es máxima, y con carga capacitiva puede ser negativa (la tensión sube).</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-01.html"><small>← Anterior</small>T1 · Accionamientos y requerimientos mecánicos</a><a class="nx" href="tema-03.html"><small>Siguiente →</small>T3 · Conversión de energía electromecánica</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Electrotecnia (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, apuntes de las ocho unidades, formulario y colecciones de problemas de examen de 2012 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

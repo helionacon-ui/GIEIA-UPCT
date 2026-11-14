@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prácticas · Electrotecnia · Guía para aprobar</title>
+<meta name="description" content="Prácticas y evaluación de Electrotecnia (UPCT, GIEyA)">
+<meta name="theme-color" content="#4440a0">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, apuntes de las ocho unidades, formulario y colecciones de problemas de examen de 2012 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Electrotecnia</a><span class="sep">›</span><span>Practicar</span><span class="sep">›</span><span>Prácticas</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Continua: circuitos magnéticos y máquinas de CC</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Accionamientos y requerimientos mecánicos</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos magnéticos y transformadores</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conversión de energía electromecánica</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Máquinas de corriente continua</a><div class="grp">Alterna: vectores espaciales y máquinas de CA</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Máquinas de alterna y vectores espaciales</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Máquinas asíncronas</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Máquinas síncronas de imanes permanentes</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Motores de reluctancia variable</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)" class="on" aria-current="page">Prácticas y evaluación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec" style="--tc:var(--c7);--tcs:var(--c7s)">
+<div class="sh"><span aria-hidden="true" class="badge">30</span><div class="shx"><p class="kick">Practicar</p><h2 id="lab">Prácticas y trabajo</h2><div class="tags"><span class="tag">20 % prácticas</span><span class="tag w">10 % selección de motor</span></div></div></div>
+<h3>Las cinco prácticas de laboratorio</h3><div class="tw"><table><tr><th>Práctica</th><th>Qué se hace</th><th>Qué hay que saber explicar</th></tr>
+<tr><td><b>P1. Transformador trifásico</b></td><td>Identificar las partes del transformador, medir y determinar su circuito eléctrico y magnético.</td><td>Relación de transformación, conexiones estrella/triángulo e índice horario; por dónde circula el flujo y dónde está el entrehierro parásito.</td></tr>
+<tr><td><b>P2. Ensayos de transformador</b></td><td>Ensayos en vacío, en carga y en cortocircuito; obtención de los parámetros del circuito equivalente y comprobación sobre él.</td><td>Por qué el ensayo de vacío da las pérdidas del hierro y el de cortocircuito las del cobre; cómo se calculan \(R_c\), \(X_m\), \(R_{eq}\) y \(X_{eq}\); la regulación medida frente a la calculada.</td></tr>
+<tr><td><b>P3. Máquina de continua</b></td><td>Ensayos como generador y como motor; determinación de las curvas características.</td><td>Característica de vacío \(E(i_f)\), característica par-velocidad, cálculo de \(k_E\) a partir de la pendiente, efecto de la reacción de armadura.</td></tr>
+<tr><td><b>P4 y P5. Máquinas de alterna</b></td><td>Ensayos de motor asíncrono y de máquina síncrona: vacío, rotor bloqueado, curvas par-deslizamiento y acoplamiento.</td><td>Deslizamiento medido con tacómetro, parámetros del circuito equivalente a partir de los dos ensayos, rendimiento y f.d.p. medidos frente a calculados.</td></tr></table></div>
+<div class="box key"><p><b>Antes de entrar al laboratorio</b> lee la <b>norma de realización de prácticas</b> y la hoja de <b>seguridad eléctrica</b>: es requisito, y preguntan por ella. Las memorias se entregan completas, con los datos medidos, los cálculos y la comparación con los valores teóricos; ahí está el <b>20 %</b> de la nota.</p></div><h3>El trabajo de selección de motor (10 %)</h3><p>Se propone una aplicación real y el grupo tiene que presentar una <b>propuesta de selección de motor eléctrico</b>. El propio enunciado trae los apartados y sus pesos. Lo que se evalúa es el razonamiento del tema 1 aplicado con catálogos reales:</p>
+<ol><li><b>Caracterizar la carga</b>: tipo (par constante, cuadrático, potencia constante), par y velocidad requeridos, perfil de trabajo y ciclo de servicio.</li>
+<li><b>Reflejar al eje del motor</b> pares e inercias a través de la transmisión, con su rendimiento.</li>
+<li><b>Calcular el par eficaz y el de pico</b>, y con ellos la potencia necesaria con un margen razonable.</li>
+<li><b>Elegir tecnología</b>: asíncrono con variador (lo barato y robusto), PMAC (precisión y rendimiento), continua (en desuso), reluctancia (nichos). Justifícalo con los criterios del tema, no con una opinión.</li>
+<li><b>Elegir modelo de catálogo</b> comprobando par nominal, par máximo, velocidad base, grado de protección y forma constructiva; y el <b>variador</b> correspondiente.</li>
+<li><b>Comprobaciones finales</b>: térmica (par eficaz &lt; nominal), arranque (par disponible &gt; par resistente) y rendimiento del conjunto.</li></ol>
+<div class="box trap"><h4>Lo que más se penaliza</h4><ul><li>No justificar el margen de seguridad elegido.</li><li>Olvidar la inercia reflejada y dimensionar sólo con el par de régimen.</li><li>Elegir el motor sin elegir el variador, o al revés.</li><li>No comparar al menos dos alternativas.</li></ul></div>
+<figure class="fig"><p class="ft">Figura interactiva · el transformador que se ensaya en la práctica 2</p><div data-sim="trafo"></div><figcaption>Cambia la carga y el factor de potencia y compara la caída de tensión que predice el circuito equivalente con la que midas en el laboratorio.</figcaption></figure>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="problemas.html"><small>← Anterior</small>Problemas</a><a class="nx" href="formulario.html"><small>Siguiente →</small>Formulario</a></nav><p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Electrotecnia (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, apuntes de las ocho unidades, formulario y colecciones de problemas de examen de 2012 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>
