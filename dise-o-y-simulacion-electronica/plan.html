@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cómo es la evaluación · Diseño y Simulación Electrónica · Guía para aprobar</title>
+<meta name="description" content="Evaluación y temario de Diseño y Simulación Electrónica (UPCT, GIEyA)">
+<meta name="theme-color" content="#0b7a5a">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, transparencias, prácticas y exámenes de 2013 a 2016) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Diseño y Simulación Electrónica</a><span class="sep">›</span><span>Empezar</span><span class="sep">›</span><span>Evaluación</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)" class="on" aria-current="page">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Diseño analógico y simulación</div><a href="tema-01.html" style="--tc:var(--c2)">T1 El flujo de diseño electrónico</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Fuentes de alimentación lineales</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Reguladores: zener, lineales y LDO</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Cálculo térmico y disipadores</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Simulación con LTspice</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Captura de esquemáticos y creación de componentes</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Componentes SMD y encapsulados</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Filtros pasivos y activos</a><div class="grp">De la simulación a la placa</div><a href="tema-09.html" style="--tc:var(--c2)">T9 Diseño de la PCB: colocación y ruteo</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Salida a fábrica, DFM y normativa</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en cada parcial</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y trabajos</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
+<div class="sh"><span aria-hidden="true" class="badge">%</span><div class="shx"><p class="kick">Empezar</p><h2 id="eval">Cómo es la evaluación</h2></div></div>
+<div class="zero"><p class="ft">En una frase</p><p>Dos parciales <b>eliminatorios</b> (30 % y 40 %, con un <b>mínimo de 4</b> en cada uno), más <b>trabajo individual (10 %)</b> y <b>trabajo cooperativo (20 %)</b>, que es fabricar y medir una placa de verdad.</p></div>
+<h3>Instrumentos y pesos</h3>
+<div class="tw"><table><tr><th>Instrumento</th><th>Peso</th><th>Qué evalúa</th><th>Mínimo</th></tr>
+<tr><td>1.er parcial eliminatorio</td><td>30 %</td><td>Diseño analógico: fuentes, reguladores, cálculo térmico, simulación y filtros. Problema de diseño con justificación y cálculos.</td><td><b>4,0</b></td></tr>
+<tr><td>2.º parcial eliminatorio</td><td>40 %</td><td>Parte práctica con ordenador: crear librerías y componentes, capturar el esquema, hacer las huellas y rutear el PCB.</td><td><b>4,0</b></td></tr>
+<tr><td>Trabajo individual</td><td>10 %</td><td>Informe de las tareas del curso: componentes creados, simulaciones y placas.</td><td>—</td></tr>
+<tr><td>Trabajo cooperativo</td><td>20 %</td><td>Fabricación y montaje de una PCB real, con medidas de osciloscopio e informe.</td><td>—</td></tr></table></div>
+<div class="box key"><p><b>Qué significa «eliminatorio».</b> Que cada parcial se guarda por separado: si se aprueba uno, sólo hay que recuperar el otro. Pero con <b>menos de 4</b> en cualquiera de los dos no se hace media, por bien que vaya el resto.</p></div>
+<h3>Qué cae en cada parcial</h3>
+<div class="tw"><table><tr><th>Parcial</th><th>Temas</th><th>Formato</th></tr>
+<tr><td><b>1.er parcial (30 %)</b></td><td>T1 a T5: flujo de diseño, fuentes lineales, reguladores y LDO, cálculo térmico y simulación.</td><td>Problema de diseño de una fuente (justificar, dibujar y calcular) más preguntas de teoría y simulación.</td></tr>
+<tr><td><b>2.º parcial (40 %)</b></td><td>T6 a T10: esquemáticos y componentes, SMD, filtros, PCB y fabricación.</td><td>Ejercicio práctico con DipTrace: librería <i>.ELI</i>, esquema <i>.DCH</i>, patrones <i>.LIB</i> y placa <i>.DIP</i>, con nombres de fichero y carpeta exactos.</td></tr></table></div>
+<div class="box trap"><h4>Dónde se pierden los puntos</h4><ul>
+<li><b>No justificar</b> la elección del circuito: el enunciado pide «justifique el diseño elegido» y ese apartado puntúa aparte.</li>
+<li>Olvidar las <b>dos caídas de diodo</b> del puente o calcular el rizado con 20 ms en vez de 10 ms.</li>
+<li>No comprobar la <b>disipación</b>: una fuente que cumple en tensión y se quema en dos minutos está mal diseñada.</li>
+<li>En la parte práctica, <b>nombres de fichero o carpeta</b> distintos de los del enunciado: lo que no está donde se pide no se corrige.</li>
+<li>Pads con <b>tipo o taladro</b> distintos de los especificados, o anchos de pista uniformes cuando se pide distinguir GND y VCC.</li>
+<li>No pasar el <b>DRC</b> ni aplicar el relleno de cobre pedido.</li></ul></div>
+<div class="box trap"><h4>Comprueba la versión vigente</h4><p>Datos tomados de la guía docente y de los exámenes disponibles. Verifica pesos, mínimos y fechas del curso actual.</p></div>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="index.html"><small>← Anterior</small>Portada</a><a class="nx" href="tema-01.html"><small>Siguiente →</small>T1 · El flujo de diseño electrónico</a></nav><p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Diseño y Simulación Electrónica (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, transparencias, prácticas y exámenes de 2013 a 2016) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

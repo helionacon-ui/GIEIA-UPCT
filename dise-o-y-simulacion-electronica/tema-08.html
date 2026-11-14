@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T8 Filtros pasivos y activos · Diseño y Simulación Electrónica · Guía para aprobar</title>
+<meta name="description" content="Diseño y Simulación Electrónica (UPCT, GIEyA): tema 8, Filtros pasivos y activos">
+<meta name="theme-color" content="#0b7a5a">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, transparencias, prácticas y exámenes de 2013 a 2016) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Diseño y Simulación Electrónica</a><span class="sep">›</span><span>Diseño analógico y simulación</span><span class="sep">›</span><span>T8 · Filtros pasivos y activos</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Diseño analógico y simulación</div><a href="tema-01.html" style="--tc:var(--c2)">T1 El flujo de diseño electrónico</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Fuentes de alimentación lineales</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Reguladores: zener, lineales y LDO</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Cálculo térmico y disipadores</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Simulación con LTspice</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Captura de esquemáticos y creación de componentes</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Componentes SMD y encapsulados</a><a href="tema-08.html" style="--tc:var(--c1)" class="on" aria-current="page">T8 Filtros pasivos y activos</a><div class="grp">De la simulación a la placa</div><a href="tema-09.html" style="--tc:var(--c2)">T9 Diseño de la PCB: colocación y ruteo</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Salida a fábrica, DFM y normativa</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en cada parcial</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y trabajos</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c1);--tcs:var(--c1s)">
+<div class="sh"><span aria-hidden="true" class="badge">8</span><div class="shx"><p class="kick">Diseño analógico y simulación · Tema 8</p><h2 id="t8">Filtros pasivos y activos</h2><div class="tags"><span class="tag">Diseño analógico y simulación</span><span class="tag">2.º parcial (40 %)</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> diseñar filtros RC pasivos y filtros activos con operacionales: frecuencia de corte, orden, factor Q y lectura del diagrama de Bode.</p><ul>
+<li>Un filtro <b>pasivo RC</b> de primer orden es la base: una resistencia y un condensador, frecuencia de corte \(f_c=1/(2\pi RC)\) y caída de <b>20 dB por década</b>.</li>
+<li>En \(f_c\) la amplitud cae a \(1/\sqrt2=0{,}707\) (<b>−3 dB</b>) y la fase es de <b>∓45°</b>. Esos dos números identifican el corte en cualquier gráfica.</li>
+<li>Encadenar filtros pasivos no funciona bien: <b>cada etapa carga a la anterior</b> y la frecuencia de corte se desplaza. Por eso aparecen los activos.</li>
+<li>Un <b>filtro activo</b> con operacional aísla las etapas, permite ganancia y, sobre todo, permite elegir el <b>factor Q</b>, que decide la forma de la respuesta cerca del corte.</li>
+<li>La topología estándar es <b>Sallen-Key</b>: dos resistencias, dos condensadores y un operacional. Con \(Q=0{,}707\) se obtiene la respuesta <b>Butterworth</b>, la más plana en la banda de paso.</li>
+<li>El orden del filtro determina la pendiente: <b>−20 dB/década por cada polo</b>. Un filtro de cuarto orden cae a 80 dB/década.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 8 <span class="src">8 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">f_c</td><td>frecuencia de corte</td><td class="u">Hz</td></tr><tr><td class="sym">τ</td><td>constante de tiempo</td><td class="u">\(RC\), s</td></tr><tr><td class="sym">Q</td><td>factor de calidad</td><td class="u">adimensional</td></tr><tr><td class="sym">K</td><td>ganancia de la etapa</td><td class="u">adimensional</td></tr><tr><td class="sym">n</td><td>orden del filtro</td><td class="u">pendiente 20n dB/déc</td></tr><tr><td class="sym">Butterworth</td><td>respuesta plana</td><td class="u">Q = 0,707</td></tr><tr><td class="sym">Sallen-Key</td><td>topología activa</td><td class="u">2.º orden</td></tr><tr><td class="sym">BW</td><td>ancho de banda</td><td class="u">Hz</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - filtro activo Sallen-Key: Q y ganancia</p><div data-sim="activo"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
+<h3 id="t8-formulas">Fórmulas y datos que hay que saber</h3>
+<div class="box key"><ul>
+<li><b>RC paso bajo:</b> \(H(f)=\dfrac{1}{1+j f/f_c}\), \(f_c=\dfrac{1}{2\pi RC}\), \(\tau=RC\).</li>
+<li><b>RC paso alto:</b> \(H(f)=\dfrac{jf/f_c}{1+jf/f_c}\), misma \(f_c\).</li>
+<li>En \(f_c\): \(|H|=0{,}707\) (−3,01 dB), fase −45° (paso bajo) o +45° (paso alto).</li>
+<li>Asíntotas: plana y \(\mp20\) dB/década; a una década de \(f_c\), 20 dB de atenuación.</li>
+<li><b>Paso banda RC:</b> combinación de paso alto y paso bajo; ancho de banda \(B=f_2-f_1\), \(Q=f_0/B\).</li>
+<li><b>Sallen-Key paso bajo</b> (componentes iguales): \(f_0=\dfrac{1}{2\pi RC}\), \(Q=\dfrac{1}{3-K}\) ⇒ \(K=3-\dfrac1Q\), con \(K=1+\dfrac{R_b}{R_a}\).</li>
+<li>Butterworth de 2.º orden: \(Q=0{,}707\) ⇒ \(K=1{,}586\). Chebyshev: \(Q>0{,}707\) (pico). Bessel: \(Q=0{,}577\) (fase lineal).</li>
+<li>Integrador y derivador: \(V_o=-\dfrac{1}{RC}\int V_i\,dt\) y \(V_o=-RC\dfrac{dV_i}{dt}\).</li>
+</ul></div>
+<h3 id="t8-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Determina qué tipo de filtro necesitas y la <b>frecuencia de corte</b>.</li>
+<li>Elige primero el <b>condensador</b> (los valores comerciales son más escasos) y despeja \(R=1/(2\pi f_cC)\).</li>
+<li>Redondea R al valor E12/E24 más próximo y <b>recalcula</b> la \(f_c\) real.</li>
+<li>Si hace falta más pendiente, encadena etapas <b>activas</b> (no pasivas) y reparte el orden.</li>
+<li>Para el activo, elige \(Q\) según la respuesta deseada y calcula \(K=3-1/Q\) y el divisor \(R_b/R_a=K-1\).</li>
+<li>Verifica con un <b>.ac</b> en LTspice y comprueba la \(f_c\) con <i>.meas</i>.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li>Encadenar dos RC pasivos y suponer que la \(f_c\) no cambia: <b>sí cambia</b>, por el efecto de carga.</li>
+<li>Olvidar el \(2\pi\): \(f_c=1/(2\pi RC)\), no \(1/(RC)\) (eso es la pulsación).</li>
+<li>Confundir −3 dB con la mitad de la amplitud: −3 dB es <b>0,707</b>, la mitad de la <b>potencia</b>.</li>
+<li>Diseñar un Sallen-Key con \(K\ge3\): el filtro <b>oscila</b> (Q infinito o negativo).</li>
+<li>Usar un operacional cuyo <b>GBW</b> no da para la frecuencia de trabajo: la respuesta real cae mucho antes.</li>
+<li>Olvidar que el condensador real tiene tolerancia del 10-20 %: la \(f_c\) se mueve en consecuencia.</li>
+</ul></div>
+<h3 id="t8-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Diseña un <b>filtro paso bajo</b> para la entrada de audio del amplificador del curso, con frecuencia de corte de <b>20 kHz</b>. Hazlo primero pasivo RC y después activo Sallen-Key con respuesta Butterworth, y compara la atenuación a <b>100 kHz</b>.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1. Filtro pasivo RC.</b> Elegimos \(C=1\) nF (valor cómodo y poca influencia de parásitos):</p>
+\[R=\frac{1}{2\pi f_cC}=\frac{1}{2\pi\cdot20000\cdot10^{-9}}=7958\ \Omega\ \Rightarrow\ \mathbf{8{,}2\ k\Omega}\ (\text{E24})\]
+<p>Con el valor comercial, \(f_c=1/(2\pi\cdot8200\cdot10^{-9})=\mathbf{19{,}4\ kHz}\): un 3 % por debajo, perfectamente aceptable.</p>
+<p><b>Atenuación a 100 kHz:</b> \(f/f_c=5{,}15\) ⇒ \(|H|=1/\sqrt{1+5{,}15^2}=0{,}190\) ⇒ <b>−14,4 dB</b>.</p>
+<p><b>2. Filtro activo Sallen-Key (2.º orden, Butterworth).</b> Con componentes iguales, \(R=8{,}2\) kΩ y \(C=1\) nF mantienen \(f_0=19{,}4\) kHz. Para Butterworth, \(Q=0{,}707\):</p>
+\[K=3-\frac{1}{0{,}707}=\mathbf{1{,}586}\quad\Rightarrow\quad \frac{R_b}{R_a}=0{,}586\]
+<p>Con \(R_a=10\) kΩ sale \(R_b=5{,}86\) kΩ ⇒ <b>5,6 kΩ</b> comercial (K = 1,56, Q = 0,694: aceptable).</p>
+<p><b>Atenuación a 100 kHz:</b> segundo orden ⇒ la pendiente es de 40 dB/década:</p>
+\[|H|=\frac{1}{\sqrt{(1-x^2)^2+(x/Q)^2}}\ \text{con } x=5{,}15\ \Rightarrow\ |H|=0{,}0383\ \Rightarrow\ \mathbf{-28{,}3\ dB}\]
+<p><b>3. Comparación.</b> A 100 kHz el pasivo atenúa 14 dB y el activo <b>28 dB</b>: el doble, en dB, porque tiene el doble de polos. Y además el activo <b>no carga</b> la etapa anterior ni se ve afectado por la siguiente.</p>
+<div class="box trap"><h4>Dos comprobaciones imprescindibles</h4><ul>
+<li><b>K debe ser menor que 3:</b> si \(K\ge3\), \(Q\) se hace infinito o negativo y el filtro oscila.</li>
+<li><b>GBW del operacional:</b> para que la ganancia de 1,59 sea real a 20 kHz hace falta un producto ganancia-ancho de banda de al menos 10 × 1,59 × 20 kHz ≈ <b>320 kHz</b>. Un TL081 (3 MHz) sobra; un LM741 (1 MHz) iría justo.</li></ul></div></div></details></div>
+<h3 id="t8-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Cuál es la frecuencia de corte de un RC?</summary><div class="inner"><p>\(f_c=\dfrac{1}{2\pi RC}\). En ella la amplitud cae a 0,707 (−3,01 dB) y la fase es de ∓45°.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Por qué no se encadenan filtros RC pasivos?</summary><div class="inner"><p>Porque cada etapa <b>carga</b> a la anterior: la frecuencia de corte se desplaza y la respuesta no es la suma de las individuales. El filtro activo aísla las etapas.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Qué significa Q en un filtro de segundo orden?</summary><div class="inner"><p>Mide la <b>resonancia</b> cerca del corte: con Q = 0,707 la respuesta es máximamente plana (Butterworth); con Q mayor aparece un pico y con Q menor la transición es más suave.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Cómo se fija Q en un Sallen-Key?</summary><div class="inner"><p>Con la ganancia del amplificador: \(K=3-1/Q\), es decir, \(R_b/R_a=K-1\). Con K ≥ 3 el filtro oscila.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Cuánta atenuación da un filtro de orden n una década por encima del corte?</summary><div class="inner"><p><b>20·n dB</b>: 20 dB el de primer orden, 40 el de segundo, 80 el de cuarto.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Qué limita en la práctica la frecuencia de un filtro activo?</summary><div class="inner"><p>El <b>producto ganancia-ancho de banda (GBW)</b> del operacional. Como regla, conviene que el GBW sea al menos diez veces la ganancia por la frecuencia de trabajo.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-07.html"><small>← Anterior</small>T7 · Componentes SMD y encapsulados</a><a class="nx" href="tema-09.html"><small>Siguiente →</small>T9 · Diseño de la PCB: colocación y ruteo</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Diseño y Simulación Electrónica (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, transparencias, prácticas y exámenes de 2013 a 2016) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

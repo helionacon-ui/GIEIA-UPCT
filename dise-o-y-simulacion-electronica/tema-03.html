@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T3 Reguladores: zener, lineales y LDO · Diseño y Simulación Electrónica · Guía para aprobar</title>
+<meta name="description" content="Diseño y Simulación Electrónica (UPCT, GIEyA): tema 3, Reguladores: zener, lineales y LDO">
+<meta name="theme-color" content="#0b7a5a">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, transparencias, prácticas y exámenes de 2013 a 2016) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Diseño y Simulación Electrónica</a><span class="sep">›</span><span>Diseño analógico y simulación</span><span class="sep">›</span><span>T3 · Reguladores: zener, lineales y LDO</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Diseño analógico y simulación</div><a href="tema-01.html" style="--tc:var(--c2)">T1 El flujo de diseño electrónico</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Fuentes de alimentación lineales</a><a href="tema-03.html" style="--tc:var(--c4)" class="on" aria-current="page">T3 Reguladores: zener, lineales y LDO</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Cálculo térmico y disipadores</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Simulación con LTspice</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Captura de esquemáticos y creación de componentes</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Componentes SMD y encapsulados</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Filtros pasivos y activos</a><div class="grp">De la simulación a la placa</div><a href="tema-09.html" style="--tc:var(--c2)">T9 Diseño de la PCB: colocación y ruteo</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Salida a fábrica, DFM y normativa</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en cada parcial</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y trabajos</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
+<div class="sh"><span aria-hidden="true" class="badge">3</span><div class="shx"><p class="kick">Diseño analógico y simulación · Tema 3</p><h2 id="t3">Reguladores: zener, lineales y LDO</h2><div class="tags"><span class="tag">Diseño analógico y simulación</span><span class="tag">1.er parcial (30 %)</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> elegir y dimensionar el elemento estabilizador: zener con resistencia serie, regulador de tres terminales de la familia 78XX y reguladores de baja caída (LDO) como el LM1117 o el AMS1117.</p><ul>
+<li>El <b>zener con resistencia serie</b> es el estabilizador más simple: la resistencia absorbe la diferencia de tensión y el zener fija la salida. Sólo sirve para corrientes pequeñas y rizados poco exigentes.</li>
+<li>El <b>78XX</b> es un regulador serie con realimentación: rechaza el rizado unos <b>65 dB</b>, tiene protección térmica y de cortocircuito, pero exige <b>2 V de caída</b>.</li>
+<li>El <b>LDO</b> hace lo mismo con una caída de <b>0,1 a 0,5 V</b>: es lo que permite sacar 3,3 V de una entrada de 3,6 V. A cambio es más exigente con el condensador de salida y su <b>ESR</b>.</li>
+<li>En todos ellos el rendimiento es \(\eta=V_{out}/V_{in}\): lo que no sale por la salida se disipa en calor. Pasar de 12 V a 3,3 V con un lineal significa tirar el <b>72 %</b> de la energía.</li>
+<li>El <b>rechazo de rizado (PSRR o RR)</b> se da en dB y empeora con la frecuencia: a 100 Hz un 7812 da 65 dB, pero a 100 kHz apenas 20 dB.</li>
+<li>Los condensadores de entrada y salida <b>no son opcionales</b>: sin ellos el regulador oscila. La hoja de características dice cuáles y con qué ESR.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 3 <span class="src">8 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">V_Z</td><td>tensión del zener</td><td class="u">V</td></tr><tr><td class="sym">Z_Z</td><td>impedancia dinámica del zener</td><td class="u">Ω</td></tr><tr><td class="sym">I_ZRM</td><td>corriente máxima del zener</td><td class="u">A</td></tr><tr><td class="sym">V_dropout</td><td>caída mínima del regulador</td><td class="u">2 V en 78XX, 0,1-0,5 V en LDO</td></tr><tr><td class="sym">RR</td><td>rechazo de rizado</td><td class="u">dB</td></tr><tr><td class="sym">I_Q</td><td>corriente de reposo</td><td class="u">A</td></tr><tr><td class="sym">η</td><td>rendimiento</td><td class="u">\(V_{out}/V_{in}\)</td></tr><tr><td class="sym">LDO</td><td>Low Drop-Out</td><td class="u">regulador de baja caída</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - zener, lineal y LDO frente a frente</p><div data-sim="regulador"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
+<h3 id="t3-formulas">Fórmulas y datos que hay que saber</h3>
+<div class="box key"><ul>
+<li><b>Zener:</b> \(R=\dfrac{V_{in,min}-V_Z}{I_L+I_{Z,min}}\); comprobar \(I_{Z,max}=\dfrac{V_{in,max}-V_Z}{R}\le I_{ZRM}\) (caso de carga desconectada).</li>
+<li>Atenuación del rizado en el zener: \(\dfrac{V_{r,out}}{V_{r,in}}=\dfrac{Z_Z}{R+Z_Z}\).</li>
+<li>Potencia en el zener: \(P_Z=V_ZI_{Z,max}\); en la resistencia: \(P_R=\dfrac{(V_{in}-V_Z)^2}{R}\).</li>
+<li><b>Lineal:</b> \(V_{in,min}\ge V_{out}+V_{dropout}\); \(P_d=(V_{in}-V_{out})(I_L+I_Q)\).</li>
+<li>Rechazo de rizado: \(V_{r,out}=\dfrac{V_{r,in}}{10^{RR/20}}\); 65 dB ⇒ dividir por 1778.</li>
+<li><b>Ajustable (LM317 / LM1117):</b> \(V_{out}=V_{ref}\left(1+\dfrac{R_2}{R_1}\right)+I_{adj}R_2\), con \(V_{ref}=1{,}25\) V.</li>
+<li>Rendimiento: \(\eta=\dfrac{V_{out}I_L}{V_{in}(I_L+I_Q)}\).</li>
+</ul></div>
+<h3 id="t3-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Calcula la <b>tensión mínima</b> de entrada (valle del rizado) y réstale la salida: eso es el margen disponible.</li>
+<li>Si el margen supera 2 V, el <b>78XX</b> vale; si está entre 0,3 y 2 V, hace falta un <b>LDO</b>; si es menor, hay que subir la entrada.</li>
+<li>Comprueba el <b>rizado de salida</b> con el rechazo del regulador y compáralo con la especificación.</li>
+<li>Calcula la <b>potencia disipada</b> con la tensión de entrada <b>máxima</b>, que es el caso peor, y pasa al tema del disipador.</li>
+<li>Añade los <b>condensadores</b> que pida la hoja de características, con el tipo y la ESR indicados.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li>Dimensionar el zener con la carga conectada y olvidar el caso de <b>carga desconectada</b>, que es el que lo destruye.</li>
+<li>Comprobar el dropout con la tensión <b>media</b> de entrada en vez de la mínima.</li>
+<li>Calcular la disipación con la entrada nominal en vez de la <b>máxima</b>.</li>
+<li>Poner un LDO con condensador cerámico cuando la hoja pide ESR mínima: el regulador oscila.</li>
+<li>Olvidar \(I_Q\) (8 mA en un 78XX) en el balance de corrientes.</li>
+<li>Creer que el rechazo de rizado es constante con la frecuencia.</li>
+</ul></div>
+<h3 id="t3-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Hay que alimentar un microcontrolador a <b>3,3 V y 300 mA</b> desde una batería de litio de <b>3,7 V nominales</b> (de 4,2 a 3,4 V según la carga). Compara el uso de un 7833 (dropout 2 V) y de un <b>AMS1117-3.3</b> (dropout 1,1 V a 800 mA, 0,5 V a corrientes bajas) y calcula la disipación.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>Paso 1. Margen disponible.</b> La batería va de 4,2 V (cargada) a 3,4 V (descargada):</p>
+\[V_{margen}=V_{bat}-V_{out}: \quad \text{de } 4{,}2-3{,}3=0{,}9\ \text{V} \quad \text{a} \quad 3{,}4-3{,}3=0{,}1\ \text{V}\]
+<p><b>Paso 2. Descartamos el 78XX.</b> Necesita 2 V de caída y nunca los tiene: con la batería a tope sólo hay 0,9 V. <b>No sirve en ningún punto de la descarga.</b></p>
+<p><b>Paso 3. El AMS1117.</b> A 300 mA su caída típica ronda los <b>0,7 V</b>. Con la batería cargada (4,2 V) hay 0,9 V de margen ⇒ funciona. Con la batería a 3,9 V hay 0,6 V ⇒ está en el límite. Por debajo de 4,0 V la salida empieza a caer: el circuito dejaría de regular con la batería aún medio llena.</p>
+<p><b>Paso 4. Disipación.</b> En el caso peor (batería cargada):</p>
+\[P_d=(4{,}2-3{,}3)\cdot0{,}3=\mathbf{0{,}27\ W}\]
+<p>Poco para un SOT-223 con plano de cobre, pero conviene comprobar la temperatura con el método del tema 4.</p>
+<p><b>Paso 5. Rendimiento y conclusión.</b></p>
+\[\eta=\frac{3{,}3}{4{,}2}=\mathbf{79\ \%}\ \text{(mejor caso)}\]
+<p>El lineal es <b>sencillo y silencioso</b>, pero desaprovecha un tercio de la batería, porque deja de regular cuando aún queda carga. La alternativa correcta para una aplicación a batería es un <b>convertidor conmutado reductor-elevador (buck-boost)</b>, que mantiene 3,3 V desde 4,2 hasta 2,7 V con un rendimiento superior al 90 %.</p>
+<p class="muted">Ésa es exactamente la razón de ser de los LDO y de las fuentes conmutadas: el lineal clásico necesita demasiado margen y disipa demasiado cuando la diferencia de tensiones es grande.</p></div></details></div>
+<h3 id="t3-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Cuándo hay que usar un LDO en vez de un 78XX?</summary><div class="inner"><p>Cuando el margen entre entrada y salida es <b>menor de 2 V</b>: alimentación desde batería, conversión de 5 V a 3,3 V o cuando el rendimiento importa.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Qué pasa con el zener si se desconecta la carga?</summary><div class="inner"><p>Toda la corriente de la resistencia pasa por el zener. Si supera \(I_{ZRM}\), se destruye: ése es el caso de cálculo que hay que comprobar.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Cuánto atenúa el rizado un regulador de 65 dB?</summary><div class="inner"><p>Lo divide por \(10^{65/20}=1778\): 2 V de rizado a la entrada se convierten en 1,1 mV a la salida.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Cuál es el rendimiento de un lineal que baja de 12 V a 3,3 V?</summary><div class="inner"><p>\(3{,}3/12=27{,}5\;\%\): casi tres cuartas partes de la energía se van en calor. Con esa relación hay que ir a un conmutado.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Por qué un LDO necesita un condensador de salida con ESR concreta?</summary><div class="inner"><p>Porque ese condensador forma parte del lazo de realimentación: su ESR aporta un cero que estabiliza el regulador. Con un cerámico de ESR muy baja, muchos LDO antiguos oscilan.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Cómo se ajusta la salida de un LM1117 ajustable?</summary><div class="inner"><p>Con el divisor: \(V_{out}=1{,}25(1+R_2/R_1)\). La referencia interna de 1,25 V se mantiene entre la salida y el terminal ADJ.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-02.html"><small>← Anterior</small>T2 · Fuentes de alimentación lineales</a><a class="nx" href="tema-04.html"><small>Siguiente →</small>T4 · Cálculo térmico y disipadores</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Diseño y Simulación Electrónica (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, transparencias, prácticas y exámenes de 2013 a 2016) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diseño y Simulación Electrónica · Guía para aprobar</title>
+<meta name="description" content="Guía para aprobar Diseño y Simulación Electrónica (UPCT, GIEyA): fuentes de alimentación, reguladores y LDO, cálculo térmico y disipadores, simulación en LTspice, esquemáticos y creación de componentes, SMD, filtros pasivos y activos, diseño de PCB y salida a fabricación, con figuras interactivas y problemas de examen resueltos">
+<meta name="theme-color" content="#0b7a5a">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, transparencias, prácticas y exámenes de 2013 a 2016) · página creada en noviembre de 2026</p></div>
+<header class="hero"><div class="hero-in"><div class="hero-txt">
+<div class="eyebrow">UPCT · GIEyA · 2.º curso · 2.º cuatrimestre</div>
+<h1>Diseño y Simulación <span>Electrónica</span></h1><p class="sub">De la idea al circuito, del circuito a la placa · Guía para aprobar</p>
+<div class="stats"><div><b>10</b><span>temas, de la fuente de alimentación al fichero Gerber</span></div><div><b>12</b><span>figuras interactivas con cálculo real</span></div><div><b>6</b><span>problemas de examen resueltos</span></div><div><b>32</b><span>cuestiones de teoría respondidas</span></div></div>
+<div class="cta"><a class="btn pri" href="#cero">Empieza desde cero</a><a class="btn" href="cuestiones.html">Teoría</a><a class="btn" href="examenes.html">Exámenes</a><a class="btn" href="problemas.html">Qué cae</a><a class="btn" href="laboratorio.html">Prácticas</a><a class="btn" href="formulario.html">Formulario</a></div>
+</div>
+<div aria-hidden="true" class="hero-art"><svg class="zart" viewBox="-120 -120 240 240">
+<rect x="-96" y="-72" width="192" height="144" rx="8" fill="none" stroke="var(--line)" stroke-width="2"></rect>
+<path d="M -78 -48 h 44 v 30 h 52 v -24 h 40" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"></path>
+<path d="M -78 20 h 30 v 28 h 60 v -20 h 46" fill="none" stroke="var(--warn)" stroke-width="4" stroke-linecap="round"></path>
+<rect x="-26" y="-14" width="34" height="22" rx="3" fill="none" stroke="var(--fg)" stroke-width="2.5"></rect>
+<circle cx="-78" cy="-48" r="4.5" fill="var(--accent)"></circle><circle cx="58" cy="-42" r="4.5" fill="var(--accent)"></circle>
+<circle cx="-78" cy="20" r="4.5" fill="var(--warn)"></circle><circle cx="58" cy="28" r="4.5" fill="var(--warn)"></circle>
+<circle cx="24" cy="-18" r="3.5" fill="none" stroke="var(--muted)" stroke-width="1.8"></circle>
+<circle cx="-40" cy="48" r="3.5" fill="none" stroke="var(--muted)" stroke-width="1.8"></circle>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle" x="0" y="-88">esquema &#183; simulacion &#183; PCB &#183; Gerber</text>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle" x="0" y="96">1 A = 0,3 mm &#183; 230 V = 2,5 mm</text></svg>
+<p class="art-cap">El 40 % de la nota se juega delante del ordenador, no en el papel.</p></div></div></header><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)" class="on" aria-current="page">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)" class="on" aria-current="page">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)" class="on" aria-current="page">Tu progreso</a><div class="grp">Diseño analógico y simulación</div><a href="tema-01.html" style="--tc:var(--c2)">T1 El flujo de diseño electrónico</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Fuentes de alimentación lineales</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Reguladores: zener, lineales y LDO</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Cálculo térmico y disipadores</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Simulación con LTspice</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Captura de esquemáticos y creación de componentes</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Componentes SMD y encapsulados</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Filtros pasivos y activos</a><div class="grp">De la simulación a la placa</div><a href="tema-09.html" style="--tc:var(--c2)">T9 Diseño de la PCB: colocación y ruteo</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Salida a fábrica, DFM y normativa</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en cada parcial</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y trabajos</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
+<div class="sh"><span aria-hidden="true" class="badge">0</span><div class="shx"><p class="kick">Empezar</p><h2 id="cero">Empieza aquí desde cero</h2></div></div>
+<div class="zero"><p class="ft">Cómo usar la guía</p>
+<ol><li>Entiende la <b>estructura de la asignatura</b>: la mitad es <b>diseño analógico y simulación</b> (fuentes, reguladores, térmica, LTspice, filtros) y la otra mitad es <b>llevarlo a una placa real</b> (esquemas, huellas, SMD, ruteo, Gerber).</li>
+<li>Domina el <b>problema de la fuente de alimentación</b>: aparece en todos los exámenes de teoría, siempre con la misma estructura (elegir, justificar, dibujar y calcular). Está resuelto dos veces en los <a href="examenes.html">problemas de examen</a>.</li>
+<li>Haz las <b>figuras interactivas</b> de cada tema: calculan lo mismo que tendrás que calcular tú, así que sirven para comprobar tus resultados.</li>
+<li>Practica con el <b>ordenador</b> desde el principio: el segundo parcial vale el <b>40 %</b> y consiste en crear componentes, huellas, esquemas y placas con nombres de fichero exactos. No se puede improvisar.</li>
+<li>Guarda <b>todas</b> las capturas y medidas de las prácticas desde el primer día: el trabajo individual (10 %) y el cooperativo (20 %) se escriben con ellas.</li></ol></div>
+<h3 id="mapa">Mapa de temas</h3>
+<div class="map"><a href="tema-01.html"><b>T1</b>El flujo de diseño electrónico</a><a href="tema-02.html"><b>T2</b>Fuentes de alimentación lineales</a><a href="tema-03.html"><b>T3</b>Reguladores: zener, lineales y LDO</a><a href="tema-04.html"><b>T4</b>Cálculo térmico y disipadores</a><a href="tema-05.html"><b>T5</b>Simulación con LTspice</a><a href="tema-06.html"><b>T6</b>Captura de esquemáticos y creación de componentes</a><a href="tema-07.html"><b>T7</b>Componentes SMD y encapsulados</a><a href="tema-08.html"><b>T8</b>Filtros pasivos y activos</a><a href="tema-09.html"><b>T9</b>Diseño de la PCB: colocación y ruteo</a><a href="tema-10.html"><b>T10</b>Salida a fábrica, DFM y normativa</a></div>
+<div class="box key"><p><b>De dónde sale esta guía.</b> La <b>guía docente</b> del curso, las transparencias de la asignatura (fuentes de alimentación, disipadores, LDO, LTspice, componentes SMD, filtros RC y activos, DFM, hábitos de diseño), los guiones de prácticas y los <b>exámenes de 2013 a 2016</b>, de los que salen los problemas resueltos.</p></div>
+<div class="box trap"><h4>Cómo es la evaluación</h4><p><b>Dos parciales eliminatorios</b>: el primero vale el <b>30 %</b> y el segundo el <b>40 %</b>, y en cada uno hay que sacar <b>al menos un 4</b>. A eso se suman el <b>trabajo individual (10 %)</b> y el <b>trabajo cooperativo (20 %)</b>, que es la fabricación y medida de una PCB real. El 70 % se decide en los parciales, pero el 30 % restante se gana durante el curso.</p></div>
+<h3 id="progreso">Tu progreso</h3>
+<p class="muted">Se guarda en este navegador.</p>
+<div class="bar"><i id="prog-bar"></i></div><p id="prog-txt" class="muted"></p>
+<div class="check"><input type="checkbox" id="c1"><label for="c1">T1 · El flujo de diseño electrónico</label></div><div class="check"><input type="checkbox" id="c2"><label for="c2">T2 · Fuentes de alimentación lineales</label></div><div class="check"><input type="checkbox" id="c3"><label for="c3">T3 · Reguladores: zener, lineales y LDO</label></div><div class="check"><input type="checkbox" id="c4"><label for="c4">T4 · Cálculo térmico y disipadores</label></div><div class="check"><input type="checkbox" id="c5"><label for="c5">T5 · Simulación con LTspice</label></div><div class="check"><input type="checkbox" id="c6"><label for="c6">T6 · Captura de esquemáticos y creación de componentes</label></div><div class="check"><input type="checkbox" id="c7"><label for="c7">T7 · Componentes SMD y encapsulados</label></div><div class="check"><input type="checkbox" id="c8"><label for="c8">T8 · Filtros pasivos y activos</label></div><div class="check"><input type="checkbox" id="c9"><label for="c9">T9 · Diseño de la PCB: colocación y ruteo</label></div><div class="check"><input type="checkbox" id="c10"><label for="c10">T10 · Salida a fábrica, DFM y normativa</label></div>
+</section><p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Diseño y Simulación Electrónica (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, transparencias, prácticas y exámenes de 2013 a 2016) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

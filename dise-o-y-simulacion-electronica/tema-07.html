@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T7 Componentes SMD y encapsulados · Diseño y Simulación Electrónica · Guía para aprobar</title>
+<meta name="description" content="Diseño y Simulación Electrónica (UPCT, GIEyA): tema 7, Componentes SMD y encapsulados">
+<meta name="theme-color" content="#0b7a5a">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, transparencias, prácticas y exámenes de 2013 a 2016) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Diseño y Simulación Electrónica</a><span class="sep">›</span><span>Diseño analógico y simulación</span><span class="sep">›</span><span>T7 · Componentes SMD y encapsulados</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Diseño analógico y simulación</div><a href="tema-01.html" style="--tc:var(--c2)">T1 El flujo de diseño electrónico</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Fuentes de alimentación lineales</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Reguladores: zener, lineales y LDO</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Cálculo térmico y disipadores</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Simulación con LTspice</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Captura de esquemáticos y creación de componentes</a><a href="tema-07.html" style="--tc:var(--c8)" class="on" aria-current="page">T7 Componentes SMD y encapsulados</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Filtros pasivos y activos</a><div class="grp">De la simulación a la placa</div><a href="tema-09.html" style="--tc:var(--c2)">T9 Diseño de la PCB: colocación y ruteo</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Salida a fábrica, DFM y normativa</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en cada parcial</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y trabajos</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c8);--tcs:var(--c8s)">
+<div class="sh"><span aria-hidden="true" class="badge">7</span><div class="shx"><p class="kick">Diseño analógico y simulación · Tema 7</p><h2 id="t7">Componentes SMD y encapsulados</h2><div class="tags"><span class="tag">Diseño analógico y simulación</span><span class="tag">2.º parcial (40 %)</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> conocer los tamaños y códigos de los componentes de montaje superficial, sus ventajas frente al through-hole y lo que implican para el diseño y el montaje de la placa.</p><ul>
+<li>El <b>SMD</b> (Surface Mounting Device) se suelda sobre la superficie del cobre, sin atravesar la placa. Permite montaje automático y componentes mucho más pequeños.</li>
+<li>El <b>código de tamaño</b> son las dimensiones en centésimas de pulgada: <b>0805</b> = 0,08 × 0,05 pulgadas = 2,0 × 1,25 mm.</li>
+<li>Los tamaños habituales van del 0402 (1,0 × 0,5 mm, 1/16 W) al 2512 (6,3 × 3,2 mm, 1 W). <b>Menor tamaño = menos potencia disipable</b>.</li>
+<li>Las ventajas no son sólo de espacio: el SMD tiene <b>mucha menos inductancia parásita</b>, lo que importa en alta frecuencia y en los condensadores de desacoplo.</li>
+<li>El montaje industrial es por <b>reflujo</b>: plantilla de pasta de soldadura, colocación automática y horno con perfil de temperatura.</li>
+<li>Las resistencias llevan su valor impreso en <b>3 o 4 cifras</b> (la última es el número de ceros) o en código EIA-96; los condensadores cerámicos, <b>nada</b>: hay que fiarse del carrete.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 7 <span class="src">8 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">0805</td><td>encapsulado SMD</td><td class="u">2,0 × 1,25 mm</td></tr><tr><td class="sym">0603</td><td>encapsulado SMD</td><td class="u">1,6 × 0,8 mm</td></tr><tr><td class="sym">SOT-23</td><td>transistor SMD</td><td class="u">3 terminales</td></tr><tr><td class="sym">SOIC / TSSOP</td><td>integrados SMD</td><td class="u">paso 1,27 / 0,65 mm</td></tr><tr><td class="sym">QFN / BGA</td><td>sin patillas / bolas</td><td class="u">difíciles de soldar a mano</td></tr><tr><td class="sym">pitch</td><td>paso entre pines</td><td class="u">mm</td></tr><tr><td class="sym">reflow</td><td>soldadura por refusión</td><td class="u">horno</td></tr><tr><td class="sym">473</td><td>marcado de resistencia</td><td class="u">47 kΩ</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - encapsulados SMD y codigos de marcado</p><div data-sim="smd"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
+<h3 id="t7-formulas">Fórmulas y datos que hay que saber</h3>
+<div class="box key"><ul>
+<li><b>Tamaños:</b> 0402 (1,0 × 0,5 mm, 1/16 W) · 0603 (1,6 × 0,8, 0,1 W) · 0805 (2,0 × 1,25, 1/8 W) · 1206 (3,2 × 1,6, 1/4 W) · 1210 (3,2 × 2,5, 1/2 W) · 2512 (6,3 × 3,2, 1 W).</li>
+<li><b>Código de resistencia de 3 cifras:</b> las dos primeras son significativas y la tercera el número de ceros. 473 = 47 × 10³ = <b>47 kΩ</b>. Con «R» marca la coma: 4R7 = 4,7 Ω.</li>
+<li><b>Código de 4 cifras</b> (serie E96): tres significativas y un multiplicador. 4702 = 470 × 10² = 47 kΩ.</li>
+<li><b>Encapsulados de semiconductores:</b> SOT-23 (transistores), SOT-223 y DPAK (reguladores de potencia), SOIC, TSSOP, QFP, QFN y BGA (integrados).</li>
+<li><b>Through-hole equivalentes:</b> DIP (paso 2,54 mm), TO-92, TO-220, TO-3.</li>
+<li><b>Perfil de reflujo:</b> precalentamiento → activación del flux → pico (unos 245 °C en SnAgCu) → enfriamiento, con pendientes limitadas para no dañar los componentes.</li>
+<li><b>Normativa de inspección:</b> IPC-A-610 (aceptabilidad de montajes) y IPC-A-600 (placas desnudas).</li>
+</ul></div>
+<h3 id="t7-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Elige el tamaño por <b>tres criterios</b>: potencia a disipar, espacio disponible y si la placa se va a soldar a mano o en horno.</li>
+<li>Para prototipos soldados a mano, no bajes de <b>0603</b>; el 0805 es el tamaño cómodo.</li>
+<li>Comprueba la <b>potencia</b>: una 0805 de 1/8 W a 100 Ω sólo admite 35 mA.</li>
+<li>Para desacoplo, usa el encapsulado <b>más pequeño posible</b> y colócalo lo más cerca que puedas del pin de alimentación: ahí lo que manda es la inductancia del bucle.</li>
+<li>Lee los códigos: tres cifras = dos significativas + ceros; «R» hace de coma decimal.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li>Elegir 0402 en un prototipo que hay que soldar a mano.</li>
+<li>Olvidar la <b>potencia</b> del encapsulado: una resistencia de 0805 en una fuente de alimentación puede quemarse.</li>
+<li>Confundir el código de tamaño en pulgadas con el métrico (0805 en pulgadas es 2012 en métrico).</li>
+<li>Leer 103 como 103 Ω en vez de 10 kΩ.</li>
+<li>Poner los condensadores de desacoplo lejos del integrado: entonces no desacoplan nada.</li>
+<li>Mezclar en la misma placa componentes de reflujo y de ola sin pensar en el orden de montaje.</li>
+</ul></div>
+<h3 id="t7-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Hay que colocar en una placa: una resistencia que disipa <b>0,2 W</b>, otra de <b>47 kΩ</b> de señal, los condensadores de desacoplo de un microcontrolador y una resistencia marcada <b>«472»</b> que has desoldado de otra placa. Decide tamaño y lee los códigos.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><ol><li><b>Resistencia de 0,2 W.</b> El 0805 es de 1/8 W = 0,125 W: <b>insuficiente</b>. Hay que subir a <b>1206</b> (1/4 W), y aun así se queda al 80 % de su nominal, lo que la hará calentar. Lo razonable es un <b>1210</b> (1/2 W) o repartir entre dos resistencias en serie o en paralelo.</li>
+<li><b>Resistencia de 47 kΩ de señal.</b> Corriente despreciable ⇒ manda el espacio y la facilidad de montaje: <b>0805</b> si se suelda a mano, <b>0603</b> si va en producción. Su código de 3 cifras es <b>473</b>.</li>
+<li><b>Desacoplos del microcontrolador.</b> Uno de <b>100 nF 0402 o 0603</b> por cada pin de alimentación, <b>pegado</b> al pin, más uno de 10 µF para el conjunto. Aquí el tamaño pequeño es una ventaja: menos inductancia parásita.</li>
+<li><b>La resistencia marcada «472».</b> 47 × 10² = <b>4,7 kΩ</b>. Cuidado con la lectura: «472» no es 472 Ω; si fuera 4,7 Ω estaría marcada <b>4R7</b>.</li></ol>
+<div class="box key"><p><b>Regla rápida de lectura:</b> tres cifras ⇒ las dos primeras son el valor y la tercera cuenta ceros. 100 = 10 Ω · 101 = 100 Ω · 102 = 1 kΩ · 103 = 10 kΩ · 104 = 100 kΩ · 473 = 47 kΩ · 4R7 = 4,7 Ω · 0 ó 000 = puente de 0 Ω.</p></div>
+<p class="muted">Los condensadores cerámicos SMD <b>no llevan marca</b>: una vez fuera del carrete, no hay forma de saber su valor sin medirlo. Por eso en el laboratorio conviene no mezclarlos nunca.</p></div></details></div>
+<h3 id="t7-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Qué significa el código 0805?</summary><div class="inner"><p>Las dimensiones en <b>centésimas de pulgada</b>: 0,08 × 0,05 ", es decir, 2,0 × 1,25 mm. En código métrico sería 2012.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Cuánto vale una resistencia marcada 103?</summary><div class="inner"><p>\(10\times10^3=\mathbf{10\ k\Omega}\). Dos cifras significativas y la tercera cuenta ceros.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Por qué los condensadores de desacoplo se ponen en SMD pequeño y pegados al chip?</summary><div class="inner"><p>Porque lo que limita el desacoplo es la <b>inductancia del bucle</b>: cuanto más corto el camino y más pequeño el encapsulado, mejor funciona a alta frecuencia.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué potencia admite un 0805?</summary><div class="inner"><p><b>1/8 W (0,125 W)</b>. Un 1206 admite 1/4 W y un 2512, 1 W. Para disipaciones mayores hay que ir a resistencias de potencia con encapsulado específico.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Qué tamaño mínimo es razonable para soldar a mano?</summary><div class="inner"><p><b>0603</b> con práctica y buen flux; <b>0805</b> es el tamaño cómodo. Por debajo de 0402 el montaje manual deja de ser realista.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Qué es el reflujo?</summary><div class="inner"><p>El proceso de montaje industrial: se imprime <b>pasta de soldadura</b> con una plantilla, se colocan los componentes y la placa pasa por un horno con un perfil de temperatura controlado que funde la pasta.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-06.html"><small>← Anterior</small>T6 · Captura de esquemáticos y creación de componentes</a><a class="nx" href="tema-08.html"><small>Siguiente →</small>T8 · Filtros pasivos y activos</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Diseño y Simulación Electrónica (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, transparencias, prácticas y exámenes de 2013 a 2016) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

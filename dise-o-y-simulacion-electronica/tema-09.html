@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T9 Diseño de la PCB: colocación y ruteo · Diseño y Simulación Electrónica · Guía para aprobar</title>
+<meta name="description" content="Diseño y Simulación Electrónica (UPCT, GIEyA): tema 9, Diseño de la PCB: colocación y ruteo">
+<meta name="theme-color" content="#0b7a5a">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, transparencias, prácticas y exámenes de 2013 a 2016) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Diseño y Simulación Electrónica</a><span class="sep">›</span><span>De la simulación a la placa</span><span class="sep">›</span><span>T9 · Diseño de la PCB: colocación y ruteo</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Diseño analógico y simulación</div><a href="tema-01.html" style="--tc:var(--c2)">T1 El flujo de diseño electrónico</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Fuentes de alimentación lineales</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Reguladores: zener, lineales y LDO</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Cálculo térmico y disipadores</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Simulación con LTspice</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Captura de esquemáticos y creación de componentes</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Componentes SMD y encapsulados</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Filtros pasivos y activos</a><div class="grp">De la simulación a la placa</div><a href="tema-09.html" style="--tc:var(--c2)" class="on" aria-current="page">T9 Diseño de la PCB: colocación y ruteo</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Salida a fábrica, DFM y normativa</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en cada parcial</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y trabajos</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
+<div class="sh"><span aria-hidden="true" class="badge">9</span><div class="shx"><p class="kick">De la simulación a la placa · Tema 9</p><h2 id="t9">Diseño de la PCB: colocación y ruteo</h2><div class="tags"><span class="tag">De la simulación a la placa</span><span class="tag">2.º parcial (40 %)</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> colocar los componentes y rutear la placa con criterio: anchos de pista según corriente, separaciones según tensión, planos de masa, vías y reglas de diseño.</p><ul>
+<li><b>La colocación decide el resultado.</b> Un buen reparto hace que el ruteo salga casi solo; uno malo obliga a rodeos que alargan pistas, trocean planos y generan ruido.</li>
+<li>Orden de colocación: primero lo que tiene <b>posición obligada</b> (conectores, pulsadores, indicadores), luego los componentes de <b>potencia</b> y por último la señal, agrupada por bloques funcionales siguiendo el esquema.</li>
+<li>Los <b>condensadores de desacoplo</b> van pegados al pin de alimentación del integrado, con el camino a masa lo más corto posible.</li>
+<li>El <b>ancho de pista</b> se calcula por corriente (norma IPC-2221) y la <b>separación</b> por tensión. No son cifras negociables: son seguridad.</li>
+<li>El <b>plano de masa</b> continuo es la mejor decisión de diseño que se puede tomar: da camino de retorno corto a todas las señales y reduce el ruido. Troceado, deja de servir.</li>
+<li>El ruteo automático sirve como ayuda, pero las <b>pistas críticas</b> (potencia, reloj, señales analógicas sensibles) se rutean a mano primero.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 9 <span class="src">8 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">w</td><td>ancho de pista</td><td class="u">mm</td></tr><tr><td class="sym">t</td><td>espesor del cobre</td><td class="u">35 µm = 1 oz</td></tr><tr><td class="sym">A</td><td>sección de la pista</td><td class="u">mils²</td></tr><tr><td class="sym">ΔT</td><td>calentamiento admisible</td><td class="u">10 °C habitual</td></tr><tr><td class="sym">k</td><td>constante IPC</td><td class="u">0,048 externa / 0,024 interna</td></tr><tr><td class="sym">ρ_Cu</td><td>resistividad del cobre</td><td class="u">1,72·10⁻⁸ Ω·m</td></tr><tr><td class="sym">clearance</td><td>separación entre conductores</td><td class="u">mm</td></tr><tr><td class="sym">vía</td><td>paso entre capas</td><td class="u">taladro 0,3-0,6 mm</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - ancho de pista, corriente y caida de tension</p><div data-sim="pista"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
+<h3 id="t9-formulas">Fórmulas y datos que hay que saber</h3>
+<div class="box key"><ul>
+<li><b>Ancho por corriente (IPC-2221):</b> \(A=\left(\dfrac{I}{k\,\Delta T^{0{,}44}}\right)^{1/0{,}725}\) en mils², con \(k=0{,}048\) en capa externa y \(0{,}024\) en interna; \(w=A/(1{,}378\cdot oz)\) en mils.</li>
+<li>Valores prácticos con 35 µm (1 oz) en capa externa y ΔT = 10 °C: <b>1 A ≈ 0,3 mm · 2 A ≈ 0,8 mm · 3 A ≈ 1,4 mm · 5 A ≈ 2,8 mm</b>.</li>
+<li><b>Resistencia de una pista:</b> \(R=\rho\dfrac{L}{w\,t}\), con \(\rho_{Cu}=1{,}72\cdot10^{-8}\ \Omega\)m. Criterio: caída menor del 3 % en alimentación.</li>
+<li><b>Separación (IPC-2221, conductores sin recubrir):</b> hasta 50 V ⇒ 0,6 mm · 100-170 V ⇒ 1,25 mm · 250 V ⇒ 2,5 mm. Con recubrimiento se reduce.</li>
+<li><b>Vías:</b> taladro típico 0,3-0,6 mm; corriente admisible ≈ 1 A por vía de 0,3 mm; usar varias en paralelo para potencia o para disipar.</li>
+<li><b>Reglas típicas de fabricante estándar:</b> pista y aislamiento mínimos 0,15 mm (6 mil), anillo mínimo 0,15 mm, taladro mínimo 0,3 mm.</li>
+<li><b>Impedancia controlada:</b> microstrip \(Z_0\approx\dfrac{87}{\sqrt{\varepsilon_r+1{,}41}}\ln\dfrac{5{,}98h}{0{,}8w+t}\); sólo importa si el tiempo de subida es comparable al retardo de la pista.</li>
+</ul></div>
+<h3 id="t9-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Define primero las <b>reglas de diseño</b> (anchos, aislamientos, taladros) según el fabricante y las corrientes.</li>
+<li>Coloca <b>conectores y elementos de posición fija</b>, después potencia y por último señal, por bloques.</li>
+<li>Pon los <b>desacoplos</b> junto a sus integrados antes de rutear nada.</li>
+<li>Rutea a mano las <b>pistas críticas</b>: alimentación, masas de potencia, señales rápidas o sensibles.</li>
+<li>Rellena con <b>plano de masa</b> y comprueba que no queda troceado ni con islas aisladas.</li>
+<li>Pasa el <b>DRC</b>, comprueba la conectividad frente al esquema y mira la placa en <b>3D</b> para detectar choques mecánicos.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li><b>Rutear antes de colocar bien.</b> Es el error estructural: casi siempre obliga a empezar de nuevo.</li>
+<li>Usar el mismo ancho para señal y para potencia: las pistas de alimentación se calientan y caen de tensión.</li>
+<li><b>Trocear el plano de masa</b> con pistas largas: la corriente de retorno da un rodeo y se convierte en una antena.</li>
+<li>Poner los desacoplos lejos del chip o conectarlos a masa con una pista larga.</li>
+<li>Mezclar masas de potencia y de señal sin pensar el punto de unión.</li>
+<li>Olvidar el <b>espacio mecánico</b>: tornillos, radiadores, altura de los condensadores, separación al borde.</li>
+<li>Fiarse del autorouter sin revisar: cumple el DRC, pero no sabe qué señal es crítica.</li>
+</ul></div>
+<h3 id="t9-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Hay que rutear la fuente de alimentación del tema 2 (12 V, 1 A tras el regulador) en una placa de <b>dos capas con cobre de 35 µm</b>. Decide los anchos de pista de la entrada de red, del secundario y de la salida de 12 V, la separación mínima y cómo plantear las masas. La pista de salida mide 60 mm.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1. Anchos de pista por corriente</b> (capa externa, ΔT = 10 °C, 35 µm):</p>
+<div class="tw"><table><tr><th>Tramo</th><th>Corriente</th><th>Ancho mínimo IPC</th><th>Ancho a usar</th></tr>
+<tr><td>Red 220 V</td><td>&lt; 0,1 A</td><td>0,05 mm</td><td><b>1,5 mm</b> (lo manda la seguridad, no la corriente)</td></tr>
+<tr><td>Secundario y puente</td><td>~0,3 A eficaces (picos de 1 A)</td><td>0,12 mm</td><td><b>1 mm</b> (picos de corriente)</td></tr>
+<tr><td>Salida 12 V / 1 A</td><td>1 A</td><td>0,30 mm</td><td><b>0,8-1 mm</b> (margen y menor caída)</td></tr>
+<tr><td>Señal</td><td>&lt; 10 mA</td><td>—</td><td><b>0,25 mm</b> (mínimo cómodo)</td></tr></table></div>
+<p><b>2. Caída en la pista de salida.</b> Con 0,8 mm de ancho, 35 µm de espesor y 60 mm de largo:</p>
+\[R=\rho\frac{L}{wt}=1{,}72\cdot10^{-8}\frac{0{,}06}{0{,}0008\cdot35\cdot10^{-6}}=\mathbf{37\ m\Omega}\ \Rightarrow\ \Delta V=37\ \text{mV}\ (0{,}3\ \%)\]
+<p>Muy por debajo del 3 % admisible ✓.</p>
+<p><b>3. Separaciones.</b> En el <b>primario</b> (220 V eficaces, 311 V de pico) la norma pide <b>2,5 mm</b> entre conductores, y conviene más: lo habitual es dejar <b>6 mm</b> o incluso una ranura fresada entre el lado de red y el de baja tensión. En el secundario (17 V) basta con 0,6 mm.</p>
+<p><b>4. Masas.</b> La corriente del puente y del condensador tiene <b>picos muy altos</b>: esa masa no debe compartirse con la señal. El planteamiento correcto es:</p>
+<ul><li>Un <b>plano de masa</b> en la cara inferior para toda la zona de baja tensión.</li>
+<li>El lazo puente-condensador <b>lo más corto posible</b>, con pistas anchas.</li>
+<li>Las masas de potencia y de señal se unen en <b>un solo punto</b>, junto al terminal de masa del condensador de filtro (<i>star ground</i>).</li>
+<li>El <b>primario queda fuera del plano</b>, separado por la distancia de seguridad.</li></ul>
+<div class="box trap"><h4>Lo que diferencia una placa que funciona de una que «casi»</h4><p>Los picos de corriente del rectificador son la principal fuente de ruido de una fuente lineal. Si ese lazo es grande o comparte masa con la señal, aparece <b>zumbido de 100 Hz</b> en la salida de audio aunque el rizado medido sea de 1 mV. El ruido no se ve en la simulación: se ve en la placa.</p></div></div></details></div>
+<h3 id="t9-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Qué ancho necesita una pista para 1 A?</summary><div class="inner"><p>Con 35 µm en capa externa y 10 °C de calentamiento, unos <b>0,3 mm</b> según IPC-2221. En capa interna haría falta casi el doble.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Por qué las pistas internas necesitan más ancho?</summary><div class="inner"><p>Porque están rodeadas de dieléctrico y <b>evacuan peor el calor</b>: la constante de la norma pasa de 0,048 a 0,024.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Qué separación hay que dejar para 230 V?</summary><div class="inner"><p>Al menos <b>2,5 mm</b> según IPC-2221 para conductores sin recubrir, y en la práctica bastante más (6 mm o una ranura fresada) entre el lado de red y el de baja tensión.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Por qué es tan importante el plano de masa continuo?</summary><div class="inner"><p>Porque da a cada señal un <b>camino de retorno corto</b> justo debajo de su pista. Si el plano se trocea, la corriente de retorno rodea el corte y el bucle resultante radia y capta ruido.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Dónde se ponen los condensadores de desacoplo?</summary><div class="inner"><p>Lo más cerca posible del <b>pin de alimentación</b> del integrado, con una vía a masa inmediata. A unos centímetros ya no desacoplan.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Se puede confiar en el ruteo automático?</summary><div class="inner"><p>Como ayuda para las señales no críticas, sí. Las pistas de potencia, los relojes y las señales analógicas sensibles se rutean <b>a mano y primero</b>.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-08.html"><small>← Anterior</small>T8 · Filtros pasivos y activos</a><a class="nx" href="tema-10.html"><small>Siguiente →</small>T10 · Salida a fábrica, DFM y normativa</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Diseño y Simulación Electrónica (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, transparencias, prácticas y exámenes de 2013 a 2016) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

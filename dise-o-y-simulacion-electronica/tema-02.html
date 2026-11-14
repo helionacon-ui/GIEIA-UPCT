@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T2 Fuentes de alimentación lineales · Diseño y Simulación Electrónica · Guía para aprobar</title>
+<meta name="description" content="Diseño y Simulación Electrónica (UPCT, GIEyA): tema 2, Fuentes de alimentación lineales">
+<meta name="theme-color" content="#0b7a5a">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, transparencias, prácticas y exámenes de 2013 a 2016) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Diseño y Simulación Electrónica</a><span class="sep">›</span><span>Diseño analógico y simulación</span><span class="sep">›</span><span>T2 · Fuentes de alimentación lineales</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Diseño analógico y simulación</div><a href="tema-01.html" style="--tc:var(--c2)">T1 El flujo de diseño electrónico</a><a href="tema-02.html" style="--tc:var(--c3)" class="on" aria-current="page">T2 Fuentes de alimentación lineales</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Reguladores: zener, lineales y LDO</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Cálculo térmico y disipadores</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Simulación con LTspice</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Captura de esquemáticos y creación de componentes</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Componentes SMD y encapsulados</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Filtros pasivos y activos</a><div class="grp">De la simulación a la placa</div><a href="tema-09.html" style="--tc:var(--c2)">T9 Diseño de la PCB: colocación y ruteo</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Salida a fábrica, DFM y normativa</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en cada parcial</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y trabajos</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
+<div class="sh"><span aria-hidden="true" class="badge">2</span><div class="shx"><p class="kick">Diseño analógico y simulación · Tema 2</p><h2 id="t2">Fuentes de alimentación lineales</h2><div class="tags"><span class="tag">Diseño analógico y simulación</span><span class="tag">1.er parcial (30 %)</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> dimensionar una fuente lineal completa: transformador, rectificador, condensador de filtro y rizado, que es el problema teórico que aparece en todos los exámenes.</p><ul>
+<li>Una fuente lineal tiene cuatro etapas: <b>transformación, rectificación, filtrado y estabilización</b>. Cada una con sus pérdidas y sus formas de onda.</li>
+<li>El <b>transformador</b> se especifica por la tensión eficaz del secundario y la corriente. Puede ser de secundario único, con toma media o doble.</li>
+<li>El <b>puente de diodos</b> rectifica las dos semiondas y quita <b>dos caídas</b> de 0,7 V; el de media onda sólo una, pero descarga el condensador durante todo el periodo.</li>
+<li>El rizado se calcula con la aproximación de <b>descarga lineal</b>: \(V_r=\dfrac{I\,t}{C}\), con \(t=T/2\) en puente y \(t=T\) en media onda.</li>
+<li>El criterio que manda no es el rizado en sí, sino que <b>la tensión mínima siga por encima de \(V_{salida}+V_{dropout}\)</b> del regulador que venga después.</li>
+<li>La corriente por los diodos es de <b>picos estrechos y altos</b>, muy superiores a la media: hay que elegir los diodos por corriente de pico repetitiva, no por la media.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 2 <span class="src">8 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">V_s</td><td>tensión eficaz del secundario</td><td class="u">V</td></tr><tr><td class="sym">V_p</td><td>tensión de pico</td><td class="u">\(\sqrt2 V_s\)</td></tr><tr><td class="sym">V_r</td><td>rizado pico a pico</td><td class="u">V</td></tr><tr><td class="sym">I_L</td><td>corriente de carga</td><td class="u">A</td></tr><tr><td class="sym">C</td><td>condensador de filtro</td><td class="u">F</td></tr><tr><td class="sym">t_d</td><td>tiempo de descarga</td><td class="u">10 ms en puente a 50 Hz</td></tr><tr><td class="sym">f_r</td><td>frecuencia del rizado</td><td class="u">100 Hz en puente</td></tr><tr><td class="sym">V_F</td><td>caída directa del diodo</td><td class="u">≈ 0,7 V</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - rectificador, filtro y rizado</p><div data-sim="rectificador"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
+<h3 id="t2-formulas">Fórmulas y datos que hay que saber</h3>
+<div class="box key"><ul>
+<li>\(V_{pico}=\sqrt2\,V_{sec}-n\cdot0{,}7\) con \(n=2\) en puente y \(n=1\) en media onda.</li>
+<li>Rizado: \(V_r=\dfrac{I_{carga}\,t}{C}\); \(t=\dfrac{T}{2}=10\) ms a 50 Hz en puente, \(t=T=20\) ms en media onda.</li>
+<li>Condensador necesario: \(C=\dfrac{I\,t}{V_r}\).</li>
+<li>\(V_{min}=V_{pico}-V_r\); condición de diseño: \(V_{min}\ge V_{out}+V_{dropout}\).</li>
+<li>\(V_{medio}\approx V_{pico}-\dfrac{V_r}{2}\); factor de rizado \(r=\dfrac{V_{r(ef)}}{V_{medio}}\), con \(V_{r(ef)}\approx\dfrac{V_r}{2\sqrt3}\).</li>
+<li>Secundario necesario: \(V_{sec}=\dfrac{V_{out}+V_{dropout}+V_r+n\cdot0{,}7}{\sqrt2}\).</li>
+<li>Diodos: \(V_{RRM}\ge\sqrt2\,V_{sec}\) (×2 en media onda) y \(I_{FSM}\) para el pico de arranque.</li>
+<li>Potencia aparente del trafo: \(S\approx1{,}8\,V_{out}I\) (regla práctica, por el factor de cresta).</li>
+</ul></div>
+<h3 id="t2-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Parte de la <b>salida</b>: tensión, corriente y rizado exigidos.</li>
+<li>Decide el regulador y su <b>V_dropout</b>: eso fija la tensión mínima que debe llegar.</li>
+<li>Elige un <b>rizado en el condensador</b> razonable (1-2 V es lo habitual) y calcula \(V_{pico}=V_{min}+V_r\).</li>
+<li>Calcula el <b>secundario</b>: \(V_{sec}=(V_{pico}+2\cdot0{,}7)/\sqrt2\) y redondea al valor comercial (6, 9, 12, 15, 18, 24 V).</li>
+<li>Calcula \(C=It/V_r\) y redondea <b>hacia arriba</b> al valor normalizado (470, 1000, 2200 µF).</li>
+<li>Comprueba el <b>rizado de salida</b> dividiendo por el rechazo del regulador, y la <b>potencia disipada</b>.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li>Olvidar las <b>dos caídas</b> de diodo del puente (1,4 V), que a 12 V es más del 10 %.</li>
+<li>Usar \(t=T\) en un puente: el condensador sólo se descarga <b>media</b> red.</li>
+<li>Comprobar el margen del regulador con el valor <b>medio</b> en vez del <b>mínimo</b> del rizado.</li>
+<li>Elegir el condensador por capacidad y olvidar la <b>tensión</b> (debe superar el pico con margen) y la <b>corriente de rizado</b>.</li>
+<li>Dimensionar los diodos con la corriente media de carga, sin mirar el pico repetitivo.</li>
+<li>No contar el consumo propio del regulador (\(I_Q\)) en la corriente total.</li>
+</ul></div>
+<h3 id="t2-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Examen de julio de 2015.)</b> Un cliente solicita una fuente que suministre <b>12 V y 1 W</b> con un rizado de <b>80 mV pico a pico</b>, alimentada desde la red de 220 V eficaces a 50 Hz. Se dispone de: <b>zener de 12 V</b> (\(I_{ZRM}=90\) mA, \(Z_Z=20\ \Omega\)) y <b>regulador lineal 78XX</b> (\(V_{dropout}=2\) V, \(RR=65\) dB, \(I_Q=8\) mA).</p>
+<p>a) Justifica el circuito elegido. b) Dibuja el esquema. c) Calcula todos los valores necesarios.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>a) Elección del circuito.</b> La corriente de carga es \(I=P/V=1/12=83{,}3\) mA.</p>
+<ul><li><b>Con zener:</b> el zener debe absorber toda la corriente cuando la carga se desconecta. Con \(V_{in}=18\) V y \(R=(18-12)/93\text{ mA}=64{,}5\ \Omega\), la corriente en vacío sería de <b>93 mA</b>, por encima de los <b>90 mA</b> de \(I_{ZRM}\): no cumple. Además, el rizado sólo se atenúa por el divisor \(Z_Z/(R+Z_Z)=20/84{,}5=0{,}237\), de modo que para 80 mV de salida haría falta un rizado de entrada de sólo 337 mV, es decir, <b>C ≈ 2500 µF</b>.</li>
+<li><b>Con 7812:</b> el rechazo de rizado de 65 dB equivale a dividir por <b>1778</b>. Un rizado de entrada de 2 V se convierte en <b>1,1 mV</b> a la salida, 70 veces por debajo del límite. <b>Es la opción correcta.</b></li></ul>
+<p><b>b) Esquema.</b> Red 220 V → transformador 220/12 V → puente de diodos → condensador de filtro → 7812 (con condensadores de 0,33 µF a la entrada y 0,1 µF a la salida, según la hoja de características) → carga.</p>
+<p><b>c) Cálculos.</b></p>
+<ol><li><b>Tensión mínima de entrada:</b> \(V_{min}=12+2=\mathbf{14}\) V.</li>
+<li><b>Rizado elegido:</b> \(V_r=2\) V pp ⇒ \(V_{pico}=14+2=\mathbf{16}\) V.</li>
+<li><b>Secundario:</b> \(V_{sec}=\dfrac{16+1{,}4}{\sqrt2}=12{,}3\) V ⇒ transformador <b>220/12 V</b> comercial.</li>
+<li><b>Corriente total:</b> \(83{,}3+8=\mathbf{91{,}3}\) mA ⇒ trafo de 12 V y al menos 200 mA.</li>
+<li><b>Condensador:</b> \(C=\dfrac{I\,t}{V_r}=\dfrac{0{,}0913\cdot0{,}01}{2}=457\ \mu F\) ⇒ <b>470 µF / 25 V</b>.</li>
+<li><b>Comprobación del rizado de salida:</b> \(2/1778=\mathbf{1{,}1\ mV_{pp}}\) ≪ 80 mV ✓.</li>
+<li><b>Potencia en el regulador:</b> \((15-12)\cdot0{,}0913=\mathbf{0{,}27}\) W ⇒ con \(R_{ja}\approx65\) °C/W del TO-220 al aire, \(T_j=40+65\cdot0{,}27=58\) °C: <b>no hace falta disipador</b>.</li></ol>
+<p class="muted">Si el enunciado pidiera 1 A en vez de 83 mA, la potencia disipada subiría a 3 W y el disipador sería obligatorio; con 3 A, habría que plantearse una fuente conmutada.</p></div></details></div>
+<h3 id="t2-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Por qué un puente necesita la mitad de condensador que un rectificador de media onda?</summary><div class="inner"><p>Porque el condensador se descarga sólo durante <b>medio periodo</b> (10 ms a 50 Hz) en vez de uno entero (20 ms), y \(V_r=It/C\).</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Qué condición de diseño manda realmente en el condensador?</summary><div class="inner"><p>Que la <b>tensión mínima</b> del rizado siga por encima de \(V_{salida}+V_{dropout}\). El rizado de salida casi siempre lo resuelve el regulador.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Cuánto vale la tensión de pico tras un puente con secundario de 12 V eficaces?</summary><div class="inner"><p>\(\sqrt2\cdot12-1{,}4=\mathbf{15{,}6}\) V. Olvidar las dos caídas de diodo es el error más repetido.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Por qué los diodos sufren picos de corriente altos?</summary><div class="inner"><p>Porque sólo conducen en el instante en que la senoide supera la tensión del condensador: toda la carga se repone en un intervalo muy corto, así que el pico es varias veces la corriente media.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Qué tensión debe soportar el condensador de filtro?</summary><div class="inner"><p>Al menos la <b>tensión de pico</b> con margen: para 16 V de pico se usa uno de 25 V, nunca de 16 V.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-01.html"><small>← Anterior</small>T1 · El flujo de diseño electrónico</a><a class="nx" href="tema-03.html"><small>Siguiente →</small>T3 · Reguladores: zener, lineales y LDO</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Diseño y Simulación Electrónica (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, transparencias, prácticas y exámenes de 2013 a 2016) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>
