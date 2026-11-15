@@ -21,5 +21,5 @@ Proyecto personal de estudio; no es una página oficial de la universidad.
 ## Mantenimiento
 
 - Tras cambiar una guía que está en esta misma carpeta, ejecuta `node scripts/build-busqueda.js` para regenerar `busqueda.json`. Es el índice del buscador de temas de la portada.
-- Las guías que viven en otro repositorio no entran en ese índice; se añadirían a mano en `scripts/build-busqueda.js`.
+- Las guías que viven en otro repositorio se indexan pasando su carpeta local y su dirección pública, una por argumento: `node scripts/build-busqueda.js RUTA=URL`. Control por computador, Electrónica digital, Modelado e Ingeniería de control todavía no tienen un formato de índice que el script entienda.
 - Cada lunes, la acción «Comprobar enlaces de las guías» verifica que las 33 guías enlazadas responden. Se puede lanzar a mano desde la pestaña Actions. En local: `node scripts/check-links.js http://localhost:8000/` (las guías externas necesitan conexión a internet).
