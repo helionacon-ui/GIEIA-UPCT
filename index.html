@@ -4,10 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Guías GIEyA · UPCT</title>
+<meta name="theme-color" content="#0d6e5a">
 <meta name="description" content="Guías para aprobar las asignaturas del Grado en Ingeniería Electrónica Industrial y Automática de la UPCT.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap"></noscript>
 <style>
 :root{--bg:#f6f4ef;--card:#ffffff;--fg:#16211d;--muted:#56635e;--line:#dce3e0;--accent:#0d6e5a;--accent-s:#e1efea;--soon:#eef0ee;
 --c1:#4652c4;--c2:#0b7f93;--c3:#7d45c9;--c4:#c25a1c;--shadow:0 1px 2px rgba(22,33,29,.06),0 6px 24px rgba(22,33,29,.06)}
@@ -111,6 +113,60 @@ footer{margin:64px 0 40px;padding-top:22px}
   details.curso .ct{text-align:left}
   details.curso .grid{padding:4px 14px 18px}
 }
+
+/* ===== v3: cuadrícula técnica, estados y buscador ===== */
+:root{--ok:#0a8f6b;--ok2:#0b86a3;--ok-s:color-mix(in srgb,var(--ok) 13%,transparent);--dot:color-mix(in srgb,var(--fg) 15%,transparent)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ok:#4fd6ad;--ok2:#5cd0e6;--dot:color-mix(in srgb,var(--fg) 12%,transparent)}}
+:root[data-theme="dark"]{--ok:#4fd6ad;--ok2:#5cd0e6;--dot:color-mix(in srgb,var(--fg) 12%,transparent)}
+/* dot-matrix: solo CSS, sin imágenes ni capas fijas (barato en móvil) */
+body{background-image:radial-gradient(circle at 1px 1px,var(--dot) 1px,transparent 1.3px);background-size:22px 22px;background-position:-1px -1px}
+.stats b,.ct,.ct b,.cnt,#res,.n,.badge,.pills li{font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1,"lnum" 1}
+.stats b{min-width:2ch}
+/* disponibles ahora */
+#now-sec{margin:44px 0 0}
+#now-sec .sect-t{margin-top:0;display:flex;align-items:center;gap:10px}
+.cnt{display:inline-grid;place-items:center;min-width:2.1em;height:1.7em;padding:0 .5em;border-radius:999px;font:700 14px/1 "IBM Plex Sans",system-ui,sans-serif;color:#fff;background:linear-gradient(135deg,var(--ok),var(--ok2))}
+.now{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:10px;min-height:120px}
+.now a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;background:var(--card);border:1px solid color-mix(in srgb,var(--k) 28%,var(--line));text-decoration:none;font-weight:600;font-size:14.5px;line-height:1.25;transition:transform .15s,border-color .15s}
+.now a:hover{transform:translateY(-1px);border-color:var(--k)}
+.now a:focus-visible{outline:3px solid var(--ok);outline-offset:2px}
+.now .n{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:9px;color:#fff;font:800 13px/1 "Bricolage Grotesque",sans-serif;background:var(--k)}
+.now .go{margin-left:auto;color:var(--ok);flex:none}
+@media (max-width:720px){
+  .now{grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-template-columns:none;grid-auto-columns:min(78%,280px);overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:8px;margin-right:-20px;padding-right:20px;-webkit-overflow-scrolling:touch}
+  .now a{scroll-snap-align:start}
+}
+/* buscador */
+.search{position:relative;flex:1 1 260px;min-width:0}
+.search input{width:100%;padding-right:44px}
+.search input::-webkit-search-cancel-button,.search input::-webkit-search-decoration{-webkit-appearance:none;appearance:none}
+#clr{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;border:0;background:color-mix(in srgb,var(--fg) 10%,transparent);color:var(--fg);font:600 18px/1 system-ui,sans-serif;cursor:pointer;display:grid;place-items:center;padding:0 0 2px}
+#clr:hover{background:color-mix(in srgb,var(--fg) 18%,transparent)}
+#clr:focus-visible{outline:3px solid var(--ok);outline-offset:2px}
+#res{min-height:1.6em;margin:2px 2px 0;font-size:13.5px;color:var(--muted)}
+mark{background:color-mix(in srgb,var(--ok2) 30%,transparent);color:inherit;border-radius:3px;padding:0 1px}
+/* tarjetas */
+.card{--b:var(--k)}
+.card .top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.card .top .mono{margin-bottom:0}
+.badge{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font:600 11.5px/1 "IBM Plex Sans",system-ui,sans-serif;padding:6px 9px;border-radius:999px;letter-spacing:.01em}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.badge.ok{color:var(--ok);background:var(--ok-s);border:1px solid color-mix(in srgb,var(--ok) 35%,transparent)}
+.badge.soon{color:var(--muted);background:transparent;border:1px dashed color-mix(in srgb,var(--muted) 60%,transparent)}
+.badge.soon::before{background:transparent;border:1.5px solid currentColor}
+.card.ready{border-left:4px solid var(--ok);background:linear-gradient(160deg,color-mix(in srgb,var(--ok2) 9%,var(--card)),var(--card) 62%)}
+.card.ready .st{color:var(--ok)}
+.card.soon{border:1.5px dashed color-mix(in srgb,var(--muted) 45%,var(--line));background:transparent;opacity:.74}
+.card .d{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.pills{list-style:none;margin:2px 0 4px;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.pills li{font:500 11.5px/1 "IBM Plex Sans",system-ui,sans-serif;padding:5px 8px;border-radius:7px;color:var(--fg);background:color-mix(in srgb,var(--fg) 7%,transparent);border:1px solid var(--line)}
+.pills li.x{color:var(--muted);border-style:dashed}
+.card.soon .st{display:none}
+/* carga inicial: esqueleto con la misma altura que el contenido final */
+.sk{height:88px;margin:20px 0;border-radius:22px;border:1px solid var(--line);border-left:6px solid var(--line);background:linear-gradient(100deg,var(--card) 30%,color-mix(in srgb,var(--fg) 6%,var(--card)) 50%,var(--card) 70%) 0 0/300% 100%;animation:sk 1.4s linear infinite}
+@keyframes sk{to{background-position:-300% 0}}
+@media (prefers-reduced-motion:reduce){.sk{animation:none}a.card,.now a{transition:none}}
+#list{min-height:400px}
 </style>
 </head>
 <body>
@@ -131,19 +187,29 @@ footer{margin:64px 0 40px;padding-top:22px}
 <p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted,#5b6660)">Proyecto iniciado el <time datetime="2026-11-05">5 de noviembre de 2026</time> · Última actualización: <time datetime="2026-11-09">9 de noviembre de 2026</time></p>
   <h1>Guías para <span>aprobar</span></h1>
   <p class="lede">Guías de estudio interactivas de las asignaturas del Grado en Ingeniería Electrónica Industrial y Automática: teoría explicada desde cero, simuladores, formularios y exámenes resueltos paso a paso. Funcionan en el móvil y sin conexión.</p>
-  <div class="stats"><div><b id="s-ready">1</b><span>guías publicadas</span></div><div><b id="s-total">0</b><span>asignaturas del grado</span></div><div><b>4</b><span>cursos</span></div></div>
+  <div class="stats"><div><b id="s-ready">33</b><span>guías disponibles</span></div><div><b id="s-total">39</b><span>asignaturas del grado</span></div><div><b>4</b><span>cursos</span></div></div>
 </header>
 
-<h2 class="sect-t">Todas las asignaturas por curso</h2><p class="sect-s">Despliega un curso para ver sus asignaturas.</p>
+<section id="now-sec" aria-labelledby="now-t">
+<h2 class="sect-t" id="now-t">Disponibles ahora <span class="cnt" id="now-n">33</span></h2>
+<p class="sect-s">Guías con contenido activo: un toque y estás dentro.</p>
+<div class="now" id="now"><a href="matematicas-i/" style="--k:var(--c1)"><span class="n" aria-hidden="true">1º</span><span>Matemáticas I</span><span class="go">→</span></a><a href="matematicas-ii/" style="--k:var(--c1)"><span class="n" aria-hidden="true">1º</span><span>Matemáticas II</span><span class="go">→</span></a><a href="fisica-i/" style="--k:var(--c1)"><span class="n" aria-hidden="true">1º</span><span>Física I</span><span class="go">→</span></a><a href="fisica-ii/" style="--k:var(--c1)"><span class="n" aria-hidden="true">1º</span><span>Física II</span><span class="go">→</span></a><a href="quimica-general/" style="--k:var(--c1)"><span class="n" aria-hidden="true">1º</span><span>Química general</span><span class="go">→</span></a><a href="https://helionacon-ui.github.io/Inform-tica-Aplicada/" style="--k:var(--c1)"><span class="n" aria-hidden="true">1º</span><span>Informática aplicada</span><span class="go">→</span></a><a href="https://helionacon-ui.github.io/Expresi-n-gr-fica/" style="--k:var(--c1)"><span class="n" aria-hidden="true">1º</span><span>Expresión gráfica</span><span class="go">→</span></a><a href="estadistica-aplicada/" style="--k:var(--c1)"><span class="n" aria-hidden="true">1º</span><span>Estadística aplicada</span><span class="go">→</span></a><a href="https://helionacon-ui.github.io/Ciencia-e-ingenier-a-de-materiales/" style="--k:var(--c1)"><span class="n" aria-hidden="true">1º</span><span>Ciencia e ingeniería de materiales</span><span class="go">→</span></a><a href="analisis-de-circuitos/" style="--k:var(--c1)"><span class="n" aria-hidden="true">1º</span><span>Análisis de circuitos</span><span class="go">→</span></a><a href="matematicas-iii/" style="--k:var(--c2)"><span class="n" aria-hidden="true">2º</span><span>Matemáticas III</span><span class="go">→</span></a><a href="electronica-industrial/" style="--k:var(--c2)"><span class="n" aria-hidden="true">2º</span><span>Fundamentos de electrónica industrial</span><span class="go">→</span></a><a href="mecanica-de-maquinas/" style="--k:var(--c2)"><span class="n" aria-hidden="true">2º</span><span>Mecánica de máquinas</span><span class="go">→</span></a><a href="termodinamica-aplicada/" style="--k:var(--c2)"><span class="n" aria-hidden="true">2º</span><span>Termodinámica aplicada</span><span class="go">→</span></a><a href="resistencia-de-materiales/" style="--k:var(--c2)"><span class="n" aria-hidden="true">2º</span><span>Resistencia de materiales</span><span class="go">→</span></a><a href="ingles-tecnico/" style="--k:var(--c2)"><span class="n" aria-hidden="true">2º</span><span>Inglés técnico</span><span class="go">→</span></a><a href="mecanica-de-fluidos/" style="--k:var(--c2)"><span class="n" aria-hidden="true">2º</span><span>Mecánica de fluidos</span><span class="go">→</span></a><a href="electrotecnia/" style="--k:var(--c2)"><span class="n" aria-hidden="true">2º</span><span>Electrotecnia</span><span class="go">→</span></a><a href="dise-o-y-simulacion-electronica/" style="--k:var(--c2)"><span class="n" aria-hidden="true">2º</span><span>Diseño y simulación electrónica</span><span class="go">→</span></a><a href="transmision-del-calor/" style="--k:var(--c2)"><span class="n" aria-hidden="true">2º</span><span>Transmisión del calor</span><span class="go">→</span></a><a href="regulacion-automatica/" style="--k:var(--c2)"><span class="n" aria-hidden="true">2º</span><span>Regulación automática</span><span class="go">→</span></a><a href="organizacion-gestion-empresas/" style="--k:var(--c2)"><span class="n" aria-hidden="true">2º</span><span>Organización y gestión de empresas</span><span class="go">→</span></a><a href="https://helionacon-ui.github.io/Control-por-computador-GIEIA/" style="--k:var(--c3)"><span class="n" aria-hidden="true">3º</span><span>Control por computador</span><span class="go">→</span></a><a href="https://helionacon-ui.github.io/Tecnolog-a-Medioambiental/" style="--k:var(--c3)"><span class="n" aria-hidden="true">3º</span><span>Tecnología medioambiental</span><span class="go">→</span></a><a href="https://helionacon-ui.github.io/Electr-nica-digital/" style="--k:var(--c3)"><span class="n" aria-hidden="true">3º</span><span>Electrónica digital</span><span class="go">→</span></a><a href="https://helionacon-ui.github.io/Modelado-y-Simulaci-n-de-Sistemas/" style="--k:var(--c3)"><span class="n" aria-hidden="true">3º</span><span>Modelado y simulación de sistemas</span><span class="go">→</span></a><a href="electronica-analogica/" style="--k:var(--c3)"><span class="n" aria-hidden="true">3º</span><span>Electrónica analógica</span><span class="go">→</span></a><a href="sistemas-microprocesador/" style="--k:var(--c3)"><span class="n" aria-hidden="true">3º</span><span>Sistemas basados en microprocesador</span><span class="go">→</span></a><a href="programacion-tiempo-real/" style="--k:var(--c3)"><span class="n" aria-hidden="true">3º</span><span>Programación de sistemas en tiempo real</span><span class="go">→</span></a><a href="sistemas-robotizados/" style="--k:var(--c3)"><span class="n" aria-hidden="true">3º</span><span>Sistemas robotizados</span><span class="go">→</span></a><a href="automatizacion-industrial/" style="--k:var(--c3)"><span class="n" aria-hidden="true">3º</span><span>Automatización industrial</span><span class="go">→</span></a><a href="https://helionacon-ui.github.io/Ingenieria-de-control/" style="--k:var(--c3)"><span class="n" aria-hidden="true">3º</span><span>Ingeniería de control</span><span class="go">→</span></a><a href="sistemas-produccion/" style="--k:var(--c3)"><span class="n" aria-hidden="true">3º</span><span>Ingeniería de los sistemas de producción</span><span class="go">→</span></a></div>
+</section>
+
+<h2 class="sect-t">Todas las asignaturas por curso</h2><p class="sect-s">Despliega un curso o escribe para buscar: se abren solos los cursos con coincidencias.</p>
 <div class="bar" role="search">
-  <input id="q" type="search" placeholder="Buscar asignatura…" aria-label="Buscar asignatura" autocomplete="off">
+  <div class="search">
+    <input id="q" type="search" placeholder="Buscar asignatura, tema o recurso…  ( / )" aria-label="Buscar asignatura" aria-controls="list" autocomplete="off" enterkeyhint="search">
+    <button id="clr" type="button" aria-label="Borrar búsqueda" hidden>×</button>
+  </div>
   <button class="chip" type="button" data-f="all" aria-pressed="true">Todas</button>
   <button class="chip" type="button" data-f="ready" aria-pressed="false">Con guía</button>
 </div>
+<div id="res" role="status" aria-live="polite"></div>
 <div class="acc-tools"><button class="link" type="button" id="open-all">Desplegar todos los cursos</button><button class="link" type="button" id="close-all">Plegar todos</button></div>
 
-<main id="list"></main>
-<p class="empty" id="empty" hidden>No hay ninguna asignatura con ese nombre.</p>
+<main id="list" aria-busy="true"><div class="sk"></div><div class="sk"></div><div class="sk"></div><div class="sk"></div><noscript><p class="empty">Activa JavaScript para ver el listado de asignaturas.</p></noscript></main>
+<p class="empty" id="empty" hidden>No hay ninguna asignatura que coincida con la búsqueda.</p>
 
 <footer>
   <p>Proyecto personal de estudio. No es una página oficial de la UPCT. Proyecto iniciado el <time datetime="2026-11-05">5 de noviembre de 2026</time>.</p>
@@ -155,142 +221,190 @@ footer{margin:64px 0 40px;padding-top:22px}
 /* Para añadir una guía nueva: pon su dirección en "url" y, si quieres, una descripción en "d". */
 const CURSOS = [
   {n:1, nombre:'Primer curso', color:'var(--c1)', asig:[
-    {t:'Matemáticas I', url:'matematicas-i/',
-     d:'Complejos, matrices, espacios vectoriales, aplicaciones lineales, diagonalización, euclídeo, cálculo de una y varias variables, integrales y EDO. Figuras interactivas y exámenes 2011-2022 resueltos. Ampliada: cada tema con explicación desde cero y tres ejercicios resueltos paso a paso.'},{t:'Matemáticas II', url:'matematicas-ii/',
-     d:'Integral de Riemann e impropias, volúmenes de revolución, límites y continuidad en varias variables, diferenciabilidad y extremos, integral múltiple y ecuaciones diferenciales. 12 figuras interactivas y el parcial de 2021 resuelto. Ampliada: cada tema con explicación desde cero y cuatro ejercicios resueltos paso a paso.'},{t:'Física I', url:'fisica-i/',
-     d:'Vectores, cinemática, dinámica, energía, sólido rígido, fluidos y termodinámica. Simuladores interactivos, problemas tipo resueltos y autoevaluación.'},{t:'Física II', url:'fisica-ii/',
-     d:'Electrostática, condensadores, continua, campo magnético, inducción, materia magnética, alterna y ondas. 9 figuras interactivas, hojas oficiales con resultado y el examen 2024 resuelto.'},{t:'Química general', url:'quimica-general/',
+    {t:'Matemáticas I', url:'matematicas-i/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
+     d:'Complejos, matrices, espacios vectoriales, aplicaciones lineales, diagonalización, euclídeo, cálculo de una y varias variables, integrales y EDO. Figuras interactivas y exámenes 2011-2022 resueltos. Ampliada: cada tema con explicación desde cero y tres ejercicios resueltos paso a paso.'},{t:'Matemáticas II', url:'matematicas-ii/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
+     d:'Integral de Riemann e impropias, volúmenes de revolución, límites y continuidad en varias variables, diferenciabilidad y extremos, integral múltiple y ecuaciones diferenciales. 12 figuras interactivas y el parcial de 2021 resuelto. Ampliada: cada tema con explicación desde cero y cuatro ejercicios resueltos paso a paso.'},{t:'Física I', url:'fisica-i/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario', 'Autoevaluación'],
+     d:'Vectores, cinemática, dinámica, energía, sólido rígido, fluidos y termodinámica. Simuladores interactivos, problemas tipo resueltos y autoevaluación.'},{t:'Física II', url:'fisica-ii/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
+     d:'Electrostática, condensadores, continua, campo magnético, inducción, materia magnética, alterna y ondas. 9 figuras interactivas, hojas oficiales con resultado y el examen 2024 resuelto.'},{t:'Química general', url:'quimica-general/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
      d:'Estructura atómica, enlace, formulación, gases, estequiometría, termoquímica, equilibrio y fases. Figuras interactivas, las 52 preguntas teóricas de examen respondidas y problemas resueltos.'},
-    {t:'Informática aplicada', url:'https://helionacon-ui.github.io/Inform-tica-Aplicada/',
-     d:'Arquitectura, binario e IEEE 754, programación en C (control, vectores, funciones y punteros), SO y SQL. Test de examen interactivo, lista cerrada de teoría respondida y 10 problemas resueltos en C.'},{t:'Expresión gráfica', url:'https://helionacon-ui.github.io/Expresi-n-gr-fica/',
-     d:'Tangencias, cónicas, diédrico, isométrica, normalización, acotación, roscas, tolerancias y ajustes ISO, CAD y esquemas. Calculadora de ajustes, 14 figuras interactivas y exámenes 2005-2012 resueltos.'},{t:'Estadística aplicada', url:'estadistica-aplicada/',
+    {t:'Informática aplicada', url:'https://helionacon-ui.github.io/Inform-tica-Aplicada/', r:['Teoría', 'Simulador', 'Exámenes', 'Autoevaluación'],
+     d:'Arquitectura, binario e IEEE 754, programación en C (control, vectores, funciones y punteros), SO y SQL. Test de examen interactivo, lista cerrada de teoría respondida y 10 problemas resueltos en C.'},{t:'Expresión gráfica', url:'https://helionacon-ui.github.io/Expresi-n-gr-fica/', r:['Teoría', 'Simulador'],
+     d:'Tangencias, cónicas, diédrico, isométrica, normalización, acotación, roscas, tolerancias y ajustes ISO, CAD y esquemas. Calculadora de ajustes, 14 figuras interactivas y exámenes 2005-2012 resueltos.'},{t:'Estadística aplicada', url:'estadistica-aplicada/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
      d:'Descriptiva, probabilidad y Bayes, variables aleatorias, teorema central del límite, intervalos de confianza, contrastes y p-valor, bondad de ajuste y regresión. 10 figuras interactivas con calculadora de tablas y exámenes resueltos.'},
-    {t:'Ciencia e ingeniería de materiales', url:'https://helionacon-ui.github.io/Ciencia-e-ingenier-a-de-materiales/',
-     d:'Estructura cristalina, defectos y difusión, ensayos mecánicos, diagramas de fase y Fe-C, tratamientos térmicos, aceros, polímeros y compuestos, semiconductores, magnetismo y corrosión. 16 figuras interactivas, cuestiones oficiales respondidas y problemas resueltos.'},{t:'Análisis de circuitos', url:'analisis-de-circuitos/',
+    {t:'Ciencia e ingeniería de materiales', url:'https://helionacon-ui.github.io/Ciencia-e-ingenier-a-de-materiales/', r:['Teoría', 'Simulador', 'Exámenes'],
+     d:'Estructura cristalina, defectos y difusión, ensayos mecánicos, diagramas de fase y Fe-C, tratamientos térmicos, aceros, polímeros y compuestos, semiconductores, magnetismo y corrosión. 16 figuras interactivas, cuestiones oficiales respondidas y problemas resueltos.'},{t:'Análisis de circuitos', url:'analisis-de-circuitos/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
      d:'Redes de continua, teoremas (Thévenin, Norton, Millman, MTP), fasores, impedancia, potencia y fdp, transitorios y trifásica con Aarón. 10 figuras interactivas.'}]},
   {n:2, nombre:'Segundo curso', color:'var(--c2)', asig:[
-    {t:'Matemáticas III', url:'matematicas-iii/',
-     d:'Variable compleja y transformadas: números complejos, holomorfía, teorema de los residuos, Laplace, Fourier y Z, series de Laurent y EDP por diferencias finitas. 7 figuras interactivas y los controles de 2021 resueltos.'},{t:'Fundamentos de electrónica industrial', url:'electronica-industrial/',
-     d:'Diodos y modelos, rectificadores con filtro y rizado, zener, LED y LDR, transistores BJT y MOSFET y amplificadores operacionales. 6 figuras interactivas y los exámenes de diciembre de 2022 y enero de 2023 resueltos.'},{t:'Mecánica de máquinas', url:'mecanica-de-maquinas/',
+    {t:'Matemáticas III', url:'matematicas-iii/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
+     d:'Variable compleja y transformadas: números complejos, holomorfía, teorema de los residuos, Laplace, Fourier y Z, series de Laurent y EDP por diferencias finitas. 7 figuras interactivas y los controles de 2021 resueltos.'},{t:'Fundamentos de electrónica industrial', url:'electronica-industrial/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
+     d:'Diodos y modelos, rectificadores con filtro y rizado, zener, LED y LDR, transistores BJT y MOSFET y amplificadores operacionales. 6 figuras interactivas y los exámenes de diciembre de 2022 y enero de 2023 resueltos.'},{t:'Mecánica de máquinas', url:'mecanica-de-maquinas/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
      d:'Grados de libertad y Grashof, cinemática por vectores y CIR, dinámica y volante de inercia, vibraciones y aislamiento, engranajes y trenes, correas y cadenas, ejes y levas. 9 figuras interactivas y los parciales de 2021-2023 resueltos.'},
-    {t:'Termodinámica aplicada', url:'termodinamica-aplicada/',
-     d:'Teoría desde cero, exámenes resueltos, simuladores y autoevaluación. Prácticas I1 e I2 con código y salida.'},{t:'Resistencia de materiales', url:'resistencia-de-materiales/',
-     d:'Tensor de tensiones y círculo de Mohr, criterios de plasticidad, propiedades de la sección, leyes de esfuerzos, axil, flexión pura, simple, desviada y compuesta, deformaciones por fuerzas virtuales y dimensionado. 10 figuras interactivas y los exámenes 2021-2023 resueltos.'},{t:'Inglés técnico', url:'ingles-tecnico/',
-     d:'Vocabulario de energía, materiales, fabricación y tecnología, inglés de electrónica, control y robótica, registro formal y académico, presentaciones y correo profesional. 12 ejercicios interactivos corregidos y las tareas del portafolio con modelo.'},{t:'Mecánica de fluidos', url:'mecanica-de-fluidos/',
+    {t:'Termodinámica aplicada', url:'termodinamica-aplicada/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario', 'Prácticas', 'Autoevaluación'],
+     d:'Teoría desde cero, exámenes resueltos, simuladores y autoevaluación. Prácticas I1 e I2 con código y salida.'},{t:'Resistencia de materiales', url:'resistencia-de-materiales/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
+     d:'Tensor de tensiones y círculo de Mohr, criterios de plasticidad, propiedades de la sección, leyes de esfuerzos, axil, flexión pura, simple, desviada y compuesta, deformaciones por fuerzas virtuales y dimensionado. 10 figuras interactivas y los exámenes 2021-2023 resueltos.'},{t:'Inglés técnico', url:'ingles-tecnico/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
+     d:'Vocabulario de energía, materiales, fabricación y tecnología, inglés de electrónica, control y robótica, registro formal y académico, presentaciones y correo profesional. 12 ejercicios interactivos corregidos y las tareas del portafolio con modelo.'},{t:'Mecánica de fluidos', url:'mecanica-de-fluidos/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
      d:'Propiedades y viscosidad, fluidostática y manometría, fuerzas hidrostáticas y flotación, cinemática, conservación de masa, impulso y energía, Navier-Stokes y flujo laminar, análisis dimensional y semejanza, flujo ideal y toberas. 10 figuras interactivas y los problemas de las colecciones oficiales resueltos.'},
-    {t:'Electrotecnia', url:'electrotecnia/',
-     d:'Accionamientos y requerimientos mecánicos, circuitos magnéticos y transformadores, conversión electromecánica, máquinas de continua, vectores espaciales y campo giratorio, asíncronas, síncronas de imanes permanentes y reluctancia conmutada. 9 figuras interactivas y los problemas de examen de 2012-2022 resueltos.'},{t:'Diseño y simulación electrónica', url:'dise-o-y-simulacion-electronica/',
-     d:'Flujo de diseño, fuentes lineales y rizado, reguladores zener, 78XX y LDO, cálculo térmico y disipadores, LTspice, esquemáticos y creación de componentes, SMD, filtros pasivos y activos, diseño de PCB y salida a fabricación. 12 figuras interactivas y los problemas de examen de 2013-2016 resueltos.'},{t:'Transmisión del calor', url:'transmision-del-calor/',
+    {t:'Electrotecnia', url:'electrotecnia/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
+     d:'Accionamientos y requerimientos mecánicos, circuitos magnéticos y transformadores, conversión electromecánica, máquinas de continua, vectores espaciales y campo giratorio, asíncronas, síncronas de imanes permanentes y reluctancia conmutada. 9 figuras interactivas y los problemas de examen de 2012-2022 resueltos.'},{t:'Diseño y simulación electrónica', url:'dise-o-y-simulacion-electronica/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
+     d:'Flujo de diseño, fuentes lineales y rizado, reguladores zener, 78XX y LDO, cálculo térmico y disipadores, LTspice, esquemáticos y creación de componentes, SMD, filtros pasivos y activos, diseño de PCB y salida a fabricación. 12 figuras interactivas y los problemas de examen de 2013-2016 resueltos.'},{t:'Transmisión del calor', url:'transmision-del-calor/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
      d:'Conducción y ecuación general con k variable, resistencias térmicas y aletas, diferencias finitas, régimen transitorio y número de Biot, capa límite, convección forzada externa e interna, convección natural, radiación térmica e intercambiadores por LMTD y NTU. 13 figuras interactivas y los exámenes de 2019-2021 resueltos.'},
-    {t:'Regulación automática', url:'regulacion-automatica/',
-     d:'Lazo abierto y cerrado, transformada de Laplace, modelado y linealización, diagramas de bloques, análisis temporal de primer y segundo orden, errores y coeficientes estáticos, criterio de Routh, lugar de las raíces y diseño de compensadores de adelanto y atraso. 11 figuras interactivas que simulan de verdad y el 1.er parcial de 2022/23 resuelto.'},{t:'Organización y gestión de empresas', url:'organizacion-gestion-empresas/',
+    {t:'Regulación automática', url:'regulacion-automatica/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
+     d:'Lazo abierto y cerrado, transformada de Laplace, modelado y linealización, diagramas de bloques, análisis temporal de primer y segundo orden, errores y coeficientes estáticos, criterio de Routh, lugar de las raíces y diseño de compensadores de adelanto y atraso. 11 figuras interactivas que simulan de verdad y el 1.er parcial de 2022/23 resuelto.'},{t:'Organización y gestión de empresas', url:'organizacion-gestion-empresas/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
      d:'La empresa y sus objetivos, el entorno y las cinco fuerzas, toma de decisiones con Laplace, Wald, maximax y Savage, productividad y punto muerto, VAN, TIR y payback, localización, pedido óptimo y gestión de stocks, control estadístico del proceso con Cp y Cpk, y redes PERT con camino crítico. 10 figuras interactivas que calculan de verdad y 8 problemas tipo resueltos.'}]},
   {n:3, nombre:'Tercer curso', color:'var(--c3)', asig:[
-    {t:'Control por computador', url:'https://helionacon-ui.github.io/Control-por-computador-GIEIA/',
+    {t:'Control por computador', url:'https://helionacon-ui.github.io/Control-por-computador-GIEIA/', r:['Teoría', 'Simulador'],
      d:'Muestreo, transformada Z, estabilidad, Ragazzini y deadbeat. 24 simuladores y exámenes 2012–2026 resueltos.'},
-    {t:'Tecnología medioambiental', url:'https://helionacon-ui.github.io/Tecnolog-a-Medioambiental/',
-     d:'Legislación UE, calidad y tratamiento del agua, dispersión y control de contaminantes. Problemas resueltos, banco de preguntas y simulador de examen.'},{t:'Electrónica digital', url:'https://helionacon-ui.github.io/Electr-nica-digital/',
+    {t:'Tecnología medioambiental', url:'https://helionacon-ui.github.io/Tecnolog-a-Medioambiental/', r:['Teoría', 'Simulador', 'Exámenes'],
+     d:'Legislación UE, calidad y tratamiento del agua, dispersión y control de contaminantes. Problemas resueltos, banco de preguntas y simulador de examen.'},{t:'Electrónica digital', url:'https://helionacon-ui.github.io/Electr-nica-digital/', r:['Teoría', 'Simulador', 'Prácticas'],
      d:'Numeración, Boole, combinacional, biestables, autómatas y VHDL. Exámenes y hojas resueltos paso a paso, prácticas con simulador y simulacros.'},{t:'Informática para la automatización industrial'},
-    {t:'Modelado y simulación de sistemas', url:'https://helionacon-ui.github.io/Modelado-y-Simulaci-n-de-Sistemas/',
-     d:'Modelado, identificación, métodos numéricos, análisis del error, prácticas y qué se pregunta en el examen (2023–2026).'},{t:'Electrónica analógica', url:'electronica-analogica/',
-     d:'Amplificadores y decibelios, el operacional ideal y sus aplicaciones lineales, comparadores y disparadores de Schmitt, el AO real con GBW, slew rate, offset y CMRR, diagramas de Bode y filtros activos, cuadripolos y respuesta en frecuencia de amplificadores con transistores con el teorema de Miller. 10 figuras interactivas y 8 problemas resueltos.'},{t:'Sistemas basados en microprocesador', url:'sistemas-microprocesador/',
+    {t:'Modelado y simulación de sistemas', url:'https://helionacon-ui.github.io/Modelado-y-Simulaci-n-de-Sistemas/', r:['Teoría', 'Exámenes', 'Prácticas'],
+     d:'Modelado, identificación, métodos numéricos, análisis del error, prácticas y qué se pregunta en el examen (2023–2026).'},{t:'Electrónica analógica', url:'electronica-analogica/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
+     d:'Amplificadores y decibelios, el operacional ideal y sus aplicaciones lineales, comparadores y disparadores de Schmitt, el AO real con GBW, slew rate, offset y CMRR, diagramas de Bode y filtros activos, cuadripolos y respuesta en frecuencia de amplificadores con transistores con el teorema de Miller. 10 figuras interactivas y 8 problemas resueltos.'},{t:'Sistemas basados en microprocesador', url:'sistemas-microprocesador/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
      d:'El PIC16F84A en ensamblador: arquitectura y bancos de memoria, las 35 instrucciones, operaciones aritméticas y máscaras, retardos por cuenta de ciclos, el temporizador TMR0 y su preescalador, puertas de E/S y límites de corriente, displays de siete segmentos y teclados, interrupciones y memoria EEPROM. 10 figuras interactivas y 8 ejercicios de examen resueltos con el código completo.'},
-    {t:'Programación de sistemas en tiempo real', url:'programacion-tiempo-real/',
-     d:'C++ moderno y la STL, clases, herencia y polimorfismo, hilos, mutex y variables de condición, el planificador del sistema operativo, planificación en tiempo real con RM, DM y EDF, ejecutivo cíclico, tiempos de respuesta con techo de prioridad, lógica difusa y kNN. 12 figuras interactivas y 8 ejercicios resueltos con código completo.'},{t:'Sistemas robotizados', url:'sistemas-robotizados/',
-     d:'El robot industrial y su volumen de trabajo, matrices de rotación y transformación homogénea, cuaternios, Denavit-Hartenberg, cinemática inversa con todas las soluciones, jacobiana y singularidades, estática, trayectorias con splines y programación en RAPID. 12 figuras interactivas que calculan de verdad y 8 problemas tipo resueltos.'},{t:'Automatización industrial', url:'automatizacion-industrial/',
+    {t:'Programación de sistemas en tiempo real', url:'programacion-tiempo-real/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
+     d:'C++ moderno y la STL, clases, herencia y polimorfismo, hilos, mutex y variables de condición, el planificador del sistema operativo, planificación en tiempo real con RM, DM y EDF, ejecutivo cíclico, tiempos de respuesta con techo de prioridad, lógica difusa y kNN. 12 figuras interactivas y 8 ejercicios resueltos con código completo.'},{t:'Sistemas robotizados', url:'sistemas-robotizados/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario', 'Prácticas', 'Autoevaluación'],
+     d:'El robot industrial y su volumen de trabajo, matrices de rotación y transformación homogénea, cuaternios, Denavit-Hartenberg, cinemática inversa con todas las soluciones, jacobiana y singularidades, estática, trayectorias con splines y programación en RAPID. 12 figuras interactivas que calculan de verdad y 8 problemas tipo resueltos.'},{t:'Automatización industrial', url:'automatizacion-industrial/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
      d:'Neumática y electroneumática con FluidSim, válvulas n/m y fuerzas del cilindro, relés, enclavamientos y temporizadores, circuitos de mando y potencia, protecciones y pérdida de fase, arranque estrella-triángulo e inversión de giro, GRAFCET con alternativas, paralelos y contadores, y el PLC S7-1200 con la traducción a diagrama de contactos. 10 figuras interactivas y 8 problemas resueltos.'},
-    {t:'Ingeniería de control', url:'https://helionacon-ui.github.io/Ingenieria-de-control/',
+    {t:'Ingeniería de control', url:'https://helionacon-ui.github.io/Ingenieria-de-control/', r:['Teoría'],
      d:'Bode, Nyquist, márgenes de fase y ganancia, PID y compensadores de adelanto y retardo. Exámenes resueltos y simulacro.'},
-    {t:'Ingeniería de los sistemas de producción', url:'sistemas-produccion/',
+    {t:'Ingeniería de los sistemas de producción', url:'sistemas-produccion/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
      d:'Los flujos de un proceso de fabricación, deformación plástica y temperaturas de restauración y recristalización, curvas de tensión-deformación reales y punto de inestabilidad, tensor de tensiones y criterio de Von Mises, forja y recalcado, laminación, extrusión y trefilado, conformado de chapa, fundición, soldadura y programación de control numérico. 10 figuras interactivas y 8 problemas resueltos con los parciales de 2020.'}]},
   {n:4, nombre:'Cuarto curso', color:'var(--c4)', asig:[
     {t:'Proyectos de ingeniería'},{t:'Electrónica de potencia'},{t:'Instrumentación electrónica'},
     {t:'Optativas'},{t:'Trabajo fin de grado'}]}
 ];
 
-const list = document.getElementById('list');
-const q = document.getElementById('q');
-const empty = document.getElementById('empty');
+const $ = s => document.querySelector(s);
+const list = $('#list'), q = $('#q'), empty = $('#empty'), clr = $('#clr'), resEl = $('#res'), nowEl = $('#now'), nowSec = $('#now-sec');
 let filtro = 'all';
 
+const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 function mono(t){ const w=t.replace(/\b(de|del|la|las|los|y|e|en|para|por|a)\b/gi,'').split(/\s+/).filter(Boolean); const r=(w[0]||'')[0]+((w[1]||'')[0]||''); return /\b(I{1,3})$/.test(t)? (w[0][0]+t.match(/(I{1,3})$/)[1]).slice(0,3) : r.toUpperCase(); }
-function norm(s){ return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(); }
+const cap = (tag, cls, txt) => { const e=document.createElement(tag); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e; };
+
+/* texto de búsqueda precalculado (título + descripción + recursos + curso) */
+for (const c of CURSOS) for (const a of c.asig) a._h = norm([a.t, a.d||'', (a.r||[]).join(' '), c.nombre, c.n+'º curso'].join(' '));
+
+/* resalta los términos sin innerHTML y sin romper tildes */
+function hl(el, text, toks){
+  if (!toks.length){ el.textContent = text; return el; }
+  let ns = '', map = [];
+  for (let i=0;i<text.length;i++){ const n = norm(text[i]); for (const ch of n){ ns += ch; map.push(i); } }
+  const rg = [];
+  for (const t of toks){ for (let p=ns.indexOf(t); p>=0; p=ns.indexOf(t,p+t.length)) rg.push([map[p], map[p+t.length-1]+1]); }
+  if (!rg.length){ el.textContent = text; return el; }
+  rg.sort((a,b)=>a[0]-b[0]);
+  const m = [rg[0]];
+  for (const r of rg.slice(1)){ const l=m[m.length-1]; r[0]<=l[1] ? l[1]=Math.max(l[1],r[1]) : m.push(r); }
+  let i = 0;
+  for (const [a,b] of m){ if (a>i) el.append(text.slice(i,a)); el.append(cap('mark',null,text.slice(a,b))); i=b; }
+  if (i<text.length) el.append(text.slice(i));
+  return el;
+}
 
 const abiertos = new Set();
 try { JSON.parse(localStorage.getItem('hub-open')||'null')?.forEach(n=>abiertos.add(n)); } catch(e) {}
-let primera = !abiertos.size;
+const guardar = () => { try { localStorage.setItem('hub-open', JSON.stringify([...abiertos])); } catch(e) {} };
+
+function card(a, c, toks){
+  const ready = !!a.url;
+  const el = document.createElement(ready ? 'a' : 'div');
+  el.className = 'card ' + (ready ? 'ready' : 'soon');
+  if (ready) el.href = a.url;
+  el.style.setProperty('--k', c.color);
+  const top = cap('div','top');
+  top.append(cap('div','mono',mono(a.t)), cap('span','badge '+(ready?'ok':'soon'), ready ? 'Guía disponible' : (a.wip ? 'En progreso' : 'Próximamente')));
+  top.firstChild.setAttribute('aria-hidden','true');
+  el.append(top, hl(cap('div','t'), a.t, toks));
+  if (a.d) el.append(hl(cap('div','d'), a.d, toks));
+  if (ready && a.r){
+    const ul = cap('ul','pills'); ul.setAttribute('aria-label','Recursos incluidos');
+    const vis = a.r.slice(0,4);
+    vis.forEach(r => ul.append(cap('li',null,r)));
+    if (a.r.length>4) ul.append(cap('li','x','+'+(a.r.length-4)));
+    el.append(ul);
+  }
+  if (ready) el.append(cap('div','st','Abrir la guía →'));
+  return el;
+}
+
+function curso(c, items, toks){
+  const det = cap('details','curso'); det.style.setProperty('--k', c.color);
+  const conGuia = c.asig.filter(a=>a.url).length;
+  det.open = toks.length>0 || filtro==='ready' || abiertos.has(c.n);   // auto-expansión
+  const sm = cap('summary');
+  const n = cap('span','n',c.n+'º'); n.style.background = c.color;
+  const pr = cap('span','pr'), ct = cap('span','ct');
+  toks.length ? ct.append(cap('b',null,items.length), ' '+(items.length===1?'coincidencia':'coincidencias'))
+              : ct.append(cap('b',null,conGuia), ' de '+c.asig.length+' con guía');
+  const pb = cap('span','pb'), pi = cap('i'); pi.style.width = (100*conGuia/c.asig.length)+'%'; pb.append(pi);
+  pr.append(ct, pb);
+  const ch = cap('span','chev'); ch.setAttribute('aria-hidden','true');
+  sm.append(n, cap('span','nm',c.nombre), pr, ch);
+  det.addEventListener('toggle', () => { if (toks.length || filtro==='ready') return; det.open ? abiertos.add(c.n) : abiertos.delete(c.n); guardar(); });
+  const g = cap('div','grid');
+  items.forEach(a => g.append(card(a, c, toks)));
+  det.append(sm, g);
+  return det;
+}
+
+function buildNow(){
+  const f = document.createDocumentFragment();
+  for (const c of CURSOS) for (const a of c.asig){
+    if (!a.url) continue;
+    const l = cap('a'); l.href = a.url; l.style.setProperty('--k', c.color);
+    const n = cap('span','n',c.n+'º'); n.setAttribute('aria-hidden','true');
+    l.append(n, cap('span',null,a.t), cap('span','go','→'));
+    f.append(l);
+  }
+  nowEl.replaceChildren(f);
+}
 
 function render(){
-  const term = norm(q.value.trim());
-  list.textContent = '';
-  let shown = 0;
+  const toks = norm(q.value.trim()).split(/\s+/).filter(Boolean);
+  const f = document.createDocumentFragment();
+  let shown = 0, cursos = 0;
   for (const c of CURSOS){
-    const items = c.asig.filter(a => (filtro==='all' || a.url) && (!term || norm(a.t).includes(term)));
+    const items = c.asig.filter(a => (filtro==='all' || a.url) && toks.every(t => a._h.includes(t)));
     if (!items.length) continue;
-    const det = document.createElement('details'); det.className='curso'; det.style.setProperty('--k', c.color);
-    const conGuia = c.asig.filter(a=>a.url).length;
-    if (term || filtro==='ready' || abiertos.has(c.n) || (primera && conGuia)) det.open = true;
-    const sm = document.createElement('summary');
-    const n = document.createElement('span'); n.className='n'; n.style.background=c.color; n.textContent=c.n+'º';
-    const nm = document.createElement('span'); nm.className='nm'; nm.textContent=c.nombre;
-    const pr = document.createElement('span'); pr.className='pr';
-    const ct = document.createElement('span'); ct.className='ct';
-    const b = document.createElement('b'); b.textContent = conGuia;
-    ct.append(b, document.createTextNode(' de '+c.asig.length+' con guía'));
-    const pb = document.createElement('span'); pb.className='pb'; const pi=document.createElement('i'); pi.style.width=(100*conGuia/c.asig.length)+'%'; pb.append(pi);
-    pr.append(ct, pb);
-    const ch = document.createElement('span'); ch.className='chev'; ch.setAttribute('aria-hidden','true');
-    sm.append(n, nm, pr, ch);
-    det.addEventListener('toggle', () => {
-      if (term || filtro==='ready') return;
-      det.open ? abiertos.add(c.n) : abiertos.delete(c.n);
-      try { localStorage.setItem('hub-open', JSON.stringify([...abiertos])); } catch(e) {}
-    });
-    const g = document.createElement('div'); g.className='grid';
-    for (const a of items){
-      const el = document.createElement(a.url ? 'a' : 'div');
-      el.className = 'card ' + (a.url ? 'ready' : 'soon');
-      if (a.url){ el.href = a.url; }
-      el.style.setProperty('--k', c.color);
-      const mo = document.createElement('div'); mo.className='mono'; mo.setAttribute('aria-hidden','true'); mo.textContent=mono(a.t);
-      const t = document.createElement('div'); t.className='t'; t.textContent=a.t;
-      el.append(mo, t);
-      if (a.d){ const d=document.createElement('div'); d.className='d'; d.textContent=a.d; el.append(d); }
-      const st = document.createElement('div'); st.className='st';
-      const dot = document.createElement('span'); dot.className='dot';
-      st.append(dot, document.createTextNode(a.url ? 'Abrir la guía →' : 'Próximamente'));
-      el.append(st);
-      g.append(el); shown++;
-    }
-    det.append(sm, g); list.append(det);
+    f.append(curso(c, items, toks)); shown += items.length; cursos++;
   }
-  if (primera){ CURSOS.forEach(c=>{ if (c.asig.some(a=>a.url)) abiertos.add(c.n); }); primera=false; }
+  list.replaceChildren(f); list.removeAttribute('aria-busy');
+  nowSec.hidden = toks.length>0;
   empty.hidden = shown>0;
+  clr.hidden = !q.value;
+  resEl.textContent = toks.length ? (shown ? shown+(shown===1?' resultado':' resultados')+' en '+cursos+(cursos===1?' curso':' cursos') : '') : '';
 }
-document.getElementById('open-all').addEventListener('click',()=>{CURSOS.forEach(c=>abiertos.add(c.n));try{localStorage.setItem('hub-open',JSON.stringify([...abiertos]))}catch(e){};render();});
-document.getElementById('close-all').addEventListener('click',()=>{abiertos.clear();try{localStorage.setItem('hub-open','[]')}catch(e){};render();});
 
+let tm;
+q.addEventListener('input', () => { clr.hidden = !q.value; clearTimeout(tm); tm = setTimeout(render, 60); });
+clr.addEventListener('click', () => { q.value = ''; render(); q.focus(); });
+q.addEventListener('keydown', e => { if (e.key==='Escape' && q.value){ e.preventDefault(); q.value=''; render(); } });
+addEventListener('keydown', e => { if (e.key==='/' && !e.ctrlKey && !e.metaKey && !e.altKey && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)){ e.preventDefault(); q.focus(); q.select(); } });
+
+$('#open-all').addEventListener('click', () => { CURSOS.forEach(c=>abiertos.add(c.n)); guardar(); render(); });
+$('#close-all').addEventListener('click', () => { abiertos.clear(); guardar(); render(); });
 document.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => {
   filtro = b.dataset.f;
   document.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', String(x===b)));
   render();
 }));
-q.addEventListener('input', render);
 
 const total = CURSOS.reduce((s,c)=>s+c.asig.length,0);
 const ready = CURSOS.reduce((s,c)=>s+c.asig.filter(a=>a.url).length,0);
-document.getElementById('s-total').textContent = total;
-document.getElementById('s-ready').textContent = ready;
+$('#s-total').textContent = total; $('#s-ready').textContent = ready; $('#now-n').textContent = ready;
 
 const root = document.documentElement;
 try { const t = localStorage.getItem('hub-theme'); if (t) root.dataset.theme = t; } catch(e) {}
-document.getElementById('theme').addEventListener('click', () => {
+$('#theme').addEventListener('click', () => {
   const dark = root.dataset.theme ? root.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
   root.dataset.theme = dark ? 'light' : 'dark';
   try { localStorage.setItem('hub-theme', root.dataset.theme); } catch(e) {}
 });
 
+buildNow();
 render();
+if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
 </script>
 </body>
 </html>
