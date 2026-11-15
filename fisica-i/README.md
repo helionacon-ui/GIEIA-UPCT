@@ -1,8 +1,8 @@
-# Física I · Guía para aprobar · GIEyA (UPCT)
+# Física I · Guía para aprobar · GIEyA
 
 **Proyecto iniciado el 14 de noviembre de 2026.**
 
-Guía de estudio interactiva de Física I (Grado en Ingeniería Electrónica Industrial y Automática, UPCT), con el mismo diseño que las guías de Control por Computador e Ingeniería de Control: portada, un tema por página, simuladores, problemas resueltos, autoevaluación, laboratorio y formulario.
+Guía de estudio interactiva de Física I (Grado en Ingeniería Electrónica Industrial y Automática), con el mismo diseño que las guías de Control por Computador e Ingeniería de Control: portada, un tema por página, simuladores, problemas resueltos, autoevaluación, laboratorio y formulario.
 
 Ábrela en: https://helionacon-ui.github.io/Fisica-I-GIEIA/
 
@@ -12,7 +12,7 @@ Guía de estudio interactiva de Física I (Grado en Ingeniería Electrónica Ind
 - `cuestiones.html`: las 18 cuestiones de la «Recopilación de cuestiones teóricas para Física I» (Dpto. Física Aplicada), resueltas.
 - `examenes.html`: los 19 problemas de la «Recopilación de problemas de examen para Física I», resueltos paso a paso (el 15 solo planteado).
 - `problemas.html`: selección de la recopilación de E. Jódar con el resultado del solucionario oficial.
-- `laboratorio.html`: «Prácticas de física para ingenieros. Física I» (UPCT, 2017), reglas de errores del Apéndice II.
+- `laboratorio.html`: «Prácticas de física para ingenieros. Física I» (2017), reglas de errores del Apéndice II.
 
 ## Estructura
 
@@ -29,4 +29,4 @@ Las fórmulas se renderizan con MathJax desde CDN.
 ## Notas
 
 - Los resultados numéricos de los problemas de examen se han verificado por cálculo; los de la recopilación son los del solucionario oficial.
-- Proyecto personal de estudio; no es una página oficial de la UPCT.
+- Proyecto personal de estudio; no es una página oficial de la universidad.

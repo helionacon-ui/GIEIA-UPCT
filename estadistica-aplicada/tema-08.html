@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>T8 El modelo de regresión lineal simple · Estadística Aplicada · Guía para aprobar</title>
-<meta name="description" content="Estadística Aplicada (UPCT, GIEyA): tema 8, El modelo de regresión lineal simple">
+<meta name="description" content="Estadística Aplicada (GIEyA): tema 8, El modelo de regresión lineal simple">
 <meta name="theme-color" content="#6a4fa3">
 <link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -69,7 +69,7 @@
 <p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Enumera las cuatro hipótesis del modelo de regresión lineal simple y cómo se comprueban.</summary><div class="inner"><p>Linealidad (gráfico XY y residuos frente a ajustados), homocedasticidad (residuos frente a ajustados, sin embudo), normalidad (Q-Q y Shapiro-Wilk) e independencia (test de Durbin-Watson).</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Qué diferencia hay entre el intervalo de confianza y el de predicción en \(x_0\)?</summary><div class="inner"><p>El de confianza estima la MEDIA de Y en \(x_0\); el de predicción estima UNA observación futura y lleva un sumando 1 más dentro de la raíz, así que siempre es más ancho.</p></div></details><details class="paso"><summary><span class="pn">3</span>Si \(R^2=0{,}92\), ¿qué significa?</summary><div class="inner"><p>Que el modelo explica el 92 % de la variabilidad de Y; el 8 % restante queda en los residuos. No implica causalidad ni garantiza que el modelo sea válido: hay que revisar los residuos.</p></div></details><details class="paso"><summary><span class="pn">4</span>En la salida de R, la pendiente tiene p-valor 0,42. ¿Qué concluyes?</summary><div class="inner"><p>Que no se rechaza \(H_0:\beta_1=0\): la variable X no aporta información significativa sobre Y y el modelo no sirve para predecir.</p></div></details><details class="paso"><summary><span class="pn">5</span>La nube de puntos se curva hacia arriba. ¿Qué haces?</summary><div class="inner"><p>Transformar para linealizar: probar \(\ln y\) frente a x (modelo exponencial) o \(\ln y\) frente a \(\ln x\) (potencial), ajustar la regresión sobre los datos transformados y volver a validar los residuos.</p></div></details>
 </section>
 <nav class="pager" aria-label="Páginas"><a href="tema-07.html"><small>← Anterior</small>T7 · Contrastes de hipótesis y bondad de ajuste</a><a class="nx" href="cuestiones.html"><small>Siguiente →</small>Cuestiones de teoría</a></nav>
-<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Estadística Aplicada (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, hojas, prácticas de R y exámenes de 2014 a 2022) · página creada en noviembre de 2026</p>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Estadística Aplicada (GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, hojas, prácticas de R y exámenes de 2014 a 2022) · página creada en noviembre de 2026</p>
 </main>
 </div>
 <script src="app.js"></script>

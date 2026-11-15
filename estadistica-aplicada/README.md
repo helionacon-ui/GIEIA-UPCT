@@ -1,6 +1,6 @@
 # Estadística Aplicada · Guía para aprobar
 
-Guía de estudio de **Estadística Aplicada** (Grado en Ingeniería Electrónica y Automática, UPCT).
+Guía de estudio de **Estadística Aplicada** (Grado en Ingeniería Electrónica y Automática).
 
 8 temas en las 4 unidades didácticas del temario oficial, con **10 figuras interactivas** que calculan como R: caja y bigotes con detección de atípicos, árbol de probabilidad total y Bayes, modelos de probabilidad con el área sombreada, tabla conjunta con marginales y covarianza, **teorema central del límite** simulado y gráfico de control, intervalos de confianza y tamaño muestral, **región crítica y p-valor** con la potencia, bondad de ajuste ji-cuadrado, regresión con residuos e intervalos de predicción, y una **calculadora de tablas** (N, t, χ² y F).
 

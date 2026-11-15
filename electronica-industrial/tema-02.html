@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>T2 El diodo rectificador · Fundamentos de Electrónica Industrial · Guía para aprobar</title>
-<meta name="description" content="Fundamentos de Electrónica Industrial (UPCT, GIEyA): tema 2, El diodo rectificador">
+<meta name="description" content="Fundamentos de Electrónica Industrial (GIEyA): tema 2, El diodo rectificador">
 <meta name="theme-color" content="#5f7f1e">
 <link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
 <p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Cómo se analiza un circuito con varios diodos?</summary><div class="inner"><p>Suponiendo el estado de cada uno (ON u OFF), resolviendo el circuito lineal equivalente y COMPROBANDO la hipótesis: corriente positiva en los que se supusieron ON y \(V_{AK}<0{,}7\) V en los OFF.</p></div></details><details class="paso"><summary><span class="pn">2</span>Diferencia de rizado entre media onda y onda completa con el mismo C.</summary><div class="inner"><p>En onda completa la frecuencia de rizado es el doble (100 Hz en vez de 50), así que el condensador se descarga la mitad de tiempo y el rizado es <b>la mitad</b>.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Por qué en un puente la tensión de salida es 1,4 V menor que el pico?</summary><div class="inner"><p>Porque en cada semiciclo conducen dos diodos en serie, y cada uno cae 0,7 V.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Para qué sirve el diodo volante en paralelo con un relé?</summary><div class="inner"><p>Para dar camino a la corriente de la bobina cuando el transistor corta: sin él, \(v=L\,di/dt\) genera un pico de cientos de voltios que destruye el transistor. Se monta en inversa respecto de la alimentación.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Qué tres límites hay que comprobar en la hoja de un diodo?</summary><div class="inner"><p>La corriente directa máxima \(I_{F\,max}\), la tensión inversa de pico \(V_{RRM}\) y la potencia disipada (\(P=V_FI_F\)).</p></div></details>
 </section>
 <nav class="pager" aria-label="Páginas"><a href="tema-01.html"><small>← Anterior</small>T1 · Introducción a la electrónica</a><a class="nx" href="tema-03.html"><small>Siguiente →</small>T3 · Otros diodos: zener, LED y fotodiodos</a></nav>
-<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Fundamentos de Electrónica Industrial (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guiones de teoría, prácticas y exámenes de diciembre de 2022 y enero de 2023) · página creada en noviembre de 2026</p>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Fundamentos de Electrónica Industrial (GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guiones de teoría, prácticas y exámenes de diciembre de 2022 y enero de 2023) · página creada en noviembre de 2026</p>
 </main>
 </div>
 <script src="app.js"></script>

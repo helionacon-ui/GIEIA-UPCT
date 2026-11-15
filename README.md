@@ -1,8 +1,8 @@
-# Guías para aprobar · GIEyA · UPCT
+# Guías para aprobar · GIEyA
 
 **Proyecto iniciado el 5 de noviembre de 2026.**
 
-Página índice (https://helionacon-ui.github.io/GIEIA-UPCT/) con las guías de estudio de las asignaturas del Grado en Ingeniería Electrónica Industrial y Automática (UPCT).
+Página índice (https://helionacon-ui.github.io/GIEIA-UPCT/) con las guías de estudio de las asignaturas del Grado en Ingeniería Electrónica Industrial y Automática.
 
 ## Añadir una guía nueva
 
@@ -16,4 +16,4 @@ Página índice (https://helionacon-ui.github.io/GIEIA-UPCT/) con las guías de 
 
 4. Guarda los cambios (commit). La tarjeta pasa de «Próximamente» a «Abrir la guía».
 
-Proyecto personal de estudio; no es una página oficial de la UPCT.
+Proyecto personal de estudio; no es una página oficial de la universidad.

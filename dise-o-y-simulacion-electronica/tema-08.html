@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>T8 Filtros pasivos y activos · Diseño y Simulación Electrónica · Guía para aprobar</title>
-<meta name="description" content="Diseño y Simulación Electrónica (UPCT, GIEyA): tema 8, Filtros pasivos y activos">
+<meta name="description" content="Diseño y Simulación Electrónica (GIEyA): tema 8, Filtros pasivos y activos">
 <meta name="theme-color" content="#0b7a5a">
 <link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -79,7 +79,7 @@
 <p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Cuál es la frecuencia de corte de un RC?</summary><div class="inner"><p>\(f_c=\dfrac{1}{2\pi RC}\). En ella la amplitud cae a 0,707 (−3,01 dB) y la fase es de ∓45°.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Por qué no se encadenan filtros RC pasivos?</summary><div class="inner"><p>Porque cada etapa <b>carga</b> a la anterior: la frecuencia de corte se desplaza y la respuesta no es la suma de las individuales. El filtro activo aísla las etapas.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Qué significa Q en un filtro de segundo orden?</summary><div class="inner"><p>Mide la <b>resonancia</b> cerca del corte: con Q = 0,707 la respuesta es máximamente plana (Butterworth); con Q mayor aparece un pico y con Q menor la transición es más suave.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Cómo se fija Q en un Sallen-Key?</summary><div class="inner"><p>Con la ganancia del amplificador: \(K=3-1/Q\), es decir, \(R_b/R_a=K-1\). Con K ≥ 3 el filtro oscila.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Cuánta atenuación da un filtro de orden n una década por encima del corte?</summary><div class="inner"><p><b>20·n dB</b>: 20 dB el de primer orden, 40 el de segundo, 80 el de cuarto.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Qué limita en la práctica la frecuencia de un filtro activo?</summary><div class="inner"><p>El <b>producto ganancia-ancho de banda (GBW)</b> del operacional. Como regla, conviene que el GBW sea al menos diez veces la ganancia por la frecuencia de trabajo.</p></div></details>
 </section>
 <nav class="pager" aria-label="Páginas"><a href="tema-07.html"><small>← Anterior</small>T7 · Componentes SMD y encapsulados</a><a class="nx" href="tema-09.html"><small>Siguiente →</small>T9 · Diseño de la PCB: colocación y ruteo</a></nav>
-<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Diseño y Simulación Electrónica (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, transparencias, prácticas y exámenes de 2013 a 2016) · página creada en noviembre de 2026</p>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Diseño y Simulación Electrónica (GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (guía docente, transparencias, prácticas y exámenes de 2013 a 2016) · página creada en noviembre de 2026</p>
 </main>
 </div>
 <script src="app.js"></script>

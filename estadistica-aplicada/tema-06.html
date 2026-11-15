@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>T6 Estimación puntual y por intervalos · Estadística Aplicada · Guía para aprobar</title>
-<meta name="description" content="Estadística Aplicada (UPCT, GIEyA): tema 6, Estimación puntual y por intervalos">
+<meta name="description" content="Estadística Aplicada (GIEyA): tema 6, Estimación puntual y por intervalos">
 <meta name="theme-color" content="#6a4fa3">
 <link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -68,7 +68,7 @@
 <p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Qué significa «intervalo de confianza al 95 %»?</summary><div class="inner"><p>Que el procedimiento acierta el 95 % de las veces: si repitiéramos el muestreo muchas veces, el 95 % de los intervalos construidos contendría el parámetro. Para el intervalo ya calculado, el parámetro está o no está dentro.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Por qué \(S^2\) divide entre n−1?</summary><div class="inner"><p>Para que sea un estimador INSESGADO de \(\sigma^2\): dividiendo entre n se subestima sistemáticamente la varianza (se pierde un grado de libertad al estimar μ con \(\bar x\)).</p></div></details><details class="paso"><summary><span class="pn">3</span>(Parcial mayo 2022) ¿Qué tamaño muestral hace falta para estimar una proporción con error < 0,03 % al 95 % de confianza y sin información previa?</summary><div class="inner"><p>Peor caso \(\hat p=0{,}5\): \(n\ge\frac{1{,}96^2}{4(0{,}0003)^2}=\frac{3{,}8416}{3{,}6\times10^{-7}}=\mathbf{10\,671\,112}\). Un error tan pequeño en proporciones es carísimo en tamaño muestral.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Cómo cambia el intervalo si subo la confianza del 95 % al 99 %?</summary><div class="inner"><p>Se ensancha (z pasa de 1,96 a 2,576): más confianza con la misma muestra sólo se consigue siendo menos preciso.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Es simétrico el intervalo de confianza para la varianza?</summary><div class="inner"><p>No: se construye con dos cuantiles distintos de la \(\chi^2_{n-1}\), que es asimétrica, así que el estimador \(S^2\) no queda en el centro.</p></div></details>
 </section>
 <nav class="pager" aria-label="Páginas"><a href="tema-05.html"><small>← Anterior</small>T5 · Muestreo y distribuciones muestrales</a><a class="nx" href="tema-07.html"><small>Siguiente →</small>T7 · Contrastes de hipótesis y bondad de ajuste</a></nav>
-<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Estadística Aplicada (UPCT, GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, hojas, prácticas de R y exámenes de 2014 a 2022) · página creada en noviembre de 2026</p>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Estadística Aplicada (GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, hojas, prácticas de R y exámenes de 2014 a 2022) · página creada en noviembre de 2026</p>
 </main>
 </div>
 <script src="app.js"></script>
