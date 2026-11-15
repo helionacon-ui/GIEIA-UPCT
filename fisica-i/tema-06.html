@@ -53,7 +53,27 @@ details>summary{line-height:1.7;padding-block:.5em}
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(\vec r_{cm}\)</td><td>Centro de masas</td><td class="u">m</td></tr><tr><td class="sym">\(M\)</td><td>Masa total</td><td class="u">kg</td></tr><tr><td class="sym">\(\vec P\)</td><td>Momento lineal total</td><td class="u">kg·m/s</td></tr><tr><td class="sym">\(e\)</td><td>Coeficiente de restitución</td><td class="u">0 a 1</td></tr><tr><td class="sym">\(dm\)</td><td>Elemento de masa (continuo)</td><td class="u">kg</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Simulador · choque en una dimensión</p><div data-sim="choque"></div><figcaption>Mueve los controles y observa cómo cambian las magnitudes del recuadro.</figcaption></figure>
 <!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Centro de masas y por qué simplifica todo</p><p>El centro de masas \(\vec r_{cm}=\dfrac{\sum m_i\vec r_i}{\sum m_i}\) es el punto que se mueve como si toda la masa estuviera allí y todas las fuerzas <b>externas</b> actuasen sobre él: \(\sum\vec F_{ext}=M\vec a_{cm}\). Las fuerzas internas, por la 3.ª ley, se cancelan por parejas. Por eso un petardo que explota en el aire no altera la trayectoria de su centro de masas.</p><p class="ft">Momento lineal y choques</p><p>El momento lineal \(\vec p=m\vec v\) cambia solo por fuerzas externas: \(\sum\vec F_{ext}=d\vec p/dt\). En un choque, las fuerzas internas son enormes pero se cancelan y <b>el momento total se conserva</b> (siempre, en ambas componentes).</p>
-<p>La energía cinética, en cambio, solo se conserva en el <b>choque elástico</b>. En el <b>inelástico</b> parte se pierde; en el <b>perfectamente inelástico</b> los cuerpos quedan unidos y la pérdida es máxima. Receta: (1) conserva \(p\); (2) si es elástico, añade \(E_c\) (o usa \(e=1\)); (3) comprueba que la energía final no supera la inicial.</p></div><!--/amp1--><h3 id="t6-formulas">Lo que tienes que saber</h3>
+<p>La energía cinética, en cambio, solo se conserva en el <b>choque elástico</b>. En el <b>inelástico</b> parte se pierde; en el <b>perfectamente inelástico</b> los cuerpos quedan unidos y la pérdida es máxima. Receta: (1) conserva \(p\); (2) si es elástico, añade \(E_c\) (o usa \(e=1\)); (3) comprueba que la energía final no supera la inicial.</p></div><!--/amp1--><!--deep--><h3 id="t6-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4>1. Centro de masas: las fuerzas internas no cuentan</h4>
+<div class="eqd">\[\vec r_{cm}=\frac{\sum m_i\vec r_i}{M}\]</div>
+<p>Es el punto que se mueve como si toda la masa estuviese en él y todas las fuerzas <b>externas</b> actuasen sobre él.</p>
+<details class="dem"><summary><span class="pn">∴</span>Demostración de \(\vec F_{ext}=M\vec a_{cm}\)</summary><div class="inner"><ol class="pasos"><li>Sumamos la segunda ley de todas las partículas: \(\sum m_i\vec a_i=\sum\vec F_i^{ext}+\sum_i\sum_{j\ne i}\vec F_{ij}\).</li><li>Por la tercera ley, \(\vec F_{ij}=-\vec F_{ji}\): la doble suma de fuerzas internas se anula por parejas.</li><li>Como \(\sum m_i\vec a_i=M\vec a_{cm}\):</li></ol>
+<div class="eqd">\[\vec F_{ext}=M\vec a_{cm}\]</div>
+<p>Si \(\vec F_{ext}=0\), el momento \(\vec p=M\vec v_{cm}\) es constante: <b>conservación del momento lineal</b>. Una explosión en el aire no cambia la trayectoria del centro de masas.</p></div></details>
+<h4>2. Teorema de König y colisiones</h4>
+<div class="eqd">\[K=\tfrac12Mv_{cm}^2+K_{rel}\]</div>
+<p>La energía cinética es la del centro de masas más la del movimiento <i>respecto</i> a él. En un choque el momento se conserva, así que \(v_{cm}\) no cambia: <b>solo puede perderse \(K_{rel}\)</b>.</p>
+<details class="dem"><summary><span class="pn">∴</span>Choque elástico y totalmente inelástico (1D)</summary><div class="inner"><ul><li><b>Elástico</b> (se conservan \(p\) y \(K\)): la velocidad relativa se invierte, \(v_1'-v_2'=-(v_1-v_2)\). De ahí:</li></ul>
+<div class="eqd">\[v_1'=\frac{(m_1-m_2)v_1+2m_2v_2}{m_1+m_2}\]</div>
+<ul><li>Con \(m_1=m_2\) intercambian velocidades.</li><li><b>Coeficiente de restitución</b> \(e\): \(v_2'-v_1'=e(v_1-v_2)\). Vale 1 (elástico) o 0 (quedan unidos).</li><li><b>Totalmente inelástico:</b> \(v'=\dfrac{m_1v_1+m_2v_2}{m_1+m_2}\) y la energía perdida es \(\Delta K=\tfrac12\mu v_{rel}^2\), con la masa reducida \(\mu=\dfrac{m_1m_2}{m_1+m_2}\).</li></ul></div></details>
+<h4>3. Masa variable: el cohete</h4>
+<ol class="pasos"><li>El cohete expulsa gas a velocidad \(u\) respecto a él. Sin fuerzas externas, el momento total se conserva.</li><li>Por cada \(\mathrm dm<0\) de masa que pierde: \(m\,\mathrm dv=-u\,\mathrm dm\).</li><li>Integramos de \(m_0\) a \(m_f\):</li></ol>
+<div class="eqd">\[\Delta v=u\ln\frac{m_0}{m_f}\qquad\text{(Tsiolkovski)}\]</div>
+<p>El logaritmo crece despacio: para ganar velocidad hace falta mucho combustible, por eso se usan etapas que se desprenden.</p>
+<h4>4. Momento angular de un sistema</h4>
+<div class="eqd">\[\vec L=\vec L_{cm}+\vec L_{rel},\qquad \frac{\mathrm d\vec L}{\mathrm dt}=\vec\tau_{ext}\]</div>
+<p>Solo los momentos externos lo cambian. Sin momento externo se conserva: la patinadora que recoge los brazos reduce su momento de inercia y <b>gira más rápido</b>.</p>
+</div><!--/deep--><h3 id="t6-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>
 <li>\(\vec r_{CM}=\dfrac{\sum m_i\vec r_i}{M}=\dfrac1M\int\vec r\,dm\); \(\vec v_{CM}=\vec P/M\); \(\sum\vec F_{ext}=M\vec a_{CM}\).</li>
 <li>\(\vec L_O=\sum\vec r_i\times m_i\vec v_i\); \(d\vec L_O/dt=\sum\vec M_{O,ext}\).</li>

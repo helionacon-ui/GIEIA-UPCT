@@ -58,7 +58,31 @@ details>summary{line-height:1.7;padding-block:.5em}
 <p><b>Análisis dimensional:</b> una ecuación solo puede ser correcta si ambos miembros tienen las mismas dimensiones. Es el mejor detector de errores en un examen y a veces permite <b>deducir</b> una fórmula salvo constantes.</p><p class="ft">Vectores: qué guarda cada operación</p><p>Un vector tiene módulo, dirección y sentido; en componentes, \(\vec A=(A_x,A_y,A_z)\). Dos productos, dos significados distintos:</p>
 <ul><li><b>Escalar</b> \(\vec A\cdot\vec B=|A||B|\cos\theta=A_xB_x+A_yB_y+A_zB_z\): un <b>número</b> que mide cuánto apuntan en la misma dirección. Si es 0, son perpendiculares. Aparece en el trabajo, \(W=\vec F\cdot\vec d\).</li>
 <li><b>Vectorial</b> \(\vec A\times\vec B\): un <b>vector</b> perpendicular a ambos, de módulo \(|A||B|\sin\theta\) (el área del paralelogramo). Aparece en el momento de una fuerza, \(\vec\tau=\vec r\times\vec F\).</li></ul>
-<p>Un vector unitario se obtiene dividiendo por su módulo: \(\hat u=\vec A/|\vec A|\). Para <b>proyectar</b> una fuerza sobre una dirección, usa el producto escalar con el unitario.</p></div><!--/amp1--><h3 id="t1-formulas">Lo que tienes que saber</h3>
+<p>Un vector unitario se obtiene dividiendo por su módulo: \(\hat u=\vec A/|\vec A|\). Para <b>proyectar</b> una fuerza sobre una dirección, usa el producto escalar con el unitario.</p></div><!--/amp1--><!--deep--><h3 id="t1-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4>1. Las unidades se comprueban solas</h4>
+<div class="box key deepnote"><b>Idea clave.</b> una ecuación física solo puede ser correcta si <b>los dos miembros tienen las mismas dimensiones</b>. No se puede igualar metros con segundos.</div>
+<p>Esa regla, el <b>análisis dimensional</b>, sirve para dos cosas:</p>
+<ul><li><b>detectar errores</b>: si al final de un problema te sale m/s donde esperabas m, algo falló;</li><li><b>deducir</b> la forma de una ley, como en el ejemplo siguiente.</li></ul>
+<details class="dem"><summary><span class="pn">∴</span>Ejemplo: deducir el periodo del péndulo sin resolver ninguna ecuación</summary><div class="inner"><p>Suponemos que el periodo depende de la longitud, la masa y la gravedad:</p>
+<div class="eqd">\[T=C\,L^{a}\,m^{b}\,g^{c}\]</div>
+<p>Las dimensiones son \([T]=\mathrm T\), \([L]=\mathrm L\), \([m]=\mathrm M\) y \([g]=\mathrm{L\,T^{-2}}\). Igualamos los exponentes:</p>
+<ol class="pasos"><li><b>Masa:</b> ningún otro factor lleva M, luego \(b=0\). La masa no influye.</li><li><b>Tiempo:</b> \(1=-2c\), luego \(c=-\tfrac12\).</li><li><b>Longitud:</b> \(0=a+c\), luego \(a=\tfrac12\).</li></ol>
+<div class="eqd">\[T=C\sqrt{L/g}\]</div>
+<p>El análisis dimensional <b>no da la constante</b> (\(C=2\pi\) sale de resolver la dinámica, tema 5), pero ya sabes la dependencia y que la masa sobra.</p></div></details>
+<h4>2. Un vector no es «tres números»</h4>
+<div class="box key deepnote"><b>Idea clave.</b> el vector es algo físico (una fuerza, una velocidad) que <b>no depende de los ejes</b> que elijas. Las componentes sí cambian; el módulo, no.</div>
+<p>Al girar los ejes un ángulo \(\alpha\) en el plano:</p>
+<div class="eqd">\[A_x'=A_x\cos\alpha+A_y\sin\alpha,\qquad A_y'=-A_x\sin\alpha+A_y\cos\alpha\]</div>
+<p>Lo que se conserva son el módulo \(\sqrt{A_x^2+A_y^2}\) y los productos escalares. Por eso el producto escalar es tan útil: es un número que <b>todos los observadores calculan igual</b>.</p>
+<details class="dem"><summary><span class="pn">∴</span>Por qué \(\vec A\cdot\vec B=|A||B|\cos\theta\) es lo mismo que \(A_xB_x+A_yB_y+A_zB_z\)</summary><div class="inner"><p>Calculamos \(|\vec A-\vec B|^2\) de dos formas.</p>
+<ol class="pasos"><li><b>Teorema del coseno</b> en el triángulo de lados \(\vec A\), \(\vec B\) y \(\vec A-\vec B\): \(|\vec A-\vec B|^2=A^2+B^2-2AB\cos\theta\).</li><li><b>En componentes:</b> \(|\vec A-\vec B|^2=\sum(A_i-B_i)^2=A^2+B^2-2\sum A_iB_i\).</li><li>Comparando: \(\sum A_iB_i=AB\cos\theta\).</li></ol></div></details>
+<h4>3. Producto escalar y producto vectorial</h4>
+<ul><li><b>Escalar</b> \(\vec A\cdot\vec B\): resultado <b>número</b>. Mide cuánto de uno apunta en la dirección del otro. Es 0 si son perpendiculares. Aparece en el trabajo y en las proyecciones.</li><li><b>Vectorial</b> \(\vec A\times\vec B\): resultado <b>vector</b>, perpendicular a ambos. Su módulo es \(|A||B|\sin\theta\), el área del paralelogramo que forman. Aparece en el momento de una fuerza.</li></ul>
+<p>En componentes:</p>
+<div class="eqd">\[\vec A\times\vec B=(A_yB_z-A_zB_y,\;A_zB_x-A_xB_z,\;A_xB_y-A_yB_x)\]</div>
+<details class="dem"><summary><span class="pn">∴</span>Propiedades que se usan en los problemas</summary><div class="inner"><ul><li><b>No es conmutativo:</b> \(\vec B\times\vec A=-\vec A\times\vec B\). El sentido lo da la regla de la mano derecha (una convención).</li><li><b>Es nulo si son paralelos</b>, porque \(\sin\theta=0\).</li><li><b>Producto triple</b> \(\vec A\cdot(\vec B\times\vec C)\): volumen del paralelepípedo. Si vale 0, los tres vectores son coplanares.</li></ul>
+<div class="box trap deepnote"><b>Cuidado.</b> \(\vec A\times\vec B=\vec 0\) <b>no</b> significa que alguno sea cero; solo que son paralelos.</div></div></details>
+</div><!--/deep--><h3 id="t1-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>
 <li>Módulo \(|\vec A|=\sqrt{A_x^2+A_y^2+A_z^2}\); unitario \(\hat u=\vec A/|\vec A|\); suma por componentes (regla del paralelogramo).</li>
 <li>Producto escalar: \(\vec A\cdot\vec B=AB\cos\theta=A_xB_x+A_yB_y+A_zB_z\). Proyección de \(\vec A\) sobre \(\vec B\): \(\vec A\cdot\hat u_B\) (vector proyección: \((\vec A\cdot\hat u_B)\hat u_B\)). Conmutativo y distributivo.</li>

@@ -58,7 +58,34 @@ details>summary{line-height:1.7;padding-block:.5em}
 <ul><li><b>MRUA</b> (\(a\) constante): \(v=v_0+at\), \(x=x_0+v_0t+\tfrac12at^2\), \(v^2=v_0^2+2a\,\Delta x\). Elige la ecuación que no contenga la incógnita que no te piden.</li>
 <li><b>Tiro parabólico</b>: dos movimientos independientes. En horizontal, MRU; en vertical, MRUA con \(a=-g\). El tiempo es lo único que comparten.</li></ul>
 <p>Con signos: define un eje, decide qué sentido es positivo y no lo cambies a mitad del problema.</p><p class="ft">Movimiento relativo: sumar velocidades como vectores</p><p>Si un objeto \(P\) se mueve con velocidad \(\vec v_{P/B}\) respecto a un sistema móvil \(B\) y este se mueve con \(\vec v_{B/A}\) respecto a tierra \(A\), entonces \(\vec v_{P/A}=\vec v_{P/B}+\vec v_{B/A}\). Es una <b>suma vectorial</b>, no de módulos.</p>
-<p>El ejemplo clásico es una barca en un río: la velocidad de la barca respecto al <b>agua</b> más la de la corriente respecto a <b>tierra</b> da la velocidad real. El tiempo de cruce depende solo de la componente perpendicular a la orilla; la deriva sale de la componente a lo largo de la corriente.</p></div><!--/amp1--><h3 id="t2-formulas">Lo que tienes que saber</h3>
+<p>El ejemplo clásico es una barca en un río: la velocidad de la barca respecto al <b>agua</b> más la de la corriente respecto a <b>tierra</b> da la velocidad real. El tiempo de cruce depende solo de la componente perpendicular a la orilla; la deriva sale de la componente a lo largo de la corriente.</p></div><!--/amp1--><!--deep--><h3 id="t2-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4>1. Todo sale de dos definiciones</h4>
+<div class="box key deepnote"><b>Idea clave.</b> velocidad y aceleración son <b>derivadas</b>; las ecuaciones del movimiento son sus <b>integrales</b>.</div>
+<div class="eqd">\[\vec v=\frac{\mathrm d\vec r}{\mathrm dt},\qquad \vec a=\frac{\mathrm d\vec v}{\mathrm dt}\]</div>
+<details class="dem"><summary><span class="pn">∴</span>Movimiento con aceleración constante (MRUA)</summary><div class="inner"><ol class="pasos"><li>Integramos la aceleración: \(v=v_0+at\).</li><li>Integramos la velocidad: \(x=x_0+v_0t+\tfrac12at^2\).</li><li>Para una ecuación <b>sin tiempo</b> usamos la regla de la cadena \(a=v\,\dfrac{\mathrm dv}{\mathrm dx}\), es decir \(v\,\mathrm dv=a\,\mathrm dx\).</li><li>Integrando: \(\tfrac12(v^2-v_0^2)=a(x-x_0)\).</li></ol>
+<div class="eqd">\[v^2=v_0^2+2a\,(x-x_0)\]</div>
+<p>El truco \(v\,\mathrm dv=a\,\mathrm dx\) funciona también cuando \(a\) depende de la posición, y es el origen del teorema trabajo-energía (tema 4).</p></div></details>
+<h4>2. Tiro parabólico</h4>
+<p>Sin rozamiento, los movimientos horizontal y vertical son <b>independientes</b>:</p>
+<div class="eqd">\[x=v_0\cos\theta\;t,\qquad y=v_0\sin\theta\;t-\tfrac12gt^2\]</div>
+<p>Si eliminamos el tiempo queda la trayectoria, una parábola:</p>
+<div class="eqd">\[y=x\tan\theta-\frac{g\,x^2}{2v_0^2\cos^2\theta}\]</div>
+<details class="dem"><summary><span class="pn">∴</span>Alcance y altura máxima</summary><div class="inner"><ul><li><b>Alcance</b> (llega a la misma altura): \(R=\dfrac{v_0^2\sin2\theta}{g}\). Es máximo para \(\theta=45^\circ\), y \(\theta\) y \(90^\circ-\theta\) alcanzan lo mismo.</li><li><b>Altura máxima</b> (cuando \(v_y=0\)): \(H=\dfrac{v_0^2\sin^2\theta}{2g}\).</li></ul>
+<div class="box trap deepnote"><b>Cuidado.</b> Estas fórmulas valen <b>solo</b> si salida y llegada están a la misma altura. Si no, resuelve \(y(t)=y_{llegada}\) directamente.</div></div></details>
+<h4>3. Movimiento circular: de dónde sale \(v^2/R\)</h4>
+<p>Un punto en una circunferencia de radio \(R\) tiene \(\vec r=R(\cos\theta,\sin\theta)\). Derivamos dos veces, con \(\dot\theta=\omega\):</p>
+<div class="eqd">\[\vec v=R\omega(-\sin\theta,\cos\theta)\]</div>
+<div class="eqd">\[\vec a=\underbrace{R\dot\omega(-\sin\theta,\cos\theta)}_{\text{tangencial}}\;\underbrace{-\,R\omega^2(\cos\theta,\sin\theta)}_{\text{hacia el centro}}\]</div>
+<ul><li><b>Tangencial:</b> \(a_t=R\alpha\). Cambia el <i>módulo</i> de la velocidad.</li><li><b>Normal (centrípeta):</b> \(a_n=\omega^2R=v^2/R\). Cambia la <i>dirección</i>.</li></ul>
+<p>En una trayectoria cualquiera, \(R\) se sustituye por el radio de curvatura \(\rho\).</p>
+<h4>4. Movimiento relativo</h4>
+<ul><li>Si \(S'\) solo se <b>traslada</b>: \(\vec v=\vec v\,'+\vec V\) y \(\vec a=\vec a\,'+\vec A\). Es la suma de velocidades de siempre.</li><li>Si \(S'\) <b>gira</b>, los vectores unitarios de \(S'\) cambian con el tiempo y aparecen términos nuevos.</li></ul>
+<details class="dem"><summary><span class="pn">∴</span>Velocidad y aceleración en un sistema que gira</summary><div class="inner"><ol class="pasos"><li>Escribimos \(\vec r\,'=x'\hat\imath'+y'\hat\jmath'+z'\hat k'\).</li><li>Al derivar hay que derivar también los unitarios, que giran con \(\vec\omega\): \(\mathrm d\hat\imath'/\mathrm dt=\vec\omega\times\hat\imath'\).</li><li>Resulta:</li></ol>
+<div class="eqd">\[\vec v=\vec V+\vec v\,'+\vec\omega\times\vec r\,'\]</div>
+<p>Derivando otra vez:</p>
+<div class="eqd">\[\vec a=\vec A+\vec a\,'+\underbrace{2\vec\omega\times\vec v\,'}_{\text{Coriolis}}+\underbrace{\vec\omega\times(\vec\omega\times\vec r\,')}_{\text{centrípeta}}+\dot{\vec\omega}\times\vec r\,'\]</div>
+<p>Vistos desde el sistema que gira, estos términos se interpretan como <b>fuerzas de inercia</b> (tema 3).</p></div></details>
+</div><!--/deep--><h3 id="t2-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>
 <li>MRUA: \(x=x_0+v_0t+\tfrac12at^2\), \(v=v_0+at\), \(v^2=v_0^2+2a\Delta x\). Tiro parabólico: \(y_{max}=\dfrac{v_0^2\sin^2\alpha}{2g}\), alcance \(x_{max}=\dfrac{v_0^2\sin2\alpha}{g}\).</li>
 <li>\(\vec a=a_t\hat u_t+a_n\hat u_n\); \(a_t=\dfrac{\vec a\cdot\vec v}{v}\); \(a_n=\sqrt{a^2-a_t^2}=\dfrac{|\vec v\times\vec a|}{v}\); \(\rho=v^2/a_n\).</li>

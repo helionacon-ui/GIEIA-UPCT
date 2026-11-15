@@ -54,7 +54,26 @@ details>summary{line-height:1.7;padding-block:.5em}
 <figure class="fig"><p class="ft">Simulador · flotación y presión con la profundidad</p><div data-sim="fluidos"></div><figcaption>Mueve los controles y observa cómo cambian las magnitudes del recuadro.</figcaption></figure>
 <!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Presión y principio fundamental de la hidrostática</p><p>La presión es fuerza por unidad de área, \(p=F/A\) (pascal). En un fluido en reposo, aumenta con la profundidad: \(p=p_0+\rho g h\). Dos consecuencias: (1) todos los puntos a la <b>misma profundidad</b> y en el mismo fluido tienen la misma presión, sea cual sea la forma del recipiente; (2) la presión no depende del volumen total, solo de la altura de la columna.</p>
 <p>Atención con la presión <b>manométrica</b> (\(\rho gh\), sin sumar \(p_0\)) frente a la <b>absoluta</b>.</p><p class="ft">Pascal y Arquímedes</p><p><b>Pascal:</b> un aumento de presión en un fluido encerrado se transmite íntegro a todos sus puntos: de ahí la prensa hidráulica, \(F_2=F_1\,A_2/A_1\) (con desplazamientos inversos, de modo que el trabajo se conserva).</p>
-<p><b>Arquímedes:</b> todo cuerpo sumergido recibe un empuje vertical igual al peso del fluido desalojado, \(E=\rho_{fl}\,V_{sum}\,g\). Si la densidad del cuerpo es menor que la del fluido, flota con una fracción sumergida \(\rho_{cuerpo}/\rho_{fl}\).</p></div><!--/amp1--><h3 id="t9-formulas">Lo que tienes que saber</h3>
+<p><b>Arquímedes:</b> todo cuerpo sumergido recibe un empuje vertical igual al peso del fluido desalojado, \(E=\rho_{fl}\,V_{sum}\,g\). Si la densidad del cuerpo es menor que la del fluido, flota con una fracción sumergida \(\rho_{cuerpo}/\rho_{fl}\).</p></div><!--/amp1--><!--deep--><h3 id="t9-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4>1. Presión y principio de Pascal</h4>
+<p>La presión es fuerza normal por unidad de área. En un fluido en reposo es <b>la misma en todas las direcciones</b>: no hay fuerzas tangenciales, y las normales sobre un elemento triangular infinitesimal deben compensarse en cualquier orientación.</p>
+<details class="dem"><summary><span class="pn">∴</span>Ecuación fundamental \(\mathrm dp/\mathrm dz=-\rho g\)</summary><div class="inner"><ol class="pasos"><li>Una lámina de fluido de área \(A\) y espesor \(\mathrm dz\) está en equilibrio: \(pA-(p+\mathrm dp)A-\rho gA\,\mathrm dz=0\).</li><li>Simplificando:</li></ol>
+<div class="eqd">\[\frac{\mathrm dp}{\mathrm dz}=-\rho g\]</div>
+<ul><li>Líquido (\(\rho\) constante): \(p=p_0+\rho gh\), con \(h\) la profundidad.</li><li>La presión solo depende de la profundidad: en vasos comunicantes el líquido alcanza la misma altura.</li><li>Prensa hidráulica: \(F_2/F_1=A_2/A_1\).</li></ul></div></details>
+<details class="dem"><summary><span class="pn">∴</span>Atmósfera isoterma</summary><div class="inner"><ol class="pasos"><li>Gas ideal: \(\rho=pM/RT\). Sustituimos: \(\dfrac{\mathrm dp}{p}=-\dfrac{Mg}{RT}\,\mathrm dz\).</li><li>Integrando:</li></ol>
+<div class="eqd">\[p=p_0\,e^{-z/H},\qquad H=\frac{RT}{Mg}\approx8{,}4\ \mathrm{km}\ \ (288\ \mathrm K)\]</div>
+<p>Cada \(\approx5{,}8\) km la presión se reduce a la mitad.</p></div></details>
+<h4>2. Empuje de Arquímedes</h4>
+<div class="box key deepnote"><b>Idea clave.</b> el empuje es igual al peso del fluido desalojado.</div>
+<ol class="pasos"><li>La presión sobre la superficie del cuerpo es la <b>misma</b> que si el cuerpo fuese sustituido por fluido.</li><li>Ese trozo de fluido estaba en equilibrio, así que el empuje compensa su peso.</li></ol>
+<div class="eqd">\[E=\rho_f\,V_{sum}\,g\]</div>
+<p>Se aplica en el centro de gravedad del fluido desalojado (centro de carena). Si flota, \(V_{sum}/V=\rho_c/\rho_f\).</p>
+<h4>3. Fuerza sobre una pared plana sumergida</h4>
+<p>La presión crece con la profundidad, así que la resultante <b>no</b> se aplica en el centro.</p>
+<details class="dem"><summary><span class="pn">∴</span>Fuerza y centro de presiones</summary><div class="inner"><ol class="pasos"><li>Con \(y\) medido a lo largo de la pared desde la superficie: \(F=\int\rho g\,y\sin\alpha\,\mathrm dA=\rho g\,h_{cg}A\).</li><li>Es decir, <b>presión en el centroide por el área</b>.</li><li>El punto de aplicación queda más abajo:</li></ol>
+<div class="eqd">\[y_{cp}=y_{cg}+\frac{I_{cg}}{y_{cg}A}\]</div>
+<p>Ejemplo, rectángulo vertical de altura \(h\) con el borde en la superficie: \(F=\rho g\tfrac h2\,bh\) y \(y_{cp}=\tfrac23h\), porque \(I_{cg}/(y_{cg}A)=h/6\).</p></div></details>
+</div><!--/deep--><h3 id="t9-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>
 <li>\(p=p_0+\rho gh\); \(F=pS\) o \(F=\int p\,dS\) si varía.</li>
 <li>Fuerza sobre una pared vertical rectangular de anchura b entre profundidades \(h_1\) y \(h_2\): \(F=\rho gb\dfrac{h_2^2-h_1^2}{2}=\rho g\,h_{cg}S\).</li>

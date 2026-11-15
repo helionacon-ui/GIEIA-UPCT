@@ -54,7 +54,29 @@ details>summary{line-height:1.7;padding-block:.5em}
 <figure class="fig"><p class="ft">Simulador · carrera de sólidos rodando</p><div data-sim="rodadura"></div><figcaption>Mueve los controles y observa cómo cambian las magnitudes del recuadro.</figcaption></figure>
 <!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Rotación = traslación con nombres nuevos</p><p>Casi todo lo de rotación es una traducción de la traslación: posición → ángulo \(\theta\), velocidad → \(\omega\), aceleración → \(\alpha\), masa → <b>momento de inercia</b> \(I=\sum m_ir_i^2\), fuerza → <b>momento</b> \(\tau=rF\sin\theta\), momento lineal → <b>momento angular</b> \(L=I\omega\).</p>
 <p>La ley fundamental es \(\sum\tau=I\alpha\). \(I\) depende del eje: disco o cilindro macizo \(\tfrac12MR^2\), aro \(MR^2\), esfera maciza \(\tfrac25MR^2\), barra por el centro \(\tfrac1{12}ML^2\). Para otro eje paralelo, <b>Steiner</b>: \(I=I_{cm}+Md^2\).</p><p class="ft">Rodadura sin deslizar y conservación del momento angular</p><p>Si un cuerpo rueda sin deslizar, \(v_{cm}=\omega R\) y su energía cinética tiene dos partes: \(E_c=\tfrac12Mv^2+\tfrac12I\omega^2\). Por eso, bajando un plano, un cilindro llega más tarde que un bloque sin rozamiento: parte de la energía se invierte en girar. La aceleración es \(a=\dfrac{g\sin\theta}{1+I/(MR^2)}\).</p>
-<p>Si el momento neto sobre un sistema es cero, el momento angular se conserva: \(I_1\omega_1=I_2\omega_2\). El patinador que recoge los brazos reduce \(I\) y gira más deprisa.</p></div><!--/amp1--><h3 id="t7-formulas">Lo que tienes que saber</h3>
+<p>Si el momento neto sobre un sistema es cero, el momento angular se conserva: \(I_1\omega_1=I_2\omega_2\). El patinador que recoge los brazos reduce \(I\) y gira más deprisa.</p></div><!--/amp1--><!--deep--><h3 id="t7-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4>1. El momento de inercia sale de la energía cinética</h4>
+<ol class="pasos"><li>Un sólido gira con \(\omega\) alrededor de un eje fijo: cada partícula lleva \(v_i=\omega r_i\).</li><li>Energía cinética: \(K=\sum\tfrac12m_iv_i^2=\tfrac12\Big(\sum m_ir_i^2\Big)\omega^2\).</li><li>Se define el momento de inercia:</li></ol>
+<div class="eqd">\[I=\sum m_ir_i^2=\int r^2\,\mathrm dm\qquad\Rightarrow\qquad K=\tfrac12I\omega^2\]</div>
+<p>Es a la rotación lo que la masa a la traslación, pero depende de <b>dónde</b> está la masa respecto al eje.</p>
+<details class="dem"><summary><span class="pn">∴</span>Disco homogéneo y teorema de Steiner</summary><div class="inner"><p><b>Disco</b> de masa \(M\) y radio \(R\), respecto a su eje. Dividimos en anillos de radio \(r\) y ancho \(\mathrm dr\), con \(\mathrm dm=\sigma\,2\pi r\,\mathrm dr\) y \(\sigma=M/\pi R^2\):</p>
+<div class="eqd">\[I=\int_0^R r^2\,\sigma\,2\pi r\,\mathrm dr=\tfrac12\pi\sigma R^4=\tfrac12MR^2\]</div>
+<p><b>Steiner.</b> Para un eje paralelo al del centro de masas y a distancia \(d\), escribimos \(\vec r=\vec r_{cm}+\vec r\,'\):</p>
+<div class="eqd">\[I=\sum m\,(d^2+r'^2+2\vec d\cdot\vec r\,')=Md^2+I_{cm}+2\vec d\cdot\sum m\vec r\,'\]</div>
+<p>El último término se anula porque \(\sum m\vec r\,'=0\) (definición de centro de masas). Resultado:</p>
+<div class="eqd">\[I=I_{cm}+Md^2\]</div>
+<p>El mínimo \(I\) siempre corresponde a un eje que pasa por el centro de masas.</p></div></details>
+<h4>2. La ecuación de la rotación</h4>
+<div class="eqd">\[\tau=I\alpha\]</div>
+<p>Es la segunda ley para giros. El momento \(\vec\tau=\vec r\times\vec F\) solo cuenta la componente de la fuerza <b>perpendicular al brazo</b>: empujar la puerta cerca de las bisagras cuesta mucho más.</p>
+<h4>3. Rodadura sin deslizamiento</h4>
+<ul><li>Condición: el punto de contacto está instantáneamente en reposo, \(v_{cm}=\omega R\) y \(a_{cm}=\alpha R\).</li><li>Energía: traslación más rotación. Con \(I_{cm}=kMR^2\):</li></ul>
+<div class="eqd">\[K=\tfrac12Mv_{cm}^2+\tfrac12I_{cm}\omega^2=\tfrac12Mv^2(1+k)\]</div>
+<details class="dem"><summary><span class="pn">∴</span>Bajando por un plano inclinado</summary><div class="inner"><ol class="pasos"><li><b>Por energía</b> desde una altura \(h\): \(v=\sqrt{\dfrac{2gh}{1+k}}\).</li><li><b>Por dinámica:</b> \(a=\dfrac{g\sin\theta}{1+k}\).</li></ol>
+<p>Según el cuerpo:</p>
+<table><tr><th>Cuerpo</th><th>\(k\)</th><th>\(a\)</th></tr><tr><td>Esfera maciza</td><td>\(2/5\)</td><td>\(\tfrac57g\sin\theta\)</td></tr><tr><td>Disco o cilindro</td><td>\(1/2\)</td><td>\(\tfrac23g\sin\theta\)</td></tr><tr><td>Esfera hueca</td><td>\(2/3\)</td><td>\(\tfrac35g\sin\theta\)</td></tr><tr><td>Aro</td><td>\(1\)</td><td>\(\tfrac12g\sin\theta\)</td></tr></table>
+<ul><li>Gana la esfera maciza y <b>no importan ni la masa ni el radio</b>.</li><li>Rozamiento necesario: \(f=\dfrac{k}{1+k}Mg\sin\theta\le\mu_eMg\cos\theta\), luego \(\mu_e\ge\dfrac{k}{1+k}\tan\theta\).</li><li>Este rozamiento es estático y <b>no disipa energía</b> (el punto de contacto no desliza), por eso se conserva la energía mecánica.</li></ul></div></details>
+</div><!--/deep--><h3 id="t7-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>
 <li>\(I=\sum m_ir_i^2=\int r^2dm\); radio de giro \(I=MR_g^2\). Varilla centro \(ML^2/12\), extremo \(ML^2/3\); disco/cilindro \(\tfrac12MR^2\); aro \(MR^2\); esfera maciza \(\tfrac25MR^2\); hueca \(\tfrac23MR^2\); cilindro hueco de radios \(R_1,R_2\): \(\tfrac12M(R_1^2+R_2^2)\) (cuestión oficial 4); cono respecto a su eje \(\tfrac3{10}MR^2\) (cuestión 12).</li>
 <li><b>Steiner</b>: \(I=I_{CM}+Md^2\). <b>Figuras planas</b>: \(I_z=I_x+I_y\) (disco: \(I_x=I_y=\tfrac14MR^2\)). Respecto a un punto: \(I_O=\tfrac12(I_x+I_y+I_z)\).</li>

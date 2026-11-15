@@ -56,7 +56,27 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Las tres leyes de Newton en una frase cada una</p><p><b>1.ª (inercia):</b> sin fuerza neta, un cuerpo conserva su velocidad. <b>2.ª:</b> \(\sum\vec F=m\vec a\). <b>3.ª:</b> si A empuja a B, B empuja a A con la misma fuerza y sentido contrario <b>sobre otro cuerpo</b>; por eso nunca se cancelan entre sí en el diagrama de uno solo.</p>
 <p><b>Método universal:</b> (1) dibuja el cuerpo aislado y todas las fuerzas que actúan <b>sobre él</b> (diagrama de cuerpo libre), (2) elige ejes cómodos (en un plano inclinado, uno paralelo y otro perpendicular), (3) escribe \(\sum F=ma\) en cada eje, (4) resuelve. El 80 % de los fallos está en el paso 1.</p><p class="ft">Rozamiento, tensiones y movimiento circular</p><p>El rozamiento estático se adapta hasta un máximo \(\mu_eN\); el cinético vale \(\mu_cN\) y se opone al movimiento. Ojo: \(N\) <b>no siempre es \(mg\)</b>; en un plano inclinado, \(N=mg\cos\theta\).</p>
 <p>En una cuerda ideal y una polea sin masa, la tensión es la misma a ambos lados. En el <b>movimiento circular</b>, la fuerza neta hacia el centro vale \(m v^2/R\) (fuerza centrípeta): no es una fuerza nueva, es el nombre de la suma de las reales (rozamiento, tensión, normal…) en esa dirección.</p>
-<p>Y la gravitación: \(F=G\,\dfrac{Mm}{r^2}\), lo que da \(g=GM/R^2\) en la superficie y la velocidad orbital \(v=\sqrt{GM/r}\).</p></div><!--/amp1--><h3 id="t3-formulas">Lo que tienes que saber</h3>
+<p>Y la gravitación: \(F=G\,\dfrac{Mm}{r^2}\), lo que da \(g=GM/R^2\) en la superficie y la velocidad orbital \(v=\sqrt{GM/r}\).</p></div><!--/amp1--><!--deep--><h3 id="t3-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4>1. La segunda ley: qué dice realmente</h4>
+<div class="eqd">\[\vec F=\frac{\mathrm d\vec p}{\mathrm dt}\;\;\xrightarrow{\;m\text{ cte}\;}\;\;\vec F=m\vec a\]</div>
+<ul><li>\(\vec F\) es la suma de <b>todas las fuerzas que actúan sobre el cuerpo</b>, nunca las que él ejerce.</li><li>Solo vale en un <b>sistema inercial</b>.</li><li>La forma \(\mathrm d\vec p/\mathrm dt\) sigue valiendo con masa variable (cohetes, tema 6).</li></ul>
+<details class="dem"><summary><span class="pn">∴</span>Plano inclinado: ¿cuándo empieza a deslizar?</summary><div class="inner"><ol class="pasos"><li>Perpendicular al plano: \(N=mg\cos\theta\).</li><li>A lo largo del plano, el rozamiento estático equilibra el peso: \(f=mg\sin\theta\).</li><li>Condición de reposo: \(f\le\mu_eN\), es decir \(mg\sin\theta\le\mu_e\,mg\cos\theta\).</li><li>Simplificando:</li></ol>
+<div class="eqd">\[\tan\theta\le\mu_e\;\;\Rightarrow\;\;\theta_c=\arctan\mu_e\]</div>
+<p>El ángulo crítico <b>no depende de la masa</b>; sirve para medir \(\mu_e\) con una rampa. Una vez desliza, \(a=g(\sin\theta-\mu_c\cos\theta)\).</p></div></details>
+<h4>2. Fuerzas de inercia (sistemas no inerciales)</h4>
+<div class="box key deepnote"><b>Idea clave.</b> desde un sistema que acelera con \(\vec A\), la segunda ley exige añadir una fuerza ficticia \(-m\vec A\).</div>
+<div class="eqd">\[m\vec a\,'=\vec F-m\vec A\]</div>
+<p>No es una interacción real: no hay nadie que la ejerza ni pareja de acción-reacción. Es el precio de describir el movimiento desde un sistema acelerado.</p>
+<details class="dem"><summary><span class="pn">∴</span>Dos casos que aparecen siempre</summary><div class="inner"><ul><li><b>Ascensor</b> que sube con aceleración \(a\): peso aparente \(N=m(g+a)\). Pesas más al arrancar hacia arriba y menos al frenar. En caída libre (\(a=-g\)), \(N=0\).</li><li><b>Sistema que gira</b> con \(\omega\): aparece la fuerza <b>centrífuga</b> \(m\omega^2\vec r\) (hacia fuera) y, si el cuerpo se mueve respecto al sistema, la de <b>Coriolis</b> \(-2m\vec\omega\times\vec v\,'\).</li></ul>
+<p>Ambas salen de los términos de aceleración del tema 2.</p></div></details>
+<h4>3. Gravitación</h4>
+<div class="eqd">\[F=G\frac{Mm}{r^2}\]</div>
+<p>Con ella se explican las leyes de Kepler y el valor de \(g\).</p>
+<details class="dem"><summary><span class="pn">∴</span>Tercera ley de Kepler y velocidad orbital</summary><div class="inner"><ol class="pasos"><li>Órbita circular: la gravedad es la fuerza centrípeta, \(\dfrac{GMm}{r^2}=\dfrac{mv^2}{r}\).</li><li>Velocidad orbital: \(v=\sqrt{GM/r}\).</li><li>Con \(v=2\pi r/T\):</li></ol>
+<div class="eqd">\[T^2=\frac{4\pi^2}{GM}\,r^3\]</div>
+<ul><li>Ni \(v\) ni \(T\) dependen de la masa del satélite.</li><li>En la superficie, \(g=GM/R^2\approx9{,}8\ \mathrm{m/s^2}\). A una altura \(h\): \(g(h)=g_0\,[R/(R+h)]^2\).</li><li>A 400 km (la ISS) todavía vale \(\approx8{,}7\ \mathrm{m/s^2}\): los astronautas flotan porque están en <b>caída libre</b>, no porque no haya gravedad.</li></ul></div></details>
+<div class="box key deepnote"><b>Idea clave.</b> <b>Teorema de las capas (Newton).</b> Una esfera homogénea atrae a un cuerpo exterior como si toda su masa estuviese en el centro. En el interior solo cuenta la masa a menor radio, y en una esfera homogénea resulta \(g\propto r\).</div>
+</div><!--/deep--><h3 id="t3-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>
 <li>Rozamiento: \(F_e\le\mu_eN\), \(F_d=\mu_dN\). Plano inclinado que empieza a deslizar: \(\mu_e=\tan\theta_{crit}\).</li>
 <li>Viscoso: \(m\,dv/dt=mg-kv\Rightarrow v=\dfrac{mg}{k}\left(1-e^{-kt/m}\right)\), \(v_{lim}=mg/k\).</li>
