@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Problemas resueltos · Electrónica Analógica · Guía para aprobar</title>
+<meta name="description" content="Problemas de examen de Electrónica Analógica (UPCT) resueltos paso a paso">
+<meta name="theme-color" content="#8a6a12">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Electrónica Analógica</a><span class="sep">›</span><span>Practicar</span><span class="sep">›</span><span>Problemas</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">El amplificador operacional</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Introducción a los amplificadores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 El amplificador operacional ideal</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Aplicaciones lineales del operacional</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Aplicaciones no lineales</a><a href="tema-05.html" style="--tc:var(--c6)">T5 El amplificador operacional real</a><div class="grp">Respuesta en frecuencia</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Diagramas de Bode y filtros</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Cuadripolos</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Respuesta en frecuencia de amplificadores con transistores</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)" class="on" aria-current="page">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y simulación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec" style="--tc:var(--c8);--tcs:var(--c8s)"><div class="sh"><span aria-hidden="true" class="badge">Ex</span><div class="shx"><p class="kick">Practicar · Problemas</p><h2 id="exam">Los problemas del examen, resueltos</h2><div class="tags"><span class="tag">8 problemas tipo</span><span class="tag w">2022 – 2024</span></div></div></div>
+<div class="zero"><p class="ft">Cómo usarlos</p><p>Los exámenes repiten un puñado de tipos: condición entre resistencias, Bode, comparador con Zéner, CMRR y respuesta en frecuencia con transistores. Estos ocho los cubren. <b>Resuélvelos en papel</b> antes de abrir la solución.</p></div><div class="prob"><h3 class="ph" id="ex1">Problema 1 · Fuente de corriente controlada por tensión <span class="tag">2024</span> <a class="tag" href="tema-03.html">T3</a></h3><div class="enun"><p class="et">Enunciado</p>Obtén la relación que deben verificar las resistencias de un circuito con AO para que se comporte como una <b>fuente de corriente controlada por tensión</b>, \(I_L=f(V_i)\), independiente de la carga \(Z_L\). Halla la expresión de la corriente por la carga una vez satisfecha esa condición.</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p>Es la <b>fuente de Howland</b>, y es el ejercicio 1 del final de enero de 2024. La idea: una realimentación positiva a través de la carga compensa exactamente el efecto de ésta, de modo que la corriente deja de depender de \(Z_L\).</p>
+<p>El circuito tiene \(R_1\) de la entrada a la patilla (−), \(R_2\) de realimentación, \(R_3\) de la entrada a la (+) y \(R_4\) desde la salida a la (+), con la carga colgando del nudo no inversor.</p>
+<p><b>Planteamiento.</b> Por superposición en la entrada no inversora, y aplicando las dos reglas de oro, se llega a una expresión de la forma</p>
+\[I_L=\frac{V_i}{R}\cdot k_1+V_L\cdot k_2\]
+<p>donde el segundo término es el que estropea la fuente, porque depende de la tensión en la carga. <b>La condición es anular \(k_2\)</b>, y resulta ser el equilibrio de los dos divisores:</p>
+\[\boxed{\frac{R_2}{R_1}=\frac{R_4}{R_3}}\]
+<p>Con todas las resistencias iguales a \(R\) la condición se cumple sola y queda</p>
+\[\boxed{I_L=\frac{V_i}{R}}\]
+<p>es decir, una corriente que depende <b>sólo</b> de la tensión de entrada y de una resistencia, y <b>no</b> de la carga: eso es una fuente de corriente ideal controlada por tensión.</p>
+<div class="box key"><p><b>Cómo reconocer estos ejercicios:</b> cuando el enunciado pide una relación entre resistencias «para que el circuito se comporte como…», lo que hay que hacer es escribir la salida completa y <b>anular el término que sobra</b>. Es la misma técnica que en el restador (anular el modo común) y en el amplificador de instrumentación. La condición siempre acaba siendo un equilibrio entre dos divisores.</p>
+<p>Limitación práctica: el margen de tensión en la carga está acotado por la saturación del AO, así que la fuente sólo es ideal mientras \(V_L\) se mantenga dentro de ese margen.</p></div></div></details></div><div class="prob"><h3 class="ph" id="ex2">Problema 2 · Ganancia compleja y diagrama de Bode <span class="tag">2024</span> <a class="tag" href="tema-06.html">T6</a></h3><div class="enun"><p class="et">Enunciado</p>Dado un circuito con \(R=R_a=R_b=10\) kΩ y \(C=10\) nF, cuya ganancia resulta \(G(j\omega)=-\dfrac{R_b}{R_a}\cdot\dfrac{1}{1+j\omega RC}\): a) obtén la ganancia compleja; b) dibuja el diagrama de Bode equivalente.</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>a) Parámetros.</b></p>
+\[K=-\frac{R_b}{R_a}=-1\ \Rightarrow\ 20\log|K|=0\ \text{dB},\qquad
+f_c=\frac{1}{2\pi RC}=\frac{1}{2\pi\cdot10^4\cdot10^{-8}}=1591{,}5\ \text{Hz}\]
+<p>Es un <b>paso bajo de primer orden</b> con ganancia unidad e inversión de signo.</p>
+<p><b>b) Diagrama asintótico.</b></p>
+<div class="tw"><table><tr><th>Zona</th><th>Módulo</th><th>Fase</th></tr>
+<tr><td>\(f\ll f_c\)</td><td>0 dB (horizontal)</td><td>180°</td></tr>
+<tr><td>\(f=f_c=1592\) Hz</td><td>−3 dB</td><td>135°</td></tr>
+<tr><td>\(f\gg f_c\)</td><td>−20 dB/década</td><td>90°</td></tr></table></div>
+<p>La fase se mueve entre \(f_c/10=159\) Hz y \(10f_c=15{,}9\) kHz.</p>
+<p><b>Puntos de comprobación.</b></p>
+<div class="tw"><table><tr><th>f</th><th>\(\omega RC\)</th><th>\(|G|\)</th><th>dB</th><th>fase</th></tr>
+<tr><td>100 Hz</td><td>0,0628</td><td>0,998</td><td>−0,02</td><td>176,4°</td></tr>
+<tr><td>1 kHz</td><td>0,628</td><td>0,847</td><td>−1,45</td><td>147,9°</td></tr>
+<tr><td>1592 Hz</td><td>1,000</td><td>0,707</td><td><b>−3,01</b></td><td><b>135,0°</b></td></tr>
+<tr><td>10 kHz</td><td>6,283</td><td>0,157</td><td>−16,07</td><td>99,0°</td></tr>
+<tr><td>100 kHz</td><td>62,83</td><td>0,0159</td><td>−35,97</td><td>90,9°</td></tr></table></div>
+<p>Comprobación con la asíntota: de 1592 Hz a 100 kHz hay 1,798 décadas, luego la asíntota predice −35,96 dB. El valor real es −35,97 dB: a dos décadas del corte, la asíntota es <b>exacta</b> a efectos prácticos.</p>
+<div class="box key"><p>Si el enunciado da el circuito en vez de la ganancia, el camino es: sustituir el condensador por \(1/j\omega C\), aplicar \(G=-Z_2/Z_1\) (inversor) y <b>normalizar</b> hasta dejar los paréntesis en la forma \(1+j\omega/\omega_c\). Ese paso de normalizar es el que decide el ejercicio.</p></div></div></details></div><div class="prob"><h3 class="ph" id="ex3">Problema 3 · Comparador con Zéner y formas de onda <span class="tag">2024</span> <a class="tag" href="tema-04.html">T4</a></h3><div class="enun"><p class="et">Enunciado</p>Un AO alimentado a ±15 V (satura en ±13,6 V) tiene dos diodos Zéner ideales en la realimentación, \(V_{Z1}=10\) V y \(V_{Z2}=5\) V, con \(R=10\) kΩ y una referencia de −5 V. a) Obtén la función de transferencia \(V_o=f(V_i)\). b) Dibuja entrada y salida con una triangular de 20 Vpp, valor medio nulo y 100 Hz.</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>a) Función de transferencia.</b> Los Zéner en oposición <b>limitan</b> la salida: el circuito no llega a ±13,6 V sino a los valores que fijan los Zéner. Con la señal en la entrada no inversora y la referencia en la inversora:</p>
+\[V_o=\begin{cases}+5\ \text{V}&\text{si }V_i>-5\ \text{V}\\ -10\ \text{V}&\text{si }V_i<-5\ \text{V}\end{cases}\]
+<p>Es un comparador con <b>salida asimétrica</b>: dos Zéner distintos, dos niveles distintos.</p>
+<p><b>b) Formas de onda.</b> La triangular va de −10 a +10 V con \(T=10\) ms. La rampa recorre 20 V en 5 ms, es decir, <b>4 V/ms</b>.</p>
+<p>Para ir de −5 V a −10 V hacen falta \(5/4=1{,}25\) ms, y otro tanto para volver: la señal está por debajo del umbral durante <b>2,5 ms</b> de cada 10.</p>
+<div class="tw"><table><tr><th>Intervalo</th><th>Salida</th><th>Duración</th></tr>
+<tr><td>\(V_i>-5\) V</td><td><b>+5 V</b></td><td>7,5 ms</td></tr>
+<tr><td>\(V_i<-5\) V</td><td><b>−10 V</b></td><td>2,5 ms</td></tr></table></div>
+<p>La salida es una onda cuadrada de 100 Hz, asimétrica en amplitud y en tiempo, con un <b>ciclo de trabajo del 75 %</b>. Su valor medio es</p>
+\[\bar V_o=\frac{5\cdot7{,}5+(-10)\cdot2{,}5}{10}=\frac{37{,}5-25}{10}=1{,}25\ \text{V}\]
+<div class="box key"><p>Dos cosas se corrigen aquí: que los niveles sean <b>5 y −10 V</b> (los Zéner mandan sobre la saturación) y que el ciclo de trabajo <b>no</b> sea del 50 % (el umbral está descentrado). Son dos asimetrías independientes.</p></div></div></details></div><div class="prob"><h3 class="ph" id="ex4">Problema 4 · Ganancia diferencial, modo común y CMRR <span class="tag">2024</span> <a class="tag" href="tema-05.html">T5</a></h3><div class="enun"><p class="et">Enunciado</p>De un amplificador diferencial se pide: a) obtener \(A_d\) y \(A_{cm}\); b) la relación entre resistencias para minimizar \(A_{cm}\); c) con \(R_1=R_4=10\) kΩ, \(R_2=R_3=1\) kΩ se mide un CMRR de <b>70 dB</b> a 200 Hz. Si se acopla un armónico de red de 200 Hz y 100 mV, ¿qué interferencia aparece en la salida?</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>a) Las dos ganancias.</b> Por superposición en el restador:</p>
+\[v_o=\frac{R_4}{R_3+R_4}\left(1+\frac{R_2}{R_1}\right)v_2-\frac{R_2}{R_1}v_1\]
+<p>Escribiendo \(v_1=v_{cm}-v_d/2\) y \(v_2=v_{cm}+v_d/2\) y agrupando:</p>
+\[A_d=\frac12\left[\frac{R_4}{R_3+R_4}\left(1+\frac{R_2}{R_1}\right)+\frac{R_2}{R_1}\right],\qquad
+A_{cm}=\frac{R_4}{R_3+R_4}\left(1+\frac{R_2}{R_1}\right)-\frac{R_2}{R_1}\]
+<p><b>b) Condición de equilibrio.</b> \(A_{cm}=0\) exige</p>
+\[\frac{R_4}{R_3+R_4}\left(1+\frac{R_2}{R_1}\right)=\frac{R_2}{R_1}
+\ \Longleftrightarrow\ \boxed{\frac{R_1}{R_2}=\frac{R_3}{R_4}}\]
+<p>Con \(R_1=R_4=10\) kΩ y \(R_2=R_3=1\) kΩ: \(R_1/R_2=10\) pero \(R_3/R_4=0{,}1\). <b>No están equilibradas</b>, y por eso el circuito tiene ganancia en modo común apreciable.</p>
+<p><b>c) Interferencia.</b> Un armónico que entra igual por las dos entradas es, por definición, modo común. Con \(A_d=10\):</p>
+\[CMRR=10^{70/20}=10^{3{,}5}=3162\]
+\[A_{cm}=\frac{A_d}{CMRR}=\frac{10}{3162}=3{,}162\cdot10^{-3}\]
+\[v_{o,\text{interf}}=A_{cm}\cdot100\ \text{mV}=\boxed{0{,}316\ \text{mV}}\]
+<p>Si la señal útil a la salida fuese de 50 mV, la interferencia representaría un <b>0,63 %</b>: aceptable. Con un CMRR de sólo 40 dB subiría a 10 mV, un 20 %: inaceptable.</p>
+<div class="box key"><p>En la práctica, el CMRR de un restador <b>no lo limita el AO</b> (que suele tener 90-120 dB) sino las <b>tolerancias de las resistencias</b>. Con resistencias del 1 %, el CMRR del circuito difícilmente pasa de 46 dB por mucho que el AO sea excelente. Por eso se usan redes de resistencias apareadas o un amplificador de instrumentación integrado.</p></div></div></details></div><div class="prob"><h3 class="ph" id="ex5">Problema 5 · Efecto Miller y frecuencia de corte superior <span class="tag">tipo</span> <a class="tag" href="tema-08.html">T8</a></h3><div class="enun"><p class="et">Enunciado</p>Un amplificador en emisor común tiene \(R_{th}=1{,}8\) kΩ a la entrada, \(C_{\pi}=20\) pF, \(C_{\mu}=5\) pF, ganancia de etapa \(A_v=-100\), y a la salida 4,7 kΩ con 10 pF de carga. Calcula \(C_i\) por Miller, estima \(f_H\) por constantes de tiempo y repite con \(A_v=-10\).</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>1) Miller.</b></p>
+\[C_M=C_{\mu}(1+|A_v|)=5(1+100)=505\ \text{pF},\qquad C_i=C_{\pi}+C_M=20+505=525\ \text{pF}\]
+<p>Un condensador de 5 pF aporta el <b>96 %</b> de la capacidad de entrada.</p>
+<p><b>2) Constantes de tiempo en circuito abierto.</b></p>
+\[\tau_1=1800\cdot525\ \text{pF}=945\ \text{ns},\qquad \tau_2=4700\cdot10\ \text{pF}=47\ \text{ns}\]
+\[f_H\approx\frac{1}{2\pi\sum\tau_i}=\frac{1}{2\pi\cdot992\ \text{ns}}=\boxed{160{,}4\ \text{kHz}}\]
+<p><b>3) Con \(A_v=-10\).</b></p>
+\[C_M=55\ \text{pF},\quad C_i=75\ \text{pF},\quad \tau_1=135\ \text{ns},\quad \sum\tau=182\ \text{ns}\]
+\[f_H\approx\boxed{874{,}5\ \text{kHz}}\]
+<p>Dividiendo la ganancia por 10, el ancho de banda se multiplica por <b>5,5</b>: el producto ganancia-ancho de banda se mantiene aproximadamente, igual que en el AO. No sale exactamente ×10 porque \(C_{\pi}\) y el nudo de salida no dependen de la ganancia.</p>
+<p><b>Sin tener en cuenta Miller</b> saldría \(C_i=25\) pF, \(\tau_1=45\) ns y \(f_H=1{,}73\) MHz: <b>once veces más</b> que el valor correcto. Es el error que más falsea estos ejercicios.</p>
+<div class="box key"><p>La solución de ingeniería a este compromiso es el <b>cascodo</b>: un emisor común con ganancia ≈ −1 (sin efecto Miller apreciable) seguido de un base común que aporta toda la ganancia y cuya entrada y salida están aisladas. Misma ganancia total, muchísimo más ancho de banda.</p></div></div></details></div><div class="prob"><h3 class="ph" id="ex6">Problema 6 · Parámetros de un cuadripolo en T <span class="tag">tipo</span> <a class="tag" href="tema-07.html">T7</a></h3><div class="enun"><p class="et">Enunciado</p>Una red en T tiene \(Z_a=1\) kΩ, \(Z_b=2\) kΩ en las ramas serie y \(Z_c=5\) kΩ en la paralela. Calcula los parámetros z y, a partir de ellos, los h. ¿Es recíproca? ¿Y simétrica?</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>Parámetros z</b> (puertas en circuito abierto). En una red en T se leen del dibujo:</p>
+\[z_{11}=Z_a+Z_c=6\ \text{k}\Omega,\quad z_{22}=Z_b+Z_c=7\ \text{k}\Omega,\quad z_{12}=z_{21}=Z_c=5\ \text{k}\Omega\]
+<p><b>Parámetros h</b>, con \(\Delta z=6\cdot7-5\cdot5=17\):</p>
+\[h_{11}=\frac{\Delta z}{z_{22}}=\frac{17}{7}=2{,}429\ \text{k}\Omega,\qquad
+h_{12}=\frac{z_{12}}{z_{22}}=0{,}7143\]
+\[h_{21}=-\frac{z_{21}}{z_{22}}=-0{,}7143,\qquad
+h_{22}=\frac{1}{z_{22}}=0{,}1429\ \text{mS}\]
+<p><b>Comprobación física de \(h_{11}\)</b>, que es la impedancia de entrada con la salida en <b>cortocircuito</b>:</p>
+\[h_{11}=Z_a+(Z_b\parallel Z_c)=1+\frac{2\cdot5}{7}=1+1{,}4286=2{,}4286\ \text{k}\Omega\ \checkmark\]
+<p><b>Recíproca</b>: \(z_{12}=z_{21}\) ✓ (es una red pasiva). <b>Simétrica</b>: no, porque \(z_{11}\ne z_{22}\) al ser \(Z_a\ne Z_b\).</p>
+<p>Fíjate en las unidades de los h: ohmios, adimensional, adimensional y siemens. De ahí el nombre de <b>híbridos</b>.</p></div></details></div><div class="prob"><h3 class="ph" id="ex7">Problema 7 · Amplificador de instrumentación para un puente <span class="tag">tipo</span> <a class="tag" href="tema-03.html">T3</a></h3><div class="enun"><p class="et">Enunciado</p>Un puente de sensores da \(v_2-v_1=5\) mV sobre un modo común de 2,5 V. Hay que amplificar por 100. a) ¿Por qué no sirve un restador simple? b) Diseña el amplificador de instrumentación con \(R_3=R_4=10\) kΩ. c) ¿Cuánto vale la salida y cuánta interferencia deja el modo común si el CMRR es de 100 dB?</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>a) Por qué no sirve el restador.</b> Dos razones:</p>
+<ul>
+<li><b>Impedancia de entrada baja y distinta</b> en cada rama (\(R_1\) frente a \(R_3+R_4\)): carga el puente de forma asimétrica y lo desequilibra antes de medir.</li>
+<li><b>Exige equilibrio perfecto.</b> La relación señal-modo común es de 1 a 500; un desequilibrio del 1 % deja pasar unos 25 mV, <b>cinco veces mayor que la señal</b>.</li>
+</ul>
+<p><b>b) Diseño.</b> Con \(R_3=R_4\) la segunda etapa tiene ganancia 1, así que toda la ganancia la da la primera:</p>
+\[1+\frac{2R_2}{R_1}=100\ \Rightarrow\ \frac{R_2}{R_1}=49{,}5\]
+<p>Con \(R_2=47\) kΩ normalizada, \(R_1=2\cdot47/99=950\) Ω, y la ganancia real es</p>
+\[A=1+\frac{2\cdot47}{0{,}950}=99{,}95\approx100\]
+<p><b>c) Salida e interferencia.</b></p>
+\[v_o=100\cdot5\ \text{mV}=0{,}5\ \text{V}\]
+\[v_{o,cm}=\frac{A}{10^{100/20}}\cdot2{,}5\ \text{V}=\frac{100}{10^5}\cdot2{,}5=2{,}5\ \text{mV}\]
+<p>Un 0,5 % de la señal útil: asumible.</p>
+<div class="box key"><p>La clave del amplificador de instrumentación es que la ganancia se ajusta con <b>una sola resistencia</b>, sin tocar el equilibrio del restador. Por eso todos los integrados (AD620, INA128) sacan una patilla para \(R_G\) y nada más.</p></div></div></details></div><div class="prob"><h3 class="ph" id="ex8">Problema 8 · Límites de un AO real: GBW, slew rate y offset <span class="tag">tipo</span> <a class="tag" href="tema-05.html">T5</a></h3><div class="enun"><p class="et">Enunciado</p>Un circuito con ganancia de ruido 11 usa un AO con \(GBW=1\) MHz, \(SR=0{,}5\) V/µs y \(V_{OS}=2\) mV. a) ¿Cuál es su ancho de banda? b) ¿Hasta qué frecuencia da 10 V de pico sin distorsión? c) ¿Qué error de continua introduce el offset? d) ¿Cuál es la limitación más restrictiva?</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>a) Ancho de banda.</b></p>
+\[BW=\frac{GBW}{A_{\text{ruido}}}=\frac{10^6}{11}=90{,}9\ \text{kHz}\]
+<p><b>b) Límite por slew rate.</b></p>
+\[f_{\max}=\frac{SR}{2\pi V_p}=\frac{0{,}5\cdot10^6}{2\pi\cdot10}=7{,}96\ \text{kHz}\]
+<p><b>c) Error por offset.</b></p>
+\[v_{o,OS}=V_{OS}\cdot A_{\text{ruido}}=2\ \text{mV}\cdot11=22\ \text{mV}\]
+<p><b>d) Comparación.</b></p>
+<div class="tw"><table><tr><th>Limitación</th><th>Valor</th><th>Tipo</th></tr>
+<tr><td>Ancho de banda (GBW)</td><td>90,9 kHz</td><td>pequeña señal, depende de la <b>ganancia</b></td></tr>
+<tr><td><b>Slew rate</b></td><td><b>7,96 kHz</b></td><td>gran señal, depende de la <b>amplitud</b></td></tr>
+<tr><td>Offset</td><td>22 mV de error en continua</td><td>constante, independiente de la frecuencia</td></tr></table></div>
+<p>Con 10 V de pico, la limitación más restrictiva es con diferencia el <b>slew rate</b>: por encima de 7,96 kHz la senoide sale <b>triangular</b> aunque estemos muy dentro del ancho de banda. Y si la señal fuese pequeña y lenta, el problema sería el <b>offset</b>: 22 mV pueden ser enormes frente a una señal de decenas de milivoltios.</p>
+<p>Dos remedios: reducir la amplitud de salida (a 1 V de pico, \(f_{\max}\) sube a 79,6 kHz) o elegir un AO con más slew rate (un TL081 da 13 V/µs, con lo que \(f_{\max}=207\) kHz y ya mandaría el GBW).</p></div></details></div>
+<figure class="fig"><p class="ft">Figura interactiva · diagrama de Bode</p><div data-sim="bode"></div><figcaption>Comprueba el problema 2: con R = 10 kΩ y C = 10 nF el corte está en 1592 Hz, y a 10 kHz el módulo vale −16,07 dB.</figcaption></figure>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="cuestiones.html"><small>← Anterior</small>Teoría</a><a class="nx" href="problemas.html"><small>Siguiente →</small>Qué cae en el examen</a></nav><p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Electrónica Analógica (UPCT, GIEyA) · Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>
