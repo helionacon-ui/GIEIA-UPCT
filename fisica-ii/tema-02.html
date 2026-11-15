@@ -57,7 +57,19 @@ details>summary{line-height:1.7;padding-block:.5em}
 <p>Para una carga puntual, \(V=kQ/r\), con signo: positivo cerca de cargas positivas, negativo cerca de negativas. Como es un número, <b>se suma sin ángulos</b>: \(V=\sum kq_i/r_i\). Esa es la gran ventaja frente al campo.</p>
 <p><b>Y el trabajo:</b> mover una carga \(q\) entre dos puntos cuesta \(W=q\,(V_B-V_A)\), sin importar el camino (la fuerza eléctrica es conservativa).</p><p class="ft">Energía de un sistema de cargas</p><p>La energía potencial de un sistema es el trabajo que cuesta <b>montarlo</b> trayendo las cargas una a una desde el infinito. La primera es gratis; la segunda paga la interacción con la primera; la tercera, con las dos anteriores…</p>
 <p>El resultado es la suma sobre <b>pares</b>: \(U=\sum_{i<j}\dfrac{k\,q_iq_j}{r_{ij}}\). Con \(n\) cargas hay \(n(n-1)/2\) pares: tres cargas, tres pares; cuatro, seis. Un par que se repele aporta energía positiva (cuesta juntarlas); un par que se atrae, negativa.</p>
-<p>Para una carga que se acelera entre dos puntos, la conservación de energía lo resuelve todo: \(\tfrac12mv^2=q\,\Delta V\) (si parte del reposo).</p></div><!--/amp1--><h3 id="t2-formulas">Lo que tienes que saber</h3>
+<p>Para una carga que se acelera entre dos puntos, la conservación de energía lo resuelve todo: \(\tfrac12mv^2=q\,\Delta V\) (si parte del reposo).</p></div><!--/amp1--><!--deep--><h3 id="t2-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4>1. De la fuerza al potencial</h4>
+<div class="box key deepnote"><b>Idea clave.</b> el campo electrostático es <b>conservativo</b>: el trabajo para mover una carga no depende del camino. Por eso existe el potencial.</div>
+<div class="eqd">\[V_B-V_A=-\int_A^B\vec E\cdot\mathrm d\vec l\qquad\Longleftrightarrow\qquad \vec E=-\nabla V\]</div>
+<ul><li>El potencial es la <b>energía potencial por unidad de carga</b>: \(U=qV\).</li><li>El campo apunta hacia donde el potencial <b>disminuye</b>.</li><li>Para una carga puntual, \(V=\dfrac{kq}{r}\) (con cero en el infinito).</li></ul>
+<details class="dem"><summary><span class="pn">∴</span>Trabajo, energía y diferencia de potencial</summary><div class="inner"><ol class="pasos"><li>El trabajo que hace el campo al llevar \(q\) de A a B es \(W=q(V_A-V_B)\).</li><li>Un electrón acelerado a través de \(\Delta V\) gana una energía cinética \(e\,\Delta V\).</li><li>Se define el <b>electronvoltio</b>: \(1\ \mathrm{eV}=1{,}6\cdot10^{-19}\ \mathrm J\).</li></ol>
+<p>Energía de un sistema de cargas: se suma el trabajo de ir trayendo cada una desde el infinito. Para dos cargas, \(U=k\,q_1q_2/r\); para varias, la suma de <b>todos los pares</b> (cada par una sola vez).</p></div></details>
+<h4>2. Superficies equipotenciales</h4>
+<ul><li>En una superficie equipotencial el potencial es constante: no se hace trabajo al moverse sobre ella.</li><li>Por tanto, el campo es <b>perpendicular</b> a ellas en todo punto.</li><li>Donde están más juntas, el campo es más intenso (\(E=|\Delta V|/\Delta l\)).</li></ul>
+<h4>3. Cómo calcular el potencial</h4>
+<ul><li><b>Cargas discretas:</b> suma de escalares \(V=\sum kq_i/r_i\). Es más fácil que el campo, porque no hay que sumar vectores.</li><li><b>Distribución continua:</b> \(V=\int k\,\mathrm dq/r\).</li><li><b>Con simetría:</b> calcula \(E\) con Gauss y luego integra \(V=-\int E\,\mathrm dr\).</li></ul>
+<div class="box trap deepnote"><b>Cuidado.</b> El origen de potenciales es arbitrario: solo las <b>diferencias</b> tienen significado físico.</div>
+</div><!--/deep--><h3 id="t2-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>
 <li>\(V=k\dfrac{Q}{r}\); \(V=\sum kq_i/r_i\); \(W_{A\to B}=q(V_A-V_B)\); \(\vec E=-\nabla V\).</li>
 <li>\(V_A-V_B=\int_A^B\vec E\cdot d\vec l\); campo uniforme: \(V=E\,d\).</li>

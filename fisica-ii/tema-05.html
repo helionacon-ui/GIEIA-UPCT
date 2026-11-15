@@ -58,7 +58,22 @@ details>summary{line-height:1.7;padding-block:.5em}
 <p>Regla de la mano derecha: dedos en \(\vec v\), cierra hacia \(\vec B\), el pulgar da \(\vec F\) para cargas <b>positivas</b>; para negativas, al revés.</p><p class="ft">Quién crea el campo: Biot–Savart, Ampère y los casos que hay que saber</p><p>Las corrientes crean campo. Tres resultados que debes tener memorizados:</p>
 <ul><li><b>Hilo infinito:</b> \(B=\dfrac{\mu_0I}{2\pi r}\), con líneas circulares (regla del pulgar).</li><li><b>Solenoide largo:</b> \(B=\mu_0\,n\,I\) dentro (con \(n=N/l\)) y ≈ 0 fuera.</li><li><b>Espira, en su centro:</b> \(B=\mu_0I/2R\).</li></ul>
 <p>Para decidir entre Biot–Savart y Ampère: si hay <b>simetría</b> (hilo, solenoide, toroide), usa Ampère \(\oint\vec B\cdot d\vec l=\mu_0I_{enc}\), igual que Gauss en electrostática. Si no, integra Biot–Savart.</p>
-<p>Dos hilos paralelos se <b>atraen</b> si las corrientes van en el mismo sentido y se repelen si son opuestas: \(F/L=\dfrac{\mu_0I_1I_2}{2\pi d}\).</p></div><!--/amp1--><h3 id="t5-formulas">Lo que tienes que saber</h3>
+<p>Dos hilos paralelos se <b>atraen</b> si las corrientes van en el mismo sentido y se repelen si son opuestas: \(F/L=\dfrac{\mu_0I_1I_2}{2\pi d}\).</p></div><!--/amp1--><!--deep--><h3 id="t5-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4>1. Fuerza magnética sobre una carga</h4>
+<div class="eqd">\[\vec F=q\,\vec v\times\vec B\]</div>
+<ul><li>La fuerza es <b>perpendicular</b> a \(\vec v\): <b>no hace trabajo</b> y no cambia el módulo de la velocidad, solo su dirección.</li><li>Si la carga está en reposo, no hay fuerza magnética.</li><li>Con campo eléctrico además: <b>fuerza de Lorentz</b> \(\vec F=q(\vec E+\vec v\times\vec B)\).</li></ul>
+<details class="dem"><summary><span class="pn">∴</span>Movimiento circular de una partícula en un campo uniforme</summary><div class="inner"><ol class="pasos"><li>Con \(\vec v\perp\vec B\), la fuerza magnética es la fuerza centrípeta: \(qvB=\dfrac{mv^2}{R}\).</li><li>Radio:</li></ol>
+<div class="eqd">\[R=\frac{mv}{qB},\qquad \omega=\frac{qB}{m},\qquad T=\frac{2\pi m}{qB}\]</div>
+<ul><li>El periodo <b>no depende de la velocidad</b>: es el principio del ciclotrón.</li><li>Si \(\vec v\) tiene componente paralela a \(\vec B\), el movimiento es una <b>hélice</b>.</li><li><b>Selector de velocidades:</b> \(qE=qvB\Rightarrow v=E/B\).</li></ul></div></details>
+<h4>2. Fuentes del campo: Biot-Savart y Ampère</h4>
+<div class="eqd">\[\mathrm d\vec B=\frac{\mu_0}{4\pi}\,\frac{I\,\mathrm d\vec l\times\hat r}{r^2}\]</div>
+<p>Con <b>simetría</b>, la ley de Ampère es mucho más cómoda:</p>
+<div class="eqd">\[\oint\vec B\cdot\mathrm d\vec l=\mu_0I_{enc}\]</div>
+<details class="dem"><summary><span class="pn">∴</span>Los resultados que más se usan</summary><div class="inner"><ul><li><b>Hilo infinito:</b> \(B=\dfrac{\mu_0I}{2\pi r}\) (las líneas de campo son círculos alrededor).</li><li><b>Centro de una espira circular:</b> \(B=\dfrac{\mu_0I}{2R}\).</li><li><b>Solenoide largo:</b> \(B=\mu_0nI\) en el interior (\(n\) = espiras por metro) y \(\approx0\) fuera.</li><li><b>Fuerza entre dos hilos paralelos:</b> \(\dfrac FL=\dfrac{\mu_0I_1I_2}{2\pi d}\); se <b>atraen</b> si las corrientes van en el mismo sentido.</li></ul>
+<div class="box trap deepnote"><b>Cuidado.</b> Para aplicar Ampère elige una curva donde \(B\) sea constante y paralelo a \(\mathrm d\vec l\), y cuenta solo la corriente <b>encerrada</b> por ella.</div></div></details>
+<h4>3. Fuerza y momento sobre una corriente</h4>
+<ul><li>Sobre un tramo recto: \(\vec F=I\,\vec L\times\vec B\).</li><li>Sobre una espira, el <b>momento magnético</b> \(\vec m=IA\,\hat n\) siente un par \(\vec\tau=\vec m\times\vec B\): es el principio del motor.</li></ul>
+</div><!--/deep--><h3 id="t5-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>
 <li>\(\vec F=q\vec v\times\vec B\); \(r=\dfrac{mv}{qB}\); \(T=\dfrac{2\pi m}{qB}\); selector: \(v=E/B\).</li>
 <li>\(\vec F=I\vec L\times\vec B\); \(\vec m=NI\vec A\); \(\vec\tau=\vec m\times\vec B\); \(U=-\vec m\cdot\vec B\).</li>

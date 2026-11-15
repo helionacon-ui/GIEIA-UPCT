@@ -57,7 +57,21 @@ details>summary{line-height:1.7;padding-block:.5em}
 <ul><li>Resistencia: \(Z_R=R\) (fase 0).</li><li>Bobina: \(Z_L=j\omega L\) (la tensión <b>adelanta</b> 90° a la corriente).</li><li>Condensador: \(Z_C=\dfrac{1}{j\omega C}=-j\dfrac{1}{\omega C}\) (la corriente adelanta 90°).</li></ul>
 <p>En serie las impedancias se suman; el módulo es \(|Z|=\sqrt{R^2+X^2}\) y el ángulo \(\varphi=\arctan(X/R)\). Si \(X>0\) el circuito es inductivo (la corriente va <b>retrasada</b>).</p><p class="ft">Potencia: activa, reactiva, aparente y factor de potencia</p><p>Con tensión y corriente eficaces \(V\), \(I\) y desfase \(\varphi\):</p>
 <ul><li><b>Activa</b> \(P=VI\cos\varphi\) (W): la que se convierte en trabajo o calor.</li><li><b>Reactiva</b> \(Q=VI\sin\varphi\) (var): la que va y viene entre fuente y bobinas/condensadores.</li><li><b>Aparente</b> \(S=VI\) (VA), con \(S^2=P^2+Q^2\).</li></ul>
-<p>El factor de potencia \(\cos\varphi=P/S\) mide el aprovechamiento. Una carga inductiva con \(\cos\varphi\) bajo exige más corriente para la misma \(P\), lo que calienta la línea; se <b>corrige</b> con condensadores en paralelo que aportan reactiva de signo opuesto: \(Q_C=P(\tan\varphi_1-\tan\varphi_2)\).</p></div><!--/amp1--><h3 id="t8-formulas">Lo que tienes que saber</h3>
+<p>El factor de potencia \(\cos\varphi=P/S\) mide el aprovechamiento. Una carga inductiva con \(\cos\varphi\) bajo exige más corriente para la misma \(P\), lo que calienta la línea; se <b>corrige</b> con condensadores en paralelo que aportan reactiva de signo opuesto: \(Q_C=P(\tan\varphi_1-\tan\varphi_2)\).</p></div><!--/amp1--><!--deep--><h3 id="t8-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4>1. Señales alternas: valor eficaz</h4>
+<div class="eqd">\[v(t)=V_m\sin(\omega t+\varphi),\qquad V_{ef}=\frac{V_m}{\sqrt2}\]</div>
+<p>El <b>valor eficaz</b> es la tensión continua que disiparía la misma potencia en una resistencia. Los 230 V de la red son eficaces: la amplitud es \(230\sqrt2\approx325\) V.</p>
+<h4>2. Impedancia y fasores</h4>
+<div class="box key deepnote"><b>Idea clave.</b> una bobina y un condensador no solo ofrecen oposición, también <b>desfasan</b> la corriente respecto a la tensión.</div>
+<ul><li><b>Resistencia:</b> \(Z_R=R\). Tensión y corriente en fase.</li><li><b>Bobina:</b> \(Z_L=j\omega L\). La corriente <b>retrasa</b> 90°.</li><li><b>Condensador:</b> \(Z_C=\dfrac1{j\omega C}\). La corriente <b>adelanta</b> 90°.</li></ul>
+<p>Con fasores, todo el circuito se resuelve como uno de continua, pero con números complejos: \(\bar V=\bar Z\,\bar I\).</p>
+<details class="dem"><summary><span class="pn">∴</span>Circuito RLC serie y resonancia</summary><div class="inner"><ol class="pasos"><li>Impedancia: \(\bar Z=R+j\left(\omega L-\dfrac1{\omega C}\right)\), con módulo \(|Z|=\sqrt{R^2+(X_L-X_C)^2}\).</li><li>La resonancia ocurre cuando \(X_L=X_C\):</li></ol>
+<div class="eqd">\[\omega_0=\frac1{\sqrt{LC}}\]</div>
+<ul><li>A esa frecuencia \(Z=R\) (mínima) y la corriente es <b>máxima</b>.</li><li>Tensión y corriente están en fase.</li><li>Factor de calidad: \(Q=\dfrac{\omega_0L}{R}\). Cuanto mayor, más estrecha la resonancia.</li></ul></div></details>
+<h4>3. Potencia en alterna</h4>
+<ul><li><b>Activa</b> (la que se consume): \(P=V_{ef}I_{ef}\cos\varphi\), en W.</li><li><b>Reactiva</b> (intercambio con bobinas y condensadores): \(Q=V_{ef}I_{ef}\sin\varphi\), en var.</li><li><b>Aparente:</b> \(S=V_{ef}I_{ef}\), en VA, con \(S^2=P^2+Q^2\).</li><li><b>Factor de potencia:</b> \(\cos\varphi=P/S\).</li></ul>
+<p>Un factor de potencia bajo obliga a transportar más corriente para la misma potencia útil, y por eso las empresas lo <b>corrigen</b> con condensadores.</p>
+</div><!--/deep--><h3 id="t8-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>
 <li>\(V_e=V_0/\sqrt2\); \(X_L=\omega L\); \(X_C=1/\omega C\); \(Z=\sqrt{R^2+(X_L-X_C)^2}\); \(\tan\varphi=(X_L-X_C)/R\).</li>
 <li>\(V^2=V_R^2+(V_L-V_C)^2\); \(I_e=V_e/Z\).</li>

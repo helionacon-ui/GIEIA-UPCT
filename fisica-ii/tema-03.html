@@ -58,7 +58,21 @@ details>summary{line-height:1.7;padding-block:.5em}
 <p>Con la ley de Gauss, la tercera pregunta típica —«¿qué carga aparece en la cara interior de una corteza?»— se resuelve con una superficie que pasa por el interior del metal, donde \(E=0\): la carga encerrada debe ser cero, así que la cara interior induce \(-Q\) de lo que haya dentro.</p><p class="ft">El condensador y qué cambia al meter un dieléctrico</p><p>Un condensador almacena carga: \(Q=C\,V\). Para placas planas, \(C=\varepsilon_0S/d\); crece con el área y disminuye con la separación. En serie, las cargas son iguales y se suman las inversas (\(1/C_{eq}=\sum1/C_i\)); en paralelo, las tensiones son iguales y se suman las capacidades.</p>
 <p>Un <b>dieléctrico</b> de constante \(\varepsilon_r\) multiplica la capacidad: \(C=\varepsilon_r C_0\). Lo que cambie después depende de qué mantengas <b>constante</b>:</p>
 <ul><li><b>Conectado a la batería</b> (\(V\) constante): \(Q\) y \(U\) se multiplican por \(\varepsilon_r\).</li><li><b>Aislado</b> (\(Q\) constante): \(V\) y \(U\) se dividen por \(\varepsilon_r\).</li></ul>
-<p>Antes de calcular, pregúntate siempre: ¿está conectado o desconectado?</p></div><!--/amp1--><h3 id="t3-formulas">Lo que tienes que saber</h3>
+<p>Antes de calcular, pregúntate siempre: ¿está conectado o desconectado?</p></div><!--/amp1--><!--deep--><h3 id="t3-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4>1. Conductores en equilibrio electrostático</h4>
+<ul><li>El campo en el <b>interior</b> del conductor es cero (si no, las cargas se moverían).</li><li>Todo el conductor está al <b>mismo potencial</b>, y su superficie es equipotencial.</li><li>La carga neta se reparte por la <b>superficie</b>.</li><li>Justo fuera de la superficie, el campo es perpendicular y vale \(E=\sigma/\varepsilon_0\).</li></ul>
+<p>Una cavidad dentro de un conductor queda protegida del exterior: es el principio de la <b>jaula de Faraday</b>.</p>
+<h4>2. Condensadores</h4>
+<div class="box key deepnote"><b>Idea clave.</b> un condensador almacena carga y energía: \(Q=C\,V\). La capacidad \(C\) depende solo de la geometría (y del dieléctrico).</div>
+<div class="eqd">\[C=\frac{Q}{V},\qquad U=\tfrac12CV^2=\tfrac12QV=\frac{Q^2}{2C}\]</div>
+<details class="dem"><summary><span class="pn">∴</span>Condensador plano: de dónde sale \(C=\varepsilon_0A/d\)</summary><div class="inner"><ol class="pasos"><li>Entre dos placas con carga \(\pm Q\): \(E=\sigma/\varepsilon_0=Q/(\varepsilon_0A)\).</li><li>Diferencia de potencial: \(V=Ed=\dfrac{Qd}{\varepsilon_0A}\).</li><li>Capacidad:</li></ol>
+<div class="eqd">\[C=\frac{Q}{V}=\frac{\varepsilon_0A}{d}\]</div>
+<p>Con un dieléctrico de permitividad relativa \(\varepsilon_r\): \(C=\varepsilon_r\,\varepsilon_0A/d\). Aumenta la capacidad porque el dieléctrico se polariza y <b>reduce el campo</b> por un factor \(\varepsilon_r\).</p></div></details>
+<h4>3. Asociación de condensadores</h4>
+<ul><li><b>Paralelo:</b> misma tensión, las cargas se suman: \(C_{eq}=C_1+C_2\).</li><li><b>Serie:</b> misma carga, las tensiones se suman: \(\dfrac1{C_{eq}}=\dfrac1{C_1}+\dfrac1{C_2}\).</li></ul>
+<div class="box trap deepnote"><b>Cuidado.</b> Es lo <b>contrario</b> que en las resistencias. Si te cuesta recordarlo: en paralelo hay más superficie de placa, y por eso suma.</div>
+<details class="dem"><summary><span class="pn">∴</span>Energía del campo y qué pasa al introducir un dieléctrico</summary><div class="inner"><ul><li><b>Densidad de energía</b> del campo: \(u=\tfrac12\varepsilon_0E^2\) (en dieléctrico, \(\tfrac12\varepsilon E^2\)).</li><li>Con la batería <b>conectada</b>, \(V\) es constante: al meter dieléctrico \(C\) sube, \(Q=CV\) sube y llega carga de la batería.</li><li>Con la batería <b>desconectada</b>, \(Q\) es constante: \(C\) sube, \(V=Q/C\) baja y la energía \(Q^2/2C\) disminuye (el dieléctrico es atraído hacia dentro).</li></ul></div></details>
+</div><!--/deep--><h3 id="t3-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>
 <li>\(C=Q/V\); plano \(C=\varepsilon_0\varepsilon_rA/d\); esférico \(4\pi\varepsilon_0R_1R_2/(R_2-R_1)\); esfera aislada \(4\pi\varepsilon_0R\).</li>
 <li>Paralelo: \(C_{eq}=\sum C_i\); serie: \(1/C_{eq}=\sum1/C_i\).</li>
