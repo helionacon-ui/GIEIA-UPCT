@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Problemas resueltos · Programación de Sistemas en Tiempo Real · Guía para aprobar</title>
+<meta name="description" content="Ejercicios de examen de Programación de Sistemas en Tiempo Real (UPCT) resueltos con código completo">
+<meta name="theme-color" content="#a8570a">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2020-09">2020/21</time> (apuntes y programas de teoría, boletines de ejercicios, prácticas, referencia de C++ del examen y exámenes de 2016 a 2018) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Programación de Sistemas en Tiempo Real</a><span class="sep">›</span><span>Practicar</span><span class="sep">›</span><span>Problemas</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">C++ moderno: de los objetos a la concurrencia</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Del problema al programa</a><a href="tema-02.html" style="--tc:var(--c3)">T2 La biblioteca estándar: string, vector y map</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Programación basada en objetos</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Programación orientada a objetos: herencia y polimorfismo</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Concurrencia: hilos en C++11</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Sincronización: mutex, variables de condición y monitores</a><div class="grp">Tiempo real: planificación y algoritmos</div><a href="tema-07.html" style="--tc:var(--c8)">T7 El planificador del sistema operativo</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Planificación en tiempo real: RM, DM, EDF y ejecutivo cíclico</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Tiempos de respuesta, bloqueo y techo de prioridad</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Lógica difusa y kNN</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)" class="on" aria-current="page">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec" style="--tc:var(--c8);--tcs:var(--c8s)"><div class="sh"><span aria-hidden="true" class="badge">Ex</span><div class="shx"><p class="kick">Practicar · Problemas</p><h2 id="exam">Los ejercicios del examen, resueltos</h2><div class="tags"><span class="tag">8 problemas tipo</span><span class="tag w">con código completo</span></div></div></div>
+<div class="zero"><p class="ft">Cómo usarlos</p><p>Los exámenes repiten un puñado de tipos: procesar un fichero con un <code>map</code>, un monitor con variable de condición, un análisis de planificabilidad y un ejecutivo cíclico. Estos ocho los cubren. <b>Escribe el código tú</b> antes de abrir la solución: leerlo no sirve de nada.</p></div><div class="prob"><h3 class="ph" id="ex1">Problema 1 · Cifrado por primeras letras con un map <span class="tag">2018</span> <a class="tag" href="tema-02.html">T2</a></h3><div class="enun"><p class="et">Enunciado</p>Haz un programa para cifrar y descifrar mensajes formados por la <b>primera letra de cada frase</b> (delimitadas por punto y seguido); el espacio del mensaje secreto se convierte en salto de línea. Para cifrar existe un fichero <code>dict.txt</code> con una frase que empieza por cada letra del alfabeto, en cualquier orden. Usa un <b>mapa</b> para guardar la frase de cada letra.</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p>El ejercicio no es de cifrado sino de <b>map + ficheros + strings</b>, que es lo que de verdad se evalúa.</p>
+<div class="code">map&lt;char,string&gt; cargar_diccionario(const string &amp;fichero)
+{
+    map&lt;char,string&gt; dic;
+    ifstream f(fichero);
+    if (!f) return dic;
+
+    string linea;
+    while (getline(f, linea))
+        if (!linea.empty())
+            dic[tolower(linea[0])] = linea;   // la clave es la primera letra
+    return dic;
+}
+
+string cifrar(const string &amp;secreto, const map&lt;char,string&gt; &amp;dic)
+{
+    string salida;
+    for (char c : secreto) {
+        if (c == ' ') { salida += "\n"; continue; }   // espacio -> salto
+        auto it = dic.find(tolower(c));
+        if (it == dic.end()) continue;                 // sin frase para esa letra
+        salida += it-&gt;second;
+        if (salida.back() != '.') salida += '.';
+        salida += ' ';                                 // separador tras el punto
+    }
+    return salida;
+}
+
+string descifrar(const string &amp;fichero)
+{
+    ifstream f(fichero);
+    string texto((istreambuf_iterator&lt;char&gt;(f)), istreambuf_iterator&lt;char&gt;());
+
+    string secreto;
+    bool inicio = true;
+    for (size_t i = 0; i &lt; texto.size(); ++i) {
+        if (inicio &amp;&amp; isalpha(static_cast&lt;unsigned char&gt;(texto[i]))) {
+            secreto += texto[i];
+            inicio = false;
+        }
+        if (texto[i] == '.') inicio = true;            // empieza otra frase
+        if (texto[i] == '\n') secreto += ' ';          // salto -> espacio
+    }
+    return secreto;
+}</div>
+<p><b>Comprobación con el ejemplo del enunciado.</b> «<i>Toledo está cerca de Madrid. Integrada con el monte que la rodea. Empedradas tiene la mayoría de las calles. Más parece que no pasa el tiempo por ella. Podría decirse que está como siempre. O tal vez mejor.</i>» → primeras letras T, I, E, M, P, O → «<b>Tiempo</b>» ✓</p>
+<p><b>Los tres puntos que puntúan:</b> usar <code>find</code> en el map y <b>no</b> <code>operator[]</code> (que crearía entradas vacías al cifrar una letra sin frase); tratar el espacio y el salto de línea como casos aparte; y llevar la bandera <code>inicio</code> para saber cuándo empieza frase al descifrar.</p></div></details></div><div class="prob"><h3 class="ph" id="ex2">Problema 2 · Clase Futuro y servidor concurrente <span class="tag">2018</span> <a class="tag" href="tema-06.html">T6</a></h3><div class="enun"><p class="et">Enunciado</p>Diseña una clase <code>Futuro</code> que guarde un entero disponible «en algún momento» y que <b>bloquee</b> a quien intente leerlo antes de tiempo, con <code>set_valor</code> (una sola vez) y <code>get_valor</code>. Diseña un <code>Servidor</code> con un método <code>servicio</code> que entregue futuros, un <code>f_hilo</code> que los vaya fijando con valores consecutivos desde 10 (durmiendo 1000 ms entre uno y otro) y un <code>terminar</code> limpio. Escribe el <code>main</code> con un hilo servidor y cinco clientes.</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p>Es un <b>monitor</b> con variable de condición. La clase <code>Futuro</code> completa:</p>
+<div class="code">class Futuro {
+    int  valor_;
+    bool disponible_;
+    mutable mutex m_;
+    condition_variable cv_;
+public:
+    Futuro() : valor_(0), disponible_(false) {}
+    Futuro(int v) : valor_(v), disponible_(true) {}
+
+    void set_valor(int v) {
+        lock_guard&lt;mutex&gt; lk(m_);
+        if (disponible_) return;           // sólo una vez
+        valor_ = v; disponible_ = true;
+        cv_.notify_all();
+    }
+
+    int get_valor() {
+        unique_lock&lt;mutex&gt; lk(m_);
+        cv_.wait(lk, [this]{ return disponible_; });
+        return valor_;
+    }
+};</div>
+<p>Y el servidor, con su propia variable de condición para esperar a que haya un futuro nuevo que rellenar y una bandera de terminación:</p>
+<div class="code">class Servidor {
+    vector&lt;Futuro*&gt; futuros_;
+    size_t siguiente_ = 0;
+    bool   terminar_  = false;
+    mutex  m_;
+    condition_variable cv_;
+public:
+    ~Servidor() { for (Futuro *f : futuros_) delete f; }
+
+    Futuro&amp; servicio() {
+        lock_guard&lt;mutex&gt; lk(m_);
+        futuros_.push_back(new Futuro());
+        cv_.notify_one();
+        return *futuros_.back();
+    }
+
+    void f_hilo() {
+        int v = 10;
+        while (true) {
+            Futuro *f;
+            { unique_lock&lt;mutex&gt; lk(m_);
+              cv_.wait(lk, [this]{ return siguiente_ &lt; futuros_.size() || terminar_; });
+              if (terminar_ &amp;&amp; siguiente_ &gt;= futuros_.size()) return;
+              f = futuros_[siguiente_++]; }
+            f-&gt;set_valor(v++);
+            this_thread::sleep_for(chrono::milliseconds(1000));
+        }
+    }
+
+    void terminar() {
+        lock_guard&lt;mutex&gt; lk(m_);
+        terminar_ = true; cv_.notify_all();
+    }
+};</div>
+<p><b>Los cuatro puntos que decide el corrector:</b></p>
+<ol>
+<li>Los futuros se guardan como <b>punteros</b>. Si fueran objetos en un <code>vector&lt;Futuro&gt;</code>, al crecer el vector se reubicarían y las referencias que ya tienen los clientes quedarían colgando.</li>
+<li>El <code>wait</code> lleva <b>predicado</b>, en las dos clases.</li>
+<li><code>set_valor</code> se llama <b>fuera</b> del mutex del servidor, para no tener dos mutex tomados a la vez.</li>
+<li>La terminación es <b>limpia</b>: una bandera dentro del predicado y un <code>notify_all</code>.</li>
+</ol>
+<p>Comportamiento: los cinco clientes piden sus futuros y se quedan bloqueados <b>sin consumir CPU</b>; el servidor los va fijando a 10, 11, 12… uno por segundo y despierta a cada cliente cuando le toca.</p></div></details></div><div class="prob"><h3 class="ph" id="ex3">Problema 3 · Análisis de planificabilidad con techo de prioridad <span class="tag">2016</span> <a class="tag" href="tema-09.html">T9</a></h3><div class="enun"><p class="et">Enunciado</p>Un sistema tiene 3 tareas y 2 objetos compartidos. \(\tau_C\): periódica, \(T=120\), \(C=12\), \(D=120\), usa O1 (2 ms) y O2 (3 ms). \(\tau_B\): esporádica, \(T=500\), \(C=8\), \(D=25\), usa O1 (3) y O2 (1). \(\tau_A\): periódica, \(T=20\), \(C=10\), \(D=20\), usa O1 (4). Con prioridades monotónicas en plazo y techo de prioridad inmediato: a) prioridades y techos; b) bloqueos; c) tiempos de respuesta. ¿Está garantizado?</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>a)</b> DM ordena por plazo: \(\tau_A\) (D=20) prioridad 1, \(\tau_B\) (25) prioridad 2, \(\tau_C\) (120) prioridad 3. Techos: <b>O1</b> lo usan las tres → techo = prioridad de \(\tau_A\); <b>O2</b> lo usan \(\tau_B\) y \(\tau_C\) → techo = prioridad de \(\tau_B\).</p>
+<p><b>b)</b> Bloqueo = sección crítica más larga de una tarea <b>menos</b> prioritaria sobre un recurso con techo ≥ su prioridad:</p>
+<div class="tw"><table><tr><th>Tarea</th><th>Candidatas</th><th>\(B_i\)</th></tr>
+<tr><td>\(\tau_A\)</td><td>O1 de \(\tau_B\) (3) y de \(\tau_C\) (2)</td><td><b>3 ms</b></td></tr>
+<tr><td>\(\tau_B\)</td><td>O1 de \(\tau_C\) (2) y O2 de \(\tau_C\) (3)</td><td><b>3 ms</b></td></tr>
+<tr><td>\(\tau_C\)</td><td>ninguna por debajo</td><td><b>0</b></td></tr></table></div>
+<p><b>c)</b> \(U=10/20+8/500+12/120=0{,}616\).</p>
+\[R_A=10+3=13\le20\ \checkmark\]
+\[R_B=8+3+\left\lceil\frac{R_B}{20}\right\rceil10:\quad 11\to21\to31\to31,\qquad R_B=31>25\ \times\]
+\[R_C=12+\left\lceil\frac{R_C}{20}\right\rceil10+\left\lceil\frac{R_C}{500}\right\rceil8:\quad 12\to30\to40\to40,\qquad R_C=40\le120\ \checkmark\]
+<p>El sistema <b>no está garantizado</b>: \(\tau_B\) necesita 31 ms en el peor caso y su plazo es 25.</p>
+<div class="box key"><p>La utilización, 0,616, parecía cómoda. Lo que hunde a \(\tau_B\) es que \(\tau_A\) la interrumpe <b>dos veces</b> (porque \(R_B\) supera los 20 ms de \(T_A\)) más los 3 ms de bloqueo. Con \(C_A=7\) saldría exactamente 25 y cumpliría.</p></div></div></details></div><div class="prob"><h3 class="ph" id="ex4">Problema 4 · Ejecutivo cíclico <span class="tag">2016</span> <a class="tag" href="tema-08.html">T8</a></h3><div class="enun"><p class="et">Enunciado</p>Describe qué es un ejecutivo cíclico, sus ventajas e inconvenientes, y escribe el código para este conjunto de tareas: \(\tau_C\) (T=120, C=12), \(\tau_B\) (T=80, C=8), \(\tau_A\) (T=40, C=10) ms, sabiendo que su código está en <code>f_a()</code>, <code>f_b()</code> y <code>f_c()</code>.</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>Qué es.</b> Un único bucle que llama a las tareas en un orden <b>calculado de antemano</b>, sin sistema operativo ni hilos. El tiempo se divide en <b>marcos</b> de duración fija (el ciclo menor) y el esquema se repite cada <b>hiperperiodo</b>.</p>
+<p><b>Cálculo.</b> \(H=\operatorname{mcm}(40,80,120)=240\) ms · \(f=\operatorname{mcd}=40\) ms (divide a los tres periodos y \(40\ge\max C_i=12\) ✓) · \(240/40=6\) marcos. \(U=10/40+8/80+12/120=0{,}45\).</p>
+<div class="tw"><table><tr><th>Marco</th><th>t</th><th>Tareas</th><th>Carga</th></tr>
+<tr><td>0</td><td>0</td><td>A, B, C</td><td><b>30</b> / 40</td></tr>
+<tr><td>1</td><td>40</td><td>A</td><td>10</td></tr>
+<tr><td>2</td><td>80</td><td>A, B</td><td>18</td></tr>
+<tr><td>3</td><td>120</td><td>A, C</td><td>22</td></tr>
+<tr><td>4</td><td>160</td><td>A, B</td><td>18</td></tr>
+<tr><td>5</td><td>200</td><td>A</td><td>10</td></tr></table></div>
+<div class="code">int main()
+{
+    const auto F = chrono::milliseconds(40);
+    int marco = 0;
+    auto siguiente = chrono::steady_clock::now();
+
+    while (true) {
+        if (marco % 1 == 0) f_a();     // cada 40 ms
+        if (marco % 2 == 0) f_b();     // cada 80 ms
+        if (marco % 3 == 0) f_c();     // cada 120 ms
+
+        marco = (marco + 1) % 6;
+        siguiente += F;
+        this_thread::sleep_until(siguiente);
+    }
+}</div>
+<p>Usar <code>sleep_until</code> sobre un instante <b>acumulado</b> y no <code>sleep_for(40ms)</code> es importante: con <code>sleep_for</code> el periodo real sería 40 ms más lo que tarden las tareas, y el error se acumularía.</p>
+<p><b>Ventajas:</b> determinista y verificable de antemano, sin sobrecarga de sistema operativo, sin cambios de contexto y <b>sin exclusión mutua ni interbloqueos</b>, porque no hay concurrencia real. <b>Inconvenientes:</b> rígido (cualquier cambio obliga a recalcular el esquema), hay que <b>trocear a mano</b> las tareas más largas que el ciclo menor, encaja mal las tareas esporádicas y exige periodos armónicos para que el esquema sea manejable.</p></div></details></div><div class="prob"><h3 class="ph" id="ex5">Problema 5 · Herencia y polimorfismo: jerarquía de figuras <span class="tag">tipo</span> <a class="tag" href="tema-04.html">T4</a></h3><div class="enun"><p class="et">Enunciado</p>Diseña una jerarquía con una clase abstracta <code>Figura</code> y dos derivadas, cada una con su cálculo de área. Guárdalas en un vector y recórrelas polimórficamente. Explica qué ocurre si se olvida <code>virtual</code> y si se olvida el destructor virtual.</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><div class="code">class Figura {
+protected:
+    string nombre_;
+public:
+    Figura(const string &amp;n) : nombre_(n) {}
+    virtual ~Figura() {}                     // destructor virtual
+    virtual double area() const = 0;         // virtual pura -> clase abstracta
+    void describir() const
+    { cout &lt;&lt; nombre_ &lt;&lt; ": " &lt;&lt; area() &lt;&lt; endl; }
+};
+
+class Circulo : public Figura {
+    double r_;
+public:
+    Circulo(double r) : Figura("Círculo"), r_(r) {}
+    double area() const override { return 3.14159265 * r_ * r_; }
+};
+
+class Rectangulo : public Figura {
+    double a_, b_;
+public:
+    Rectangulo(double a, double b) : Figura("Rectángulo"), a_(a), b_(b) {}
+    double area() const override { return a_ * b_; }
+};
+
+int main() {
+    vector&lt;Figura*&gt; v{ new Circulo(1.0), new Rectangulo(2.0, 3.0) };
+    for (const Figura *f : v) f-&gt;describir();
+    for (Figura *f : v) delete f;
+}</div>
+<p><b>Sin <code>virtual</code>:</b> <code>describir()</code> es un método de <code>Figura</code> y la llamada a <code>area()</code> se resolvería en <b>compilación</b> mirando el tipo declarado. Se ejecutaría siempre <code>Figura::area()</code> aunque el objeto fuese un <code>Circulo</code>. El programa compila, se ejecuta y da resultados <b>equivocados sin ningún aviso</b>.</p>
+<p><b>Sin destructor virtual:</b> el <code>delete f</code> sobre un <code>Figura*</code> ejecutaría sólo <code>~Figura()</code>. Si alguna derivada reservase memoria propia, esa memoria <b>no se liberaría nunca</b>: fuga silenciosa.</p>
+<p><b>Y si se guardasen en un <code>vector&lt;Figura&gt;</code></b> en vez de punteros, ni siquiera compilaría (la clase es abstracta); con una base no abstracta compilaría y se produciría <b><i>object slicing</i></b>: se copiaría sólo la parte de <code>Figura</code>.</p></div></details></div><div class="prob"><h3 class="ph" id="ex6">Problema 6 · Criba de Eratóstenes en paralelo <span class="tag">práctica</span> <a class="tag" href="tema-05.html">T5</a></h3><div class="enun"><p class="et">Enunciado</p>Calcula todos los primos hasta 1 000 000 con la criba de Eratóstenes, usando varios hilos y <code>std::atomic_char</code> para el vector de marcas. Mide los tiempos y comprueba el resultado con los ocho últimos primos del rango.</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><div class="code">#include &lt;array&gt;
+#include &lt;atomic&gt;
+#include &lt;thread&gt;
+#include &lt;chrono&gt;
+#include &lt;vector&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+const int N = 1000000;
+array&lt;atomic_char, N&gt; criba;                 // 'd' desconocido, 'p' primo, 'c' compuesto
+
+void marcar(int desde, int hasta)
+{
+    for (int i = desde; i &lt;= hasta; ++i) {
+        if (criba[i] != 'd') continue;       // ya lo ha procesado otro hilo
+        criba[i] = 'p';
+        for (long j = (long)i * i; j &lt; N; j += i)
+            criba[j] = 'c';                  // no pasa nada si se repite
+    }
+}
+
+int main()
+{
+    for (int i = 0; i &lt; N; ++i) criba[i] = 'd';
+    criba[0] = criba[1] = 'c';
+
+    auto t0 = chrono::steady_clock::now();
+
+    const int H = 4, lim = (int)sqrt(N);
+    vector&lt;thread&gt; hilos;
+    int bloque = lim / H;
+    for (int k = 0; k &lt; H; ++k)
+        hilos.emplace_back(marcar, 2 + k*bloque,
+                           (k == H-1) ? lim : 1 + (k+1)*bloque);
+    for (thread &amp;t : hilos) t.join();
+
+    for (int i = 2; i &lt; N; ++i) if (criba[i] == 'd') criba[i] = 'p';
+
+    auto t1 = chrono::steady_clock::now();
+    cout &lt;&lt; chrono::duration_cast&lt;chrono::milliseconds&gt;(t1-t0).count() &lt;&lt; " ms\n";
+
+    int n = 0;
+    for (int i = N-1; i &gt;= 2 &amp;&amp; n &lt; 8; --i)
+        if (criba[i] == 'p') { cout &lt;&lt; i &lt;&lt; " "; ++n; }
+}</div>
+<p><b>Comprobación.</b> Los ocho últimos primos por debajo de un millón son <b>999907, 999917, 999931, 999953, 999959, 999961, 999979 y 999983</b>. Si tu programa no los saca exactamente, hay un error de límites.</p>
+<p><b>Por qué funciona sin mutex.</b> Las escrituras son <b>idempotentes</b>: marcar dos veces un número como compuesto da el mismo resultado. Lo único que hay que garantizar es que la escritura de un carácter no se parta por la mitad, y de eso se encarga <code>atomic_char</code>. Si se usara un <code>char</code> normal, el programa <b>casi siempre</b> funcionaría, que es la peor situación posible.</p>
+<p><b>Sobre los tiempos.</b> Sólo hace falta cribar hasta \(\sqrt{N}=1000\): más allá, todo lo que quede en «desconocido» es primo. La aceleración está lejos del número de hilos porque el programa está limitado por el <b>acceso a memoria</b>, no por la CPU: un millón de posiciones no caben en la caché.</p></div></details></div><div class="prob"><h3 class="ph" id="ex7">Problema 7 · Planificación FCFS, SJF y Round-Robin <span class="tag">tipo</span> <a class="tag" href="tema-07.html">T7</a></h3><div class="enun"><p class="et">Enunciado</p>Cuatro procesos: P1 (llega en 0, CPU 8), P2 (1, 4), P3 (2, 9) y P4 (3, 5). Calcula los tiempos medios de espera y retorno con FCFS, SJF no expulsivo y Round-Robin con quantum 4. ¿Cuál elegirías para un sistema interactivo?</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>FCFS:</b> P1 (0-8), P2 (8-12), P3 (12-21), P4 (21-26).</p>
+<p>Retornos 8, 11, 19, 23 → <b>media 15,25</b>. Esperas 0, 7, 10, 18 → <b>media 8,75</b>.</p>
+<p><b>SJF no expulsivo:</b> en t = 8 han llegado los tres y se elige el más corto, P2; luego P4 y por último P3.</p>
+<p>P1 (0-8), P2 (8-12), P4 (12-17), P3 (17-26). Retornos 8, 11, 24, 14 → <b>media 14,25</b>. Esperas 0, 7, 15, 9 → <b>media 7,75</b>.</p>
+<p><b>Round-Robin, q = 4:</b> P1 (0-4), P2 (4-8, <b>termina</b>), P3 (8-12), P4 (12-16), P1 (16-20, <b>termina</b>), P3 (20-24), P4 (24-25, <b>termina</b>), P3 (25-26, <b>termina</b>).</p>
+<p>Retornos: P1 20, P2 7, P3 24, P4 22 → <b>media 18,25</b>. Esperas: 12, 3, 15, 17 → <b>media 11,75</b>.</p>
+<div class="tw"><table><tr><th>Algoritmo</th><th>Espera media</th><th>Retorno medio</th><th>Cambios de contexto</th></tr>
+<tr><td>FCFS</td><td>8,75</td><td>15,25</td><td>3</td></tr>
+<tr><td><b>SJF</b></td><td><b>7,75</b></td><td><b>14,25</b></td><td>3</td></tr>
+<tr><td>Round-Robin</td><td>11,75</td><td>18,25</td><td>7</td></tr></table></div>
+<p><b>Para un sistema interactivo, Round-Robin</b>, aunque sus medias sean las peores. El motivo es el <b>tiempo de respuesta</b>: con RR los cuatro procesos empiezan a ejecutarse en los primeros 16 ms, mientras que con SJF P3 no empieza hasta el instante 17. En un sistema interactivo el usuario nota cuándo <b>empieza</b> a responder su programa, no cuándo termina. Además, SJF puede dejar un proceso largo sin ejecutar indefinidamente si siguen llegando cortos, y RR no.</p></div></details></div><div class="prob"><h3 class="ph" id="ex8">Problema 8 · Controlador difuso de Sugeno <span class="tag">tipo</span> <a class="tag" href="tema-10.html">T10</a></h3><div class="enun"><p class="et">Enunciado</p>Diseña un controlador de Sugeno para un ventilador con tres conjuntos triangulares de temperatura: fría (10, 15, 20), templada (18, 23, 28) y caliente (26, 32, 38) ºC, con salidas 0, 50 y 100 %. Calcula la salida para 19 ºC y 27 ºC e impleméntalo en C++.</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>Para 19 ºC:</b> \(\mu_{fría}=\frac{20-19}{20-15}=0{,}20\), \(\mu_{templada}=\frac{19-18}{23-18}=0{,}20\), \(\mu_{caliente}=0\).</p>
+\[z^{*}=\frac{0{,}20\cdot0+0{,}20\cdot50}{0{,}40}=\frac{10}{0{,}40}=\boxed{25\ \%}\]
+<p><b>Para 27 ºC:</b> \(\mu_{templada}=\frac{28-27}{28-23}=0{,}20\), \(\mu_{caliente}=\frac{27-26}{32-26}=0{,}1667\).</p>
+\[z^{*}=\frac{0{,}20\cdot50+0{,}1667\cdot100}{0{,}3667}=\frac{26{,}67}{0{,}3667}=\boxed{72{,}7\ \%}\]
+<div class="code">struct Triangular {
+    double a, b, c;
+    double grado(double x) const {
+        if (x &lt;= a || x &gt;= c) return 0.0;
+        if (x &lt;  b) return (x - a) / (b - a);
+        if (x &gt;  b) return (c - x) / (c - b);
+        return 1.0;
+    }
+};
+
+struct Regla { Triangular conjunto; double salida; };
+
+double sugeno(const vector&lt;Regla&gt; &amp;reglas, double x) {
+    double num = 0.0, den = 0.0;
+    for (const Regla &amp;r : reglas) {
+        double w = r.conjunto.grado(x);
+        num += w * r.salida;  den += w;
+    }
+    return (den &gt; 1e-9) ? num / den : 0.0;      // evitar 0/0
+}</div>
+<p>Con <code>reglas = { {{10,15,20},0}, {{18,23,28},50}, {{26,32,38},100} }</code> se obtiene 19 ºC → 25 %, 23 ºC → 50 %, 27 ºC → 72,7 % y 35 ºC → 100 %.</p>
+<p><b>Con dos entradas</b> (por ejemplo temperatura y humedad), cada regla llevaría dos conjuntos y el peso sería el <b>mínimo</b> de los dos grados: ese es el operador Y de la lógica difusa. Todo lo demás del código se queda igual.</p></div></details></div>
+<figure class="fig"><p class="ft">Calculadora interactiva · tiempos de respuesta</p><div data-sim="respuesta"></div><figcaption>Comprueba el problema 3: con los datos del enunciado salen R = 13, 31 y 40 ms, y τB no cumple su plazo de 25 ms.</figcaption></figure>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="cuestiones.html"><small>← Anterior</small>Teoría</a><a class="nx" href="problemas.html"><small>Siguiente →</small>Qué cae en el examen</a></nav><p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Programación de Sistemas en Tiempo Real (UPCT, GIEyA) · Datos tomados del curso <time datetime="2020-09">2020/21</time> (apuntes y programas de teoría, boletines de ejercicios, prácticas, referencia de C++ del examen y exámenes de 2016 a 2018) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

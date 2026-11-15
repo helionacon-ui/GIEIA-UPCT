@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Programación de Sistemas en Tiempo Real · Guía para aprobar</title>
+<meta name="description" content="Guía para aprobar Programación de Sistemas en Tiempo Real (UPCT, GIEyA): C++ y la STL, clases, herencia y polimorfismo, hilos, mutex y variables de condición, el planificador del sistema operativo, planificación en tiempo real con RM, DM y EDF, ejecutivo cíclico, tiempos de respuesta, lógica difusa y kNN, con figuras interactivas y problemas resueltos">
+<meta name="theme-color" content="#a8570a">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2020-09">2020/21</time> (apuntes y programas de teoría, boletines de ejercicios, prácticas, referencia de C++ del examen y exámenes de 2016 a 2018) · página creada en noviembre de 2026</p></div>
+<header class="hero"><div class="hero-in"><div class="hero-txt">
+<div class="eyebrow">UPCT · GIEyA · 3.er curso</div>
+<h1>Programación de Sistemas <span>en Tiempo Real</span></h1><p class="sub">C++ moderno, concurrencia y planificación · Guía para aprobar</p>
+<div class="stats"><div><b>10</b><span>temas, de los punteros al tiempo real</span></div><div><b>12</b><span>figuras interactivas que simulan de verdad</span></div><div><b>8</b><span>problemas tipo resueltos con código</span></div><div><b>59</b><span>cuestiones de teoría respondidas</span></div></div>
+<div class="cta"><a class="btn pri" href="#cero">Empieza desde cero</a><a class="btn" href="cuestiones.html">Teoría</a><a class="btn" href="examenes.html">Problemas</a><a class="btn" href="problemas.html">Qué cae</a><a class="btn" href="laboratorio.html">Prácticas</a><a class="btn" href="formulario.html">Formulario</a></div>
+</div>
+<div aria-hidden="true" class="hero-art"><svg class="zart" viewBox="-120 -120 240 240">
+<rect x="-98" y="-54" width="60" height="22" rx="4" fill="none" stroke="var(--accent)" stroke-width="2.5"></rect>
+<rect x="-98" y="-20" width="60" height="22" rx="4" fill="var(--accent)" fill-opacity="0.18" stroke="var(--accent)" stroke-width="2.5"></rect>
+<rect x="-98" y="14" width="60" height="22" rx="4" fill="none" stroke="var(--accent)" stroke-width="2.5"></rect>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="10" text-anchor="middle" x="-68" y="-62">hilos</text>
+<line x1="-34" y1="-43" x2="16" y2="-43" stroke="var(--warn)" stroke-width="3"></line>
+<line x1="-34" y1="-9" x2="52" y2="-9" stroke="var(--warn)" stroke-width="3"></line>
+<line x1="-34" y1="25" x2="34" y2="25" stroke="var(--warn)" stroke-width="3"></line>
+<line x1="-34" y1="-66" x2="-34" y2="48" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="3 3"></line>
+<line x1="86" y1="-66" x2="86" y2="48" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="3 3"></line>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="10" text-anchor="middle" x="86" y="60">plazo</text>
+<circle cx="16" cy="-43" r="4" fill="var(--c2)"></circle>
+<circle cx="52" cy="-9" r="4" fill="var(--c2)"></circle>
+<circle cx="34" cy="25" r="4" fill="var(--c2)"></circle>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle" x="0" y="-92">C++ &#183; mutex &#183; vtable &#183; RM &#183; EDF</text>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle" x="0" y="96">tiempo real no es r&#225;pido: es predecible</text></svg>
+<p class="art-cap">Tres partes en el examen: programación, concurrencia y planificación, más una pregunta de desarrollo.</p></div></div></header><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)" class="on" aria-current="page">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)" class="on" aria-current="page">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)" class="on" aria-current="page">Tu progreso</a><div class="grp">C++ moderno: de los objetos a la concurrencia</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Del problema al programa</a><a href="tema-02.html" style="--tc:var(--c3)">T2 La biblioteca estándar: string, vector y map</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Programación basada en objetos</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Programación orientada a objetos: herencia y polimorfismo</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Concurrencia: hilos en C++11</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Sincronización: mutex, variables de condición y monitores</a><div class="grp">Tiempo real: planificación y algoritmos</div><a href="tema-07.html" style="--tc:var(--c8)">T7 El planificador del sistema operativo</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Planificación en tiempo real: RM, DM, EDF y ejecutivo cíclico</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Tiempos de respuesta, bloqueo y techo de prioridad</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Lógica difusa y kNN</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
+<div class="sh"><span aria-hidden="true" class="badge">0</span><div class="shx"><p class="kick">Empezar</p><h2 id="cero">Empieza aquí desde cero</h2></div></div>
+<div class="zero"><p class="ft">Cómo usar la guía</p>
+<ol><li>El examen tiene <b>tres bloques fijos</b>: un ejercicio de programación en C++, uno de concurrencia y uno de planificación, más una pregunta de desarrollo. Se preparan de forma muy distinta y conviene saber cuánto vale cada uno.</li>
+<li>El de <b>programación</b> se aprueba escribiendo código, no leyéndolo. Hay un esqueleto que resuelve la mitad de los enunciados: abrir fichero → leer línea a línea → trocear → construir objetos → meter en un contenedor → recorrer.</li>
+<li>El de <b>concurrencia</b> siempre es un <b>monitor</b>: una clase con sus datos compartidos, su mutex, una variable de condición por cada espera y un predicado en cada <code>wait</code>. Si identificas qué espera cada hilo y a qué, el código sale solo.</li>
+<li>El de <b>planificación</b> son cuentas cortas y mecánicas: prioridades, techos, bloqueos y la ecuación de \(R_i\) iterada. Con las calculadoras de los temas 8 y 9 lo compruebas en segundos.</li>
+<li>La <b>pregunta de desarrollo</b> que más cae es la del <b>planificador del sistema operativo</b>. Está contestada entera en el tema 7.</li></ol></div>
+<h3 id="mapa">Mapa de temas</h3>
+<div class="map"><a href="tema-01.html"><b>T1</b>Del problema al programa</a><a href="tema-02.html"><b>T2</b>La biblioteca estándar: string, vector y map</a><a href="tema-03.html"><b>T3</b>Programación basada en objetos</a><a href="tema-04.html"><b>T4</b>Programación orientada a objetos: herencia y polimorfismo</a><a href="tema-05.html"><b>T5</b>Concurrencia: hilos en C++11</a><a href="tema-06.html"><b>T6</b>Sincronización: mutex, variables de condición y monitores</a><a href="tema-07.html"><b>T7</b>El planificador del sistema operativo</a><a href="tema-08.html"><b>T8</b>Planificación en tiempo real: RM, DM, EDF y ejecutivo cíclico</a><a href="tema-09.html"><b>T9</b>Tiempos de respuesta, bloqueo y techo de prioridad</a><a href="tema-10.html"><b>T10</b>Lógica difusa y kNN</a></div>
+<div class="box key"><p><b>De dónde sale esta guía.</b> Los apuntes y programas de teoría de la asignatura, los cinco boletines de ejercicios semanales, el guion de prácticas, la <b>referencia de C++</b> que se entrega en el examen y los exámenes de <b>2016 a 2018</b> con sus soluciones.</p></div>
+<div class="box trap"><h4>Lo que hay que llevar aprendido</h4><p>En el examen te dan una hoja con las operaciones de <code>string</code>, <code>vector</code> y <code>map</code>, así que no pierdas tiempo memorizando firmas. Lo que <b>no</b> está en esa hoja es justo lo que puntúa: la sintaxis de clases y herencia, <code>thread</code>, <code>mutex</code>, <code>condition_variable</code> y las fórmulas de planificación.</p></div>
+<h3 id="progreso">Tu progreso</h3>
+<p class="muted">Se guarda en este navegador.</p>
+<div class="bar"><i id="prog-bar"></i></div><p id="prog-txt" class="muted"></p>
+<div class="check"><input type="checkbox" id="c1"><label for="c1">T1 · Del problema al programa</label></div><div class="check"><input type="checkbox" id="c2"><label for="c2">T2 · La biblioteca estándar: string, vector y map</label></div><div class="check"><input type="checkbox" id="c3"><label for="c3">T3 · Programación basada en objetos</label></div><div class="check"><input type="checkbox" id="c4"><label for="c4">T4 · Programación orientada a objetos: herencia y polimorfismo</label></div><div class="check"><input type="checkbox" id="c5"><label for="c5">T5 · Concurrencia: hilos en C++11</label></div><div class="check"><input type="checkbox" id="c6"><label for="c6">T6 · Sincronización: mutex, variables de condición y monitores</label></div><div class="check"><input type="checkbox" id="c7"><label for="c7">T7 · El planificador del sistema operativo</label></div><div class="check"><input type="checkbox" id="c8"><label for="c8">T8 · Planificación en tiempo real: RM, DM, EDF y ejecutivo cíclico</label></div><div class="check"><input type="checkbox" id="c9"><label for="c9">T9 · Tiempos de respuesta, bloqueo y techo de prioridad</label></div><div class="check"><input type="checkbox" id="c10"><label for="c10">T10 · Lógica difusa y kNN</label></div>
+</section><p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Programación de Sistemas en Tiempo Real (UPCT, GIEyA) · Datos tomados del curso <time datetime="2020-09">2020/21</time> (apuntes y programas de teoría, boletines de ejercicios, prácticas, referencia de C++ del examen y exámenes de 2016 a 2018) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>
