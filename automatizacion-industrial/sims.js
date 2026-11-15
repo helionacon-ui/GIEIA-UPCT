@@ -775,5 +775,27 @@ SIMS.modos=el=>build(el,{w:680,h:324,
    ? 'En <b>automático</b> el ciclo evoluciona solo con los sensores de nivel. Fíjate en que los pilotos no son etapas: se calculan en la <b>parte combinacional</b> como la unión en O de todas las etapas de la rama.'
    : 'En <b>manual</b> cada válvula se abre mientras se pulse su botón: la etapa 12 sólo está activa con BV1 pulsado. El cambio de modo pasa siempre por la <b>etapa inicial</b>, para que ninguna válvula quede abierta.'));
  }});
-  document.querySelectorAll('[data-sim]').forEach(function(el){var k=el.getAttribute('data-sim'); if(SIMS[k]){ try{ SIMS[k](el); }catch(e){ console.error('sim '+k, e); } }});
+  
+
+
+/* ---- paso a paso declarativo ---- */
+SIMS.__paso=(el,D)=>build(el,{w:D.w||660,h:D.h||340,
+ sliders:[{k:'paso',v:0,min:0,max:D.steps.length,step:1,l:'paso de la resolución (0 = enunciado)',u:''}],
+ draw(a){a.clear();const g=a.g,p=a.st.paso;
+  const it=(x,col)=>{const k=x[0];
+   if(k==='t')a.txt(x[1],x[2],x[3],col,x[4]||13,x[5]||'left');
+   else if(k==='l')a.line(x[1],x[2],x[3],x[4],col,x[5]||1.5,x[6]);
+   else if(k==='a')a.arrow(x[1],x[2],x[3],x[4],col,x[5]);
+   else if(k==='c')a.circ(x[1],x[2],x[3],col,!!x[4]);
+   else if(k==='r'){g.strokeStyle=col;g.lineWidth=1.8;if(x[5]){g.fillStyle=col;g.globalAlpha=.18;g.fillRect(x[1],x[2],x[3],x[4]);g.globalAlpha=1;}g.strokeRect(x[1],x[2],x[3],x[4]);}
+   else if(k==='p'){g.strokeStyle=col;g.lineWidth=x[2]||2;g.beginPath();x[1].forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.stroke();}};
+  (D.base||[]).forEach(x=>it(x,C.muted));
+  D.steps.forEach((s,i)=>{if(i+1>p)return;const cur=(i+1===p);(s.add||[]).forEach(x=>it(x,cur?C.d:C.text));if(cur)(s.now||[]).forEach(x=>it(x,C.d));});
+  a.html('<div>'+(p===0?D.q:D.steps[p-1].text)+'</div>');}});
+/* ---- fin paso a paso declarativo ---- */
+
+/* ---- paso2 grafcetPaso ---- */
+SIMS.grafcetPaso=el=>SIMS.__paso(el,{"w":560,"h":290,"q":"Un cilindro neumático debe salir y volver al pulsar Marcha. Sube el paso para ver cómo se mueve la <b>marca de etapa activa</b> y qué receptividad permite cada transición.","base":[["t","Ciclo de un cilindro: marcha → sale → vuelve",30,24,13,"left"],["r",140,60,140,44,0],["t","0 · reposo",210.0,87,14,"center"],["r",140,140,140,44,0],["t","1 · A+ (sale)",210.0,167,14,"center"],["r",140,220,140,44,0],["t","2 · A− (vuelve)",210.0,247,14,"center"],["l",210.0,104,210.0,140,1.5],["l",210.0,184,210.0,220,1.5],["l",280,242,340,242,1.5],["l",340,242,340,82,1.5],["l",340,82,280,82,1.5]],"steps":[{"text":"La etapa <b>0</b> está activa (marca inicial): el cilindro está retraído y no se ejecuta ninguna acción. Mientras la transición siguiente no se cumpla, el sistema espera.","now":[["r",140,60,140,44,1],["t","●",128,87,16,"right"]]},{"text":"Se pulsa <b>Marcha</b> (receptividad de la transición 0→1) y el cilindro está en <b>a0</b> (retraído). Con las dos condiciones a la vez, la transición está <b>validada y franqueable</b>.","add":[["t","Marcha · a0",218.0,125,13,"left"]],"now":[["r",140,60,140,44,1],["t","●",128,87,16,"right"]]},{"text":"Se franquea: la etapa 0 se <b>desactiva</b> y la etapa <b>1</b> se activa a la vez. Su acción asociada, <b>A+</b>, empieza a ejecutarse mientras la etapa esté activa.","now":[["r",140,140,140,44,1],["t","●",128,167,16,"right"]]},{"text":"La transición 1→2 espera la receptividad <b>a1</b> (el cilindro llegó al final de carrera). Hasta entonces la etapa 1 sigue activa y A+ se mantiene.","add":[["t","a1",218.0,205,13,"left"]],"now":[["r",140,140,140,44,1],["t","●",128,167,16,"right"]]},{"text":"Con a1 activo se franquea: se activa la etapa <b>2</b> (acción A−, el cilindro vuelve) y se desactiva la 1. Siempre hay <b>una etapa activa</b> en una secuencia lineal.","now":[["r",140,220,140,44,1],["t","●",128,247,16,"right"]]},{"text":"La última transición, con receptividad <b>a0</b>, devuelve el ciclo a la etapa <b>0</b>: la secuencia es cíclica y queda lista para otra pulsación de Marcha.","add":[["t","a0",346,167,13,"left"]],"now":[["r",140,220,140,44,1],["t","●",128,247,16,"right"]]}]});
+/* ---- fin paso2 grafcetPaso ---- */
+document.querySelectorAll('[data-sim]').forEach(function(el){var k=el.getAttribute('data-sim'); if(SIMS[k]){ try{ SIMS[k](el); }catch(e){ console.error('sim '+k, e); } }});
 })();

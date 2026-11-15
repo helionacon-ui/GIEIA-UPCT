@@ -623,5 +623,29 @@ SIMS.ensayosPaso=el=>build(el,{w:660,h:400,
   a.html(`<div>${T[p]}</div>`);
  }});
 
+
+
+
+
+
+/* ---- paso a paso declarativo ---- */
+SIMS.__paso=(el,D)=>build(el,{w:D.w||660,h:D.h||340,
+ sliders:[{k:'paso',v:0,min:0,max:D.steps.length,step:1,l:'paso de la resolución (0 = enunciado)',u:''}],
+ draw(a){a.clear();const g=a.g,p=a.st.paso;
+  const it=(x,col)=>{const k=x[0];
+   if(k==='t')a.txt(x[1],x[2],x[3],col,x[4]||13,x[5]||'left');
+   else if(k==='l')a.line(x[1],x[2],x[3],x[4],col,x[5]||1.5,x[6]);
+   else if(k==='a')a.arrow(x[1],x[2],x[3],x[4],col,x[5]);
+   else if(k==='c')a.circ(x[1],x[2],x[3],col,!!x[4]);
+   else if(k==='r'){g.strokeStyle=col;g.lineWidth=1.8;if(x[5]){g.fillStyle=col;g.globalAlpha=.18;g.fillRect(x[1],x[2],x[3],x[4]);g.globalAlpha=1;}g.strokeRect(x[1],x[2],x[3],x[4]);}
+   else if(k==='p'){g.strokeStyle=col;g.lineWidth=x[2]||2;g.beginPath();x[1].forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.stroke();}};
+  (D.base||[]).forEach(x=>it(x,C.muted));
+  D.steps.forEach((s,i)=>{if(i+1>p)return;const cur=(i+1===p);(s.add||[]).forEach(x=>it(x,cur?C.d:C.text));if(cur)(s.now||[]).forEach(x=>it(x,C.d));});
+  a.html('<div>'+(p===0?D.q:D.steps[p-1].text)+'</div>');}});
+/* ---- fin paso a paso declarativo ---- */
+
+/* ---- paso2 asincronoPaso ---- */
+SIMS.asincronoPaso=el=>SIMS.__paso(el,{"w":620,"h":310,"q":"Un motor asíncrono de 4 polos a 50 Hz gira a 1440 rpm con 10 kW en el entrehierro. ¿Cuál es su deslizamiento y cómo se reparte la potencia? Sube el paso.","base":[["t","4 polos · 50 Hz · n = 1440 rpm · P_entrehierro = 10 kW",30,26,13,"left"]],"steps":[{"text":"Un motor asíncrono de <b>4 polos</b> (2 pares) alimentado a <b>50 Hz</b> gira a <b>1440 rpm</b> y recibe en el entrehierro <b>10 kW</b>. ¿Qué deslizamiento tiene y cómo se reparte la potencia?","add":[]},{"text":"Velocidad de sincronismo: <b>n<sub>s</sub> = 60f/p = 60·50/2 = 1500 rpm</b>. El rotor nunca llega a ella: si lo hiciera no habría flujo cortado y no habría par.","add":[["t","n_s = 60f/p = 1500 rpm",40,70,15,"left"]]},{"text":"Deslizamiento: <b>s = (n<sub>s</sub> − n)/n<sub>s</sub> = (1500 − 1440)/1500 = 0,04</b> (4 %).","add":[["t","s = 60/1500 = 0,04",40,104,15,"left"]]},{"text":"Frecuencia en el rotor: <b>f₂ = s·f = 0,04·50 = 2 Hz</b>. Por eso las pérdidas en el hierro del rotor son despreciables.","add":[["t","f₂ = s f = 2 Hz",40,138,15,"left"]]},{"text":"Pérdidas en el cobre del rotor: <b>P<sub>cu2</sub> = s·P<sub>ag</sub> = 0,04·10000 = 400 W</b>.","add":[["t","P_cu2 = s P_ag = 400 W",40,172,15,"left"],["r",330,250,10.4,24,1],["t","P_cu2 = 400 W",322,267,13,"right"]]},{"text":"Potencia mecánica interna: <b>P<sub>m</sub> = (1 − s)P<sub>ag</sub> = 0,96·10000 = 9600 W</b>. La potencia del entrehierro se reparte siempre en proporción 1 − s : s.","add":[["t","P_m = (1−s) P_ag = 9600 W",40,206,15,"left"],["r",330,280,249.6,24,1],["t","P_m = 9600 W",322,297,13,"right"]]},{"text":"Par electromagnético: <b>T = P<sub>ag</sub>/ω<sub>s</sub> = 10000/157,08 = 63,7 N·m</b> (con la velocidad de sincronismo ω<sub>s</sub> = 2π·1500/60 = 157,08 rad/s); equivale a P<sub>m</sub>/ω.","add":[["t","T = P_ag/ω_s = 63,7 N·m",40,240,15,"left"]]}]});
+/* ---- fin paso2 asincronoPaso ---- */
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();

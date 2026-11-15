@@ -59,6 +59,59 @@
 <li>Olvidar que el disipador puede necesitar <b>aislamiento eléctrico</b>: en el TO-220 la lengüeta suele estar conectada a un terminal.</li>
 <li>Poner un disipador enorme pero en posición horizontal o sin espacio: las aletas necesitan convección vertical libre.</li>
 </ul></div>
+<h3 id="t4-disipador-paso">Elegir un disipador, paso a paso</h3>
+<p>El calor de un componente sigue un camino de resistencias térmicas en serie, igual que la corriente en un circuito. Con la potencia disipada y la temperatura máxima de la unión se obtiene la resistencia que debe tener el disipador.</p>
+<figure class="fig"><p class="ft">Figura interactiva · transistor de potencia con disipador: P = 10 W, Tj,máx = 150 °C, Ta = 40 °C</p>
+<div id="disi-paso" style="font-family:system-ui,sans-serif"><input id="disi-paso-s" type="range" min="0" max="6" step="1" value="0" style="width:100%"><div id="disi-paso-l" style="font-size:13px;color:#56635e;margin:4px 0">paso de la resolución (0 = problema): 0</div><canvas id="disi-paso-c" width="640" height="320" style="width:100%;max-width:640px;height:auto;display:block"></canvas><div id="disi-paso-t" style="font-size:15px;line-height:1.5;margin-top:8px;min-height:90px"></div></div>
+<figcaption>Sube el paso: se modela el camino térmico, se calcula la resistencia máxima del disipador, se elige uno y se comprueba la temperatura de la unión.</figcaption></figure>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Usar Tj − Ta con la temperatura de la carcasa en lugar de la de la unión.</li><li>Olvidar la resistencia de la unión a la carcasa o la de la mica y la pasta térmica.</li><li>Dejar el resultado justo en el límite: sin margen, cualquier aumento de temperatura ambiente rompe el diseño.</li></ul></div>
+<script>
+(function(){
+  var T=[
+   'Transistor de potencia que disipa P = 10 W, con temperatura máxima de unión Tj,máx = 150 °C y ambiente Ta = 40 °C. Datos: Rθjc = 1,5 K/W y Rθcs = 0,5 K/W (con mica y pasta). Se pide la resistencia térmica máxima del disipador, Rθsa.',
+   'Modelo térmico: la diferencia de temperatura es la potencia por la suma de resistencias en serie, Tj − Ta = P · (Rθjc + Rθcs + Rθsa). Igual que en un circuito eléctrico, la caída de temperatura se reparte entre las resistencias.',
+   'Resistencia total máxima: Rθ_total ≤ (Tj,máx − Ta)/P = (150 − 40)/10 = 11 K/W. Es el valor que no puede superar el camino completo.',
+   'Despejando la del disipador: Rθsa ≤ 11 − 1,5 − 0,5 = 9 K/W. Cualquier disipador por debajo de ese valor sirve.',
+   'Elección: se toma un disipador de Rθsa = 8 K/W, que deja margen frente al límite de 9 K/W.',
+   'Comprobación: Tj = 40 + 10 · (1,5 + 0,5 + 8) = 40 + 100 = 140 °C, por debajo de los 150 °C.',
+   'Margen: 150 − 140 = 10 °C. Ese margen cubre subidas de la temperatura ambiente o de la potencia real, que casi nunca coinciden con los datos de cálculo.'
+  ];
+  var cv=document.getElementById('disi-paso-c'), g=cv.getContext('2d'), sl=document.getElementById('disi-paso-s'),
+      lb=document.getElementById('disi-paso-l'), tx=document.getElementById('disi-paso-t');
+  function txt(s,x,y,col,sz,al){g.fillStyle=col;g.font=(sz||12)+'px system-ui,sans-serif';g.textAlign=al||'left';g.fillText(s,x,y);}
+  function line(x1,y1,x2,y2,col,w){g.strokeStyle=col;g.lineWidth=w||1.5;g.setLineDash([]);g.beginPath();g.moveTo(x1,y1);g.lineTo(x2,y2);g.stroke();}
+  function box(cx,y,label,col,show){ g.fillStyle=show?'rgba(58,99,196,0.12)':'rgba(0,0,0,0.03)'; g.strokeStyle=show?col:'#8a958f'; g.lineWidth=1.5;
+    g.fillRect(cx-70,y,140,30); g.strokeRect(cx-70,y,140,30); txt(label,cx,y+20,show?col:'#8a958f',12,'center'); }
+  function draw(p){
+    g.clearRect(0,0,cv.width,cv.height);
+    var cx=200;
+    txt('Tj ≤ 150 °C',cx,40,'#b4232f',13,'center');
+    line(cx,50,cx,70,'#56635e');
+    box(cx,70,'Rθjc = 1,5 K/W','#3a63c4',p>=1);
+    line(cx,100,cx,120,'#56635e');
+    box(cx,120,'Rθcs = 0,5 K/W','#3a63c4',p>=1);
+    line(cx,150,cx,170,'#56635e');
+    box(cx,170,'Rθsa = ? K/W','#b8730c',p>=3);
+    line(cx,200,cx,220,'#56635e');
+    txt('Ta = 40 °C',cx,246,'#2c8a52',13,'center');
+    if(p>=1){ g.strokeStyle='#b4232f';g.lineWidth=2;g.beginPath();g.moveTo(cx+90,60);g.lineTo(cx+90,230);g.stroke();
+      txt('P = 10 W →',cx+96,150,'#b4232f',12,'left'); }
+    if(p>=2) txt('Rθ_total ≤ 11 K/W',cx+100,200,'#3a63c4',12,'left');
+    if(p>=4) txt('Rθsa = 8 K/W (elegido)',cx+80,186,'#b8730c',11,'left');
+    var X=380;
+    if(p>=1)txt('Tj − Ta = P · (Rθjc + Rθcs + Rθsa)',X,90,'#16211d',13,'left');
+    if(p>=2)txt('Rθ_total ≤ (150 − 40)/10 = 11 K/W',X,130,'#3a63c4',13,'left');
+    if(p>=3)txt('Rθsa ≤ 11 − 1,5 − 0,5 = 9 K/W',X,170,'#b8730c',13,'left');
+    if(p>=4)txt('Elegimos Rθsa = 8 K/W (margen)',X,210,'#b8730c',13,'left');
+    if(p>=5)txt('Tj = 40 + 10 · (1,5 + 0,5 + 8) = 140 °C',X,250,'#2c8a52',13,'left');
+    if(p>=6)txt('Margen: 150 − 140 = 10 °C',X,290,'#2c8a52',14,'left');
+    lb.textContent='paso de la resolución (0 = problema): '+p;
+    tx.innerHTML='<div>'+T[p]+'</div>';
+  }
+  sl.addEventListener('input',function(){draw(+sl.value);});
+  draw(0);
+})();
+</script>
 <h3 id="t4-problema">Problema resuelto</h3>
 <div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Un <b>7812</b> en encapsulado TO-220 alimenta 1 A desde una entrada de 20 V. La temperatura ambiente dentro de la caja es de <b>45 °C</b> y la unión no debe pasar de <b>125 °C</b>. Datos: \(R_{jc}=5\) °C/W, montaje con pasta térmica \(R_{cs}=0{,}5\) °C/W, \(R_{ja}\) al aire = 65 °C/W.</p>
 <p>¿Hace falta disipador? ¿De qué resistencia térmica?</p></div>

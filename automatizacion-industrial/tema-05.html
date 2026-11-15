@@ -31,6 +31,51 @@
 <h3 id="t5-metodo">Método paso a paso</h3>
 <ol class="steps"><li>Decide cuántos <b>contactores</b> hacen falta: 1 para directo, 2 para inversión, 3 para estrella-triángulo.</li><li>Dibuja el <b>circuito de potencia</b> con las conexiones de cada contactor al motor, con cuidado al cruzar las fases.</li><li>En mando, empieza por el <b>enclavamiento mutuo</b>: contactos NC cruzados entre los contactores incompatibles.</li><li>Añade el <b>enclavamiento de marcha</b> (autoalimentación) y el paro NC en serie con todo.</li><li>Coloca los <b>temporizadores</b> donde haya cambios automáticos: estrella→triángulo, o el tiempo de cada sentido.</li><li>Repasa el <b>contacto del térmico</b> en serie, al principio de la línea de mando.</li></ol>
 <div class="box trap"><h4>Trampas típicas</h4><ul><li><b>Que KME y KMT cierren a la vez.</b> Es un cortocircuito entre fases. Hace falta enclavamiento mutuo <b>y</b> un tiempo muerto entre abrir uno y cerrar el otro.</li><li><b>Arrancar en estrella con carga plena.</b> En estrella el par es un tercio. Si la carga pide más, el motor no arranca y se queda calando hasta que salta el térmico.</li><li><b>Cruzar las tres fases para invertir.</b> Permutando las tres se vuelve al mismo sentido. Hay que cruzar <b>dos</b>, cualesquiera.</li><li><b>Invertir el giro sin pasar por paro.</b> El frenado a contracorriente provoca un pico de corriente mayor que el arranque y castiga mecánicamente la transmisión.</li><li><b>Conectar en triángulo un motor de 230/400 V en red de 400 V.</b> Se quema: en triángulo cada devanado vería los 400 V, cuando está diseñado para 230 V. El estrella-triángulo sólo vale si el motor funciona en triángulo a la tensión de red.</li></ul></div>
+<h3 id="t5-estrella-triangulo-paso">Arranque estrella-triángulo, paso a paso</h3>
+<p>Conectar los devanados en estrella durante el arranque reduce la tensión por fase a 1/√3 de la de línea. Con eso la corriente de línea y el par de arranque quedan a un tercio de los valores en triángulo.</p>
+<figure class="fig"><p class="ft">Figura interactiva · motor trifásico de 400 V con Z = 20 Ω por fase</p>
+<div id="et-paso" style="font-family:system-ui,sans-serif"><input id="et-paso-s" type="range" min="0" max="6" step="1" value="0" style="width:100%"><div id="et-paso-l" style="font-size:13px;color:#56635e;margin:4px 0">paso de la resolución (0 = problema): 0</div><canvas id="et-paso-c" width="640" height="280" style="width:100%;max-width:640px;height:auto;display:block"></canvas><div id="et-paso-t" style="font-size:15px;line-height:1.5;margin-top:8px;min-height:90px"></div></div>
+<figcaption>Sube el paso: se calcula la tensión y la corriente por fase y de línea en triángulo, después en estrella, y se compara la relación entre ambas.</figcaption></figure>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Usar la tensión de fase de la estrella con la corriente de línea del triángulo sin convertir.</li><li>Olvidar que en estrella la corriente de línea coincide con la de fase.</li><li>Pensar que el arranque en estrella sirve con cualquier par de carga: el par resistente debe ser menor que un tercio del nominal.</li></ul></div>
+<script>
+(function(){
+  var T=[
+   'Motor trifásico de red de 400 V con impedancia Z = 20 Ω por fase durante el arranque. Se comparan la corriente de línea conectado en triángulo (marcha normal) y en estrella (arranque).',
+   'Conexión triángulo: cada devanado queda entre dos fases, así que U_fase = U_línea = 400 V.',
+   'Corriente en triángulo: I_fase = 400 / 20 = 20 A. La corriente de línea es √3 veces la de fase: I_línea,Δ = √3 · 20 = 34,6 A.',
+   'Conexión estrella: cada devanado queda entre fase y neutro, así que U_fase = 400/√3 = 231 V.',
+   'Corriente en estrella: I_fase = 231 / 20 = 11,55 A, y en estrella I_línea = I_fase = 11,55 A.',
+   'Relación: I_línea,Y / I_línea,Δ = 11,55 / 34,6 = 1/3. El par es proporcional a la tensión al cuadrado, y (231/400)² ≈ 1/3, así que el par también queda a un tercio.',
+   'Comprobación: el arranque en estrella funciona solo si el par resistente de la carga es menor que un tercio del par nominal. Cuando la velocidad se acerca a la nominal, se pasa a triángulo.'
+  ];
+  var cv=document.getElementById('et-paso-c'), g=cv.getContext('2d'), sl=document.getElementById('et-paso-s'),
+      lb=document.getElementById('et-paso-l'), tx=document.getElementById('et-paso-t');
+  function txt(s,x,y,col,sz,al){g.fillStyle=col;g.font=(sz||12)+'px system-ui,sans-serif';g.textAlign=al||'left';g.fillText(s,x,y);}
+  function line(x1,y1,x2,y2,col,w){g.strokeStyle=col;g.lineWidth=w||2;g.beginPath();g.moveTo(x1,y1);g.lineTo(x2,y2);g.stroke();}
+  function draw(p){
+    g.clearRect(0,0,cv.width,cv.height);
+    // triángulo (izquierda)
+    var A={x:150,y:90}, B={x:70,y:220}, C={x:230,y:220};
+    txt('Triángulo (marcha)',150,40,'#16211d',13,'center');
+    var tri=(p>=1);
+    line(A.x,A.y,B.x,B.y,tri?'#3a63c4':'#8a958f',3); line(B.x,B.y,C.x,C.y,tri?'#3a63c4':'#8a958f',3); line(C.x,C.y,A.x,A.y,tri?'#3a63c4':'#8a958f',3);
+    if(p>=2){ txt('U_fase = 400 V',150,160,'#3a63c4',12,'center'); txt('I_fase = 20 A',150,176,'#3a63c4',12,'center'); }
+    if(p>=3){ txt('I_línea = 34,6 A',150,262,'#3a63c4',13,'center'); }
+    // estrella (derecha)
+    var O={x:500,y:150}, R=80;
+    txt('Estrella (arranque)',500,40,'#16211d',13,'center');
+    var star=(p>=3);
+    [[0,-1],[0.866,0.5],[-0.866,0.5]].forEach(function(v){ line(O.x,O.y,O.x+R*v[0],O.y+R*v[1],star?'#b4232f':'#8a958f',3); });
+    g.fillStyle=star?'#b4232f':'#8a958f'; g.beginPath(); g.arc(O.x,O.y,5,0,6.283); g.fill();
+    if(p>=4){ txt('U_fase = 231 V',500,160,'#b4232f',12,'center'); txt('I_fase = I_línea = 11,55 A',500,176,'#b4232f',12,'center'); }
+    if(p>=5){ txt('11,55 / 34,6 = 1/3',330,130,'#2c8a52',14,'center'); }
+    lb.textContent='paso de la resolución (0 = problema): '+p;
+    tx.innerHTML='<div>'+T[p]+'</div>';
+  }
+  sl.addEventListener('input',function(){draw(+sl.value);});
+  draw(0);
+})();
+</script>
 <h3 id="t5-problema">Problema resuelto</h3>
 <div class="prob"><div class="enun"><p class="et">Enunciado</p>Diseña el automatismo de un motor trifásico de gran potencia que, al pulsar <b>Marcha</b>, gire en un sentido <b>30 segundos</b> y en el contrario otros <b>30 segundos</b>, repitiendo la secuencia hasta pulsar <b>Paro</b>, con <b>arranque estrella-triángulo</b> en cada cambio de sentido para reducir el consumo.</div>
 <details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>Contactores necesarios: cuatro.</b> KM1 y KM2 para los dos sentidos, KME y KMT para estrella y triángulo.</p>

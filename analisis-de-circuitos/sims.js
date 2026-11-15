@@ -488,5 +488,29 @@ SIMS.matrizG=el=>build(el,{w:640,h:350,
   a.html(`<div>${T[p]}</div>${tabla}`);
  }});
 
+
+
+
+
+
+/* ---- paso a paso declarativo ---- */
+SIMS.__paso=(el,D)=>build(el,{w:D.w||660,h:D.h||340,
+ sliders:[{k:'paso',v:0,min:0,max:D.steps.length,step:1,l:'paso de la resolución (0 = enunciado)',u:''}],
+ draw(a){a.clear();const g=a.g,p=a.st.paso;
+  const it=(x,col)=>{const k=x[0];
+   if(k==='t')a.txt(x[1],x[2],x[3],col,x[4]||13,x[5]||'left');
+   else if(k==='l')a.line(x[1],x[2],x[3],x[4],col,x[5]||1.5,x[6]);
+   else if(k==='a')a.arrow(x[1],x[2],x[3],x[4],col,x[5]);
+   else if(k==='c')a.circ(x[1],x[2],x[3],col,!!x[4]);
+   else if(k==='r'){g.strokeStyle=col;g.lineWidth=1.8;if(x[5]){g.fillStyle=col;g.globalAlpha=.18;g.fillRect(x[1],x[2],x[3],x[4]);g.globalAlpha=1;}g.strokeRect(x[1],x[2],x[3],x[4]);}
+   else if(k==='p'){g.strokeStyle=col;g.lineWidth=x[2]||2;g.beginPath();x[1].forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.stroke();}};
+  (D.base||[]).forEach(x=>it(x,C.muted));
+  D.steps.forEach((s,i)=>{if(i+1>p)return;const cur=(i+1===p);(s.add||[]).forEach(x=>it(x,cur?C.d:C.text));if(cur)(s.now||[]).forEach(x=>it(x,C.d));});
+  a.html('<div>'+(p===0?D.q:D.steps[p-1].text)+'</div>');}});
+/* ---- fin paso a paso declarativo ---- */
+
+/* ---- paso2 fpPaso ---- */
+SIMS.fpPaso=el=>SIMS.__paso(el,{"w":620,"h":290,"q":"Una carga de 230 V y 10 A con cos φ = 0,866 (inductiva). Dibuja su triángulo de potencias y calcula el condensador que sube el factor de potencia a 0,95. Sube el paso.","base":[["t","V = 230 V · I = 10 A · φ = 30° (inductiva) · 50 Hz",30,26,13,"left"]],"steps":[{"text":"Una carga inductiva alimentada a <b>230 V</b> consume <b>10 A</b> con un desfase de <b>30°</b>. Se pide su triángulo de potencias y el condensador que corrige el factor de potencia a <b>0,95</b>.","add":[]},{"text":"Potencia aparente: <b>S = V·I = 230·10 = 2300 VA</b>. Es la que debe soportar la instalación.","add":[["t","S = V I = 2300 VA",40,70,15,"left"]]},{"text":"Potencia activa: <b>P = S·cos φ = 2300·0,866 = 1992 W</b>. Es la que se transforma en trabajo útil o calor.","add":[["t","P = S cos φ = 1992 W",40,104,15,"left"],["a",300,262,479.2672585833788,262,3]]},{"text":"Potencia reactiva: <b>Q = S·sen φ = 2300·0,5 = 1150 var</b>. Es la que oscila entre la fuente y el campo magnético de la carga.","add":[["t","Q = S sen φ = 1150 var",40,138,15,"left"],["a",479.2672585833788,262,479.2672585833788,158.50000000000003,3],["a",300,262,479.2672585833788,158.50000000000003,2.5]]},{"text":"Para pasar a <b>cos φ′ = 0,95</b> (tan φ′ = 0,329) la reactiva debe bajar a Q′ = P·tan φ′ = <b>655 var</b>. El condensador debe aportar <b>Q<sub>c</sub> = Q − Q′ = 495 var</b>.","add":[["t","Q_c = Q − P tan φ′ = 495 var",40,172,15,"left"],["a",479.2672585833788,262,479.2672585833788,203.07770152465426,3]]},{"text":"Capacidad: <b>C = Q<sub>c</sub>/(ω·V²) = 495/(314,16·230²) = 29,8 µF</b>, en paralelo con la carga.","add":[["t","C = Q_c/(ωV²) = 29,8 µF",40,206,16,"left"]]},{"text":"Efecto: la corriente baja de 10 A a I′ = P/(V·0,95) = <b>9,12 A</b> sin cambiar la potencia útil. Menos corriente = menos pérdidas en cables y menor factura por energía reactiva.","add":[["t","I′ = P/(V cos φ′) = 9,12 A",40,240,15,"left"]]}]});
+/* ---- fin paso2 fpPaso ---- */
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();

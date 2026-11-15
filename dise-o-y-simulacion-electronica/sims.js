@@ -477,5 +477,29 @@ SIMS.gerber=el=>build(el,{w:680,h:245,
   a.html(`<b>${tit}</b>. ${desc}<br><b>Lo que más se falla:</b> ${trampa}<br>
   <span class="hint">Un envío completo a fábrica lleva: los <b>Gerber de cobre</b> de todas las capas, <b>máscara</b> y <b>serigrafía</b> de ambas caras, el <b>contorno</b>, el <b>taladro Excellon</b> y, si hay montaje, la <b>pasta</b>, el <b>BOM</b> y el fichero de <b>posiciones</b>. Antes de enviarlo, ábrelo en un visor de Gerber independiente: es la única forma de ver lo que verá el fabricante.</span>`);}});
 
+
+
+
+
+
+/* ---- paso a paso declarativo ---- */
+SIMS.__paso=(el,D)=>build(el,{w:D.w||660,h:D.h||340,
+ sliders:[{k:'paso',v:0,min:0,max:D.steps.length,step:1,l:'paso de la resolución (0 = enunciado)',u:''}],
+ draw(a){a.clear();const g=a.g,p=a.st.paso;
+  const it=(x,col)=>{const k=x[0];
+   if(k==='t')a.txt(x[1],x[2],x[3],col,x[4]||13,x[5]||'left');
+   else if(k==='l')a.line(x[1],x[2],x[3],x[4],col,x[5]||1.5,x[6]);
+   else if(k==='a')a.arrow(x[1],x[2],x[3],x[4],col,x[5]);
+   else if(k==='c')a.circ(x[1],x[2],x[3],col,!!x[4]);
+   else if(k==='r'){g.strokeStyle=col;g.lineWidth=1.8;if(x[5]){g.fillStyle=col;g.globalAlpha=.18;g.fillRect(x[1],x[2],x[3],x[4]);g.globalAlpha=1;}g.strokeRect(x[1],x[2],x[3],x[4]);}
+   else if(k==='p'){g.strokeStyle=col;g.lineWidth=x[2]||2;g.beginPath();x[1].forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.stroke();}};
+  (D.base||[]).forEach(x=>it(x,C.muted));
+  D.steps.forEach((s,i)=>{if(i+1>p)return;const cur=(i+1===p);(s.add||[]).forEach(x=>it(x,cur?C.d:C.text));if(cur)(s.now||[]).forEach(x=>it(x,C.d));});
+  a.html('<div>'+(p===0?D.q:D.steps[p-1].text)+'</div>');}});
+/* ---- fin paso a paso declarativo ---- */
+
+/* ---- paso2 zenerPaso ---- */
+SIMS.zenerPaso=el=>SIMS.__paso(el,{"w":620,"h":250,"q":"Calcula la resistencia serie de un regulador zener de 5,1 V para una carga de 20 mA con entrada entre 10 y 14 V. Sube el paso.","base":[["t","Entrada 10–14 V · zener 5,1 V · carga 20 mA · I_z,mín = 5 mA",30,26,13,"left"]],"steps":[{"text":"Se diseña un regulador con <b>diodo zener de 5,1 V</b> para una carga de <b>20 mA</b> con una tensión de entrada que varía entre <b>10 y 14 V</b>. El zener necesita al menos <b>5 mA</b> para estabilizar. ¿Qué resistencia serie hay que poner?","add":[]},{"text":"La peor situación para que el zener conserve su corriente mínima es la <b>entrada más baja</b> (10 V): la corriente que circula por R debe ser ≥ I<sub>L</sub> + I<sub>z,mín</sub> = 20 + 5 = <b>25 mA</b>.","add":[["t","I_R(mín) ≥ I_L + I_z,mín = 25 mA",40,70,15,"left"]]},{"text":"Valor máximo de R: <b>R ≤ (V<sub>in,mín</sub> − V<sub>z</sub>)/(I<sub>L</sub> + I<sub>z,mín</sub>) = (10 − 5,1)/0,025 = 196 Ω</b>.","add":[["t","R ≤ 4,9 V / 25 mA = 196 Ω",40,104,15,"left"]]},{"text":"Se elige un valor normalizado menor: <b>R = 180 Ω</b> (serie E12). Con él, en V<sub>in</sub> = 10 V: I<sub>z</sub> = (10 − 5,1)/180 − 0,02 = <b>7,2 mA</b> ≥ 5 mA ✓.","add":[["t","R = 180 Ω  →  I_z(10 V) = 7,2 mA",40,138,15,"left"]]},{"text":"En la <b>entrada máxima</b> (14 V) el zener absorbe más: I<sub>z</sub> = (14 − 5,1)/180 − 0,02 = <b>29,4 mA</b>. Hay que comprobar que no supera su máximo.","add":[["t","I_z(14 V) = 29,4 mA",40,172,15,"left"]]},{"text":"Potencias: <b>P<sub>z</sub> = V<sub>z</sub>·I<sub>z,máx</sub> = 5,1·0,0294 = 150 mW</b> (zener de 500 mW suficiente) y <b>P<sub>R</sub> = (14 − 5,1)²/180 = 0,44 W</b> (resistencia de 1/2 W justa: mejor de 1 W).","add":[["t","P_z = 150 mW ; P_R = 0,44 W",40,206,15,"left"]]},{"text":"Límite del zener: la regulación es mala (la tensión varía con la corriente) y el rendimiento bajo (la corriente que sobra se disipa). Para más carga se usa un transistor (zener + BJT) o un regulador lineal/LDO.","add":[]}]});
+/* ---- fin paso2 zenerPaso ---- */
 document.querySelectorAll("[data-sim]").forEach(function(el){var k=el.getAttribute("data-sim");if(SIMS[k]){try{SIMS[k](el);}catch(e){console.error("sim "+k,e);}}else console.warn("sim no encontrada: "+k);});
 })();
