@@ -334,5 +334,67 @@ SIMS.aaron=el=>build(el,{w:640,h:380,
   Corrección a cos φ = ${F(fp2)}: Q_C = ${F(Qc/1000)} kvar ⇒ <b>${F(Cd*1e6)} µF por fase en triángulo</b> (o ${F(Cy*1e6)} µF en estrella) y la corriente de línea baja de ${F(IL)} a <b>${F(IL2)} A</b>.<br>
   <span class="hint">tan φ = √3(W₁ − W₂)/(W₁ + W₂) permite sacar el factor de potencia solo con las dos lecturas, sin medir nada más.</span>`);}});
 
+
+/* ---- Verificador KCL / KVL ---- */
+SIMS.kclkvl=el=>build(el,{w:640,h:390,
+ sliders:[{k:'E1',v:12,min:1,max:24,step:1,l:'E₁',u:'V'},{k:'E2',v:6,min:0,max:24,step:1,l:'E₂',u:'V'},{k:'R1',v:100,min:10,max:500,step:10,l:'R₁',u:'Ω'},{k:'R2',v:200,min:10,max:500,step:10,l:'R₂',u:'Ω'},{k:'R3',v:150,min:10,max:500,step:10,l:'R₃',u:'Ω'},{k:'Va',v:5,min:0,max:24,step:0.1,l:'tu estimación de V_A',u:'V'}],
+ draw(a){a.clear();const s=a.st,E1=s.E1,E2=s.E2,R1=s.R1,R2=s.R2,R3=s.R3,Va=s.Va;
+  const Vx=(E1/R1+E2/R3)/(1/R1+1/R2+1/R3);
+  const Ia=(E1-Va)/R1*1000,Ib=Va/R2*1000,Ic=(Va-E2)/R3*1000,res=Ia-Ib-Ic;
+  const ok=Math.abs(res)<0.6;
+  const yT=90,yB=290,xs=[110,300,490];
+  a.line(xs[0],yT,xs[2],yT,C.text,2.5);a.line(xs[0],yB,xs[2],yB,C.text,2.5);
+  xs.forEach(x=>{a.line(x,yT,x,yT+30,C.text,2);a.line(x,yB-30,x,yB,C.text,2);});
+  /* rama 1: R1 arriba, E1 abajo */
+  Rbox(a,xs[0]-24,yT+30,48,30,'R₁',C.f);a.line(xs[0],yT+60,xs[0],yB-70,C.text,2);Fte(a,xs[0],yB-52,18,'E₁');a.txt(F(E1)+' V',xs[0]-70,yB-48,C.d,12);a.txt(F(R1)+' Ω',xs[0]-72,yT+50,C.f,12);
+  /* rama 2: R2 */
+  a.line(xs[1],yT+30,xs[1],yT+80,C.text,2);Rbox(a,xs[1]-24,yT+80,48,30,'R₂',C.f);a.line(xs[1],yT+110,xs[1],yB-30,C.text,2);a.txt(F(R2)+' Ω',xs[1]+30,yT+100,C.f,12);
+  /* rama 3: R3 arriba, E2 abajo */
+  Rbox(a,xs[2]-24,yT+30,48,30,'R₃',C.f);a.line(xs[2],yT+60,xs[2],yB-70,C.text,2);Fte(a,xs[2],yB-52,18,'E₂');a.txt(F(E2)+' V',xs[2]+52,yB-48,C.d,12);a.txt(F(R3)+' Ω',xs[2]+30,yT+50,C.f,12);
+  a.circ(xs[1],yT,5,C.a,true);a.txt('A  (V_A = '+F(Va)+' V)',xs[1]+10,yT-10,C.a,13);
+  a.txt('0 V (referencia)',xs[1]-50,yB+22,C.muted,12);
+  /* flechas de corriente */
+  const col=(v)=>v>=0?C.c:C.d;
+  a.txt('I_a = '+F(Ia)+' mA ↓ (entra en A)',xs[0]-95,yT-30,col(Ia),12);
+  a.txt('I_b = '+F(Ib)+' mA ↓ (sale)',xs[1]-70,yB+42,col(Ib),12);
+  a.txt('I_c = '+F(Ic)+' mA ↓ (sale)',xs[2]-60,yT-30,col(Ic),12);
+  a.html(`<b>KCL en A</b>: lo que entra (I<sub>a</sub> = ${F(Ia)} mA) menos lo que sale (I<sub>b</sub> + I<sub>c</sub> = ${F(Ib+Ic)} mA) = <b style="color:${ok?'#2c8a52':'#c43d63'}">${F(res)} mA ${ok?'✓ (nudo equilibrado)':'✗'}</b>.
+   ${ok?'':'<br><span class="hint">'+(res>0?'Entra más corriente de la que sale: el nudo está «a menos tensión» de la real; sube V_A.':'Sale más corriente de la que entra: baja V_A.')+'</span>'}
+   <br>Solución exacta (Millman): V_A = ${F(Vx)} V &nbsp;→&nbsp; I<sub>a</sub> = ${F((E1-Vx)/R1*1000)} mA, I<sub>b</sub> = ${F(Vx/R2*1000)} mA, I<sub>c</sub> = ${F((Vx-E2)/R3*1000)} mA.
+   <br>KVL malla izquierda con la solución exacta: E₁ − R₁I<sub>a</sub> − R₂I<sub>b</sub> = ${F(E1-R1*(E1-Vx)/R1-R2*Vx/R2)} V ✓ · malla derecha: R₂I<sub>b</sub> − R₃I<sub>c</sub> − E₂ = ${F(Vx-R3*(Vx-E2)/R3-E2)} V ✓.`);}});
+
+/* ---- Diagrama de Bode de un filtro RC ---- */
+SIMS.bode=el=>build(el,{w:640,h:420,
+ selects:[{k:'t',v:'lp',l:'filtro',opts:[['lp','paso bajo (salida en C)'],['hp','paso alto (salida en R)']]}],
+ sliders:[{k:'r',v:3,min:2,max:5,step:0.05,l:'log₁₀ R (R = 10^x Ω)',u:''},{k:'c',v:1,min:0,max:3,step:0.05,l:'log₁₀ C (C = 10^x nF)',u:''}],
+ draw(a){a.clear();const lp=a.st.t==='lp',R=Math.pow(10,a.st.r),Cn=Math.pow(10,a.st.c)*1e-9,fc=1/(2*Math.PI*R*Cn);
+  const x0=70,wq=520,fmin=1,fmax=1e7,dec=Math.log10(fmax/fmin);
+  const X=f=>x0+Math.log10(f/fmin)/dec*wq;
+  const H=f=>{const x=f/fc;return lp?1/Math.sqrt(1+x*x):x/Math.sqrt(1+x*x);};
+  const Ph=f=>{const x=f/fc;return lp?-Math.atan(x)*180/Math.PI:90-Math.atan(x)*180/Math.PI;};
+  const yM0=40,hM=150,yP0=250,hP=110;           // magnitud: 0 dB arriba a -60 dB; fase
+  const dB=v=>20*Math.log10(Math.max(v,1e-6));
+  const YM=d=>yM0+(-d)/60*hM;
+  for(let k=0;k<=dec;k++){const f=fmin*Math.pow(10,k);a.line(X(f),yM0,X(f),yP0+hP,C.grid,1);a.txt(f>=1e6?(f/1e6)+'M':(f>=1e3?(f/1e3)+'k':f),X(f),yP0+hP+16,C.muted,10,'center');}
+  for(let d=0;d>=-60;d-=20){a.line(x0,YM(d),x0+wq,YM(d),C.grid,1);a.txt(d+' dB',x0-6,YM(d)+4,C.muted,10,'right');}
+  a.line(x0,yM0,x0,YM(-60),C.text,1.5);a.line(x0,yP0,x0,yP0+hP,C.text,1.5);
+  /* asíntotas */
+  a.g.save();a.g.beginPath();a.g.rect(x0,yM0-4,wq,hM+8);a.g.clip();
+  if(lp){a.line(X(fmin),YM(0),X(fc),YM(0),C.b,1.5,[5,4]);a.line(X(fc),YM(0),X(fmax),YM(-20*Math.log10(fmax/fc)),C.b,1.5,[5,4]);}
+  else{a.line(X(fmin),YM(20*Math.log10(fmin/fc)),X(fc),YM(0),C.b,1.5,[5,4]);a.line(X(fc),YM(0),X(fmax),YM(0),C.b,1.5,[5,4]);}
+  /* curvas */
+  a.g.strokeStyle=C.a;a.g.lineWidth=3;a.g.beginPath();
+  for(let p=0;p<=wq;p+=2){const f=fmin*Math.pow(10,p/wq*dec);const y=Math.max(YM(dB(H(f))),yM0-1);const yy=Math.min(y,YM(-60));p===0?a.g.moveTo(x0,yy):a.g.lineTo(x0+p,yy);}a.g.stroke();a.g.restore();
+  const YP=ph=>yP0+hP/2-(ph/90)*(hP/2);
+  a.txt('+90°',x0-6,YP(90)+4,C.muted,10,'right');a.txt('0°',x0-6,YP(0)+4,C.muted,10,'right');a.txt('−90°',x0-6,YP(-90)+4,C.muted,10,'right');
+  a.line(x0,YP(0),x0+wq,YP(0),C.grid,1);
+  a.g.strokeStyle=C.f;a.g.lineWidth=3;a.g.beginPath();
+  for(let p=0;p<=wq;p+=2){const f=fmin*Math.pow(10,p/wq*dec);const y=YP(Ph(f));p===0?a.g.moveTo(x0,y):a.g.lineTo(x0+p,y);}a.g.stroke();
+  a.line(X(fc),yM0,X(fc),yP0+hP,C.d,2,[4,4]);a.circ(X(fc),YM(-3.01),5,C.d,true);a.txt('f_c = '+(fc>=1000?F(fc/1000)+' kHz':F(fc)+' Hz'),X(fc)+8,yM0+14,C.d,12);
+  a.txt('|H| (dB)',x0+4,yM0-8,C.a,12);a.txt('fase',x0+4,yP0-8,C.f,12);a.txt('f (Hz)',x0+wq-30,yP0+hP+30,C.muted,11);
+  a.html(`R = ${R>=1000?F(R/1000)+' kΩ':F(R)+' Ω'}, C = ${Cn>=1e-6?F(Cn*1e6)+' µF':F(Cn*1e9)+' nF'} ⇒ <b>f<sub>c</sub> = 1/(2πRC) = ${fc>=1000?F(fc/1000)+' kHz':F(fc)+' Hz'}</b>.
+   En f<sub>c</sub> la ganancia cae <b>−3 dB</b> (|H| = 0,707) y la fase vale <b>${lp?'−45°':'+45°'}</b>. ${lp?'Por encima de f<sub>c</sub> la pendiente es −20 dB/década (cada vez que la frecuencia se multiplica por 10, la salida se divide por 10).':'Por debajo de f<sub>c</sub> sube a +20 dB/década y por encima deja pasar todo (0 dB).'}
+   <br><span class="hint">Las rectas discontinuas son las asíntotas: la curva real se separa de ellas como máximo 3 dB, justo en f<sub>c</sub>.</span>`);}});
+
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();
