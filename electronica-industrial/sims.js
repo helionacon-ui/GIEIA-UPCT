@@ -404,5 +404,57 @@ SIMS.ao=el=>build(el,{w:660,h:370,
   ${a.st.c==='comp'?'Sin realimentación negativa NO hay cortocircuito virtual: la salida sólo puede estar en +Vsat o −Vsat.':'Reglas: V<sub>+</sub> = V<sub>−</sub> (cortocircuito virtual) y no entra corriente por las entradas.'}${a.st.c==='acond'?' Es el problema 2 del examen de enero de 2023: 10 mV/°C y 0–45 °C hacia un ADC de 0–5 V.':''}<br>
   <span class="hint">Sube la ganancia hasta que la salida choque con ±Vsat: eso es lo que limita en la práctica un diseño, junto con los 40 mA de corriente máxima de salida del TL084.</span>`);}});
 
+
+/* ---- Mini-test: región de trabajo de BJT / MOSFET ---- */
+SIMS.regionquiz=el=>{
+  el.classList.add('qz');
+  const R=(a,b)=>a+Math.random()*(b-a), pick=a=>a[Math.floor(Math.random()*a.length)];
+  const f=(x,d)=>(Math.abs(x)<1e-9?0:x).toFixed(d==null?2:d).replace('.',',');
+  function bjt(){
+    const Vcc=pick([9,12,15]),Rc=pick([1,2.2,4.7]),beta=pick([50,100,150]),Rb=pick([10,47,100,220]);
+    const Vi=pick([0.3,0.5,2,3,5,9]);
+    const IB=Vi>0.7?(Vi-0.7)/Rb:0, Icsat=(Vcc-0.2)/Rc;
+    let reg,why;
+    if(Vi<0.7){reg='c';why=`V<sub>BE</sub> ≤ V<sub>i</sub> = ${f(Vi,1)} V &lt; 0,7 V ⇒ el diodo base-emisor no conduce: I<sub>B</sub> = 0 ⇒ <b>corte</b>.`;}
+    else if(beta*IB>Icsat){reg='s';why=`I<sub>B</sub> = (${f(Vi,1)} − 0,7)/${Rb} k = ${f(IB*1000,1)} µA ⇒ βI<sub>B</sub> = ${f(beta*IB,1)} mA &gt; I<sub>C,sat</sub> = (${Vcc} − 0,2)/${f(Rc,1)} k = ${f(Icsat,1)} mA ⇒ <b>saturación</b> (I<sub>C</sub> la fija el circuito exterior).`;}
+    else{reg='a';why=`I<sub>B</sub> = ${f(IB*1000,1)} µA ⇒ βI<sub>B</sub> = ${f(beta*IB,2)} mA &lt; I<sub>C,sat</sub> = ${f(Icsat,1)} mA ⇒ V<sub>CE</sub> = ${f(Vcc-beta*IB*Rc,1)} V &gt; 0,2 V ⇒ <b>zona activa</b>.`;}
+    return {q:`BJT NPN, V<sub>CC</sub> = ${Vcc} V, R<sub>C</sub> = ${f(Rc,1)} kΩ, β = ${beta}. Base a través de R<sub>B</sub> = ${Rb} kΩ desde V<sub>i</sub> = ${f(Vi,1)} V, emisor a masa, V<sub>BE</sub> = 0,7 V.`,opts:[['c','Corte'],['a','Activa'],['s','Saturación']],ok:reg,why};
+  }
+  function mos(){
+    const VDD=pick([9,12]),RD=pick([1,2.2,4.7]),K=pick([1,2,4]),VT=pick([1.5,2,3]),VGS=pick([1,2.5,4,6]);
+    let reg,why;
+    if(VGS<=VT){reg='c';why=`V<sub>GS</sub> = ${f(VGS,1)} V ≤ V<sub>T</sub> = ${f(VT,1)} V ⇒ no hay canal ⇒ <b>corte</b>.`;}
+    else{const ID=K/2*(VGS-VT)**2,VDS=VDD-ID*RD;
+      if(VDS>=VGS-VT){reg='s';why=`Supuesta saturación: I<sub>D</sub> = (${K}/2)(${f(VGS-VT,1)})² = ${f(ID,2)} mA ⇒ V<sub>DS</sub> = ${VDD} − ${f(ID*RD,2)} = ${f(VDS,2)} V ≥ V<sub>GS</sub>−V<sub>T</sub> = ${f(VGS-VT,1)} V ✓ ⇒ <b>saturación</b>.`;}
+      else{reg='o';why=`Supuesta saturación: V<sub>DS</sub> = ${VDD} − ${f(ID*RD,2)} = ${f(VDS,2)} V &lt; V<sub>GS</sub>−V<sub>T</sub> = ${f(VGS-VT,1)} V ✗ ⇒ el MOSFET está en <b>zona óhmica</b> (hay que resolver con la ecuación cuadrática).`;}}
+    return {q:`MOSFET de canal N, V<sub>DD</sub> = ${VDD} V, R<sub>D</sub> = ${f(RD,1)} kΩ, K = ${K} mA/V², V<sub>T</sub> = ${f(VT,1)} V, fuente a masa y V<sub>GS</sub> = ${f(VGS,1)} V (I<sub>G</sub> = 0).`,opts:[['c','Corte'],['o','Óhmica'],['s','Saturación']],ok:reg,why};
+  }
+  const box=document.createElement('div');el.append(box);
+  let score=0,done=0,qs=[];
+  function gen(){qs=[bjt(),bjt(),mos()];score=0;done=0;render();}
+  function render(){
+    box.innerHTML='';
+    qs.forEach((q,n)=>{
+      const d=document.createElement('div');d.style.margin='0 0 14px';
+      d.innerHTML=`<p><b>${n+1}.</b> ${q.q}</p>`;
+      const o=document.createElement('div');o.className='qopts';
+      const fb=document.createElement('div');fb.className='readout';fb.style.display='none';
+      q.opts.forEach(([k,t])=>{const b=document.createElement('button');b.className='qo';b.textContent=t;
+        b.onclick=()=>{if(q.done)return;q.done=true;done++;
+          [...o.children].forEach(x=>{x.disabled=true;});
+          const good=k===q.ok;if(good)score++;
+          b.classList.add(good?'ok':'bad');
+          if(!good)[...o.children].forEach((x,j)=>{if(q.opts[j][0]===q.ok)x.classList.add('ok');});
+          fb.style.display='block';fb.innerHTML=(good?'✔ Correcto. ':'✘ No. ')+q.why;
+          sc.textContent=`Aciertos: ${score}/${done}`;};
+        o.append(b);});
+      d.append(o,fb);box.append(d);});
+    const nb=document.createElement('button');nb.textContent='Nuevas preguntas';nb.onclick=gen;
+    const sc=document.createElement('span');sc.style.marginLeft='12px';sc.style.fontSize='13px';sc.textContent='Aciertos: 0/0';
+    box.append(nb,sc);
+  }
+  gen();
+};
+
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();
