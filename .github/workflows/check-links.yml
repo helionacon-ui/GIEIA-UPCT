@@ -1,0 +1,20 @@
+name: Comprobar enlaces de las guías
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'   # cada lunes a las 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  enlaces:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Comprobar que cada guía responde
+        run: node scripts/check-links.js
