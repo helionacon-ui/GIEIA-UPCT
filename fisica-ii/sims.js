@@ -270,5 +270,25 @@ SIMS.gaussPaso=el=>build(el,{w:640,h:370,
   a.html(`<div>${T[p]}</div>`);
  }});
 
+
+/* ---- paso a paso declarativo ---- */
+SIMS.__paso=(el,D)=>build(el,{w:D.w||660,h:D.h||340,
+ sliders:[{k:'paso',v:0,min:0,max:D.steps.length,step:1,l:'paso de la resolución (0 = enunciado)',u:''}],
+ draw(a){a.clear();const g=a.g,p=a.st.paso;
+  const it=(x,col)=>{const k=x[0];
+   if(k==='t')a.txt(x[1],x[2],x[3],col,x[4]||13,x[5]||'left');
+   else if(k==='l')a.line(x[1],x[2],x[3],x[4],col,x[5]||1.5,x[6]);
+   else if(k==='a')a.arrow(x[1],x[2],x[3],x[4],col,x[5]);
+   else if(k==='c')a.circ(x[1],x[2],x[3],col,!!x[4]);
+   else if(k==='r'){g.strokeStyle=col;g.lineWidth=1.8;if(x[5]){g.fillStyle=col;g.globalAlpha=.18;g.fillRect(x[1],x[2],x[3],x[4]);g.globalAlpha=1;}g.strokeRect(x[1],x[2],x[3],x[4]);}
+   else if(k==='p'){g.strokeStyle=col;g.lineWidth=x[2]||2;g.beginPath();x[1].forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.stroke();}};
+  (D.base||[]).forEach(x=>it(x,C.muted));
+  D.steps.forEach((s,i)=>{if(i+1>p)return;const cur=(i+1===p);(s.add||[]).forEach(x=>it(x,cur?C.d:C.text));if(cur)(s.now||[]).forEach(x=>it(x,C.d));});
+  a.html('<div>'+(p===0?D.q:D.steps[p-1].text)+'</div>');}});
+/* ---- fin paso a paso declarativo ---- */
+
+/* ---- paso2 kirchhoffPaso ---- */
+SIMS.kirchhoffPaso=el=>SIMS.__paso(el,{"w":660,"h":265,"q":"Calcula la corriente en cada resistencia y la potencia total: 12 V, R₁ = 4 Ω en serie con R₂ = 6 Ω ∥ R₃ = 12 Ω. Sube el paso.","base":[["t","Fuente 12 V · R₁ = 4 Ω en serie con R₂ = 6 Ω ∥ R₃ = 12 Ω",30,26,13,"left"],["l",370,80,410,80,2],["r",410,70,50,20,0],["l",460,80,530,80,2],["l",530,80,530,230,2],["r",500,110,60,22,0],["r",500,170,60,22,0],["t","R₂",565,126,12,"left"],["t","R₃",565,186,12,"left"],["l",530,80,530,110,2],["l",530,132,530,170,2],["l",530,192,530,230,2],["l",370,230,530,230,2],["l",370,80,370,230,2],["t","R₁",435,64,12,"center"],["t","12 V",360,160,13,"right"]],"steps":[{"text":"Un circuito de continua: fuente de <b>12 V</b>, <b>R₁ = 4 Ω</b> en serie con el paralelo de <b>R₂ = 6 Ω</b> y <b>R₃ = 12 Ω</b>. Se piden todas las corrientes y la tensión en el paralelo.","add":[]},{"text":"Resistencia del paralelo: <b>R₂₃ = R₂R₃/(R₂+R₃) = 72/18 = 4 Ω</b>.","add":[["t","R₂₃ = 6·12/18 = 4 Ω",30,64,15,"left"]]},{"text":"Resistencia total: <b>R<sub>T</sub> = R₁ + R₂₃ = 4 + 4 = 8 Ω</b>.","add":[["t","R_T = 4 + 4 = 8 Ω",30,98,15,"left"]]},{"text":"Corriente de la fuente (es la de R₁): <b>I = V/R<sub>T</sub> = 12/8 = 1,5 A</b>.","add":[["t","I = 12/8 = 1,5 A",30,132,15,"left"]]},{"text":"Tensión en el paralelo: <b>V₂₃ = I·R₂₃ = 1,5·4 = 6 V</b> (también 12 − 1,5·4 = 6 V ✓).","add":[["t","V₂₃ = 1,5·4 = 6 V",30,166,15,"left"]]},{"text":"Reparto: <b>I₂ = 6/6 = 1 A</b> e <b>I₃ = 6/12 = 0,5 A</b>. Comprobación con la ley de nudos: 1 + 0,5 = 1,5 A ✓. Potencia total P = V·I = 18 W = 4·1,5² + 6·1² + 12·0,5² = 9 + 6 + 3 ✓.","add":[["t","I₂ = 1 A ; I₃ = 0,5 A",30,200,15,"left"],["t","P = 18 W = 9 + 6 + 3",30,234,14,"left"]]}]});
+/* ---- fin paso2 kirchhoffPaso ---- */
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();
