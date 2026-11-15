@@ -1,5 +1,5 @@
 // Caché sin conexión de la guía. Versión: 9 nov 2026
-const VERSION = 'termo-2026-11-09';
+const VERSION = 'termo-2026-11-15b';
 const ARCHIVOS = [
   './',
   'index.html',
@@ -31,6 +31,7 @@ const ARCHIVOS = [
   't09.html',
   't10.html',
   't11.html',
+  'trucos.html',
   'fonts/KaTeX_AMS-Regular.woff2',
   'fonts/KaTeX_Caligraphic-Bold.woff2',
   'fonts/KaTeX_Caligraphic-Regular.woff2',
