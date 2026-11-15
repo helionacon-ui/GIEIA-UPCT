@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automatización Industrial · Guía para aprobar</title>
+<meta name="description" content="Guía para aprobar Automatización Industrial (UPCT, GIEyA): neumática y electroneumática con FluidSim, válvulas y cilindros, relés y enclavamientos, circuitos de mando y potencia, arranque estrella-triángulo e inversión de giro, GRAFCET con sus estructuras y contadores, el PLC S7-1200 y la traducción a diagrama de contactos, con figuras interactivas y problemas resueltos">
+<meta name="theme-color" content="#3d4f5c">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2019-09">2019/20</time> (problemas y exámenes resueltos, entregables de las sesiones de prácticas y enunciados de los simuladores Lucas-Nülle) · página creada en noviembre de 2026</p></div>
+<header class="hero"><div class="hero-in"><div class="hero-txt">
+<div class="eyebrow">UPCT · GIEyA · 3.er curso</div>
+<h1>Automatización <span>Industrial</span></h1><p class="sub">De la válvula 5/2 al PLC, pasando por el GRAFCET · Guía para aprobar</p>
+<div class="stats"><div><b>10</b><span>temas, de la neumática al autómata</span></div><div><b>10</b><span>figuras interactivas que calculan de verdad</span></div><div><b>8</b><span>problemas de examen resueltos</span></div><div><b>74</b><span>cuestiones de teoría respondidas</span></div></div>
+<div class="cta"><a class="btn pri" href="#cero">Empieza desde cero</a><a class="btn" href="cuestiones.html">Teoría</a><a class="btn" href="examenes.html">Problemas</a><a class="btn" href="problemas.html">Qué cae</a><a class="btn" href="laboratorio.html">Prácticas</a><a class="btn" href="formulario.html">Formulario</a></div>
+</div>
+<div aria-hidden="true" class="hero-art"><svg class="zart" viewBox="-120 -120 240 240">
+<rect x="-44" y="-78" width="88" height="30" rx="3" fill="none" stroke="var(--accent)" stroke-width="2.5"></rect>
+<text fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-size="13" text-anchor="middle" x="0" y="-57">0</text>
+<rect x="-40" y="-74" width="80" height="22" rx="2" fill="none" stroke="var(--accent)" stroke-width="1.2"></rect>
+<line x1="0" y1="-48" x2="0" y2="-26" stroke="var(--muted)" stroke-width="2"></line>
+<line x1="-12" y1="-26" x2="12" y2="-26" stroke="var(--c2)" stroke-width="2.5"></line>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="10" x="18" y="-22">S1</text>
+<rect x="-44" y="-16" width="60" height="30" rx="3" fill="none" stroke="var(--accent)" stroke-width="2.5"></rect>
+<text fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-size="13" text-anchor="middle" x="-14" y="5">1</text>
+<line x1="16" y1="-1" x2="34" y2="-1" stroke="var(--warn)" stroke-width="2"></line>
+<rect x="34" y="-14" width="42" height="26" rx="3" fill="none" stroke="var(--warn)" stroke-width="2"></rect>
+<text fill="var(--warn)" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle" x="55" y="4">K2</text>
+<line x1="-14" y1="14" x2="-14" y2="36" stroke="var(--muted)" stroke-width="2"></line>
+<line x1="-26" y1="36" x2="-2" y2="36" stroke="var(--c2)" stroke-width="2.5"></line>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="10" x="4" y="40">S14</text>
+<rect x="-44" y="46" width="60" height="30" rx="3" fill="none" stroke="var(--accent)" stroke-width="2.5"></rect>
+<text fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-size="13" text-anchor="middle" x="-14" y="67">2</text>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle" x="0" y="-96">GRAFCET &#183; KOP &#183; TRIS &#183; KM &#183; 5/2</text>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle" x="0" y="100">etapa &#183; transici&#243;n &#183; acci&#243;n</text></svg>
+<p class="art-cap">Todo acaba siendo lo mismo: etapas, transiciones y salidas.</p></div></div></header><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)" class="on" aria-current="page">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)" class="on" aria-current="page">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)" class="on" aria-current="page">Tu progreso</a><div class="grp">Neumática</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Elementos neumáticos y su simbología</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos neumáticos y diagrama de estado</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Electroneumática: relés, enclavamiento y temporizadores</a><div class="grp">Automatismos</div><a href="tema-04.html" style="--tc:var(--c5)">T4 Circuito de mando y circuito de potencia</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Arranque de motores e inversión de giro</a><div class="grp">GRAFCET</div><a href="tema-06.html" style="--tc:var(--c7)">T6 GRAFCET: etapas, transiciones y receptividades</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Estructuras: alternativas, paralelas, contadores y saltos</a><div class="grp">PLC</div><a href="tema-08.html" style="--tc:var(--c1)">T8 El autómata programable: ciclo de scan y conexionado</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Del GRAFCET al diagrama de contactos</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Modos de marcha, seguridad y puesta en servicio</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y memorias</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
+<div class="sh"><span aria-hidden="true" class="badge">0</span><div class="shx"><p class="kick">Empezar</p><h2 id="cero">Empieza aquí desde cero</h2></div></div>
+<div class="zero"><p class="ft">Cómo usar la guía</p>
+<ol><li>La asignatura tiene <b>cuatro mitades</b> que parecen inconexas y no lo son: neumática, automatismos eléctricos, GRAFCET y PLC. Todas acaban en lo mismo: <b>una secuencia de estados con condiciones de paso</b>. El GRAFCET es el idioma común.</li>
+<li>Lo que se evalúa es <b>dibujar y justificar</b>, no calcular. Hay cuatro fórmulas en toda la asignatura; el resto son decisiones de diseño que hay que saber explicar por escrito.</li>
+<li>Tres cosas valen puntos en cada ejercicio y casi nadie las escribe: la <b>tabla de variables</b>, la <b>explicación del funcionamiento</b> en prosa y la <b>comprobación</b> de que el ciclo vuelve al estado inicial.</li>
+<li>Si tienes que elegir qué dominar primero, elige el <b>GRAFCET y su traducción a KOP</b>: es lo que cae siempre y lo que se traduce de forma mecánica una vez entendido el patrón.</li>
+<li>Haz los ejercicios <b>a mano</b>. En el examen no hay FluidSim ni TIA Portal, y dibujar un esquema de contactos a lápiz es una habilidad que se adquiere dibujando.</li></ol></div>
+<h3 id="mapa">Mapa de temas</h3>
+<div class="map"><a href="tema-01.html"><b>T1</b>Elementos neumáticos y su simbología</a><a href="tema-02.html"><b>T2</b>Circuitos neumáticos y diagrama de estado</a><a href="tema-03.html"><b>T3</b>Electroneumática: relés, enclavamiento y temporizadores</a><a href="tema-04.html"><b>T4</b>Circuito de mando y circuito de potencia</a><a href="tema-05.html"><b>T5</b>Arranque de motores e inversión de giro</a><a href="tema-06.html"><b>T6</b>GRAFCET: etapas, transiciones y receptividades</a><a href="tema-07.html"><b>T7</b>Estructuras: alternativas, paralelas, contadores y saltos</a><a href="tema-08.html"><b>T8</b>El autómata programable: ciclo de scan y conexionado</a><a href="tema-09.html"><b>T9</b>Del GRAFCET al diagrama de contactos</a><a href="tema-10.html"><b>T10</b>Modos de marcha, seguridad y puesta en servicio</a></div>
+<div class="box key"><p><b>De dónde sale esta guía.</b> Los <b>problemas y exámenes resueltos</b> de la asignatura, los <b>entregables</b> de las seis sesiones de prácticas (FluidSim y TIA Portal) y los enunciados de los <b>simuladores Lucas-Nülle</b>: planta de llenado de tanques, esclusa de dos puertas, sistema de taladro y distribuidor selectivo.</p></div>
+<div class="box trap"><h4>El error número uno</h4><p>Escribir las <b>etapas con bobina normal</b> en vez de con set y reset. El programa compila, se carga y la secuencia se queda clavada en la primera etapa, porque una etapa no es una condición: es una <b>memoria</b>. El segundo error más caro es el gemelo de éste en el mundo eléctrico: olvidar el <b>contacto de enclavamiento</b> y que el cilindro sólo avance mientras se mantenga pulsado el botón.</p></div>
+<h3 id="progreso">Tu progreso</h3>
+<p class="muted">Se guarda en este navegador.</p>
+<div class="bar"><i id="prog-bar"></i></div><p id="prog-txt" class="muted"></p>
+<div class="check"><input type="checkbox" id="c1"><label for="c1">T1 · Elementos neumáticos y su simbología</label></div><div class="check"><input type="checkbox" id="c2"><label for="c2">T2 · Circuitos neumáticos y diagrama de estado</label></div><div class="check"><input type="checkbox" id="c3"><label for="c3">T3 · Electroneumática: relés, enclavamiento y temporizadores</label></div><div class="check"><input type="checkbox" id="c4"><label for="c4">T4 · Circuito de mando y circuito de potencia</label></div><div class="check"><input type="checkbox" id="c5"><label for="c5">T5 · Arranque de motores e inversión de giro</label></div><div class="check"><input type="checkbox" id="c6"><label for="c6">T6 · GRAFCET: etapas, transiciones y receptividades</label></div><div class="check"><input type="checkbox" id="c7"><label for="c7">T7 · Estructuras: alternativas, paralelas, contadores y saltos</label></div><div class="check"><input type="checkbox" id="c8"><label for="c8">T8 · El autómata programable: ciclo de scan y conexionado</label></div><div class="check"><input type="checkbox" id="c9"><label for="c9">T9 · Del GRAFCET al diagrama de contactos</label></div><div class="check"><input type="checkbox" id="c10"><label for="c10">T10 · Modos de marcha, seguridad y puesta en servicio</label></div>
+</section><p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Automatización Industrial (UPCT, GIEyA) · Datos tomados del curso <time datetime="2019-09">2019/20</time> (problemas y exámenes resueltos, entregables de las sesiones de prácticas y enunciados de los simuladores Lucas-Nülle) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

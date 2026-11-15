@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prácticas · Automatización Industrial · Guía para aprobar</title>
+<meta name="description" content="Prácticas con FluidSim y TIA Portal, memorias y depuración de Automatización Industrial (UPCT)">
+<meta name="theme-color" content="#3d4f5c">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2019-09">2019/20</time> (problemas y exámenes resueltos, entregables de las sesiones de prácticas y enunciados de los simuladores Lucas-Nülle) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Automatización Industrial</a><span class="sep">›</span><span>Practicar</span><span class="sep">›</span><span>Prácticas</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Neumática</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Elementos neumáticos y su simbología</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos neumáticos y diagrama de estado</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Electroneumática: relés, enclavamiento y temporizadores</a><div class="grp">Automatismos</div><a href="tema-04.html" style="--tc:var(--c5)">T4 Circuito de mando y circuito de potencia</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Arranque de motores e inversión de giro</a><div class="grp">GRAFCET</div><a href="tema-06.html" style="--tc:var(--c7)">T6 GRAFCET: etapas, transiciones y receptividades</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Estructuras: alternativas, paralelas, contadores y saltos</a><div class="grp">PLC</div><a href="tema-08.html" style="--tc:var(--c1)">T8 El autómata programable: ciclo de scan y conexionado</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Del GRAFCET al diagrama de contactos</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Modos de marcha, seguridad y puesta en servicio</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)" class="on" aria-current="page">Prácticas y memorias</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec" style="--tc:var(--c7);--tcs:var(--c7s)">
+<div class="sh"><span aria-hidden="true" class="badge">L</span><div class="shx"><p class="kick">Practicar</p><h2 id="lab">Prácticas y memorias</h2><div class="tags"><span class="tag">FluidSim</span><span class="tag w">TIA Portal</span></div></div></div>
+<h3>Las herramientas</h3><div class="tw"><table><tr><th>Herramienta</th><th>Para qué</th><th>Lo que hay que saber</th></tr>
+<tr><td><b>FluidSim</b></td><td>Simular circuitos neumáticos, electroneumáticos y de automatismos eléctricos.</td><td>Montar el esquema, configurar cada elemento (diámetros, tiempos, estrangulamiento) y simular paso a paso con el diagrama de estado.</td></tr>
+<tr><td><b>TIA Portal</b></td><td>Programar el PLC Siemens S7-1200.</td><td>Crear el proyecto con la CPU correcta, declarar la tabla de variables, escribir el OB1 en KOP por segmentos y cargar.</td></tr>
+<tr><td><b>Simulador Lucas-Nülle</b></td><td>Probar el programa sobre un proceso simulado.</td><td>Identificar en el panel qué pulsador es cada entrada y qué actuador cada salida antes de programar.</td></tr>
+<tr><td><b>Tabla de observación</b></td><td>Depurar.</td><td>Ver las marcas de etapa en tiempo real: es la forma de saber dónde se queda atascada una secuencia.</td></tr>
+</table></div>
+<p>El flujo que ahorra tiempo: <b>GRAFCET en papel</b> → tabla de variables → parte secuencial → parte combinacional → simulación. Programar antes de tener el GRAFCET dibujado es la forma más rápida de perder una tarde.</p><h3>Qué debe llevar la memoria de prácticas</h3><p>Las memorias de esta asignatura tienen una estructura fija que conviene respetar:</p>
+<ol>
+<li><b>Enunciado</b> del problema, copiado.</li>
+<li><b>Esquema propuesto</b>: circuito neumático y, por separado, el eléctrico de mando. O el GRAFCET, si es un ejercicio de PLC.</li>
+<li><b>Explicación del funcionamiento</b> en prosa: qué pasa al pulsar cada cosa, elemento por elemento y con sus marcas. Es la parte que más puntúa y la que más se descuida.</li>
+<li><b>Lista de piezas</b> con marca y denominación.</li>
+<li><b>Capturas de la simulación</b> paso a paso: estado inicial, tras cada accionamiento y en la situación final.</li>
+<li><b>Capturas de la configuración</b> de los elementos que se hayan parametrizado.</li>
+<li><b>Diagrama de estado</b> cuando haya cilindros.</li>
+</ol>
+<div class="box key"><p>La explicación del funcionamiento es lo que distingue una memoria de otra. Dos alumnos con el mismo esquema pueden sacar notas muy distintas según si explican por qué la válvula es biestable y por qué el estrangulador va en el escape, o si se limitan a pegar capturas.</p></div><h3>Síntomas y causas al depurar</h3><div class="tw"><table><tr><th>Síntoma</th><th>Causa casi segura</th></tr>
+<tr><td>El cilindro sólo avanza mientras se pulsa</td><td>Falta el <b>contacto de enclavamiento</b> en paralelo con el pulsador.</td></tr>
+<tr><td>El ciclo arranca pero no se repite</td><td>Los finales de carrera <b>no están alimentados</b>, o la válvula biestable recibe dos veces la misma orden.</td></tr>
+<tr><td>Una válvula se queda bloqueada</td><td><b>Solape de señal</b>: recibe pilotaje por los dos lados. Hace falta cascada.</td></tr>
+<tr><td>El movimiento va a tirones</td><td>La estranguladora está montada al revés, regulando la <b>entrada</b> en vez del escape.</td></tr>
+<tr><td>El motor no arranca y zumba</td><td>Falta una fase, o está arrancando en estrella con carga plena.</td></tr>
+<tr><td>Salta el térmico a los pocos minutos</td><td>Sobrecarga, pérdida de fase o reglaje demasiado bajo.</td></tr>
+<tr><td>El PLC no hace absolutamente nada</td><td>Falta el segmento de <b>FirstScan</b>: no hay ninguna etapa activa.</td></tr>
+<tr><td>La secuencia no avanza de la primera etapa</td><td>Las etapas están escritas con <b>bobina normal</b> en vez de set/reset.</td></tr>
+<tr><td>Una salida parpadea sin motivo</td><td>Está escrita en <b>dos segmentos</b> distintos.</td></tr>
+<tr><td>Todo funciona al revés que en el enunciado</td><td>Un sensor es <b>NC</b> y se ha programado como NA.</td></tr>
+<tr><td>Se activan dos ramas de una alternativa</td><td>Las receptividades <b>no son excluyentes</b>.</td></tr>
+<tr><td>El ciclo no repite la segunda vez</td><td>Un <b>contador sin reiniciar</b>.</td></tr>
+</table></div><h3>Plantilla de respuesta para el examen</h3><p>Esta estructura sirve para casi cualquier problema de la asignatura y ordena la corrección:</p>
+<div class="code">1. VARIABLES
+   Entradas:  lista con nombre, dirección y descripción
+   Salidas:   lista con nombre, dirección y descripción
+   (si hay sensores NC, DECLARARLO aquí)
+
+2. ANÁLISIS
+   - ¿la estructura es lineal, alternativa o paralela?
+   - ¿hay acciones que deban ser memorizadas?
+   - ¿hay condiciones de fallo o de seguridad?
+   - decisiones de diseño adoptadas y su justificación
+
+3. GRAFCET
+   etapa inicial con doble cuadrado
+   receptividades junto a las transiciones
+   acciones a la derecha, indicando S/R si son memorizadas
+   bucle de cierre
+
+4. PROGRAMA (si lo piden)
+   Parte secuencial: FirstScan + un segmento por transición
+   Parte combinacional: un segmento por salida
+
+5. COMPROBACIÓN
+   recorrer un ciclo completo
+   verificar que el estado final coincide con el inicial
+
+6. OBSERVACIONES
+   emergencia por hardware, enclavamientos, mejoras posibles</div>
+<p>Los apartados 2, 5 y 6 son los que casi nadie escribe y los que separan un aprobado de un notable: demuestran que se ha entendido el problema y no sólo copiado un patrón.</p>
+<figure class="fig"><p class="ft">Simulador interactivo · enclavamiento</p><div data-sim="enclavamiento"></div><figcaption>El montaje de la sesión 2, paso a paso: quita el enclavamiento o cambia el paro a NA y mira qué pasa.</figcaption></figure>
+<figure class="fig"><p class="ft">Figura interactiva · modos de marcha</p><div data-sim="modos"></div><figcaption>Manual, automático y fallo, con la parte combinacional calculándose sola.</figcaption></figure>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="problemas.html"><small>← Anterior</small>Qué cae</a><a class="nx" href="formulario.html"><small>Siguiente →</small>Formulario</a></nav><p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Automatización Industrial (UPCT, GIEyA) · Datos tomados del curso <time datetime="2019-09">2019/20</time> (problemas y exámenes resueltos, entregables de las sesiones de prácticas y enunciados de los simuladores Lucas-Nülle) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

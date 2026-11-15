@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T10 Modos de marcha, seguridad y puesta en servicio · Automatización Industrial · Guía para aprobar</title>
+<meta name="description" content="Automatización Industrial (UPCT, GIEyA): tema 10, Modos de marcha, seguridad y puesta en servicio">
+<meta name="theme-color" content="#3d4f5c">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2019-09">2019/20</time> (problemas y exámenes resueltos, entregables de las sesiones de prácticas y enunciados de los simuladores Lucas-Nülle) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Automatización Industrial</a><span class="sep">›</span><span>PLC</span><span class="sep">›</span><span>T10 · Modos de marcha, seguridad y puesta en servicio</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Neumática</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Elementos neumáticos y su simbología</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos neumáticos y diagrama de estado</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Electroneumática: relés, enclavamiento y temporizadores</a><div class="grp">Automatismos</div><a href="tema-04.html" style="--tc:var(--c5)">T4 Circuito de mando y circuito de potencia</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Arranque de motores e inversión de giro</a><div class="grp">GRAFCET</div><a href="tema-06.html" style="--tc:var(--c7)">T6 GRAFCET: etapas, transiciones y receptividades</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Estructuras: alternativas, paralelas, contadores y saltos</a><div class="grp">PLC</div><a href="tema-08.html" style="--tc:var(--c1)">T8 El autómata programable: ciclo de scan y conexionado</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Del GRAFCET al diagrama de contactos</a><a href="tema-10.html" style="--tc:var(--c3)" class="on" aria-current="page">T10 Modos de marcha, seguridad y puesta en servicio</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y memorias</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
+<div class="sh"><span aria-hidden="true" class="badge">10</span><div class="shx"><p class="kick">PLC · Tema 10</p><h2 id="t10">Modos de marcha, seguridad y puesta en servicio</h2><div class="tags"><span class="tag">PLC</span><span class="tag">PLC</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Añadir al automatismo lo que el enunciado da por supuesto: modos de operación, paradas, señalización y gestión de fallos.</p><p class="ft">Los modos de marcha</p><p>Casi todo enunciado real pide al menos dos:</p><ul><li><b>Automático</b>: el ciclo completo se ejecuta solo.</li><li><b>Manual</b>: cada actuador se gobierna con su pulsador, para ajustes y mantenimiento.</li></ul><p>Se implementan con una <b>divergencia en O</b> inmediatamente después de la etapa inicial, con receptividades <code>M/A</code> y <code>M̄/A</code>. Y hay que acordarse de <b>señalizarlos</b>: los pilotos LMAN y LAUTO se activan con la O de todas las etapas de su rama.</p><p>Si el selector cambia a mitad de ciclo, lo correcto es <b>terminar el ciclo en curso</b> y cambiar al llegar a la etapa inicial. Por eso <code>M/A</code> aparece negado en las receptividades de las ramas.</p><p class="ft">Parada, emergencia y rearme: no son lo mismo</p><div class="tw"><table><tr><th>Función</th><th>Qué hace</th><th>Cómo se implementa</th></tr><tr><td><b>Parada de ciclo</b></td><td>termina el ciclo en curso y se queda en la etapa inicial</td><td>una marca que se consulta en la transición de cierre del bucle</td></tr><tr><td><b>Parada inmediata</b></td><td>detiene el movimiento donde esté</td><td>desactiva todas las etapas y activa la inicial</td></tr><tr><td><b>Emergencia</b></td><td>corta la energía y lleva a posición segura</td><td><b>por hardware</b>: seta NC que corta la alimentación de las salidas</td></tr><tr><td><b>Rearme</b></td><td>devuelve el sistema a un estado conocido tras un fallo</td><td>una secuencia de retorno al origen antes de permitir el automático</td></tr></table></div><p>La distinción se pregunta y se penaliza: una emergencia que dependa de que el programa se ejecute no es una emergencia.</p><p class="ft">Gestión de fallos</p><p>El patrón es siempre el mismo:</p><ol><li><b>Detectar</b>: una ecuación lógica que define la condición de fallo, por ejemplo dos sensores incompatibles activos a la vez.</li><li><b>Memorizar</b>: una marca que se pone a 1 y se queda, para que el fallo no desaparezca solo.</li><li><b>Señalizar</b>: un piloto y, si procede, un mensaje.</li><li><b>Bloquear</b>: la marca de fallo, negada, se añade a las receptividades que deban quedar inhibidas.</li><li><b>Borrar</b>: sólo con una acción expresa del operador, normalmente el pulsador de parada.</li></ol><p>Un fallo que se borra solo al desaparecer la causa es un fallo mal gestionado: el operador no se entera de que ha ocurrido.</p><p class="ft">Puesta en servicio: cómo se depura</p><p>El orden que ahorra tiempo:</p><ol><li><b>Comprobar el cableado</b> entrada a entrada, forzando cada sensor y mirando el LED del módulo.</li><li>Probar las <b>salidas</b> en modo forzado, una a una, con el motor desconectado si hay riesgo.</li><li>Cargar el programa y <b>observar las marcas de etapa</b> en la tabla de observación: ahí se ve si la secuencia avanza.</li><li>Ejecutar el ciclo <b>en manual</b>, paso a paso, antes de ponerlo en automático.</li></ol><p>El 90 % de los fallos de puesta en marcha son de cableado o de un sensor NC tomado por NA, no de programación.</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 10 <span class="src">9 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">modo manual</td><td>actuador a actuador</td><td class="u"></td></tr><tr><td class="sym">modo automático</td><td>ciclo completo</td><td class="u"></td></tr><tr><td class="sym">LMAN / LAUTO</td><td>pilotos de modo</td><td class="u"></td></tr><tr><td class="sym">parada de ciclo</td><td>termina el ciclo</td><td class="u"></td></tr><tr><td class="sym">parada inmediata</td><td>detiene donde esté</td><td class="u"></td></tr><tr><td class="sym">emergencia</td><td>por hardware</td><td class="u">seta NC</td></tr><tr><td class="sym">rearme</td><td>vuelta al origen</td><td class="u"></td></tr><tr><td class="sym">F</td><td>condición de fallo</td><td class="u">memorizada</td></tr><tr><td class="sym">H4</td><td>piloto de fallo</td><td class="u"></td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - modos de marcha, fallos y parte combinacional</p><div data-sim="modos"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
+<h3 id="t10-formulas">Fórmulas y conceptos que hay que saber</h3>
+<div class="box key"><div class="tw"><table><tr><th>Expresión</th><th>Qué es</th></tr><tr><td>\(\text{LMAN}=X_{11}+X_{12}+X_{13}\)</td><td>piloto de modo: O de las etapas de la rama</td></tr><tr><td>\(F=S_3S_4+S_5S_6+S_7S_8\)</td><td>ecuación de fallo</td></tr><tr><td>\(\overline{F}\ \text{en las receptividades}\)</td><td>bloqueo por fallo</td></tr><tr><td>\(\text{Emergencia: hardware}\)</td><td>nunca sólo por programa</td></tr></table></div></div>
+<h3 id="t10-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Lee el enunciado buscando las palabras <b>modo</b>, <b>manual</b>, <b>parada</b>, <b>fallo</b> y <b>rearme</b>: cada una añade estructura al GRAFCET.</li><li>Pon la <b>divergencia de modos</b> justo después de la etapa inicial.</li><li>Escribe la <b>ecuación de fallo</b> y decide qué receptividades hay que bloquear con su negación.</li><li>Decide qué tipo de parada pide el enunciado: de ciclo, inmediata o emergencia. No son intercambiables.</li><li>Añade los <b>pilotos de señalización</b> en la parte combinacional: modos, fallo, marcha.</li><li>Comprueba que, tras un fallo y su borrado, el sistema queda en un <b>estado conocido</b> y no a medias.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li><b>Implementar la emergencia sólo en el programa.</b> La seta se cablea por hardware cortando la alimentación de las salidas. El programa puede además enterarse de ella, pero no puede ser lo único.</li><li><b>Que el fallo se borre solo.</b> Hay que memorizarlo y exigir una acción del operador para borrarlo; si no, nadie se entera de que ha habido un problema.</li><li><b>Cambiar de modo a mitad de ciclo.</b> Deja el sistema en una posición indefinida. Lo correcto es terminar el ciclo y cambiar en la etapa inicial.</li><li><b>Olvidar los pilotos de señalización.</b> El enunciado los pide explícitamente y son parte de la parte combinacional. Son puntos fáciles de perder.</li><li><b>No prever el rearme.</b> Tras una emergencia los actuadores están en posiciones arbitrarias. Hace falta una secuencia de retorno al origen antes de permitir el automático.</li></ul></div>
+<h3 id="t10-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p>Diseña el sistema de control de un <b>depósito con dos sensores de nivel</b> (MinTP y MaxTP) y dos válvulas (V1 de llenado y V2 de vaciado), con <b>modo manual y automático</b> seleccionables con M/A, pilotos LMAN y LAUTO, y las válvulas gobernadas en manual por los pulsadores BV1 y BV2. Da el GRAFCET, la tabla de variables y la parte combinacional.</div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>Tabla de variables.</b></p>
+<div class="tw"><table><tr><th>Nombre</th><th>Dirección</th><th>Función</th></tr>
+<tr><td>M/A</td><td>%I0.0</td><td>selector de modo</td></tr>
+<tr><td>BV1</td><td>%I0.1</td><td>pulsador manual de llenado</td></tr>
+<tr><td>BV2</td><td>%I0.2</td><td>pulsador manual de vaciado</td></tr>
+<tr><td>MinTP</td><td>%I0.3</td><td>sensor de nivel mínimo</td></tr>
+<tr><td>MaxTP</td><td>%I0.4</td><td>sensor de nivel máximo</td></tr>
+<tr><td>LMAN</td><td>%Q0.0</td><td>piloto de modo manual</td></tr>
+<tr><td>LAUTO</td><td>%Q0.1</td><td>piloto de modo automático</td></tr>
+<tr><td>V1</td><td>%Q0.2</td><td>válvula de llenado</td></tr>
+<tr><td>V2</td><td>%Q0.3</td><td>válvula de vaciado</td></tr>
+<tr><td>E0, E11…E13, E21…E23</td><td>%M0.0…%M0.6</td><td>etapas</td></tr>
+</table></div>
+<p><b>GRAFCET con los dos modos.</b></p>
+<div class="code">              ╔═══╗
+              ║ 0 ║
+              ╚═╤═╝
+      ┌─────────┴─────────┐
+      ┼ M/A               ┼ M̄/A          divergencia en O
+   ┌──┴──┐             ┌──┴──┐
+   │ 11  │             │ 21  │  (espera automática)
+   └──┬──┘             └──┬──┘
+ ┌────┴────┐              ┼ MinTP·M̄/A
+ ┼ BV1     ┼ BV2       ┌──┴──┐
+┌┴──┐    ┌─┴─┐         │ 22  │ V1    llenar
+│12 │V1  │13 │V2       └──┬──┘
+└┬──┘    └─┬─┘            ┼ MaxTP
+ ┼ B̄V1     ┼ B̄V2       ┌──┴──┐
+ └────┬────┘            │ 23  │ V2    vaciar
+   vuelve a 11          └──┬──┘
+                           ┼ MinTP
+                        vuelve a 21
+
+Retorno a la etapa 0: desde 11 con M̄/A, desde 21 con M/A</div>
+<p><b>Parte combinacional.</b></p>
+<div class="code">LMAN  = E11 + E12 + E13          ← la O de todas las etapas manuales
+LAUTO = E21 + E22 + E23          ← la O de todas las automáticas
+V1    = E12 + E22                ← llena en manual Y en automático
+V2    = E13 + E23</div>
+<p><b>Las decisiones de diseño y su justificación.</b></p>
+<div class="tw"><table><tr><th>Decisión</th><th>Por qué</th></tr>
+<tr><td>Divergencia en <b>O</b> tras la etapa 0</td><td>Los modos son excluyentes: nunca se está en los dos.</td></tr>
+<tr><td>El cambio de modo pasa por la <b>etapa 0</b></td><td>Garantiza que ninguna válvula queda abierta al cambiar.</td></tr>
+<tr><td>En manual, salida con <code>B̄V1</code></td><td>La válvula se abre <b>mientras</b> se pulse. Con una receptividad distinta quedaría enclavada, que no es lo que pide un modo manual.</td></tr>
+<tr><td><code>M̄/A</code> en la transición E21→E22</td><td>Impide que arranque un llenado automático justo cuando el operador acaba de cambiar a manual.</td></tr>
+<tr><td>V1 y V2 nunca en la misma etapa</td><td>Llenar y vaciar a la vez no tiene sentido y la estructura del GRAFCET lo impide por construcción.</td></tr>
+</table></div>
+<div class="box key"><p><b>Lo que falta y conviene mencionar en el examen.</b> Un sistema real necesitaría además: comprobación de <b>coherencia</b> de los sensores (si MaxTP está activo y MinTP no, hay un sensor averiado), un <b>temporizador de vigilancia</b> que avise si el depósito no se llena en el tiempo esperado, y la <b>emergencia cableada</b> que cierre las dos válvulas. Escribir esas tres líneas al final de la solución demuestra que se ha entendido el problema, no sólo el GRAFCET.</p></div></div></details></div>
+<h3 id="t10-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Cómo se implementan los modos manual y automático?</summary><div class="inner"><p>Con una divergencia en O justo después de la etapa inicial, con receptividades M/A y su negación.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Cómo se activa el piloto de un modo?</summary><div class="inner"><p>Con la unión en O de todas las etapas de esa rama.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Qué diferencia hay entre parada de ciclo y parada inmediata?</summary><div class="inner"><p>La de ciclo termina el ciclo en curso y se queda en la etapa inicial; la inmediata detiene el movimiento donde esté.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Por qué la emergencia no puede implementarse sólo por programa?</summary><div class="inner"><p>Porque debe actuar aunque la CPU esté bloqueada: se cablea cortando la alimentación de las salidas.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Cuáles son los cinco pasos de la gestión de un fallo?</summary><div class="inner"><p>Detectar, memorizar, señalizar, bloquear las receptividades afectadas y borrar sólo con una acción del operador.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Por qué no debe borrarse un fallo automáticamente?</summary><div class="inner"><p>Porque el operador no se enteraría de que ha ocurrido y la causa podría repetirse sin registro.</p></div></details><details class="paso"><summary><span class="pn">7</span>¿Qué debe hacerse al cambiar de modo a mitad de ciclo?</summary><div class="inner"><p>Terminar el ciclo en curso y cambiar al llegar a la etapa inicial, para no dejar actuadores en posición indefinida.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-09.html"><small>← Anterior</small>T9 · Del GRAFCET al diagrama de contactos</a><a class="nx" href="cuestiones.html"><small>Siguiente →</small>Cuestiones de teoría</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Automatización Industrial (UPCT, GIEyA) · Datos tomados del curso <time datetime="2019-09">2019/20</time> (problemas y exámenes resueltos, entregables de las sesiones de prácticas y enunciados de los simuladores Lucas-Nülle) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

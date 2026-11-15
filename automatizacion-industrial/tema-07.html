@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T7 Estructuras: alternativas, paralelas, contadores y saltos · Automatización Industrial · Guía para aprobar</title>
+<meta name="description" content="Automatización Industrial (UPCT, GIEyA): tema 7, Estructuras: alternativas, paralelas, contadores y saltos">
+<meta name="theme-color" content="#3d4f5c">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2019-09">2019/20</time> (problemas y exámenes resueltos, entregables de las sesiones de prácticas y enunciados de los simuladores Lucas-Nülle) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Automatización Industrial</a><span class="sep">›</span><span>GRAFCET</span><span class="sep">›</span><span>T7 · Estructuras: alternativas, paralelas, contadores y saltos</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Neumática</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Elementos neumáticos y su simbología</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos neumáticos y diagrama de estado</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Electroneumática: relés, enclavamiento y temporizadores</a><div class="grp">Automatismos</div><a href="tema-04.html" style="--tc:var(--c5)">T4 Circuito de mando y circuito de potencia</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Arranque de motores e inversión de giro</a><div class="grp">GRAFCET</div><a href="tema-06.html" style="--tc:var(--c7)">T6 GRAFCET: etapas, transiciones y receptividades</a><a href="tema-07.html" style="--tc:var(--c8)" class="on" aria-current="page">T7 Estructuras: alternativas, paralelas, contadores y saltos</a><div class="grp">PLC</div><a href="tema-08.html" style="--tc:var(--c1)">T8 El autómata programable: ciclo de scan y conexionado</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Del GRAFCET al diagrama de contactos</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Modos de marcha, seguridad y puesta en servicio</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y memorias</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c8);--tcs:var(--c8s)">
+<div class="sh"><span aria-hidden="true" class="badge">7</span><div class="shx"><p class="kick">GRAFCET · Tema 7</p><h2 id="t7">Estructuras: alternativas, paralelas, contadores y saltos</h2><div class="tags"><span class="tag">GRAFCET</span><span class="tag">GRAFCET</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Representar procesos que no son una simple secuencia: elecciones, tareas simultáneas, bucles y repeticiones contadas.</p><p class="ft">Divergencia y convergencia en O (alternativa)</p><p>Se dibuja con una <b>línea horizontal simple</b>. Desde una etapa salen varias ramas, cada una con su transición, y el proceso toma <b>una sola</b>.</p><p>La condición indispensable: las receptividades de las ramas deben ser <b>mutuamente excluyentes</b>. Si dos pudieran ser ciertas a la vez, el GRAFCET sería ambiguo y en el PLC se activarían dos ramas. Cuando el enunciado no lo garantiza, se fuerza añadiendo la negación de la otra: en una rama <code>a</code> y en la otra <code>b·ā</code>.</p><p>Las ramas se vuelven a unir con otra línea simple, y cada una lleva <b>su propia transición</b> antes de la convergencia.</p><p class="ft">Divergencia y convergencia en Y (paralela)</p><p>Se dibuja con <b>doble línea horizontal</b>. Una sola transición activa <b>todas</b> las ramas a la vez, que evolucionan de forma independiente.</p><p>En la convergencia, la transición sólo se franquea cuando <b>todas</b> las últimas etapas de las ramas están activas: es un punto de <b>sincronización</b>. Normalmente se pone una etapa de espera al final de cada rama para que la más rápida aguarde a la más lenta.</p><p>Aquí sí hay varias etapas activas simultáneamente, y es la única situación en la que eso es correcto.</p><p class="ft">Saltos y bucles</p><p>Un <b>salto</b> es una rama de la alternativa que se salta varias etapas, dibujada con una flecha. Se usa para omitir una parte del ciclo según una condición.</p><p>Un <b>bucle</b> es lo contrario: una rama que vuelve hacia atrás, para repetir una parte. Es la estructura natural de «repetir hasta que…».</p><p>Ambos se construyen con divergencias en O: no hay un símbolo especial.</p><p class="ft">Contadores</p><p>Cuando hay que repetir un número de veces, se usa un <b>contador</b>. En el GRAFCET aparece como una acción que lo incrementa, <code>C1 = C1+1</code>, y como una receptividad que lo comprueba, <code>C1 = 6</code>.</p><p>La estructura es siempre un bucle con alternativa:</p><ul><li>Una rama con receptividad <b>C1 &lt; N</b>, que vuelve atrás y repite.</li><li>Otra rama con <b>C1 = N</b>, que continúa y <b>pone el contador a cero</b>.</li></ul><p>Olvidar el reinicio del contador es el fallo típico: la segunda vez que se ejecuta el ciclo, ya está en N y no repite nada.</p><p class="ft">Marcha manual y automática</p><p>Muchos enunciados piden <b>dos modos</b>. Se resuelve con una <b>divergencia en O justo después de la etapa inicial</b>, con receptividades <code>M/A</code> y <code>M̄/A</code>: una rama es el ciclo automático y la otra el mando manual.</p><p>Y en la parte combinacional hay que acordarse de que los pilotos de modo (LMAN, LAUTO) se activan con la <b>unión en O de todas las etapas</b> de su rama.</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 7 <span class="src">9 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">línea simple</td><td>divergencia en O</td><td class="u">alternativa</td></tr><tr><td class="sym">doble línea</td><td>divergencia en Y</td><td class="u">paralela</td></tr><tr><td class="sym">excluyentes</td><td>requisito del O</td><td class="u"></td></tr><tr><td class="sym">sincronización</td><td>convergencia en Y</td><td class="u"></td></tr><tr><td class="sym">salto</td><td>omitir etapas</td><td class="u"></td></tr><tr><td class="sym">bucle</td><td>repetir etapas</td><td class="u"></td></tr><tr><td class="sym">C1</td><td>contador</td><td class="u"></td></tr><tr><td class="sym">C1 = 0</td><td>reiniciar</td><td class="u">imprescindible</td></tr><tr><td class="sym">M/A</td><td>selector de modo</td><td class="u"></td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - divergencias en O y en Y, bucles y contadores</p><div data-sim="estructura"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
+<h3 id="t7-formulas">Fórmulas y conceptos que hay que saber</h3>
+<div class="box key"><div class="tw"><table><tr><th>Expresión</th><th>Qué es</th></tr><tr><td>\(\text{O: línea simple}\)</td><td>una sola rama evoluciona</td></tr><tr><td>\(\text{Y: doble línea}\)</td><td>todas las ramas a la vez</td></tr><tr><td>\(a\cdot\bar b\ \ \text{y}\ \ b\)</td><td>cómo forzar exclusividad</td></tr><tr><td>\(C_1=C_1+1\)</td><td>acción de contar</td></tr><tr><td>\(\overline{S8}\cdot(C_1=6)\)</td><td>receptividad con contador</td></tr></table></div></div>
+<h3 id="t7-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Pregúntate si el proceso <b>elige</b> un camino (O, línea simple) o <b>hace varias cosas a la vez</b> (Y, doble línea).</li><li>Si es alternativa, comprueba que las receptividades son <b>excluyentes</b>; si no lo son, niega la otra.</li><li>Si es paralela, pon una <b>etapa de espera</b> al final de cada rama antes de la convergencia.</li><li>Para repetir N veces, monta un <b>bucle con contador</b> y no olvides la rama de salida que lo pone a cero.</li><li>Para los modos manual y automático, divide justo <b>después de la etapa inicial</b> con M/A y su negación.</li><li>Recorre el GRAFCET terminado simulando dos ciclos completos: el segundo es el que descubre los contadores sin reiniciar.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li><b>Dibujar una alternativa con doble línea.</b> La doble línea es el Y. Si se usa en una elección, el PLC activaría todas las ramas a la vez.</li><li><b>Receptividades no excluyentes en una alternativa.</b> Si <code>a</code> y <code>b</code> pueden ser ciertas simultáneamente, se activan dos ramas. Hay que escribir <code>a</code> y <code>b·ā</code>.</li><li><b>No reiniciar el contador.</b> Al terminar el bucle hay que poner <code>C1 = 0</code>. Sin eso, el ciclo siguiente no repite ninguna vez.</li><li><b>Convergencia en Y sin etapas de espera.</b> Si una rama termina antes, su última etapa se queda activa realizando su acción hasta que llegue la otra. Hace falta una etapa vacía de espera.</li><li><b>Olvidar que la parada afecta a todas las ramas.</b> En una secuencia paralela, la parada de emergencia debe desactivar <b>todas</b> las etapas activas, no sólo una.</li></ul></div>
+<h3 id="t7-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p>Diseña el GRAFCET de una <b>planta de llenado de tres tanques</b>. Con S1 se pone en marcha y con S2 se para. Las válvulas de llenado son H1, H2 y H3. Los sensores de lleno son S3, S5 y S7; los de vacío, S4, S6 y S8. <b>Sólo se puede llenar un tanque cada vez</b>, y sólo después de que se haya señalado su estado vacío. Si los sensores de lleno y vacío de un mismo tanque están activos a la vez, debe encenderse la lámpara de fallo <b>H4</b>; el fallo se borra con la parada y mientras exista no puede llenarse ningún tanque.</div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>El análisis previo.</b> Tres observaciones deciden la estructura:</p>
+<ul>
+<li>«Sólo un tanque cada vez» → <b>divergencia en O</b>, no en Y. Las tres ramas son excluyentes.</li>
+<li>«Después de que se haya señalado el estado vacío» → la receptividad de cada rama incluye su sensor de vacío.</li>
+<li>El fallo es una condición que <b>bloquea todo</b> → se añade negada a todas las receptividades de llenado.</li>
+</ul>
+<p><b>Ecuación de fallo.</b> Lleno y vacío simultáneos en cualquier tanque:</p>
+\[F=S_3\!\cdot\!S_4+S_5\!\cdot\!S_6+S_7\!\cdot\!S_8\]
+<p><b>GRAFCET.</b></p>
+<div class="code">    ╔═══╗
+    ║ 0 ║
+    ╚═╤═╝
+      ┼ S1
+    ┌─┴─┐
+    │ 1 │   espera: ningún tanque llenándose
+    └─┬─┘
+──────┼────────────┼────────────┼──────   divergencia en O
+  S4·F̄        S6·S̄4·F̄      S8·S̄4·S̄6·F̄
+    ┌─┴─┐      ┌─┴─┐       ┌─┴─┐
+    │11 │ H1   │21 │ H2    │31 │ H3
+    └─┬─┘      └─┬─┘       └─┬─┘
+      ┼ S3+F     ┼ S5+F      ┼ S7+F
+──────┴──────────┴───────────┴────────   convergencia en O
+                 │
+                 └──────► vuelve a la etapa 1
+
+  Fallo:  etapa 1 ──┼ F ──► ┌─┐
+                           │40│ H4
+                           └┬┘
+                            ┼ S2
+                            └──► etapa 0</div>
+<p><b>Por qué cada detalle.</b></p>
+<div class="tw"><table><tr><th>Decisión</th><th>Razón</th></tr>
+<tr><td>Divergencia en <b>O</b></td><td>El enunciado dice explícitamente «sólo un tanque cada vez».</td></tr>
+<tr><td><code>S̄4</code> y <code>S̄6</code> en las ramas 2 y 3</td><td>Para hacer las receptividades <b>excluyentes</b>: si dos tanques están vacíos a la vez, se atiende el primero. Sin esto el GRAFCET es ambiguo.</td></tr>
+<tr><td><code>F̄</code> en las tres</td><td>«Mientras exista una condición de fallo, ningún tanque puede ser llenado».</td></tr>
+<tr><td><code>+F</code> en las salidas</td><td>Si el fallo aparece <b>durante</b> el llenado, hay que abandonar la etapa y cerrar la válvula inmediatamente.</td></tr>
+<tr><td>Reinicio con <b>S2</b></td><td>«El fallo debe borrarse pulsando el botón de parada». Se vuelve a la etapa 0, así que para reanudar hay que pulsar S1 otra vez.</td></tr>
+</table></div>
+<div class="box key"><p><b>La prioridad implícita.</b> Al escribir <code>S6·S̄4</code> se está decidiendo que el tanque 1 tiene prioridad sobre el 2. El enunciado no lo dice, así que <b>hay que declararlo</b> en la memoria: «se ha asignado prioridad 1 &gt; 2 &gt; 3 para garantizar la exclusividad». Un corrector acepta cualquier criterio razonable, pero no acepta que no haya ninguno.</p></div></div></details></div>
+<h3 id="t7-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Cómo se dibuja una divergencia en O?</summary><div class="inner"><p>Con una línea horizontal simple, y una transición propia en cada rama.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Y una divergencia en Y?</summary><div class="inner"><p>Con doble línea horizontal y una sola transición común que activa todas las ramas a la vez.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Qué requisito deben cumplir las receptividades de una alternativa?</summary><div class="inner"><p>Ser mutuamente excluyentes; si no lo son, hay que negar las otras condiciones.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué pasa en una convergencia en Y?</summary><div class="inner"><p>La transición sólo se franquea cuando están activas todas las últimas etapas de las ramas: es un punto de sincronización.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Para qué sirve una etapa de espera al final de una rama paralela?</summary><div class="inner"><p>Para que la rama más rápida deje de actuar y aguarde a la más lenta sin repetir su acción.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Qué hay que recordar al usar un contador?</summary><div class="inner"><p>Ponerlo a cero en la rama de salida del bucle; si no, el ciclo siguiente no repite ninguna vez.</p></div></details><details class="paso"><summary><span class="pn">7</span>¿Cómo se implementan los modos manual y automático?</summary><div class="inner"><p>Con una divergencia en O justo después de la etapa inicial, con receptividades M/A y su negación.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-06.html"><small>← Anterior</small>T6 · GRAFCET: etapas, transiciones y receptividades</a><a class="nx" href="tema-08.html"><small>Siguiente →</small>T8 · El autómata programable: ciclo de scan y conexionado</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Automatización Industrial (UPCT, GIEyA) · Datos tomados del curso <time datetime="2019-09">2019/20</time> (problemas y exámenes resueltos, entregables de las sesiones de prácticas y enunciados de los simuladores Lucas-Nülle) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

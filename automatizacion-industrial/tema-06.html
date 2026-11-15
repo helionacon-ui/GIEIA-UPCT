@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T6 GRAFCET: etapas, transiciones y receptividades · Automatización Industrial · Guía para aprobar</title>
+<meta name="description" content="Automatización Industrial (UPCT, GIEyA): tema 6, GRAFCET: etapas, transiciones y receptividades">
+<meta name="theme-color" content="#3d4f5c">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2019-09">2019/20</time> (problemas y exámenes resueltos, entregables de las sesiones de prácticas y enunciados de los simuladores Lucas-Nülle) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Automatización Industrial</a><span class="sep">›</span><span>GRAFCET</span><span class="sep">›</span><span>T6 · GRAFCET: etapas, transiciones y receptividades</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Neumática</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Elementos neumáticos y su simbología</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos neumáticos y diagrama de estado</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Electroneumática: relés, enclavamiento y temporizadores</a><div class="grp">Automatismos</div><a href="tema-04.html" style="--tc:var(--c5)">T4 Circuito de mando y circuito de potencia</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Arranque de motores e inversión de giro</a><div class="grp">GRAFCET</div><a href="tema-06.html" style="--tc:var(--c7)" class="on" aria-current="page">T6 GRAFCET: etapas, transiciones y receptividades</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Estructuras: alternativas, paralelas, contadores y saltos</a><div class="grp">PLC</div><a href="tema-08.html" style="--tc:var(--c1)">T8 El autómata programable: ciclo de scan y conexionado</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Del GRAFCET al diagrama de contactos</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Modos de marcha, seguridad y puesta en servicio</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y memorias</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c7);--tcs:var(--c7s)">
+<div class="sh"><span aria-hidden="true" class="badge">6</span><div class="shx"><p class="kick">GRAFCET · Tema 6</p><h2 id="t6">GRAFCET: etapas, transiciones y receptividades</h2><div class="tags"><span class="tag">GRAFCET</span><span class="tag">GRAFCET</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Describir un automatismo secuencial con el lenguaje normalizado que después se traduce directamente a PLC.</p><p class="ft">Qué es y para qué sirve</p><p>El <b>GRAFCET</b> (norma IEC 60848) es un lenguaje gráfico para describir la <b>secuencia</b> de un automatismo, independientemente de la tecnología con la que se vaya a implementar. Es el paso intermedio entre el enunciado en castellano y el programa del PLC.</p><p>Su virtud es que se traduce a diagrama de contactos de forma <b>mecánica</b>: cada etapa es una marca y cada transición una ecuación. Por eso es lo que se evalúa.</p><p class="ft">Los cuatro elementos</p><ul><li><b>Etapa</b>: un cuadrado con un número. Representa una situación estable del sistema. La <b>etapa inicial</b> se dibuja con doble cuadrado y es la única activa al arrancar.</li><li><b>Transición</b>: una raya horizontal entre dos etapas, con su <b>receptividad</b> escrita al lado: la condición lógica que debe cumplirse para pasar.</li><li><b>Acción</b>: un rectángulo unido a la derecha de la etapa, con la salida que se activa mientras la etapa esté activa.</li><li><b>Enlace orientado</b>: la línea que une los elementos; sin flecha se lee de arriba abajo, y con flecha en cualquier otro sentido.</li></ul><p class="ft">Las cinco reglas de evolución</p><p>Son las que gobiernan todo y conviene saberlas enunciadas:</p><ol><li>La etapa <b>inicial</b> está activa al arrancar.</li><li>Una transición se <b>franquea</b> si está <b>validada</b> (todas sus etapas anteriores activas) <b>y</b> su receptividad es cierta.</li><li>Al franquearse, se <b>desactivan</b> todas las etapas anteriores y se <b>activan</b> todas las posteriores, <b>simultáneamente</b>.</li><li>Varias transiciones franqueables a la vez se franquean a la vez.</li><li>Si una etapa debe activarse y desactivarse en el mismo instante, <b>permanece activa</b>.</li></ol><p>La regla 3 es la que hace que el GRAFCET se traduzca con instrucciones de <b>set y reset</b>: activar la siguiente y desactivar la anterior, en la misma línea.</p><p class="ft">Tipos de acción</p><p>No todas las acciones son iguales, y el enunciado lo distingue:</p><ul><li><b>Continua</b>: la salida está activa <b>mientras</b> lo esté la etapa. Es la normal y se escribe sin más.</li><li><b>Memorizada</b> (S/R): se activa al entrar en la etapa y permanece hasta que otra la desactive. Se marca con <b>S</b> y <b>R</b>.</li><li><b>Condicional</b>: lleva una condición añadida sobre la propia acción.</li><li><b>Temporizada</b>: se escribe <code>t/X7/2s</code>, que se lee «dos segundos después de activarse la etapa 7».</li></ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 6 <span class="src">9 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">etapa</td><td>situación estable</td><td class="u">cuadrado</td></tr><tr><td class="sym">etapa inicial</td><td>doble cuadrado</td><td class="u"></td></tr><tr><td class="sym">transición</td><td>raya horizontal</td><td class="u"></td></tr><tr><td class="sym">receptividad</td><td>condición de la transición</td><td class="u"></td></tr><tr><td class="sym">acción</td><td>rectángulo a la derecha</td><td class="u"></td></tr><tr><td class="sym">Xn</td><td>variable de etapa</td><td class="u"></td></tr><tr><td class="sym">S / R</td><td>acción memorizada</td><td class="u"></td></tr><tr><td class="sym">t/X7/2s</td><td>acción temporizada</td><td class="u"></td></tr><tr><td class="sym">IEC 60848</td><td>norma</td><td class="u"></td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Simulador interactivo - GRAFCET lineal y acciones memorizadas</p><div data-sim="grafcet"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
+<h3 id="t6-formulas">Fórmulas y conceptos que hay que saber</h3>
+<div class="box key"><div class="tw"><table><tr><th>Expresión</th><th>Qué es</th></tr><tr><td>\(X_{n}\)</td><td>variable de etapa: 1 si la etapa n está activa</td></tr><tr><td>\(\text{Franqueo}=X_{\text{anterior}}\cdot R\)</td><td>etapa anterior activa Y receptividad cierta</td></tr><tr><td>\(t/X7/2s\)</td><td>receptividad temporizada: 2 s tras activarse X7</td></tr><tr><td>\(\uparrow a\)</td><td>flanco de subida de la señal a</td></tr></table></div></div>
+<h3 id="t6-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Lee el enunciado y subraya los <b>verbos de acción</b>: cada uno suele ser una etapa.</li><li>Identifica las <b>condiciones</b> entre acciones («cuando llegue a…», «tras 2 segundos…»): son las receptividades.</li><li>Dibuja la <b>etapa inicial</b> con doble cuadrado y la condición de arranque (normalmente el pulsador de inicio).</li><li>Encadena etapa → transición → etapa, poniendo a la derecha de cada etapa <b>sólo las salidas que deben estar activas en ella</b>.</li><li>Cierra el <b>bucle</b> al final volviendo a la etapa inicial o a la primera del ciclo.</li><li>Repasa que el estado inicial descrito en el enunciado (carro a la izquierda, imán arriba y apagado) <b>coincide</b> con el que resulta de la etapa inicial sin acciones.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li><b>Poner una acción en una etapa donde no debe seguir activa.</b> Una acción continua desaparece al salir de la etapa. Si un motor debe seguir girando en las dos etapas siguientes, hay que repetirlo o usar una acción memorizada.</li><li><b>Escribir la receptividad dentro del cuadro de la etapa.</b> Las receptividades van <b>junto a la raya de la transición</b>, nunca dentro de la etapa.</li><li><b>Olvidar la etapa inicial de doble cuadrado.</b> Sin ella, el GRAFCET no arranca. Es el primer punto que mira el corrector.</li><li><b>Confundir el final de carrera que se pisa con el que se abandona.</b> «Cuando se alcanza S14» es S14; «cuando deja de estar pisado» es S̄14. Son receptividades distintas y cambian el funcionamiento.</li><li><b>Dos etapas activas sin que sea una secuencia paralela.</b> Salvo divergencia en Y, en un GRAFCET lineal sólo hay <b>una</b> etapa activa en cada momento.</li></ul></div>
+<h3 id="t6-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p>Dibuja el GRAFCET de una <b>plataforma de puente grúa</b> que transfiere piezas de una cinta a otra con un carro y un imán. Estado inicial: carro a la izquierda, imán arriba y apagado. Con S1 se pone en marcha. Cuando una pieza llega a S7, baja el imán (K2) hasta S14; se enciende el imán (K5); tras <b>2 segundos</b> sube (K1) hasta S13; el carro va a la derecha (K3) hasta S15; baja el imán hasta S14 y lo apaga; al activarse S8 espera <b>2 segundos</b> y sube hasta S13; el carro vuelve a la izquierda (K4) hasta S16. Debe poderse apagar en cualquier momento con S2.</div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>Variables.</b> Entradas: S1 inicio, S2 parada, S7 pieza en cinta 1, S8 pieza en cinta 2, S13 imán arriba, S14 imán abajo, S15 carro derecha, S16 carro izquierda. Salidas: K1 subir, K2 bajar, K3 derecha, K4 izquierda, K5 imán.</p>
+<p><b>GRAFCET.</b></p>
+<div class="code">    ╔═══╗
+    ║ 0 ║  (estado inicial, sin acciones)
+    ╚═╤═╝
+      ┼ S1
+    ┌─┴─┐
+    │ 1 │  (espera de pieza)
+    └─┬─┘
+      ┼ S7
+    ┌─┴─┐───────┐
+    │ 2 │  K2   │  bajar el imán
+    └─┬─┘───────┘
+      ┼ S14
+    ┌─┴─┐───────┐
+    │ 3 │  K5 S │  encender el imán (memorizada)
+    └─┬─┘───────┘
+      ┼ t/X3/2s
+    ┌─┴─┐───────┐
+    │ 4 │  K1   │  subir
+    └─┬─┘───────┘
+      ┼ S13
+    ┌─┴─┐───────┐
+    │ 5 │  K3   │  carro a la derecha
+    └─┬─┘───────┘
+      ┼ S15
+    ┌─┴─┐───────┐
+    │ 6 │  K2   │  bajar
+    └─┬─┘───────┘
+      ┼ S14
+    ┌─┴─┐───────┐
+    │ 7 │  K5 R │  apagar el imán
+    └─┬─┘───────┘
+      ┼ S8
+    ┌─┴─┐
+    │ 8 │  (espera de 2 s)
+    └─┬─┘
+      ┼ t/X8/2s
+    ┌─┴─┐───────┐
+    │ 9 │  K1   │  subir
+    └─┬─┘───────┘
+      ┼ S13
+    ┌─┴─┐───────┐
+    │10 │  K4   │  carro a la izquierda
+    └─┬─┘───────┘
+      ┼ S16
+      └──────► vuelve a la etapa 1</div>
+<p><b>Las tres decisiones que valen puntos.</b></p>
+<ul>
+<li><b>El imán es una acción memorizada</b> (S en la etapa 3, R en la 7). Si fuera continua, se apagaría al salir de la etapa 3 y la pieza se caería al subir. Es el error que más se comete en este ejercicio.</li>
+<li><b>El bucle vuelve a la etapa 1, no a la 0.</b> La etapa 0 es el sistema apagado; la 1 es «en marcha, esperando pieza». Si volviera a la 0, habría que pulsar S1 en cada pieza.</li>
+<li><b>La parada S2</b> se resuelve añadiendo <code>·S̄2</code> a todas las receptividades, o mejor, con una transición desde cada etapa a la etapa 0 con receptividad S2. En un examen basta con indicarlo y dibujar una de ellas.</li>
+</ul>
+<p><b>La comprobación final.</b> Recorre el GRAFCET con el dedo y verifica el estado inicial: en la etapa 0 no hay ninguna acción, así que K1…K5 están a cero, el carro está donde lo dejó (a la izquierda, porque la etapa 10 terminó en S16) y el imán está arriba (la etapa 9 terminó en S13) y apagado (R en la etapa 7). <b>Coincide con el enunciado</b>: eso es lo que hay que comprobar siempre antes de entregar.</p></div></details></div>
+<h3 id="t6-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Qué es una receptividad?</summary><div class="inner"><p>La condición lógica escrita junto a una transición que debe cumplirse para franquearla.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Cuándo se franquea una transición?</summary><div class="inner"><p>Cuando está validada (todas sus etapas anteriores activas) y su receptividad es cierta.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Qué ocurre al franquear una transición?</summary><div class="inner"><p>Se desactivan simultáneamente todas las etapas anteriores y se activan todas las posteriores.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Cómo se dibuja la etapa inicial?</summary><div class="inner"><p>Con doble cuadrado, y es la única activa al arrancar el sistema.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Qué significa t/X7/2s?</summary><div class="inner"><p>Una receptividad temporizada: se cumple dos segundos después de activarse la etapa 7.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Qué diferencia hay entre una acción continua y una memorizada?</summary><div class="inner"><p>La continua está activa sólo mientras lo esté la etapa; la memorizada se activa con S y permanece hasta que una R la desactive.</p></div></details><details class="paso"><summary><span class="pn">7</span>¿Cuántas etapas pueden estar activas a la vez en un GRAFCET lineal?</summary><div class="inner"><p>Una sola, salvo que haya una divergencia en Y (secuencias paralelas).</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-05.html"><small>← Anterior</small>T5 · Arranque de motores e inversión de giro</a><a class="nx" href="tema-07.html"><small>Siguiente →</small>T7 · Estructuras: alternativas, paralelas, contadores y saltos</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Automatización Industrial (UPCT, GIEyA) · Datos tomados del curso <time datetime="2019-09">2019/20</time> (problemas y exámenes resueltos, entregables de las sesiones de prácticas y enunciados de los simuladores Lucas-Nülle) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>
