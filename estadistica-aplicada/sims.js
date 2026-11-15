@@ -628,5 +628,44 @@ SIMS.tablas=el=>build(el,{w:660,h:380,
   Para un intervalo bilateral al 95 % se usa el cuantil ${d==='chi'||d==='f'?'0,975 y 0,025 (dos colas distintas)':'0,975: '+N3(d==='z'?qnorm(0.975):qt(0.975,g1))}.<br>
   <span class="hint">Esta figura sustituye a las tablas del examen: en R serían pnorm, pt, pchisq, pf y sus q correspondientes (qnorm, qt…).</span>`);}});
 
+/* ---- Contraste de hipótesis paso a paso (z, μ₀ = 50, σ = 4, n = 36, x̄ = 51,2, α = 0,05) ---- */
+SIMS.contrastePaso=el=>build(el,{w:640,h:370,
+ sliders:[{k:'paso',v:0,min:0,max:6,step:1,l:'paso del contraste (0 = datos)',u:''}],
+ draw(a){a.clear();const p=a.st.paso;
+  const K={z:'#b8730c',crit:'#c43d63',pv:'#3a63c4',ok:'#2c8a52'};
+  const x0=50,w=560,y0=340,sc=380;
+  const px=z=>x0+(z+4)*w/8;
+  const pdf=z=>Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);
+  // curva normal estándar
+  a.g.strokeStyle=C.text;a.g.lineWidth=2;a.g.beginPath();
+  for(let z=-4;z<=4.001;z+=0.05){const X=px(z),Y=y0-pdf(z)*sc;z<=-4?a.g.moveTo(X,Y):a.g.lineTo(X,Y);}
+  a.g.stroke();
+  a.line(x0,y0,x0+w,y0,C.muted,1.5);
+  [-2,-1,0,1,2,3].forEach(z=>a.txt(String(z),px(z),y0+18,C.muted,12,'center'));
+  // región crítica (cola derecha, z > 1,645)
+  const shade=(z1,col)=>{a.g.fillStyle=col;a.g.globalAlpha=0.35;a.g.beginPath();a.g.moveTo(px(z1),y0);
+    for(let z=z1;z<=4.001;z+=0.05){a.g.lineTo(px(z),y0-pdf(z)*sc);}a.g.lineTo(px(4),y0);a.g.closePath();a.g.fill();a.g.globalAlpha=1;};
+  if(p>=3) shade(1.645,K.crit);
+  if(p>=5) shade(1.8,K.pv);
+  // z crítico y z del estadístico
+  if(p>=3){a.line(px(1.645),y0,px(1.645),y0-pdf(1.645)*sc-6,K.crit,1.5,[4,3]);a.txt('z₀,₀₅ = 1,645',px(1.645)+6,y0-pdf(1.645)*sc-30,K.crit,13);}
+  if(p>=2){a.line(px(1.8),y0,px(1.8),y0-pdf(1.8)*sc-6,K.z,2.5);a.txt('z = 1,80',px(1.8)+6,y0-pdf(1.8)*sc-6,K.z,14);}
+  // paneles de resultados
+  const items=[[40,1,'H₀: μ = 50 frente a H₁: μ > 50 (cola derecha)',C.text],[64,2,'z = (x̄ − μ₀)/(σ/√n) = 1,2/0,667 = 1,80',K.z],
+    [88,3,'Región crítica: rechazar H₀ si z > 1,645',K.crit],[112,4,'1,80 > 1,645 ⇒ se rechaza H₀',K.crit],
+    [136,5,'p-valor = P(Z > 1,80) ≈ 0,036 < 0,05',K.pv],[160,6,'Conclusión: hay evidencia de que μ > 50 (α = 5 %)',K.ok]];
+  items.forEach(([y,k,s,c])=>{if(p>=k)a.txt(s,x0,y,c,13,'left');});
+  const T=[
+   'Datos: población normal con σ = 4, muestra n = 36, media muestral x̄ = 51,2. Queremos saber si la media real supera 50, con α = 0,05.',
+   'Hipótesis: la nula H₀: μ = 50 (no hay cambio) frente a la alternativa H₁: μ > 50. Es un contraste unilateral de cola derecha.',
+   'Estadístico de contraste: bajo H₀, z = (x̄ − μ₀)/(σ/√n) = (51,2 − 50)/(4/6) = 1,80.',
+   'Región crítica: para α = 0,05 y cola derecha, z₀,₀₅ = 1,645. Rechazamos H₀ si el estadístico cae en la zona sombreada (z > 1,645).',
+   'Decisión: 1,80 > 1,645, así que el estadístico cae en la región crítica y se rechaza H₀.',
+   'Mismo resultado con el p-valor: p = P(Z > 1,80) ≈ 0,036, que es menor que 0,05. La zona azul es ese p-valor.',
+   'Conclusión: con un 5 % de error, hay evidencia de que la media es mayor que 50. Decir «aceptamos H₁» solo si la muestra lo justifica; el contraste rechaza o no rechaza H₀.'
+  ];
+  a.html(`<div>${T[p]}</div>`);
+ }});
+
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();

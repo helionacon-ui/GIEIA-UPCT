@@ -582,5 +582,46 @@ SIMS.ensayos=el=>build(el,{w:660,h:360,
   <b>Cortocircuito</b> (se alimenta con tensión reducida hasta la corriente nominal): el flujo es pequeño, así que las pérdidas son las del <b>cobre</b> ⇒ Z_eq = <b>${N3(Z)} Ω</b>, R_eq = P/I² = <b>${N3(R)} Ω</b> y X_eq = <b>${N3(Xx)} Ω</b>.<br>
   <span class="hint">Lo que decide todo es <b>en qué lado se hace cada ensayo</b>: los parámetros salen referidos a ese lado y pasarlos al otro exige multiplicar o dividir por a². Con 2400/240 (a = 10) una R de 0,5 Ω en alta son 5 mΩ en baja.</span>`);}});
 
+/* ---- Ensayos de vacío y cortocircuito: el circuito equivalente paso a paso ---- */
+const boxE=(a,x,y,w,h,lab,col,on)=>{a.g.fillStyle=C.bg;a.g.fillRect(x,y,w,h);a.g.strokeStyle=col;a.g.lineWidth=on?4:2;a.g.strokeRect(x,y,w,h);a.txt(lab,x+w/2,y+h/2+4,col,12,'center');};
+
+SIMS.ensayosPaso=el=>build(el,{w:660,h:400,
+ sliders:[{k:'paso',v:0,min:0,max:7,step:1,l:'paso del método (0 = datos)',u:''}],
+ draw(a){a.clear();const p=a.st.paso;
+  const K={V:'#d62828',Rc:'#2c8a52',Xm:'#3a63c4',Req:'#2c8a52',Xeq:'#3a63c4'};
+  const onV=p>=1&&p<=3, onC=p>=4;
+  const cV=c=>(p>0&&!onV)?C.grid:c;
+  const cC=c=>(p>0&&!onC)?C.grid:c;
+  const W=(x1,y1,x2,y2)=>a.line(x1,y1,x2,y2,C.muted,2);
+  // ensayo de vacío
+  a.txt('Ensayo de vacío (V₀ nominal, secundario abierto)',70,30,onV||p===0?C.text:C.grid,13);
+  W(70,50,300,50); W(70,150,300,150); W(70,50,70,104); W(70,136,70,150);
+  a.circ(70,120,16,cV(K.V),false); a.txt('V₀',50,125,cV(K.V),12,'right');
+  W(200,50,200,100); W(200,136,200,150); W(270,50,270,100); W(270,136,270,150);
+  boxE(a,178,100,44,36,'Rc',cV(K.Rc),p>=3);
+  boxE(a,248,100,44,36,'Xm',cV(K.Xm),p>=3);
+  // ensayo de cortocircuito
+  a.txt('Ensayo de cortocircuito (I_cc nominal)',70,222,onC||p===0?C.text:C.grid,13);
+  W(70,250,130,250); W(174,250,200,250); W(244,250,300,250); W(300,250,300,350); W(70,350,300,350); W(70,250,70,284); W(70,316,70,350);
+  a.circ(70,300,16,cC(K.V),false); a.txt('V_cc',50,305,cC(K.V),12,'right');
+  boxE(a,130,236,44,28,'Req',cC(K.Req),p>=5);
+  boxE(a,200,236,44,28,'Xeq',cC(K.Xeq),p>=6);
+  // panel de resultados
+  const items=[[70,1,'S₀ = V₀·I₀ = 1440 VA',K.V],[96,2,'Q₀ = √(S₀² − P₀²) ≈ 1350 var',C.text],[122,3,'R_c = V₀²/P₀ = 115,2 Ω',K.Rc],[148,3,'X_m = V₀²/Q₀ ≈ 42,65 Ω',K.Xm],
+    [270,4,'Z_cc = V_cc/I_cc = 2,5 Ω',C.text],[296,5,'R_eq = P_cc/I_cc² = 0,5 Ω',K.Req],[322,6,'X_eq = √(Z² − R²) ≈ 2,45 Ω',K.Xeq]];
+  items.forEach(([y,k,s,c])=>{if(p>=k)a.txt(s,340,y,c,13);});
+  const T=[
+   'Datos de los dos ensayos (los del simulador): vacío V₀ = 240 V, I₀ = 6 A, P₀ = 500 W; cortocircuito V_cc = 100 V, I_cc = 40 A, P_cc = 800 W. Sube el paso para sacar los parámetros.',
+   'Vacío: con el secundario abierto y tensión nominal, S₀ = V₀·I₀ = 240 · 6 = 1440 VA. Como I₀ es pequeña, P₀ es casi toda pérdida en el hierro.',
+   'Potencia reactiva de vacío: Q₀ = √(S₀² − P₀²) = √(1440² − 500²) ≈ 1350 var.',
+   'Rama en paralelo: R_c = V₀²/P₀ = 240²/500 = 115,2 Ω (pérdidas en el hierro) y X_m = V₀²/Q₀ ≈ 42,65 Ω (magnetización).',
+   'Cortocircuito: con I_cc nominal, Z_cc = V_cc/I_cc = 100/40 = 2,5 Ω. Aquí P_cc es casi todo pérdida en el cobre.',
+   'Resistencia serie: R_eq = P_cc/I_cc² = 800/40² = 0,5 Ω.',
+   'Reactancia serie: X_eq = √(Z_cc² − R_eq²) = √(2,5² − 0,5²) = √6 ≈ 2,45 Ω.',
+   'Comprobación: R_c ≫ R_eq, como debe ser. Todos los valores salen referidos al lado donde se hizo cada ensayo; para pasarlos al otro lado hay que dividir o multiplicar por a².'
+  ];
+  a.html(`<div>${T[p]}</div>`);
+ }});
+
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();

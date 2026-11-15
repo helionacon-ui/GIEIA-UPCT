@@ -234,5 +234,41 @@ SIMS.ondas=el=>build(el,{w:640,h:390,
    a.txt('nodos',x0+L/n*u,y0+22,C.d,11,'center');
    a.html(`Cuerda fija-fija de L = 8 m: solo caben λ_n = 2L/n. Ahora n = <b>${n}</b> (λ = ${F(2*L/n)} m): f_n = n·v/2L = armónico n. Dos extremos iguales: f_n = nv/2L; tubo cerrado por un extremo: f_n = nv/4L con n impar.<br><span class="hint">Problema 1: 300 y 425 Hz comparten fundamental mcd = 25 Hz (armónicos 12 y 17). Práctica de la cuerda: v = √(T/μ).</span>`);}}});
 
+/* ---- Ley de Gauss paso a paso: esfera cargada, campo a r = 20 cm (R = 10 cm, Q = 2 µC) ---- */
+SIMS.gaussPaso=el=>build(el,{w:640,h:370,
+ sliders:[{k:'paso',v:0,min:0,max:6,step:1,l:'paso del cálculo (0 = problema)',u:''}],
+ draw(a){a.clear();const p=a.st.paso;
+  const K={Q:'#d62828',S:'#3a63c4',E:'#2c8a52',F:'#b8730c'};
+  const cx=170,cy=190,R=60,rg=120;   // 10 cm → 60 px; 20 cm → 120 px
+  // esfera cargada
+  a.circ(cx,cy,R,K.Q,false);
+  a.g.fillStyle=K.Q;a.g.globalAlpha=0.12;a.g.beginPath();a.g.arc(cx,cy,R,0,Math.PI*2);a.g.fill();a.g.globalAlpha=1;
+  a.txt('Q = 2 µC',cx,cy+4,K.Q,13,'center');
+  a.txt('R = 10 cm',cx,cy+R+18,K.Q,11,'center');
+  // superficie gaussiana (paso 1+)
+  if(p>=1){a.g.strokeStyle=K.S;a.g.lineWidth=2;a.g.setLineDash([6,5]);a.g.beginPath();a.g.arc(cx,cy,rg,0,Math.PI*2);a.g.stroke();a.g.setLineDash([]);
+    a.txt('superficie gaussiana',cx,cy-rg-8,K.S,12,'center');
+    a.txt('r = 20 cm',cx+rg*0.7,cy+rg*0.7+12,K.S,11,'left');}
+  // campo radial (paso 2+)
+  if(p>=2){[0,Math.PI/4,Math.PI/2,3*Math.PI/4,Math.PI,5*Math.PI/4,3*Math.PI/2,7*Math.PI/4].forEach(th=>{
+    const x1=cx+(rg-22)*Math.cos(th),y1=cy+(rg-22)*Math.sin(th),x2=cx+(rg+2)*Math.cos(th),y2=cy+(rg+2)*Math.sin(th);
+    a.arrow(x1,y1,x2,y2,K.E,2);});}
+  // resultados
+  const items=[[60,2,'Φ = ∮E·dA = E·4πr²',K.E],[84,3,'Q_enc = Q = 2 µC (r > R)',K.Q],[108,4,'E·4πr² = Q_enc/ε₀',K.F],
+    [132,4,'E = kQ/r²',K.F],[156,5,'E = 9·10⁹·2·10⁻⁶ / 0,2² = 4,5·10⁵ N/C',K.E],[180,6,'Φ = 2,26·10⁵ N·m²/C = Q/ε₀ ✓',C.text]];
+  a.txt('Ley de Gauss',330,36,C.text,14,'left');
+  items.forEach(([y,k,s,c])=>{if(p>=k)a.txt(s,330,y,c,12,'left');});
+  const T=[
+   'Esfera cargada uniformemente: R = 10 cm y Q = 2 µC. Queremos el campo eléctrico a r = 20 cm del centro.',
+   'Simetría: la carga es esférica, así que E es radial y solo depende de r. Elegimos una superficie gaussiana esférica de radio r = 20 cm, concéntrica con la esfera.',
+   'Flujo: en cada punto E es paralelo a dA y de módulo constante, así que Φ = ∮E·dA = E·4πr².',
+   'Carga encerrada: como r = 20 cm > R = 10 cm, la superficie encierra toda la carga: Q_enc = Q = 2 µC.',
+   'Ley de Gauss: E·4πr² = Q_enc/ε₀, es decir, E = Q/(4πε₀r²) = kQ/r².',
+   'Valor: E = 9·10⁹ · 2·10⁻⁶ / (0,2)² = 4,5·10⁵ N/C, radial y hacia fuera (la carga es positiva).',
+   'Comprobación: Φ = E·4πr² = 4,5·10⁵ · 4π · 0,04 ≈ 2,26·10⁵ N·m²/C, y Q/ε₀ = 2·10⁻⁶ / 8,85·10⁻¹² ≈ 2,26·10⁵ ✓.'
+  ];
+  a.html(`<div>${T[p]}</div>`);
+ }});
+
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();

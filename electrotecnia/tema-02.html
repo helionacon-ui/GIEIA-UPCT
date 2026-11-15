@@ -62,6 +62,12 @@
 <li>Referir mal: al pasar del lado de baja al de alta las impedancias se <b>multiplican</b> por \(a^2\). Con 2400/240, \(a=10\) y \(a^2=100\).</li>
 <li>Tomar el ángulo de \(\bar I\) con signo equivocado: carga inductiva ⇒ la corriente <b>atrasa</b> (\(\varphi<0\) respecto a la tensión).</li>
 </ul></div>
+<h3 id="t2-ensayos">El truco de los dos ensayos: sacar el circuito equivalente</h3>
+<p>El circuito equivalente del transformador tiene cuatro parámetros: \(R_c\) y \(X_m\) (rama en paralelo, hierro y magnetización) y \(R_{eq}\) y \(X_{eq}\) (serie, cobre y dispersión). No hace falta adivinarlos: se miden en dos ensayos y cada uno da dos de ellos.</p>
+<ul><li><b>Vacío</b> (tensión nominal, secundario abierto): \(S_0=V_0I_0\), \(Q_0=\sqrt{S_0^2-P_0^2}\), \(R_c=V_0^2/P_0\) y \(X_m=V_0^2/Q_0\).</li><li><b>Cortocircuito</b> (corriente nominal, secundario en cortocircuito): \(Z_{cc}=V_{cc}/I_{cc}\), \(R_{eq}=P_{cc}/I_{cc}^2\) y \(X_{eq}=\sqrt{Z_{cc}^2-R_{eq}^2}\).</li></ul>
+<p>Sube el paso del simulador para ver cada operación con el ejemplo de los datos.</p>
+<figure class="fig"><p class="ft">Figura interactiva - ensayos de vacío y cortocircuito, paso a paso</p><div data-sim="ensayosPaso"></div><figcaption>Cada paso ilumina la rama que se calcula y rellena el panel de resultados. El cortocircuito se hace con corriente nominal, así que P_cc es casi todo cobre.</figcaption></figure>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Usar en el vacío la potencia de cortocircuito o al revés: cada ensayo mide un tipo de pérdida.</li><li>Olvidar que los parámetros salen referidos al lado donde se hizo el ensayo.</li><li>Calcular \(X_{eq}\) como \(Z_{cc}-R_{eq}\) en vez de con la raíz cuadrada.</li></ul></div>
 <h3 id="t2-problema">Problema tipo</h3>
 <div class="prob"><div class="enun"><p class="et">Enunciado</p><p><b>(Examen de junio de 2012.)</b> Calcula los parámetros del circuito equivalente de un transformador de <b>50 Hz, 100 kVA, 2400:240 V</b> con los siguientes resultados de ensayo:</p>
 <ul><li>Ensayo de <b>circuito abierto</b> con el lado de alta abierto: \(V_{oc}=240\) V, \(I_{oc}=6\) A, \(P_{oc}=500\) W.</li>

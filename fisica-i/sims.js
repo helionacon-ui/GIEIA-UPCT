@@ -216,5 +216,56 @@ SIMS.pendulo=el=>build(el,{animate:true,sliders:[{k:'L',l:'longitud',v:1,min:0.2
     a.line(px-40,py,px+40,py,C.muted,4);a.line(px,py,px,py+len+30,C.muted,1,[4,4]);a.line(px,py,bx,by,C.text,2);a.circ(bx,by,12,C.b,true);
     a.html(`T = 2π√(L/g) = <b>${F(T)} s</b> · f = ${F(1/T)} Hz<br><span class="hint">En el laboratorio mides T y L y despejas g = 4π²L/T². Duplicar L no duplica T: lo multiplica por √2. La amplitud (pequeña) no cambia el periodo.</span>`);}});
 
+/* ---- Plano inclinado con rozamiento: energía paso a paso (m = 2 kg, 30°, h = 5 m, μ = 0,2) ---- */
+SIMS.energiaPaso=el=>build(el,{w:640,h:360,
+ sliders:[{k:'paso',v:0,min:0,max:7,step:1,l:'paso del método (0 = datos)',u:''}],
+ draw(a){a.clear();const p=a.st.paso;
+  const K={Ep:'#2c8a52',Wf:'#c43d63',Ec:'#3a63c4',F:'#b8730c'};
+  const T={x:150,y:110}, B={x:462,y:290};
+  const ct=Math.cos(Math.PI/6), st=0.5;
+  // rampa, suelo y ángulo
+  a.line(T.x,T.y,B.x,B.y,C.text,3);
+  a.line(T.x,T.y,T.x,B.y,C.muted,1.5,[4,4]);
+  a.line(T.x,B.y,B.x,B.y,C.muted,1.5);
+  a.txt('θ = 30°',T.x+26,T.y+58,C.muted,13);
+  a.txt('h = 5 m',T.x-12,(T.y+B.y)/2,C.muted,13,'right');
+  // trayectoria y bloque
+  if(p>=0) a.line(T.x+20*ct,T.y+20*st,B.x-30*ct,B.y-30*st,K.Ep,1.5,[6,5]);
+  const s0=36, bx=T.x+s0*ct, by=T.y+s0*st;
+  a.g.save();a.g.translate(bx,by);a.g.rotate(Math.PI/6);
+  a.g.fillStyle=C.bg;a.g.strokeStyle=C.text;a.g.lineWidth=2;a.g.fillRect(-16,-16,32,32);a.g.strokeRect(-16,-16,32,32);
+  a.txt('m',0,5,C.text,13,'center');a.g.restore();
+  a.txt('d = 10 m',(T.x+B.x)/2+10,(T.y+B.y)/2-14,K.Ep,13,'center');
+  // fuerzas en el paso 2 y siguientes
+  if(p>=2){
+    a.arrow(bx,by,bx-40*ct,by-40*st,K.Wf,2.5);
+    a.txt('rozamiento',bx-46*ct-30,by-46*st-6,K.Wf,12);
+  }
+  // paneles de resultados
+  const items=[[60,1,'E_p = m·g·h = 2 · 9,8 · 5 = 98 J',K.Ep],[86,2,'W_roz = −μ·m·g·cosθ·d = −33,9 J',K.Wf],[112,3,'E_c = 98 − 33,9 = 64,1 J',K.Ec],
+    [138,4,'v = √(2E_c/m) ≈ 8,0 m/s',C.text],[164,5,'a = g(sinθ − μ·cosθ) ≈ 3,2 m/s²',K.F],[190,6,'v² = 2·a·d ≈ 64 ⇒ v ≈ 8,0 m/s ✓',C.text]];
+  a.txt('Balance de energía',340,36,C.text,14);
+  items.forEach(([y,k,s,c])=>{if(p>=k)a.txt(s,340,y+40,c,13);});
+  // barras de energía (proporcionales a los julios)
+  const bars=[['E_p',98,K.Ep,1],['W_roz',33.9,K.Wf,2],['E_c',64.1,K.Ec,3]];
+  bars.forEach(([lab,val,col,k],i)=>{
+    if(p<k) return;
+    const hgt=val*0.9, x=350+i*90, y=350-hgt;
+    a.g.fillStyle=col;a.g.globalAlpha=0.7;a.g.fillRect(x,y,50,hgt);a.g.globalAlpha=1;
+    a.txt(lab,x+25,y-6,col,12,'center');
+  });
+  const T2=[
+   'Bloque de m = 2 kg que desliza desde el reposo por un plano de 30° con altura h = 5 m (d = h/sen 30° = 10 m) y μ = 0,2. Pregunta: su velocidad al pie.',
+   'Energía inicial: solo potencial, E_p = m·g·h = 2 · 9,8 · 5 = 98 J. Parte del reposo, así que E_c = 0.',
+   'El rozamiento disipa energía: su fuerza vale μ·m·g·cosθ ≈ 3,39 N y actúa a lo largo de 10 m, así que W_roz = −33,9 J.',
+   'Balance de energía: E_c final = E_p inicial + W_roz = 98 − 33,9 = 64,1 J.',
+   'Velocidad al pie: v = √(2·E_c/m) = √64,1 ≈ 8,0 m/s.',
+   'Comprobación con dinámica: a = g(sinθ − μ·cosθ) = 9,8 · (0,5 − 0,173) ≈ 3,2 m/s².',
+   'Y con cinemática: v² = 2·a·d = 2 · 3,2 · 10 ≈ 64, es decir, v ≈ 8,0 m/s. Coincide con el balance de energía.',
+   'Método: energía inicial, trabajo de las fuerzas no conservativas, energía final, velocidad; y se comprueba con la segunda ley de Newton.'
+  ];
+  a.html(`<div>${T2[p]}</div>`);
+ }});
+
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();

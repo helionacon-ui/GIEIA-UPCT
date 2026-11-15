@@ -396,5 +396,97 @@ SIMS.bode=el=>build(el,{w:640,h:420,
    En f<sub>c</sub> la ganancia cae <b>−3 dB</b> (|H| = 0,707) y la fase vale <b>${lp?'−45°':'+45°'}</b>. ${lp?'Por encima de f<sub>c</sub> la pendiente es −20 dB/década (cada vez que la frecuencia se multiplica por 10, la salida se divide por 10).':'Por debajo de f<sub>c</sub> sube a +20 dB/década y por encima deja pasar todo (0 dB).'}
    <br><span class="hint">Las rectas discontinuas son las asíntotas: la curva real se separa de ellas como máximo 3 dB, justo en f<sub>c</sub>.</span>`);}});
 
+/* ---- Método de nudos: el truco de la matriz G (circuito de tres nodos) ---- */
+const zigV=(a,x,ya,yb,col,w)=>{const g=a.g;g.strokeStyle=col;g.lineWidth=w;g.beginPath();g.moveTo(x,ya);const s=ya+(yb-ya)*0.3,e=ya+(yb-ya)*0.7;g.lineTo(x,s);for(let k=1;k<=6;k++){g.lineTo(x+(k%2?9:-9),s+(e-s)*k/6);}g.lineTo(x,yb);g.stroke();};
+const zigH=(a,xa,xb,y,col,w)=>{const g=a.g;g.strokeStyle=col;g.lineWidth=w;g.beginPath();g.moveTo(xa,y);const s=xa+(xb-xa)*0.3,e=xa+(xb-xa)*0.7;g.lineTo(s,y);for(let k=1;k<=6;k++){g.lineTo(s+(e-s)*k/6,y+(k%2?9:-9));}g.lineTo(xb,y);g.stroke();};
+const srcG=(a,x,y,up,col,lab)=>{a.circ(x,y,16,col,false);a.arrow(x,up?y+10:y-10,x,up?y-10:y+10,col,2);};
+
+SIMS.matrizG=el=>build(el,{w:640,h:350,
+ sliders:[{k:'paso',v:0,min:0,max:7,step:1,l:'paso del método (0 = circuito)',u:''}],
+ draw(a){a.clear();const p=a.st.paso;
+  const K={G1:'#3a63c4',G2:'#c43d63',G3:'#2c8a52',G4:'#b8730c',G5:'#0f8c8c',I:'#d62828'};
+  const HL={1:['R1','R2'],2:['R2','R3','R4'],3:['R4','R5'],4:['R2','R4'],5:['I1','I2','I3'],6:['R1','R2','R3','R5','I1','I2','I3'],7:[]};
+  const hl=HL[p]||[];
+  const on=id=>p>0&&hl.includes(id);
+  const dim=id=>p>0&&hl.length>0&&!hl.includes(id);
+  const col=(id,c)=>dim(id)?C.grid:c;
+  const lw=id=>on(id)?4.5:2.5;
+  const yt=90,yb=290;
+  const xs1=90,x1=170,x2=330,xs2=380,x3=480,xs3=560;
+  // hilos
+  const W=(x1_,y1_,x2_,y2_)=>a.line(x1_,y1_,x2_,y2_,C.muted,2);
+  W(xs1,yt,x1,yt); W(xs1,yt,xs1,yt+85); W(xs1,yt+115,xs1,yb);
+  W(x2,yt,xs2,yt); W(xs2,yt,xs2,yt+85); W(xs2,yt+115,xs2,yb);
+  W(x3,yt,xs3,yt); W(xs3,yt,xs3,yt+85); W(xs3,yt+115,xs3,yb);
+  W(xs1,yb,xs3,yb);
+  // resistencias
+  zigV(a,x1,yt,yb,col('R1',K.G1),lw('R1'));
+  zigH(a,x1,x2,yt,col('R2',K.G2),lw('R2'));
+  zigV(a,x2,yt,yb,col('R3',K.G3),lw('R3'));
+  zigH(a,xs2,x3,yt,col('R4',K.G4),lw('R4'));
+  zigV(a,x3,yt,yb,col('R5',K.G5),lw('R5'));
+  // fuentes
+  srcG(a,xs1,yt+100,true,col('I1',K.I));
+  srcG(a,xs2,yt+100,false,col('I2',K.I));
+  srcG(a,xs3,yt+100,true,col('I3',K.I));
+  // tierra
+  a.line(320,yb,320,yb+12,C.muted,2);a.line(308,yb+12,332,yb+12,C.muted,2);a.line(313,yb+18,327,yb+18,C.muted,2);
+  a.txt('GND',342,yb+18,C.muted,12);
+  // nudos
+  [[x1,yt],[x2,yt],[xs2,yt],[x3,yt],[xs3,yt]].forEach(([x,y])=>a.circ(x,y,3.5,C.text,true));
+  // etiquetas de nodo
+  const vv=['10 V','5 V','5 V'];
+  const nl=(k,x)=>p>=6?`V${['₁','₂','₃'][k]} = ${vv[k]}`:`V${['₁','₂','₃'][k]}`;
+  a.txt(nl(0,x1),x1,yt-14,C.text,14,'center');
+  a.txt(nl(1,355),355,yt-14,C.text,14,'center');
+  a.txt(nl(2,x3+40),x3+40,yt-14,C.text,14,'center');
+  // valores de resistencias
+  a.txt('R₂ = 2 Ω',250,yt-14,col('R2',K.G2),12,'center');
+  a.txt('R₄ = 5 Ω',430,yt-14,col('R4',K.G4),12,'center');
+  a.txt('R₁ = 4 Ω',182,192,col('R1',K.G1),12,'left');
+  a.txt('R₃ = 10 Ω',318,192,col('R3',K.G3),12,'right');
+  a.txt('R₅ = 5 Ω',472,192,col('R5',K.G5),12,'right');
+  // valores de fuentes
+  a.txt('I₁ = 5 A',xs1-16,yt+104,col('I1',K.I),12,'right');
+  a.txt('I₂ = 2 A',xs2+22,yt+104,col('I2',K.I),12,'left');
+  a.txt('I₃ = 1 A',xs3+22,yt+104,col('I3',K.I),12,'left');
+  // corrientes de rama (paso 6)
+  if(p>=6){
+    a.txt('2,5 A',182,262,K.G1,12,'left');
+    a.txt('2,5 A',250,yt+20,K.G2,12,'center');
+    a.txt('0,5 A',318,262,K.G3,12,'right');
+    a.txt('0 A',430,yt+20,K.G4,12,'center');
+    a.txt('1 A',472,262,K.G5,12,'right');
+  }
+  // texto del paso y matriz
+  const T=[
+    'Circuito de tres nodos. Tomamos GND como referencia y buscamos V₁, V₂ y V₃. Sube el paso para construir G·V = I.',
+    'Diagonal G₁₁ = suma de conductancias del nodo 1 (G = 1/R): G₁ + G₂ = 1/4 + 1/2 = 3/4.',
+    'Diagonal G₂₂ = G₂ + G₃ + G₄ = 1/2 + 1/10 + 1/5 = 4/5. La fuente I₂ no cuenta: no es una conductancia.',
+    'Diagonal G₃₃ = G₄ + G₅ = 1/5 + 1/5 = 2/5.',
+    'Fuera de la diagonal se pone menos la conductancia que une dos nodos: G₁₂ = G₂₁ = −1/2 (R₂), G₂₃ = G₃₂ = −1/5 (R₄) y G₁₃ = 0 (no hay rama).',
+    'Vector I: +5 A entran en el nodo 1; −2 A (sale hacia GND por I₂) en el nodo 2; +1 A entra en el nodo 3.',
+    'Solución: V₁ = 10 V, V₂ = 5 V, V₃ = 5 V. Por rama, (V_a − V_b)/R da R₁ 2,5 A, R₂ 2,5 A, R₃ 0,5 A, R₄ 0 A y R₅ 1 A.',
+    'Comprobación: G·V = I. Fila 1: 3/4·10 − 1/2·5 = 5 ✓. Fila 2: −1/2·10 + 4/5·5 − 1/5·5 = −2 ✓. Fila 3: −1/5·5 + 2/5·5 = 1 ✓.'
+  ];
+  const G=[['3/4','−1/2','0'],['−1/2','4/5','−1/5'],['0','−1/5','2/5']];
+  const gk=[[1,4,4],[4,2,4],[4,4,3]];
+  const Iv=['+5 A','−2 A','+1 A'];
+  const Vv=['V₁ = 10 V','V₂ = 5 V','V₃ = 5 V'];
+  const cell=(s,k)=>`<td style="border:1px solid ${C.grid};padding:6px 10px;min-width:60px;text-align:center;color:${p>=k?C.text:C.muted}">${p>=k?s:'?'}</td>`;
+  let rows='';
+  for(let r=0;r<3;r++){
+    rows+=`<tr><th style="padding:0 6px;color:${C.muted};font-weight:500">nodo ${r+1}</th>`;
+    for(let c=0;c<3;c++) rows+=cell(G[r][c],gk[r][c]);
+    rows+=`<td style="padding:0 8px;color:${C.muted}">·</td>`;
+    rows+=`<td style="border:1px solid ${C.grid};padding:6px 10px;text-align:center;color:${p>=6?C.text:C.muted}">${p>=6?Vv[r]:'V'+['₁','₂','₃'][r]}</td>`;
+    rows+=`<td style="padding:0 8px;color:${C.muted}">=</td>`;
+    rows+=cell(Iv[r],5);
+    rows+='</tr>';
+  }
+  const tabla=`<table style="border-collapse:separate;border-spacing:4px;margin:8px auto 0"><tbody>${rows}</tbody></table>`;
+  a.html(`<div>${T[p]}</div>${tabla}`);
+ }});
+
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();
