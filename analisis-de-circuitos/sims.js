@@ -63,6 +63,39 @@ SIMS.elementos=el=>build(el,{w:640,h:380,
   a.arrow(cx,cy,cx+0.8*u*Math.cos(ang),cy-0.8*u*Math.sin(ang),C.f,3);a.txt('I',cx+0.8*u*Math.cos(ang)+8,cy-0.8*u*Math.sin(ang),C.f,13);
   a.html(`${det}<br><span class="hint">Mnemotecnia: <b>ELI the ICE man</b> — en la bobina (L) la tensión E va antes que la I; en el condensador (C) la I va antes que la E. En continua estacionaria la bobina es un cable y el condensador un circuito abierto.</span>`);}});
 
+SIMS.divisores=el=>build(el,{w:640,h:380,
+ sliders:[{k:'V',v:12,min:1,max:24,step:0.5,l:'tensión V_in',u:'V'},{k:'R1',v:1,min:0.1,max:10,step:0.1,l:'R₁',u:'kΩ'},{k:'R2',v:2,min:0.1,max:10,step:0.1,l:'R₂',u:'kΩ'},{k:'RL',v:100,min:0.5,max:100,step:0.5,l:'carga R_L (100 = sin carga)',u:'kΩ'},{k:'I',v:10,min:1,max:50,step:1,l:'corriente I_in',u:'mA'},{k:'Ra',v:100,min:10,max:1000,step:10,l:'R_a',u:'Ω'},{k:'Rb',v:300,min:10,max:1000,step:10,l:'R_b',u:'Ω'}],
+ draw(a){a.clear();const s=a.st,V=s.V,R1=s.R1,R2=s.R2,I=s.I,Ra=s.Ra,Rb=s.Rb;
+  const libre=s.RL>=100,RL=s.RL,Rp=libre?R2:R2*RL/(R2+RL);
+  const Vo0=V*R2/(R1+R2),Vo=V*Rp/(R1+Rp),It=V/(R1+Rp),dif=Vo0-Vo;
+  const Ia=I*Rb/(Ra+Rb),Ib=I*Ra/(Ra+Rb),Vab=I*Ra*Rb/(Ra+Rb)/1000;
+  const yT=70,yB=250,yM=160;
+  // ---- divisor de tension (izquierda) ----
+  a.txt('Divisor de tensión',20,30,C.text,14);
+  a.line(50,yT,50,yM-20,C.text,2);a.line(50,yM+20,50,yB,C.text,2);Fte(a,50,yM,20,'');a.txt(F(V)+' V',8,yM+44,C.d,12);
+  a.line(50,yT,95,yT,C.text,2);Rbox(a,95,yT-10,56,20,'R₁',C.f);a.line(151,yT,215,yT,C.text,2);
+  a.circ(215,yT,4,C.text,true);
+  a.line(215,yT,215,yM-26,C.text,2);Rbox(a,205,yM-26,20,52,'',C.c);a.txt('R₂',232,yM+4,C.c,12);a.line(215,yM+26,215,yB,C.text,2);
+  if(!libre){a.line(215,yT,290,yT,C.text,2);a.line(290,yT,290,yM-26,C.text,2);Rbox(a,280,yM-26,20,52,'',C.a);a.txt('R_L',304,yM+4,C.a,12);a.line(290,yM+26,290,yB,C.text,2);a.line(215,yB,290,yB,C.text,2);a.circ(215,yB,4,C.text,true);}
+  a.line(50,yB,215,yB,C.text,2);
+  a.arrow(235,yT+22,235,yT+50,C.muted,1.5);
+  a.txt('V_out = '+F(Vo)+' V',200,yB+28,C.c,13);
+  a.txt(libre?'sin carga: V_out = V_in·R₂/(R₁+R₂)':'con carga cae '+F(dif)+' V',20,yB+50,C.muted,12);
+  // ---- divisor de corriente (derecha) ----
+  a.txt('Divisor de corriente',360,30,C.text,14);
+  a.circ(390,yM,20,C.d,false);a.arrow(390,yM+12,390,yM-12,C.d,2.5);a.txt(F(I)+' mA',330,yM+44,C.d,12);
+  a.line(390,yT,390,yM-20,C.text,2);a.line(390,yM+20,390,yB,C.text,2);
+  a.line(390,yT,560,yT,C.text,2);a.line(390,yB,560,yB,C.text,2);
+  a.line(470,yT,470,yM-26,C.text,2);Rbox(a,460,yM-26,20,52,'',C.f);a.txt('R_a',486,yM+4,C.f,12);a.line(470,yM+26,470,yB,C.text,2);
+  a.line(560,yT,560,yM-26,C.text,2);Rbox(a,550,yM-26,20,52,'',C.c);a.txt('R_b',576,yM+4,C.c,12);a.line(560,yM+26,560,yB,C.text,2);
+  a.circ(470,yT,4,C.text,true);a.circ(560,yT,4,C.text,true);
+  a.arrow(442,yT+10,442,yT+44,C.f,1.5);
+  a.txt('I_a = '+F(Ia)+' mA',420,yB+28,C.f,13);a.txt('I_b = '+F(Ib)+' mA',530,yB+28,C.c,13);
+  a.txt('V = '+F(Vab)+' V en ambas',420,yB+50,C.muted,12);
+  a.html(`<b>Tensión</b>: V_out = V_in·R_p/(R₁+R_p) con R_p = ${libre?'R₂':'R₂∥R_L'} = ${F(Rp)} kΩ ⇒ V_out = <b>${F(Vo)} V</b> e I = ${F(It)} mA.${libre?'':` Sin carga serían ${F(Vo0)} V: <b>la carga hunde la salida ${F(dif)} V</b> (R_L debe ser mucho mayor que R₂).`}<br>
+  <b>Corriente</b>: I_a = I·R_b/(R_a+R_b) = <b>${F(Ia)} mA</b> e I_b = I·R_a/(R_a+R_b) = <b>${F(Ib)} mA</b>; suman ${F(Ia+Ib)} mA ✓ y por la menor resistencia pasa la mayor corriente. Tensión común: ${F(Vab)} V.<br>
+  <span class="hint">Regla de examen: en el divisor de tensión va arriba la resistencia DE LA QUE SACAS la tensión; en el de corriente va arriba la CONTRARIA a la rama que miras.</span>`);}});
+
 SIMS.reduccion=el=>build(el,{w:640,h:380,
  sliders:[{k:'E',v:60,min:10,max:120,step:5,l:'fuente E',u:'V'},{k:'R1',v:10,min:2,max:40,step:1,l:'R₁ (serie)',u:'Ω'},{k:'R2',v:40,min:5,max:100,step:5,l:'R₂ (paralelo)',u:'Ω'},{k:'R3',v:60,min:5,max:100,step:5,l:'R₃ (paralelo)',u:'Ω'},{k:'R4',v:6,min:0,max:40,step:1,l:'R₄ (serie)',u:'Ω'}],
  draw(a){a.clear();const E=a.st.E,R1=a.st.R1,R2=a.st.R2,R3=a.st.R3,R4=a.st.R4;
