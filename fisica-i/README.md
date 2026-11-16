@@ -1,4 +1,4 @@
-# Física I · Guía para aprobar · GIEyA
+# Física I · Apuntes · GIEyA
 
 **Proyecto iniciado el 14 de noviembre de 2026.**
 

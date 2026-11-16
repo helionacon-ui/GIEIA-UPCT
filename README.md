@@ -1,4 +1,4 @@
-# Guías para aprobar · GIEyA
+# Apuntes · GIEyA
 
 **Proyecto iniciado el 5 de noviembre de 2026.**
 

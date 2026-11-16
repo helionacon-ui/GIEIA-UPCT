@@ -1,4 +1,4 @@
-# Estadística Aplicada · Guía para aprobar
+# Estadística Aplicada · Apuntes
 
 Guía de estudio de **Estadística Aplicada** (Grado en Ingeniería Electrónica y Automática).
 
