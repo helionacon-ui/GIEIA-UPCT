@@ -58,7 +58,8 @@ details>summary{line-height:1.7;padding-block:.5em}
 <figure class="fig"><p class="ft">Figura interactiva - el flujo de diseño de principio a fin</p><div data-sim="flujo"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
 <!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Diseñar una placa es un proceso, no un dibujo</p><p>El diseño electrónico sigue siempre la misma cadena: <b>especificaciones → esquemático → simulación → huellas → colocación → ruteo → salida a fábrica → montaje → verificación</b>. Cada etapa produce un fichero que alimenta a la siguiente y, si algo falla al final, casi siempre el error se coló en una etapa anterior (una huella equivocada, un pin mal conectado). Por eso la asignatura insiste en comprobar pronto: simular antes de dibujar la placa y pasar el ERC antes de convertir a PCB.</p>
 <p>Regla práctica: <b>cuanto antes se detecta un error, más barato es corregirlo</b>. Cambiar un valor en el esquemático cuesta segundos; cambiarlo en una placa ya fabricada, una semana y dinero.</p><p class="ft">Dos programas, dos juegos de ficheros</p><p>Se usan dos herramientas con propósitos distintos. <b>LTspice</b> simula el circuito: el esquema es un <code>.asc</code>, los símbolos <code>.asy</code>, los modelos <code>.lib/.mod</code> y los resultados <code>.raw</code>. <b>DipTrace</b> diseña la placa: esquemático <code>.dch</code>, librería de componentes <code>.eli</code>, librería de patrones (huellas) <code>.lib</code> y la placa <code>.dip</code>. Confundirlos es un error típico de examen: <em>el símbolo y el patrón son cosas diferentes</em> (uno es el dibujo del esquema y el otro es la huella física sobre el cobre).</p>
-<figure class="fig"><p class="ft">Flujo de diseño</p><div data-sim="flujo"></div><figcaption>Recorre las etapas y comprueba qué fichero produce cada una.</figcaption></figure></div><!--/amp1--><h3 id="t1-formulas">Fórmulas y datos que hay que saber</h3>
+<figure class="fig"><p class="ft">Flujo de diseño</p><div data-sim="flujo"></div><figcaption>Recorre las etapas y comprueba qué fichero produce cada una.</figcaption></figure></div><!--/amp1--><!--manim:dse-t1--><figure class="fig manim-fig" id="anim-dse-t1"><p class="ft">Animación · El flujo de diseño</p><div class="manim" data-anim="dse-t1"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad.</figcaption></figure><!--/manim-->
+<h3 id="t1-formulas">Fórmulas y datos que hay que saber</h3>
 <div class="box key"><ul>
 <li><b>Etapas:</b> especificaciones → esquemático → simulación → huellas → colocación → ruteo → salida (Gerber) → fabricación → montaje → verificación.</li>
 <li><b>Ficheros de DipTrace:</b> <i>.dch</i> esquemático · <i>.eli</i> librería de componentes (símbolos) · <i>.lib</i> librería de patrones (huellas) · <i>.dip</i> placa.</li>
@@ -102,5 +103,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
+<script src="anim-manim.js?v=21990" defer></script>
+<script src="anim-temas.js?v=21990" defer></script>
 </body>
 </html>

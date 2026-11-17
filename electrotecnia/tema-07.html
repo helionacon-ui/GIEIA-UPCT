@@ -60,7 +60,8 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Un imán en el rotor es un «campo gratis»</p><p>En una máquina síncrona de imanes permanentes el rotor ya trae su campo (el del imán), de valor constante, y gira <b>exactamente</b> a la velocidad del campo del estátor: \(f=\dfrac{n}{60}\cdot\dfrac p2\). Al girar, el flujo del imán induce en el estátor una tensión \(\hat E=\omega_e\lambda_{fr}\) proporcional a la velocidad (la «fem»). Por fase, la máquina es una fuente de tensión \(\bar E\) en serie con una impedancia \(R_s+jX_s\): \(\bar V=\bar E+(R_s+jX_s)\bar I\).</p>
 <p>El par lo produce la componente de corriente en <b>cuadratura</b> con el flujo del imán: \(T=\tfrac32\tfrac p2\hat\lambda_{fr}i_q\). Con control de corriente (\(i_q\) lo que se pida), el par es proporcional a la corriente, igual que en continua, pero sin escobillas.</p><p class="ft">Ángulo de carga, velocidad base y debilitamiento</p><p>El diagrama fasorial \(\bar V=\bar E+jX_s\bar I\) tiene un ángulo \(\delta\) entre \(\bar V\) y \(\bar E\) (<b>ángulo de carga</b>): crece con la carga y da la potencia \(P=\dfrac{VE}{X_s}\operatorname{sen}\delta\) por fase. Como el inversor tiene una tensión máxima, existe una <b>velocidad base</b> (donde \(|\bar V|\) llega a ese máximo): por debajo se dispone del par máximo; por encima hay que reducir el par con \(T\propto1/\omega\) (potencia constante) y, si hace falta, inyectar corriente de eje directo para debilitar el campo.</p>
 <p>En generador, la relación entre \(E\) y \(V\) manda: <b>sobreexcitado</b> (\(E\cos\delta>V\)) entrega reactiva a la red, <b>subexcitado</b> la absorbe.</p>
-<figure class="fig"><p class="ft">Síncrona de imanes permanentes</p><div data-sim="pmac"></div><figcaption>Cambia la velocidad y la corriente en cuadratura: observa el fasor \(\bar V\) y el ángulo de carga.</figcaption></figure></div><!--/amp1--><h3 id="t7-formulas">Lo que tienes que saber</h3>
+<figure class="fig"><p class="ft">Síncrona de imanes permanentes</p><div data-sim="pmac"></div><figcaption>Cambia la velocidad y la corriente en cuadratura: observa el fasor \(\bar V\) y el ángulo de carga.</figcaption></figure></div><!--/amp1--><!--manim:et-t7--><figure class="fig manim-fig" id="anim-et-t7"><p class="ft">Animación · Diagrama dq y debilitamiento de campo</p><div class="manim" data-anim="et-t7"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad.</figcaption></figure><!--/manim-->
+<h3 id="t7-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>
 <li>\(\hat E=k_E\omega_m\), \(T_{em}=k_T\hat I\) con \(k_E=k_T\) en el SI (referidos al valor de <b>pico</b> de la corriente de fase).</li>
 <li>Frecuencia eléctrica: \(f=\dfrac{n}{60}\cdot\dfrac{p}{2}\); \(X_s=\omega L_s\) con \(\omega=2\pi f\).</li>
@@ -113,5 +114,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
+<script src="anim-manim.js?v=21870" defer></script>
+<script src="anim-temas.js?v=21870" defer></script>
 </body>
 </html>

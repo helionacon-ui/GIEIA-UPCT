@@ -59,7 +59,8 @@ details>summary{line-height:1.7;padding-block:.5em}
 <figure class="fig"><p class="ft">Figura interactiva - simbolo, huella y numeracion de pines</p><div data-sim="huella"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
 <!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Símbolo y patrón: dos mitades de un componente</p><p>Un componente en DipTrace tiene <b>dos partes</b> que se crean por separado y luego se enlazan. El <b>símbolo</b> (en la librería <code>.eli</code>) es su dibujo en el esquema: la forma, los pines con su nombre y número y el tipo de pin. El <b>patrón</b> o huella (en la librería <code>.lib</code>) es lo que se ve en la placa: las pastillas (pads) y su distancia, el taladro y el contorno de serigrafía. Se unen asignando al símbolo un patrón y relacionando <b>el número de pin con el número de pad</b>. Si ese emparejamiento falla, la placa sale con el componente mal cableado aunque el esquema esté perfecto.</p><p class="ft">Pasos para crear un componente y comprobar el esquema</p><p>Receta de examen: <b>Component Editor → componente nuevo → nombre y referencia (R, C, U, Q…) → dibujar la forma → añadir pines (número, nombre, tipo) → asignar el patrón → guardar en la librería indicada</b>. El tipo de pin importa para el <b>ERC</b>: si una salida se une a otra salida, o un pin de alimentación se declara como entrada, la comprobación avisa. Antes de pasar a placa se ejecutan el ERC y la comprobación de netlist; luego <em>Convert to PCB</em>.</p>
 <p>Normas de dibujo: rejilla de 2,54 mm (0,1") en el esquema, referencias normalizadas (R, C, L, D, Q, U, J/P, SW, Y) y nombres de red claros. Los componentes con muchos pines se dibujan en varias partes si hace falta.</p>
-<figure class="fig"><p class="ft">Del símbolo a la huella</p><div data-sim="huella"></div><figcaption>Cambia el tipo de encapsulado y observa cómo se reparten los pines y las pastillas.</figcaption></figure></div><!--/amp1--><h3 id="t6-formulas">Fórmulas y datos que hay que saber</h3>
+<figure class="fig"><p class="ft">Del símbolo a la huella</p><div data-sim="huella"></div><figcaption>Cambia el tipo de encapsulado y observa cómo se reparten los pines y las pastillas.</figcaption></figure></div><!--/amp1--><!--manim:dse-t6--><figure class="fig manim-fig" id="anim-dse-t6"><p class="ft">Animación · Símbolo, huella y pines</p><div class="manim" data-anim="dse-t6"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad.</figcaption></figure><!--/manim-->
+<h3 id="t6-formulas">Fórmulas y datos que hay que saber</h3>
 <div class="box key"><ul>
 <li><b>Librerías en DipTrace:</b> <i>.eli</i> (componentes/símbolos) y <i>.lib</i> (patrones/huellas). En el examen se pide crearlas con un nombre concreto y guardarlas en una carpeta determinada.</li>
 <li><b>Pasos para un componente nuevo:</b> Component Editor → nuevo componente → nombre y referencia (R, C, U, Q) → dibujar la forma → añadir pines con su número y nombre → asignar patrón → guardar en la librería.</li>
@@ -110,5 +111,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
+<script src="anim-manim.js?v=21990" defer></script>
+<script src="anim-temas.js?v=21990" defer></script>
 </body>
 </html>
