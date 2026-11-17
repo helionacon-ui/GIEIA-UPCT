@@ -9,8 +9,17 @@ M.reg('ac-t1',M.base({title:'Intensidad: carga que atraviesa una sección',H:520
   D.text('si V = 12 V:  P = V·I = 24 W',W/2,410,{it:true,s:20,a:'center'});}));
 
 /* T2 reducción serie-paralelo */
-M.reg('ac-t2',M.pasos({title:'Reducir una red paso a paso',H:520,dur:18,lines:[{s:'R₁ = 4 Ω en serie con (R₂ = 6 Ω ∥ R₃ = 3 Ω)',it:false,b:true},{s:'1. paralelo: R₂ ∥ R₃ = R₂·R₃ / (R₂ + R₃)'},{s:'= 6·3 / (6 + 3) = 18/9 = 2 Ω'},{s:'2. serie: R_{eq} = R₁ + 2 = 6 Ω'},{s:'3. con 12 V: I = 12/6 = 2 A ;  V_{∥} = 2·2 = 4 V'},{s:'I₂ = 4/6 = 0,67 A    I₃ = 4/3 = 1,33 A',c:'m'}],
- caps:[[9,'Se reducen primero los grupos más internos: dos resistencias en paralelo se sustituyen por <i>R₁R₂/(R₁ + R₂)</i>.'],[99,'Luego las series se suman. Con la resistencia equivalente se obtiene la corriente total y se «deshace» el camino para hallar tensiones y corrientes de cada rama.']]}));
+function rbox(D,x,y,w,h,lab,c,al){al=al===undefined?1:al;if(al<=0.01)return;D.ctx.save();D.ctx.globalAlpha=al;D.rect(x,y,w,h,null,C.bg);D.rect(x,y,w,h,c,RG(c,.14),2.2);D.ctx.restore();D.text(lab,x+w/2,y+h/2+6,{s:16,a:'center',c:c,bold:true,al:al});}
+M.reg('ac-t2',M.base({title:'Reducir una red paso a paso',H:540,dur:18,caps:[[6,'Red: R₁ = 4 Ω en serie con el paralelo de R₂ = 6 Ω y R₃ = 3 Ω. Se empieza por el grupo más interno.'],[12,'Dos resistencias en paralelo se sustituyen por <i>R₂R₃/(R₂ + R₃)</i> = 18/9 = 2 Ω.'],[99,'Quedan dos en serie, que se suman: R<sub>eq</sub> = 4 + 2 = 6 Ω. Con 12 V, la fuente entrega I = 12/6 = 2 A.']]},
+ function(D,t){var a=ease(seg(t,5,8)),b=ease(seg(t,11,14)),y=230,c1=C.f,c2=C.hl,cm=C.m;
+  D.line(60,y,60,y+150,C.ax,2.4);D.line(60,y+150,580,y+150,C.ax,2.4);D.line(580,y+150,580,y,C.ax,2.4);D.dot(60,y+75,16,RG(C.bad,.12));D.ring(60,y+75,16,C.bad,2);D.text('12 V',30,y+80,{s:14,c:C.bad,a:'right'});
+  if(b<1){var xR1=lerp(130,250,b);D.line(60,y,xR1,y,C.ax,2.4);rbox(D,xR1,y-22,90,44,'R₁ = 4 Ω',c1,clamp(1-2*b,0,1));
+   var xp=lerp(330,250,b);D.line(xR1+90,y,xp,y,C.ax,2.4);
+   if(a<1){var sp=lerp(55,0,a);D.line(xp,y,xp,y-sp,C.ax,2.4);D.line(xp,y,xp,y+sp,C.ax,2.4);rbox(D,xp+20,y-sp-22,110,44,'R₂ = 6 Ω',c2,clamp(1-2*a,0,1));rbox(D,xp+20,y+sp-22,110,44,'R₃ = 3 Ω',c2,clamp(1-2*a,0,1));D.line(xp,y-sp,xp+20,y-sp,C.ax,2.4);D.line(xp,y+sp,xp+20,y+sp,C.ax,2.4);D.line(xp+130,y-sp,xp+150,y-sp,C.ax,2.4);D.line(xp+130,y+sp,xp+150,y+sp,C.ax,2.4);D.line(xp+150,y-sp,xp+150,y+sp,C.ax,2.4);}
+   if(a>0)rbox(D,xp+20,y-22,110,44,'R₂∥R₃ = 2 Ω',cm,clamp(2*a-1,0,1)*clamp(1-2*b,0,1));D.line(xp+150,y,580,y,C.ax,2.4);}
+  if(b>0){D.line(60,y,250,y,C.ax,2.4);rbox(D,250,y-26,140,52,'R_{eq} = 6 Ω',C.y,clamp(2*b-1,0,1));D.line(390,y,580,y,C.ax,2.4);}
+  U.readout(D,[b>0.5?'R_{eq} = 4 + 2 = 6 Ω    I = 12/6 = 2 A':(a>0.5?'paralelo: 6·3/(6+3) = 2 Ω':'empezar por el paralelo')],470);}));
+
 
 /* T3 máxima transferencia de potencia */
 M.reg('ac-t3',M.traza({title:'Thévenin y máxima transferencia de potencia',H:540,dur:16,x0:0.2,x1:20,ax:{xr:[0,20],yr:[0,10.5],xt:[4,8,12,16,20],yt:[3,6,9],xd:0,yd:0,xl:'R_{L} (Ω)',yl:'P_{L} (W)'},h:300,f:function(r){return 144*r/Math.pow(4+r,2);},
@@ -69,8 +78,18 @@ M.reg('ac-t10',M.base({title:'Potencia trifásica: constante en el tiempo',H:540
   D.text('cada fase: p = V_{m}I_{m}·sen(ωt)·sen(ωt − φ)',W/2,470,{it:true,s:19,a:'center'});}));
 
 /* T11 parámetros Z de un cuadripolo */
-M.reg('ac-t11',M.pasos({title:'Cuadripolo: parámetros de impedancia',H:540,dur:20,lines:[{s:'V₁ = Z₁₁·I₁ + Z₁₂·I₂        V₂ = Z₂₁·I₁ + Z₂₂·I₂',it:false,b:true},{s:'red en T:  Z_{a} = 2 Ω,  Z_{b} = 3 Ω,  Z_{c} = 5 Ω (rama central)'},{s:'1. salida en abierto (I₂ = 0): Z₁₁ = V₁/I₁ = Z_{a} + Z_{c} = 7 Ω'},{s:'   y  Z₂₁ = V₂/I₁ = Z_{c} = 5 Ω'},{s:'2. entrada en abierto (I₁ = 0): Z₂₂ = Z_{b} + Z_{c} = 8 Ω'},{s:'   y  Z₁₂ = Z_{c} = 5 Ω   → red recíproca: Z₁₂ = Z₂₁',c:'ok'}],
- caps:[[10,'Un cuadripolo se describe por cómo se relacionan tensiones y corrientes en sus dos puertas. Cada parámetro se mide dejando la otra puerta en abierto.'],[99,'Una red pasiva hecha de R, L y C es <b>recíproca</b>: Z₁₂ = Z₂₁. Si además es simétrica, Z₁₁ = Z₂₂.']]}));
+function tnet(D,x,y,Z,act){var c=C.ax;D.rect(x,y,300,170,C.mut,null,1.2);D.line(x-40,y+30,x+20,y+30,c,2.2);rz(D,x+20,y+30,'Z_{a}',Z[0]);D.line(x+100,y+30,x+130,y+30,c,2.2);rz(D,x+200,y+30,'Z_{b}',Z[1],true);D.line(x+130,y+30,x+200,y+30,c,2.2);D.line(x+280,y+30,x+340,y+30,c,2.2);
+ D.line(x+150,y+30,x+150,y+55,c,2.2);D.rect(x+130,y+55,40,70,C.f,RG(C.f,.12),2);D.text('Z_{c}',x+150,y+96,{s:15,a:'center',c:C.f});D.line(x+150,y+125,x+150,y+150,c,2.2);D.line(x-40,y+150,x+340,y+150,c,2.2);
+ function rz(D,x0,y0,l){D.rect(x0,y0-18,80,36,C.f,RG(C.f,.12),2);D.text(l,x0+40,y0+6,{s:15,a:'center',c:C.f});}}
+M.reg('ac-t11',M.base({title:'Cuadripolo: medir los parámetros Z',H:580,dur:20,caps:[[7,'Con la salida en abierto (I₂ = 0) se inyecta I₁: la corriente solo recorre Z<sub>a</sub> y Z<sub>c</sub>. Así <i>Z₁₁ = V₁/I₁ = Z<sub>a</sub> + Z<sub>c</sub></i> y <i>Z₂₁ = V₂/I₁ = Z<sub>c</sub></i>.'],[14,'Con la entrada en abierto (I₁ = 0) se inyecta I₂ por la salida: <i>Z₂₂ = Z<sub>b</sub> + Z<sub>c</sub></i> y <i>Z₁₂ = Z<sub>c</sub></i>.'],[99,'Z₁₂ = Z₂₁: las redes pasivas son recíprocas. Red en T con Z<sub>a</sub> = 2, Z<sub>b</sub> = 3 y Z<sub>c</sub> = 5 Ω.']]},
+ function(D,t){var x=170,y=120,ph=t<10?1:2,u=(t%10)/10;tnet(D,x,y,[2,3,5]);
+  D.text('puerta 1',x-60,y+100,{s:14,c:C.mut,a:'center'});D.text('puerta 2',x+360,y+100,{s:14,c:C.mut,a:'center'});
+  var I=1,k=ease(seg(u,0.1,0.5));if(ph===1){D.arrow(x-40,y+30,x-40+60*k,y+30,C.bad,3);D.text('I₁ = 1 A',x-40,y+18,{s:15,c:C.bad});D.text('abierto',x+345,y+128,{s:14,c:C.mut});
+   if(k>=1){D.path([[x+20,y+40],[x+140,y+40],[x+140,y+140],[x-30,y+140]],C.bad,2,null,0.6);D.text('V₁ = 7 V',x-50,y+75,{s:16,c:C.m,a:'right',bold:true});D.text('V₂ = 5 V',x+350,y+75,{s:16,c:C.m,bold:true});}}
+  else{D.arrow(x+340,y+30,x+340-60*k,y+30,C.bad,3);D.text('I₂ = 1 A',x+290,y+18,{s:15,c:C.bad});D.text('abierto',x-75,y+128,{s:14,c:C.mut});
+   if(k>=1){D.path([[x+280,y+40],[x+160,y+40],[x+160,y+140],[x+330,y+140]],C.bad,2,null,0.6);D.text('V₁ = 5 V',x-50,y+75,{s:16,c:C.m,a:'right',bold:true});D.text('V₂ = 8 V',x+350,y+75,{s:16,c:C.m,bold:true});}}
+  U.readout(D,[ph===1?'Z₁₁ = 7 Ω    Z₂₁ = 5 Ω':'Z₂₂ = 8 Ω    Z₁₂ = 5 Ω  (= Z₂₁: recíproca)'],420);}));
+
 
 /* T12 diodo y recta de carga */
 function Id(v){return 1e-12*(Math.exp(v/0.0259/1.0)-1)*1000;}

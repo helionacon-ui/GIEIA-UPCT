@@ -60,7 +60,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">La cadena de una fuente lineal: trafo, puente, condensador, regulador</p><p>Una fuente lineal tiene cuatro bloques: el <b>transformador</b> baja la tensión de red; el <b>puente rectificador</b> da una onda siempre positiva; el <b>condensador</b> la «alisa» (queda un rizado en diente de sierra); y el <b>regulador</b> da una salida fija. El condensador se carga en el pico y se descarga en el resto del ciclo: la tensión mínima es \(V_{min}=V_{pico}-V_r\) y debe seguir por encima de lo que el regulador necesita, \(V_{out}+V_{dropout}\).</p>
 <p>El pico no es \(\sqrt2V_{sec}\) exacto: cada diodo en conducción resta ~0,7 V, y en un puente conducen <b>dos</b> a la vez: \(V_{pico}=\sqrt2V_{sec}-1{,}4\) V.</p><p class="ft">El rizado y cómo calcular el condensador</p><p>Mientras el condensador alimenta la carga (sin ayuda del rectificador) pierde carga \(Q=I\,t\), y la caída es \(V_r=\dfrac{I\,t}{C}\). El tiempo \(t\) es lo que dura el hueco entre picos: <b>10 ms</b> en onda completa (puente, a 50 Hz) y <b>20 ms</b> en media onda. De ahí \(C=\dfrac{I\,t}{V_r}\). Cuidado con la intuición: rizado pequeño pide condensador grande, pero un condensador muy grande hace que los picos de corriente de carga sean estrechos y altos (importa \(I_{FSM}\) de los diodos).</p>
 <p>Receta de diseño en orden: fija \(V_{out}\) y \(V_{dropout}\) → elige \(V_r\) razonable (1–3 V) → calcula \(V_{sec}\) → calcula \(C\) → elige valores comerciales por encima → comprueba diodos (\(V_{RRM}\ge\sqrt2V_{sec}\)).</p>
-<figure class="fig"><p class="ft">Rectificador con filtro capacitivo</p><div data-sim="rectificador"></div><figcaption>Cambia C y la carga: el rizado y la tensión mínima se calculan al instante.</figcaption></figure></div><!--/amp1--><!--manim:dse-t2--><figure class="fig manim-fig" id="anim-dse-t2"><p class="ft">Animación · Rizado del condensador de filtro</p><div class="manim" data-anim="dse-t2"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad.</figcaption></figure><!--/manim-->
+<figure class="fig"><p class="ft">Rectificador con filtro capacitivo</p><div data-sim="rectificador"></div><figcaption>Cambia C y la carga: el rizado y la tensión mínima se calculan al instante.</figcaption></figure></div><!--/amp1--><!--manim:dse-t2--><figure class="fig manim-fig" id="anim-dse-t2"><p class="ft">Animación · Rizado del condensador de filtro</p><div class="manim" data-anim="dse-t2"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro.</figcaption></figure><!--/manim-->
 <h3 id="t2-formulas">Fórmulas y datos que hay que saber</h3>
 <div class="box key"><ul>
 <li>\(V_{pico}=\sqrt2\,V_{sec}-n\cdot0{,}7\) con \(n=2\) en puente y \(n=1\) en media onda.</li>
@@ -115,7 +115,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
-<script src="anim-manim.js?v=21990" defer></script>
-<script src="anim-temas.js?v=21990" defer></script>
+<script src="anim-manim.js?v=26804" defer></script>
+<script src="anim-temas.js?v=26804" defer></script>
 </body>
 </html>

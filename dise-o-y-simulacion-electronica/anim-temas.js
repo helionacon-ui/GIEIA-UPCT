@@ -2,16 +2,14 @@
 (function(){var M=window.MANIM;if(!M)return;var U=M.util,C=M.C,nf=U.nf,lerp=U.lerp,ease=U.ease,seg=U.seg,clamp=U.clamp,RG=U.RG,W=640;
 
 /* T1 flujo de diseño */
-M.reg('dse-t1',M.pasos({title:'El flujo de diseño electrónico',H:560,dur:20,y0:110,lines:[
- {s:'1. Especificación: qué debe hacer, tensiones, corrientes, entorno',it:false,size:19},
- {s:'2. Esquema de bloques y elección de componentes',it:false,size:19},
- {s:'3. Captura del esquemático',it:false,size:19},
- {s:'4. Simulación: ¿cumple la especificación?  si no → volver a 2',it:false,size:19,c:'hl'},
- {s:'5. Diseño de la PCB: colocación y ruteo',it:false,size:19},
- {s:'6. Revisión DRC/ERC y ficheros de fabricación',it:false,size:19},
- {s:'7. Prototipo, medidas y corrección',it:false,size:19},
- {s:'8. Fabricación en serie',it:false,size:19}]
- }));
+var FL=[['Especificación',90,130],['Esquemático',250,130],['Simulación',410,130],['Diseño PCB',550,250],['Prototipo',410,370],['Fabricación',250,370]],FS2=[0,1,2,1,2,3,4,5];
+M.reg('dse-t1',M.base({title:'El flujo de diseño electrónico',H:560,dur:20,caps:[[6,'Se parte de una especificación (qué debe hacer, tensiones, corrientes, entorno) y se captura el esquemático.'],[12,'La simulación comprueba si el circuito cumple. Si no, se vuelve al esquemático: es más barato corregir aquí que en la placa.'],[99,'Con el esquema validado se diseña la PCB, se fabrica un prototipo, se mide y, si todo va bien, se pasa a la fabricación en serie.']]},
+ function(D,t){var u=seg(t,0.5,19)*(FS2.length-1),k=Math.min(FS2.length-1,Math.floor(u)),cur=FS2[k];
+  for(var i=0;i<FL.length-1;i++){var a=FL[i],b=FL[i+1];D.arrow(a[1]+(b[1]>a[1]?60:(b[1]<a[1]?-60:0)),a[2]+(b[2]>a[2]?26:0),b[1]-(b[1]>a[1]?60:(b[1]<a[1]?-60:0)),b[2]-(b[2]>a[2]?26:0),C.ax,1.6);}
+  D.path([[410,100],[410,80],[250,80],[250,98]],C.bad,1.8,null,0.8);D.head(250,104,Math.PI/2,C.bad,9);D.text('no cumple',330,72,{s:14,a:'center',c:C.bad});
+  FL.forEach(function(f,i){var on=i===cur;D.rect(f[1]-62,f[2]-26,124,52,on?C.m:C.f,on?RG(C.m,.22):RG(C.f,.06),on?3:1.6);D.text(f[0],f[1],f[2]+6,{s:15,a:'center',c:on?C.m:C.f,bold:on});});
+  var msg=['¿qué tiene que hacer?','captura del circuito','primera simulación: no cumple','corregir el esquema','segunda simulación: cumple','colocación y ruteo','medir y validar','fabricación en serie'][k];U.readout(D,[msg],470);}));
+
 
 /* T2 fuente lineal: rizado frente a C */
 function rip(Cf,IL){var out=[],v=0,dt=0.05,f=50;for(var i=0;i<=1200;i++){var x=i*dt,vin=Math.abs(17*Math.sin(2*Math.PI*f*x/1000))-1.4;v=Math.max(vin,v-IL*dt/1000/(Cf*1e-6));out.push(v);}return out;}

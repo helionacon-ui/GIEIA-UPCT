@@ -65,7 +65,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <figure class="fig"><p class="ft">Figura interactiva - recta de carga y punto Q del BJT</p><div data-sim="bjt"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
 <!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">El BJT: una corriente pequeña controla una grande</p><p>En un <b>BJT</b> (NPN) una pequeña corriente de base \(I_B\) gobierna la de colector: \(I_C=\beta I_B\) <b>mientras el transistor esté en zona activa</b>. Tiene tres regiones: <b>corte</b> (\(V_{BE}&lt;0{,}7\) V: \(I_B=0\), \(I_C=0\)), <b>activa</b> (\(V_{BE}=0{,}7\) V y \(V_{CE}&gt;V_{CE\,sat}\): amplificador) y <b>saturación</b> (\(V_{CE}\approx0{,}2\) V: el circuito exterior limita \(I_C\), ya no vale \(\beta I_B\)). Como <b>interruptor</b> trabaja entre corte y saturación; como <b>amplificador</b>, en activa. Método: supón activa, calcula, y comprueba \(V_{CE}\).</p><p class="ft">El MOSFET: la puerta controla con tensión</p><p>El <b>MOSFET</b> de enriquecimiento (canal N) se controla con la tensión \(V_{GS}\): no entra corriente por la puerta (\(I_G=0\)). Si \(V_{GS}&lt;V_T\): <b>corte</b>. Si \(V_{GS}&gt;V_T\) hay canal y dos opciones: con \(V_{DS}\ge V_{GS}-V_T\), <b>saturación</b> (zona de fuente de corriente): \(I_D=\tfrac K2(V_{GS}-V_T)^2\); con \(V_{DS}&lt;V_{GS}-V_T\), <b>zona óhmica</b> (resistencia controlada): \(I_D=K\left[(V_{GS}-V_T)V_{DS}-\tfrac{V_{DS}^2}{2}\right]\). En conmutación se usa en corte/óhmica.</p>
 <p><b>Entrena el ojo:</b> el mini-test te da 3 circuitos aleatorios; decide en qué zona trabajan y luego comprueba el razonamiento.</p>
-<figure class="fig"><p class="ft">Mini-test: ¿en qué región trabaja?</p><div data-sim="regionquiz"></div><figcaption>Pulsa «Nuevas preguntas» para generar otras tres. Primero estima \(I_B\) o \(V_{GS}\), después compara con el valor de saturación.</figcaption></figure></div><!--/amp1--><!--manim:fei-t4--><figure class="fig manim-fig" id="anim-fei-t4"><p class="ft">Animación · Curvas del BJT y punto de trabajo</p><div class="manim" data-anim="fei-t4"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad.</figcaption></figure><!--/manim-->
+<figure class="fig"><p class="ft">Mini-test: ¿en qué región trabaja?</p><div data-sim="regionquiz"></div><figcaption>Pulsa «Nuevas preguntas» para generar otras tres. Primero estima \(I_B\) o \(V_{GS}\), después compara con el valor de saturación.</figcaption></figure></div><!--/amp1--><!--manim:fei-t4--><figure class="fig manim-fig" id="anim-fei-t4"><p class="ft">Animación · Curvas del BJT y punto de trabajo</p><div class="manim" data-anim="fei-t4"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro.</figcaption></figure><!--/manim-->
 <h3 id="t4-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>
 <li>BJT activa: \(I_C=\beta I_B\), \(I_E=I_C+I_B\), \(V_{BE}\approx0{,}7\) V.</li>
@@ -103,7 +103,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
-<script src="anim-manim.js?v=20372" defer></script>
-<script src="anim-temas.js?v=20372" defer></script>
+<script src="anim-manim.js?v=26804" defer></script>
+<script src="anim-temas.js?v=26804" defer></script>
 </body>
 </html>

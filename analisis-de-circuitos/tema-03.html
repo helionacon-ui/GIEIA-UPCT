@@ -58,7 +58,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <figure class="fig"><p class="ft">Figura interactiva - Thevenin, Norton y maxima transferencia</p><div data-sim="thevenin"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
 <!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Mallas y nudos: sistematizar</p><p>Cuando el circuito es grande, se plantea un sistema de ecuaciones. <b>Mallas:</b> asigna una corriente cíclica a cada malla; en la ecuación de cada una, el coeficiente de su propia corriente es la <b>suma de resistencias</b> de la malla (positivo) y el de las vecinas es <b>menos la resistencia compartida</b>; el término independiente es la suma de las fuentes que ayudan a su corriente. <b>Nudos:</b> eliges un nudo de referencia y escribes LCK en los demás con conductancias.</p>
 <p>Elige mallas si hay pocas mallas y fuentes de tensión; nudos si hay pocos nudos y fuentes de corriente.</p><p class="ft">Thévenin, Norton y máxima transferencia</p><p>Cualquier parte lineal de un circuito vista desde dos terminales equivale a una fuente \(V_{th}\) con una resistencia \(R_{th}\) en serie. <b>\(V_{th}\)</b> = tensión entre los terminales en vacío; <b>\(R_{th}\)</b> = resistencia vista con las fuentes anuladas (fuentes de tensión → cortocircuito; de corriente → abiertas). Norton es lo mismo en forma de fuente de corriente \(I_N=V_{th}/R_{th}\).</p>
-<p>Se usa para estudiar cómo se comporta una carga variable: la corriente es \(V_{th}/(R_{th}+R_L)\). La <b>potencia máxima</b> en la carga se obtiene con \(R_L=R_{th}\) y vale \(V_{th}^2/(4R_{th})\) (con un rendimiento del 50 %).</p></div><!--/amp1--><!--manim:ac-t3--><figure class="fig manim-fig" id="anim-ac-t3"><p class="ft">Animación · Thévenin y máxima transferencia de potencia</p><div class="manim" data-anim="ac-t3"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad.</figcaption></figure><!--/manim-->
+<p>Se usa para estudiar cómo se comporta una carga variable: la corriente es \(V_{th}/(R_{th}+R_L)\). La <b>potencia máxima</b> en la carga se obtiene con \(R_L=R_{th}\) y vale \(V_{th}^2/(4R_{th})\) (con un rendimiento del 50 %).</p></div><!--/amp1--><!--manim:ac-t3--><figure class="fig manim-fig" id="anim-ac-t3"><p class="ft">Animación · Thévenin y máxima transferencia de potencia</p><div class="manim" data-anim="ac-t3"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro.</figcaption></figure><!--/manim-->
 <!--deep--><h3 id="t3-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
 <h4>1. Superposición</h4>
 <div class="box key deepnote"><b>Idea clave.</b> en un circuito <b>lineal</b>, la respuesta total es la suma de las respuestas a cada fuente por separado.</div>
@@ -101,7 +101,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
-<script src="anim-manim.js?v=19833" defer></script>
-<script src="anim-temas.js?v=19833" defer></script>
+<script src="anim-manim.js?v=26817" defer></script>
+<script src="anim-temas.js?v=26817" defer></script>
 </body>
 </html>

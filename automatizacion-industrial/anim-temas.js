@@ -76,22 +76,27 @@ M.reg('ai-t8',M.base({title:'El autómata programable: el ciclo de scan',H:560,d
   D.text('ciclo de scan',cx,cy-6,{s:18,a:'center',c:C.w});D.text('≈ 1–20 ms',cx,cy+20,{s:15,a:'center',c:C.mut});}));
 
 /* T9 del GRAFCET a contactos */
-M.reg('ai-t9',M.pasos({title:'Del GRAFCET al diagrama de contactos',H:580,dur:20,y0:110,gap:48,lines:[
- {s:'Cada etapa es una marca: X0, X1, X2…',size:19},
- {s:'Activación de X1:  X0 · marcha',size:19},
- {s:'Desactivación de X1:  X2 (la etapa siguiente)',size:19},
- {s:'X1 = (X0 · marcha + X1) · ¬X2',size:21,b:true,c:'m'},
- {s:'En contactos: rama de activación ∥ contacto de autorretención X1, en serie con X2 negado',size:16},
- {s:'Acciones al final: A+ = X1    (una bobina por salida)',size:19,c:'hl'},
- {s:'Arranque: X0 se activa con el bit de primer ciclo',size:17}]}));
+M.reg('ai-t9',M.base({title:'Del GRAFCET al diagrama de contactos',H:600,dur:20,caps:[[6,'Cada etapa es una marca interna. La etapa 1 se activa con la etapa 0 activa y el pulsador de marcha, y se mantiene por autorretención.'],[13,'Se desactiva cuando se activa la etapa siguiente: el contacto negado X2 abre el circuito. Ecuación: <i>X1 = (X0·marcha + X1)·¬X2</i>.'],[99,'Las acciones van aparte, al final del programa: la bobina A+ se excita mientras X1 está activa.']]},
+ function(D,t){var st=t<4?0:(t<11?1:2),m=t>=3&&t<4.5,a1=t>=10&&t<12,X=[st===0,st===1,st===2],cA=function(on){return on?C.bad:C.ax;},gx=80;
+  [['0',90],['1',200],['2',310]].forEach(function(s,i){var on=X[i];D.rect(gx-25,s[1],50,44,on?C.m:C.f,on?RG(C.m,.2):null,2.2);D.text(s[0],gx,s[1]+29,{s:18,a:'center',c:on?C.m:C.f,bold:true});if(on)D.dot(gx,s[1]+38,4,C.m);D.line(gx,s[1]+44,gx,s[1]+110,C.ax,1.6);});
+  D.line(gx-14,170,gx+14,170,C.ax,3);D.text('marcha',gx+20,175,{s:14,c:m?C.hl:C.mut,it:true});D.line(gx-14,280,gx+14,280,C.ax,3);D.text('a1',gx+20,285,{s:14,c:a1?C.hl:C.mut,it:true});D.text('A+',gx+40,230,{s:15,c:X[1]?C.hl:C.mut});
+  var y=160,x0=210,x1=600;D.line(x0,110,x0,360,C.ax,2.4);D.line(x1,110,x1,360,C.ax,2.4);var on1=(X[0]&&m)||X[1];var live=on1&&!X[2];
+  function ct(x,y,lab,closed,neg){D.line(x,y-14,x,y+14,closed?C.bad:C.ax,2.4);D.line(x+18,y-14,x+18,y+14,closed?C.bad:C.ax,2.4);if(neg)D.line(x-4,y+14,x+22,y-14,closed?C.bad:C.ax,1.6);D.text(lab,x+9,y-20,{s:13,a:'center',c:closed?C.bad:C.mut});}
+  D.line(x0,y,260,y,cA(live),2.4);ct(260,y,'X0',X[0]);D.line(278,y,320,y,cA(live&&X[0]),2.4);ct(320,y,'marcha',m);D.line(338,y,400,y,cA(live),2.4);
+  D.line(240,y,240,y+60,cA(X[1]),2.4);D.line(240,y+60,290,y+60,cA(X[1]),2.4);ct(290,y+60,'X1',X[1]);D.line(308,y+60,380,y+60,cA(X[1]),2.4);D.line(380,y+60,380,y,cA(X[1]),2.4);
+  ct(410,y,'X2',!X[2],true);D.line(428,y,490,y,cA(live),2.4);D.ring(510,y,18,live?C.bad:C.ax,2.4);D.text('X1',510,y+5,{s:14,a:'center',c:live?C.bad:C.mut,bold:true});D.line(528,y,x1,y,cA(live),2.4);
+  var y2=320;D.line(x0,y2,300,y2,cA(X[1]),2.4);ct(300,y2,'X1',X[1]);D.line(318,y2,490,y2,cA(X[1]),2.4);D.ring(510,y2,18,X[1]?C.hl:C.ax,2.4);D.text('A+',510,y2+5,{s:14,a:'center',c:X[1]?C.hl:C.mut,bold:true});D.line(528,y2,x1,y2,cA(X[1]),2.4);
+  U.readout(D,['X1 = (X0·marcha + X1)·¬X2',st===0?(m?'marcha pulsada: se activa X1':'etapa 0 activa'):(st===1?'X1 enclavada: A+ excitada':'X2 activa: el contacto negado X2 abre y X1 cae')],440);}));
+
 
 /* T10 modos de marcha y parada (GEMMA) */
-M.reg('ai-t10',M.pasos({title:'Modos de marcha y parada: la guía GEMMA',H:580,dur:20,y0:110,gap:52,lines:[
- {s:'F · Procedimientos de funcionamiento',size:19,b:true,c:'ok'},
- {s:'   F1 producción normal,  F4/F5 marchas de verificación',size:17,a:'left',x:70},
- {s:'A · Procedimientos de parada',size:19,b:true,c:'hl'},
- {s:'   A1 parada en estado inicial,  A2 parada a fin de ciclo',size:17,a:'left',x:70},
- {s:'D · Procedimientos en defecto',size:19,b:true,c:'bad'},
- {s:'   D1 parada de emergencia,  D2 diagnóstico,  D3 producción degradada',size:17,a:'left',x:70},
- {s:'La seta de emergencia actúa por cableado, no solo por programa',size:17,c:'m'}]}));
+var GM={A1:[110,140,'A1 parada en estado inicial','hl'],F1:[430,140,'F1 producción normal','ok'],A2:[270,140,'A2 parada a fin de ciclo','hl'],D1:[430,330,'D1 parada de emergencia','bad'],A5:[270,330,'A5 preparar la vuelta','hl'],A6:[110,330,'A6 llevar a estado inicial','hl']};
+var GP=['A1','F1','A2','A1','F1','D1','A5','A6','A1'],GT=['marcha','parada','fin de ciclo','marcha','¡emergencia!','rearme','defecto eliminado','posición inicial'];
+M.reg('ai-t10',M.base({title:'Modos de marcha y parada: la guía GEMMA',H:580,dur:20,caps:[[7,'GEMMA ordena los estados de una máquina en tres familias: funcionamiento (F), parada (A) y defecto (D).'],[13,'Ciclo normal: desde A1 se pasa a producción F1; al pedir la parada, la máquina termina el ciclo (A2) antes de volver a A1.'],[99,'Con la seta de emergencia se salta a D1 desde cualquier estado. Para volver hay que rearmar, preparar la máquina (A5, A6) y llegar al estado inicial.']]},
+ function(D,t){var u=seg(t,0.5,19)*(GP.length-1),k=Math.min(GP.length-2,Math.floor(u)),f=u-k;
+  D.rect(40,90,560,130,C.ok,RG(C.ok,.04),1.2);D.text('F · funcionamiento    A · parada',50,108,{s:13,c:C.mut});D.rect(40,280,560,130,C.bad,RG(C.bad,.04),1.2);D.text('D · defecto / A · vuelta al servicio',50,298,{s:13,c:C.mut});
+  Object.keys(GM).forEach(function(k2){var g=GM[k2].slice(),on=GP[k]===k2&&f<0.5||GP[k+1]===k2&&f>=0.5;g[3]=C[g[3]];D.rect(g[0]-70,g[1]-26,140,52,g[3],RG(g[3],on?.3:.06),on?3:1.4);D.text(k2,g[0],g[1]-2,{s:18,a:'center',c:g[3],bold:true});D.text(g[2].slice(3),g[0],g[1]+16,{s:11,a:'center',c:C.mut});});
+  for(var i=0;i<GP.length-1;i++){var a=GM[GP[i]],b=GM[GP[i+1]];var done=i<k||(i===k&&f>0.2);D.arrow(lerp(a[0],b[0],0.25),lerp(a[1],b[1],0.25)+(a[1]===b[1]?(b[0]>a[0]?-30:30):0),lerp(a[0],b[0],0.75),lerp(a[1],b[1],0.75)+(a[1]===b[1]?(b[0]>a[0]?-30:30):0),done?C.m:C.grid,done?2.4:1.2);}
+  U.readout(D,[GP[k]+' → '+GP[k+1]+':  '+GT[k]],480);}));
+
 })();
