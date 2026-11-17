@@ -54,7 +54,8 @@ details>summary{line-height:1.7;padding-block:.5em}
 <figure class="fig"><p class="ft">Simulador · diagrama p-V y primer principio</p><div data-sim="pv"></div><figcaption>Mueve los controles y observa cómo cambian las magnitudes del recuadro.</figcaption></figure>
 <!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Primer principio: la energía se conserva</p><p>\(\Delta U=Q-W\) con el convenio de este curso: \(Q>0\) si el sistema <b>recibe</b> calor y \(W>0\) si <b>realiza</b> trabajo (los libros que definen \(W\) sobre el sistema escriben \(\Delta U=Q+W\); comprueba siempre el convenio). La energía interna de un gas ideal solo depende de \(T\): \(\Delta U=nc_v\Delta T\).</p>
 <p>Casos: isocoro (\(W=0\)), isobaro (\(W=p\Delta V\)), isotermo (\(\Delta U=0\) y \(Q=W=nRT\ln(V_2/V_1)\)), adiabático (\(Q=0\)).</p><p class="ft">Segundo principio: máquinas y entropía</p><p>No se puede convertir todo el calor en trabajo (Kelvin–Planck) ni pasar calor espontáneamente de un foco frío a otro caliente (Clausius). El mejor rendimiento posible entre dos focos es el de Carnot, \(\eta=1-T_C/T_H\) (en kelvin). En un frigorífico, la eficiencia es \(\varepsilon=Q_C/W\).</p>
-<p>La entropía \(S\) mide el desorden: \(dS=\delta Q_{rev}/T\), y en un sistema aislado nunca disminuye (\(\Delta S\ge0\)); es la brújula que indica si un proceso es posible.</p></div><!--/amp1--><!--deep--><h3 id="t11-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<p>La entropía \(S\) mide el desorden: \(dS=\delta Q_{rev}/T\), y en un sistema aislado nunca disminuye (\(\Delta S\ge0\)); es la brújula que indica si un proceso es posible.</p></div><!--/amp1--><!--manim:fis1-t11--><figure class="fig manim-fig" id="anim-fis1-t11"><p class="ft">Animación · Ciclo de Carnot en el diagrama p–V</p><div class="manim" data-anim="fis1-t11"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t11-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
 <h4>1. Primer principio</h4>
 <div class="eqd">\[\Delta U=Q-W\qquad(W\text{: trabajo hecho por el sistema})\]</div>
 <ul><li>\(U\) es <b>función de estado</b>: solo depende del estado inicial y del final.</li><li>\(Q\) y \(W\) dependen del <b>camino</b>.</li><li>En una expansión, \(W=\int p\,\mathrm dV\) es el área bajo la curva en el diagrama \(p\)–\(V\).</li></ul>
@@ -104,5 +105,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
+<script src="anim-manim.js?v=19142" defer></script>
+<script src="anim-temas.js?v=19142" defer></script>
 </body>
 </html>

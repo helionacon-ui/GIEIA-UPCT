@@ -57,7 +57,8 @@ details>summary{line-height:1.7;padding-block:.5em}
 <p>Para una carga puntual, \(V=kQ/r\), con signo: positivo cerca de cargas positivas, negativo cerca de negativas. Como es un número, <b>se suma sin ángulos</b>: \(V=\sum kq_i/r_i\). Esa es la gran ventaja frente al campo.</p>
 <p><b>Y el trabajo:</b> mover una carga \(q\) entre dos puntos cuesta \(W=q\,(V_B-V_A)\), sin importar el camino (la fuerza eléctrica es conservativa).</p><p class="ft">Energía de un sistema de cargas</p><p>La energía potencial de un sistema es el trabajo que cuesta <b>montarlo</b> trayendo las cargas una a una desde el infinito. La primera es gratis; la segunda paga la interacción con la primera; la tercera, con las dos anteriores…</p>
 <p>El resultado es la suma sobre <b>pares</b>: \(U=\sum_{i<j}\dfrac{k\,q_iq_j}{r_{ij}}\). Con \(n\) cargas hay \(n(n-1)/2\) pares: tres cargas, tres pares; cuatro, seis. Un par que se repele aporta energía positiva (cuesta juntarlas); un par que se atrae, negativa.</p>
-<p>Para una carga que se acelera entre dos puntos, la conservación de energía lo resuelve todo: \(\tfrac12mv^2=q\,\Delta V\) (si parte del reposo).</p></div><!--/amp1--><!--deep--><h3 id="t2-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<p>Para una carga que se acelera entre dos puntos, la conservación de energía lo resuelve todo: \(\tfrac12mv^2=q\,\Delta V\) (si parte del reposo).</p></div><!--/amp1--><!--manim:fis2-t2--><figure class="fig manim-fig" id="anim-fis2-t2"><p class="ft">Animación · Potencial eléctrico y trabajo</p><div class="manim" data-anim="fis2-t2"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t2-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
 <h4>1. De la fuerza al potencial</h4>
 <div class="box key deepnote"><b>Idea clave.</b> el campo electrostático es <b>conservativo</b>: el trabajo para mover una carga no depende del camino. Por eso existe el potencial.</div>
 <div class="eqd">\[V_B-V_A=-\int_A^B\vec E\cdot\mathrm d\vec l\qquad\Longleftrightarrow\qquad \vec E=-\nabla V\]</div>
@@ -98,5 +99,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
+<script src="anim-manim.js?v=19740" defer></script>
+<script src="anim-temas.js?v=19740" defer></script>
 </body>
 </html>

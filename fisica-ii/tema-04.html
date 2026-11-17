@@ -57,7 +57,8 @@ details>summary{line-height:1.7;padding-block:.5em}
 <p>Un modo de recordar los signos: en una resistencia la corriente va de potencial alto a bajo, así que \(V_a-V_b=+IR\) <b>en el sentido de la corriente</b>. En una fuente ideal ocurre lo contrario cuando se atraviesa de − a +.</p><p class="ft">Leyes de Kirchhoff sin perderse</p><p>Dos reglas resuelven cualquier circuito de continua:</p>
 <ul><li><b>Nudos:</b> la corriente que entra es la que sale, \(\sum I=0\).</li><li><b>Mallas:</b> al dar una vuelta completa, las subidas y bajadas de potencial se compensan, \(\sum V=0\).</li></ul>
 <p><b>Método:</b> (1) elige un sentido para cada corriente de rama (el que quieras), (2) escribe una ecuación de nudo y las de malla necesarias hasta tener tantas ecuaciones como incógnitas, (3) resuelve. Si una corriente sale negativa no pasa nada: simplemente circula en sentido contrario al que supusiste.</p>
-<p>Y para <b>carga y descarga de un condensador</b> con resistencia: la constante de tiempo \(\tau=RC\) manda. A \(t=\tau\) se ha completado el 63 %; a \(5\tau\), casi el 100 %.</p></div><!--/amp1--><!--deep--><h3 id="t4-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<p>Y para <b>carga y descarga de un condensador</b> con resistencia: la constante de tiempo \(\tau=RC\) manda. A \(t=\tau\) se ha completado el 63 %; a \(5\tau\), casi el 100 %.</p></div><!--/amp1--><!--manim:fis2-t4--><figure class="fig manim-fig" id="anim-fis2-t4"><p class="ft">Animación · Reparto de corriente en paralelo</p><div class="manim" data-anim="fis2-t4"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t4-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
 <h4>1. Corriente y ley de Ohm</h4>
 <ul><li><b>Intensidad:</b> \(I=\mathrm dQ/\mathrm dt\), carga que atraviesa una sección por unidad de tiempo. Se toma en el sentido de las cargas positivas.</li><li><b>Densidad de corriente:</b> \(J=I/A=n\,q\,v_d\). La velocidad de arrastre \(v_d\) es minúscula (mm/s), aunque el efecto se propague casi a la velocidad de la luz.</li><li><b>Ley de Ohm:</b> \(V=IR\), con \(R=\rho L/A\).</li></ul>
 <p><b>Potencia</b> disipada en una resistencia:</p>
@@ -106,5 +107,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
+<script src="anim-manim.js?v=19740" defer></script>
+<script src="anim-temas.js?v=19740" defer></script>
 </body>
 </html>

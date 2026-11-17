@@ -67,7 +67,8 @@ details>summary{line-height:1.7;padding-block:.5em}
 <figure class="fig"><p class="ft">Figura interactiva - modelos de probabilidad y calculo con tablas</p><div data-sim="distribuciones"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
 <!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Variable aleatoria: un número que depende del azar</p><p>Una variable aleatoria asigna un número a cada resultado. Si toma valores sueltos (0, 1, 2…), es <b>discreta</b> y se describe con \(P(X=x)\); si cubre un intervalo, es <b>continua</b> y se describe con una densidad \(f\) (las probabilidades son <b>áreas</b>, y \(P(X=x)=0\)). En ambos casos, la <b>función de distribución</b> \(F(x)=P(X\le x)\) acumula probabilidad de menos infinito a \(x\).</p>
 <p>Esperanza \(E[X]\) = media teórica; varianza \(=E[X^2]-\mu^2\). Propiedades: \(E[aX+b]=aE[X]+b\), \(\text{Var}(aX+b)=a^2\text{Var}(X)\) (el desplazamiento no afecta a la dispersión).</p><p class="ft">Qué modelo uso: Bernoulli, binomial, Poisson, exponencial, normal</p><p><b>Binomial</b> \(B(n,p)\): número de éxitos en \(n\) intentos independientes con prob. \(p\). <b>Poisson</b> \(\lambda\): número de sucesos raros en un intervalo (llamadas por hora, defectos por metro). <b>Exponencial</b>: tiempo entre sucesos de Poisson (\(P(X>t)=e^{-\lambda t}\), sin memoria). <b>Normal</b> \(N(\mu,\sigma)\): lo que resulta de sumar muchos efectos pequeños.</p>
-<p>Para la normal, tipifica: \(Z=(X-\mu)/\sigma\) y busca en la tabla. Aproximaciones: \(B(n,p)\approx N(np,\sqrt{npq})\) si \(np>5\) y \(nq>5\) (con corrección de continuidad ±0,5), y Poisson con \(\lambda\) grande también es aproximadamente normal.</p></div><!--/amp1--><!--deep--><h3 id="t3-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<p>Para la normal, tipifica: \(Z=(X-\mu)/\sigma\) y busca en la tabla. Aproximaciones: \(B(n,p)\approx N(np,\sqrt{npq})\) si \(np>5\) y \(nq>5\) (con corrección de continuidad ±0,5), y Poisson con \(\lambda\) grande también es aproximadamente normal.</p></div><!--/amp1--><!--manim:est-t3--><figure class="fig manim-fig" id="anim-est-t3"><p class="ft">Animación · De la binomial a la normal</p><div class="manim" data-anim="est-t3"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t3-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
 <h4>1. Qué es una variable aleatoria</h4>
 <div class="box key deepnote"><b>Idea clave.</b> es una función que asigna un número a cada resultado del experimento. Se describe con su <b>función de distribución</b> \(F(x)=P(X\le x)\).</div>
 <ul><li><b>Discreta:</b> toma valores sueltos; se da la función de masa \(P(X=x)\).</li><li><b>Continua:</b> \(P(X=x)=0\) para cada punto; se da una <b>densidad</b> \(f(x)\) y \(P(a\le X\le b)=\int_a^bf\), con \(\int f=1\).</li></ul>
@@ -109,5 +110,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
+<script src="anim-manim.js?v=20114" defer></script>
+<script src="anim-temas.js?v=20114" defer></script>
 </body>
 </html>
