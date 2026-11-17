@@ -64,6 +64,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <p>Mnemotecnia: <b>ELI the ICE man</b>. En la bobina (L), la tensión (E) va antes que la corriente (I); en el condensador (C), la corriente va antes que la tensión.</p>
 <details class="dem"><summary><span class="pn">∴</span>Todo lo de continua sigue valiendo</summary><div class="inner"><p>Con impedancias complejas, la ley de Ohm \(\bar V=\bar Z\bar I\), Kirchhoff, serie, paralelo, divisores, nudos, mallas, Thévenin y Norton se aplican igual que en continua. Solo cambian los números: ahora son <b>complejos</b>.</p>
 <ul><li><b>Serie:</b> \(\bar Z=\sum\bar Z_i\). <b>Paralelo:</b> \(\bar Y=\sum\bar Y_i\).</li><li>El <b>ángulo</b> de \(\bar Z\) es el desfase entre tensión y corriente: \(\varphi=\arctan(X/R)\).</li><li>Si \(X>0\) el circuito es <b>inductivo</b> (corriente retrasada); si \(X<0\), <b>capacitivo</b>.</li></ul></div></details>
+<!--manim:ac-t5b--><figure class="fig manim-fig" id="anim-ac-t5b"><p class="ft">Animación · Resonancia del RLC serie</p><div class="manim" data-anim="ac-t5b"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro.</figcaption></figure><!--/manim-->
 <h4>2. Resonancia en el circuito RLC serie</h4>
 <div class="eqd">\[\omega_0=\frac1{\sqrt{LC}},\qquad Q=\frac{\omega_0L}{R}\]</div>
 <ul><li>A \(\omega_0\), \(X_L+X_C=0\): la impedancia es solo \(R\) (mínima) y la corriente es máxima y está <b>en fase</b>.</li><li>Por encima de \(\omega_0\), el circuito es inductivo; por debajo, capacitivo.</li><li>Un \(Q\) alto significa un pico de resonancia muy estrecho (buena selectividad).</li></ul>
@@ -98,7 +99,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
-<script src="anim-manim.js?v=26817" defer></script>
-<script src="anim-temas.js?v=26817" defer></script>
+<script src="anim-manim.js?v=28356" defer></script>
+<script src="anim-temas.js?v=28356" defer></script>
 </body>
 </html>

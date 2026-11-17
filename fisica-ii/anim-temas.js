@@ -91,4 +91,18 @@ M.reg('fis2-t11',M.curva({title:'Interferencia de Young: doble rendija',H:560,du
  extra:function(D,A,l){var c=D.ctx;for(var x=-12;x<=12;x+=0.08){var d=0.25,L=1000,b=0.05,ph=Math.PI*d*x/(l*1e-6*L),bb=Math.PI*b*x/(l*1e-6*L),sc=Math.sin(bb)/bb,I=Math.pow(Math.cos(ph),2)*sc*sc;c.save();c.globalAlpha=I;c.fillStyle=wl(l);c.fillRect(A.X(x),A.r.y-36,A.X(x+0.08)-A.X(x)+1,26);c.restore();}D.rect(A.r.x,A.r.y-36,A.r.w,26,C.mut,null,1);},
  read:function(l){return ['λ = '+nf(l,0)+' nm      interfranja Δy = λL/d = '+nf(l*1e-6*1000/0.25,2)+' mm','d = 0,25 mm entre rendijas,  L = 1 m hasta la pantalla'];},
  caps:[[6,'La luz que pasa por dos rendijas llega a la pantalla por dos caminos. Donde la diferencia de camino es un número entero de λ hay franja brillante.'],[12,'Al aumentar la longitud de onda (del violeta al rojo) las franjas se separan: <i>Δy = λL/d</i>.'],[99,'La envolvente que modula las franjas es la difracción de cada rendija. Este experimento demostró la naturaleza ondulatoria de la luz.']]}));
+M.reg('fis2-t11b',M.curva({title:'Difracción por una rendija',H:560,dur:18,p:[1,4],ax:{xr:[-3,3],yr:[0,1.1],xt:[-2,-1,1,2],yt:[0.5,1],xf:function(v){return nf(v*10,0)+' mm';},yd:1,xl:'posición en la pantalla',yl:'I/I_{0}'},h:300,
+ curvas:[{f:function(y,a){var b=Math.PI*a*y;return Math.abs(b)<1e-6?1:Math.pow(Math.sin(b)/b,2);},c:'m'}],
+ extra:function(D,A,a){var L=1/a;D.dot(A.X(L),A.Y(0),5,C.hl);D.dot(A.X(-L),A.Y(0),5,C.hl);D.rect(A.X(-L),A.Y(1.1)-12,A.X(L)-A.X(-L),8,null,RG(C.hl,.5));},
+ read:function(a){return ['anchura de la rendija a = '+nf(a*0.05,2)+' mm','primer mínimo: a·sen θ = λ   →  máximo central de anchura 2λL/a = '+nf(20/a,1)+' mm'];},
+ caps:[[6,'Al pasar por una rendija de anchura a comparable a λ, la luz se abre: en la pantalla aparece un máximo central ancho y máximos laterales mucho más débiles.'],[12,'Los mínimos están donde <i>a·sen θ = mλ</i>. La intensidad sigue <i>(sen β/β)²</i>.'],[99,'Cuanto más estrecha la rendija, más ancho el máximo central: es el mismo principio que limita la resolución de lentes y telescopios.']]}));
+M.reg('fis2-t10b',M.base({title:'Espejo cóncavo: la imagen según dónde esté el objeto',H:580,dur:18,caps:[[6,'Un espejo cóncavo de distancia focal f cumple <i>1/s + 1/s′ = 1/f</i> (s y s′ positivas delante del espejo).'],[12,'Con el objeto más allá del foco la imagen es real e invertida; entre el centro y el foco, mayor que el objeto.'],[99,'Con el objeto dentro de la distancia focal la imagen es virtual, derecha y aumentada: así funcionan los espejos de aumento.']]},
+ function(D,t){var f=80,s=lerp(250,45,U.pp(t,18)),sp=1/(1/f-1/s),m=-sp/s,mx=540,ax=260,h=45,ox=mx-s,top=ax-h,ctx=D.ctx;D.line(30,ax,610,ax,C.ax,1.2);
+  var arc=[];for(var k=-22;k<=22;k++){var yy=k*7;arc.push([mx-yy*yy/(8*f),ax+yy]);}D.path(arc,C.f,3);D.dot(mx-f,ax,4,C.hl);D.text('F',mx-f,ax+20,{s:15,a:'center',c:C.hl});D.dot(mx-2*f,ax,4,C.mut);D.text('C',mx-2*f,ax+20,{s:15,a:'center',c:C.mut});
+  ctx.save();ctx.beginPath();ctx.rect(20,70,600,400);ctx.clip();
+  D.line(ox,top,mx,top,C.g,1.6);var k1=(ax-top)/f;D.line(mx,top,mx-700,top+700*k1,C.g,1.6);
+  var k2=(ax-top)/(mx-2*f-ox);D.line(ox,top,mx,top+k2*(mx-ox),C.m,1.4);D.line(mx,top+k2*(mx-ox),mx-700,top+k2*(mx-ox)-700*k2,C.m,1.4);
+  if(sp<0){D.line(mx,top,mx+300,top-300*k1,C.g,1,[4,4]);D.line(mx,top+k2*(mx-ox),mx+300,top+k2*(mx-ox)+300*k2,C.m,1,[4,4]);}ctx.restore();
+  D.arrow(ox,ax,ox,top,C.ink||C.w,3);var ix=mx-sp,iy=ax-m*h;if(ix>20&&ix<620&&iy>70&&iy<470)D.arrow(ix,ax,ix,iy,C.bad,3);
+  U.readout(D,['s = '+nf(s/40,2)+' m    f = 2 m    s′ = '+nf(sp/40,2)+' m','aumento m = −s′/s = '+nf(m,2)+'  →  '+(sp>0?'imagen real, invertida':'imagen virtual, derecha')],500);}));
 })();

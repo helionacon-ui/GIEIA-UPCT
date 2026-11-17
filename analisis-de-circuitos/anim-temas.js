@@ -50,7 +50,7 @@ M.reg('ac-t6',M.curva({title:'Potencia en alterna: el factor de potencia',H:560,
  caps:[[7,'La potencia instantánea es <i>p = v·i</i>. Si tensión e intensidad están en fase, p es siempre positiva: la carga solo consume.'],[14,'Con desfase, hay intervalos con <i>p &lt; 0</i>: la energía vuelve a la red. La media baja con <i>cos φ</i>.'],[99,'Con φ = 90° (bobina o condensador ideal) la potencia media es cero: solo hay potencia <b>reactiva</b>, que va y viene sin consumirse.']]}));
 
 /* T7 resonancia serie */
-M.reg('ac-t7',M.curva({title:'Resonancia en un circuito RLC serie',H:540,dur:18,p:[5,60],ax:{xr:[0.2,2],yr:[0,1.1],xt:[0.5,1,1.5,2],yt:[0.5,1],xd:1,yd:1,xl:'ω/ω₀',yl:'I/I_{máx}'},h:300,
+M.reg('ac-t5b',M.curva({title:'Resonancia en un circuito RLC serie',H:540,dur:18,p:[5,60],ax:{xr:[0.2,2],yr:[0,1.1],xt:[0.5,1,1.5,2],yt:[0.5,1],xd:1,yd:1,xl:'ω/ω₀',yl:'I/I_{máx}'},h:300,
  f:function(x,R){var Q=100/R,y=Q*(x-1/x);return 1/Math.sqrt(1+y*y);},
  read:function(R){var Q=100/R;return ['R = '+nf(R,0)+' Ω     Q = ω₀L/R = '+nf(Q,1),'ancho de banda Δω = ω₀/Q = '+nf(1/Q,2)+'·ω₀'];},
  caps:[[6,'En resonancia, <i>ω₀ = 1/√(LC)</i>, las reactancias de L y C se anulan: la impedancia es solo R y la corriente es máxima.'],[12,'Con poca resistencia la curva es muy estrecha: el circuito es <b>selectivo</b> (factor de calidad Q alto).'],[99,'Al aumentar R la curva se ensancha y Q baja. Es el principio de los sintonizadores de radio y los filtros pasabanda.']]}));
@@ -99,4 +99,24 @@ M.reg('ac-t12',M.base({title:'Diodo: punto de trabajo con la recta de carga',H:5
   var lo=0,hi=Vs;for(var i=0;i<60;i++){var m=(lo+hi)/2;if(Id(m)>(Vs-m)/R*1000)hi=m;else lo=m;}var VD=(lo+hi)/2,I=(Vs-VD)/R*1000;
   D.dot(A.X(VD),A.Y(I),7,C.hl);D.text('Q',A.X(VD)+10,A.Y(I)-6,{s:17,c:C.hl,bold:true});
   D.text('V_{s} = '+nf(Vs,2)+' V,  R = 200 Ω   →   V_{D} = '+nf(VD,3)+' V,  I = '+nf(I,1)+' mA',W/2,470,{it:true,s:20,a:'center',c:C.m});}));
+/* T7 máxima transferencia de potencia en alterna */
+M.reg('ac-t7',M.traza({title:'Teoremas en alterna: máxima transferencia de potencia',H:560,dur:16,x0:-8,x1:2,ax:{xr:[-8.5,2.5],yr:[0,7],xt:[-8,-6,-4,-3,-2,0,2],yt:[2,4,6.25],xd:0,yd:2,xl:'X_{L} (Ω)',yl:'P (W)'},h:300,
+ f:function(X){return 100*4/(64+Math.pow(3+X,2))/1;},
+ extra:function(D,A){D.line(A.X(-3),A.Y(0),A.X(-3),A.Y(6.25),C.hl,1.2,[4,4]);D.text('X_{L} = −X_{th}',A.X(-3)+6,A.Y(6.6),{s:14,c:C.hl});},
+ read:function(X){return ['Thévenin: V_{th} = 10 V,  Z_{th} = 4 + j3 Ω    carga: Z_{L} = 4 '+(X<0?'− j':'+ j')+nf(Math.abs(X),2)+' Ω','P = |V_{th}|²R_{L}/|Z_{th} + Z_{L}|² = '+nf(100*4/(64+Math.pow(3+X,2)),2)+' W'];},
+ caps:[[5,'En alterna los teoremas de Thévenin y Norton son los mismos, pero con impedancias complejas y fasores.'],[10,'La potencia activa en la carga depende de su parte reactiva: la reactancia de la carga puede compensar la de la fuente.'],[99,'El máximo se da con la carga conjugada, <i>Z<sub>L</sub> = Z<sub>th</sub>*</i>: aquí 4 − j3 Ω, con <i>P<sub>máx</sub> = |V<sub>th</sub>|²/(4R<sub>th</sub>) = 6,25 W</i>.']]}));
+M.reg('ac-t6b',M.base({title:'Corrección del factor de potencia',H:580,dur:18,caps:[[6,'Un motor consume P = 10 kW con cos φ = 0,7: además pide potencia reactiva inductiva Q<sub>L</sub> que no hace trabajo pero sobrecarga la línea.'],[12,'Un condensador en paralelo aporta reactiva de signo contrario: la Q total baja y con ella la potencia aparente S y la corriente.'],[99,'P no cambia. Mueve «Prueba tú» para elegir la batería: <i>Q<sub>C</sub> = P(tg φ₁ − tg φ₂)</i>.']]},
+ function(D,t){var P=10,QL=P*Math.tan(Math.acos(0.7)),QC=lerp(0,QL*0.9,U.pp(t,18)),Q=QL-QC,S=Math.hypot(P,Q),k=30,x0=110,y0=430;
+  D.arrow(x0,y0,x0+P*k,y0,C.f,3);D.text('P = 10 kW',x0+P*k/2,y0+26,{s:16,a:'center',c:C.f});D.arrow(x0+P*k,y0,x0+P*k,y0-QL*k,C.mut,1.6);D.arrow(x0+P*k,y0-QL*k,x0+P*k,y0-Q*k,C.g,3);D.text('Q_{C}',x0+P*k+10,y0-(QL+Q)/2*k,{s:16,c:C.g});
+  D.arrow(x0,y0,x0+P*k,y0-Q*k,C.m,3);D.text('S = '+nf(S,1)+' kVA',x0+P*k/2-60,y0-Q*k/2-16,{s:16,c:C.m});D.line(x0,y0,x0+P*k,y0-QL*k,C.mut,1,[4,4]);
+  U.readout(D,['Q_{L} = '+nf(QL,2)+' kvar    Q_{C} = '+nf(QC,2)+' kvar','cos φ = '+nf(P/S,3)+'    I/I_{inicial} = '+nf(S/Math.hypot(P,QL),2)],520);}));
+M.reg('ac-t3b',M.base({title:'Teorema de superposición',H:560,dur:18,caps:[[6,'En un circuito lineal con varias fuentes, la respuesta es la suma de las respuestas a cada fuente actuando sola.'],[12,'Para dejar una fuente sola, las demás se anulan: las de tensión se cortocircuitan y las de corriente se abren.'],[99,'Aquí: I<sub>R</sub> = 1,2 A por la fuente de 12 V más 0,8 A por la de 2 A = 2 A. Ojo: las potencias no se suman.']]},
+ function(D,t){var ph=t<6?0:(t<12?1:2),bars=[[1.2,C.f,'solo 12 V'],[0.8,C.hl,'solo 2 A'],[2,C.m,'las dos']];
+  D.text(['1. Fuente de corriente abierta','2. Fuente de tensión en corto','3. Suma'][ph],W/2,90,{s:18,a:'center',c:C.w,bold:true});
+  var x0=80,y=150;D.rect(x0,y,200,140,C.ax,null,2);D.dot(x0,y+70,18,C.bg);D.ring(x0,y+70,18,ph===1?C.grid:C.f,2.4);D.text('12 V',x0-24,y+76,{s:14,c:ph===1?C.mut:C.f,a:'right'});
+  D.dot(x0+200,y+70,18,C.bg);D.ring(x0+200,y+70,18,ph===0?C.grid:C.hl,2.4);D.text('2 A',x0+226,y+76,{s:14,c:ph===0?C.mut:C.hl});D.rect(x0+80,y+120,40,40,C.m,C.bg,2);D.text('R',x0+100,y+146,{s:15,a:'center',c:C.m});
+  var A=U.axes(D,{xr:[0,3.4],yr:[0,2.4],xt:[],yt:[1,2],yd:0,xl:'',yl:'I_{R} (A)'},{x:380,y:150,w:220,h:180,grid:true});
+  bars.forEach(function(b,i){if(i>ph&&!(ph===2))return;if(ph<2&&i!==ph)return;var x=A.X(0.4+i*1.1),h=A.Y(0)-A.Y(b[0]);if(i===2){D.rect(x,A.Y(1.2),60,A.Y(0)-A.Y(1.2),b[1],RG(C.f,.4),1.6);D.rect(x,A.Y(2),60,A.Y(1.2)-A.Y(2),b[1],RG(C.hl,.4),1.6);}else D.rect(x,A.Y(b[0]),60,h,b[1],RG(b[1],.4),1.6);D.text(b[2],x+30,A.Y(0)+20,{s:12,a:'center',c:b[1]});D.text(nf(b[0],1),x+30,A.Y(b[0])-6,{s:14,a:'center',c:b[1]});});
+  if(ph===2){[0,1].forEach(function(i){var b=bars[i],x=A.X(0.4+i*1.1);D.rect(x,A.Y(b[0]),60,A.Y(0)-A.Y(b[0]),b[1],RG(b[1],.4),1.6);D.text(b[2],x+30,A.Y(0)+20,{s:12,a:'center',c:b[1]});});}
+  U.readout(D,['I_{R} = I′ + I″ = 1,2 + 0,8 = 2,0 A'],470);}));
 })();

@@ -2,7 +2,7 @@
 (function(){var M=window.MANIM;if(!M)return;var U=M.util,C=M.C,nf=U.nf,lerp=U.lerp,ease=U.ease,seg=U.seg,clamp=U.clamp,RG=U.RG,W=640;
 
 /* T1 analógico frente a digital */
-M.reg('fei-t1',M.base({title:'De analógico a digital: muestrear y cuantificar',H:540,dur:18,caps:[[6,'Una señal analógica puede tomar cualquier valor en cualquier instante (curva continua).'],[12,'Para digitalizarla se <b>muestrea</b> cada cierto tiempo y cada muestra se redondea al nivel más cercano de los 2ⁿ disponibles (<b>cuantificación</b>).'],[99,'Con 3 bits solo hay 8 niveles: el error de cuantificación es visible. Con más bits la escalera se parece cada vez más a la señal original.']]},
+M.reg('fei-t6b',M.base({title:'De analógico a digital: muestrear y cuantificar',H:540,dur:18,caps:[[6,'Una señal analógica puede tomar cualquier valor en cualquier instante (curva continua).'],[12,'Para digitalizarla se <b>muestrea</b> cada cierto tiempo y cada muestra se redondea al nivel más cercano de los 2ⁿ disponibles (<b>cuantificación</b>).'],[99,'Con 3 bits solo hay 8 niveles: el error de cuantificación es visible. Con más bits la escalera se parece cada vez más a la señal original.']]},
  function(D,t){var bits=t<9?3:5,L=Math.pow(2,bits),A=U.axes(D,{xr:[0,10],yr:[-1.15,1.15],xt:[],yt:[-1,1],yd:0,xl:'t',yl:'v'},{x:80,y:96,w:480,h:300,grid:true}),f=function(x){return 0.9*Math.sin(x*0.9)+0.15*Math.sin(x*2.7);};
   U.plotf(D,A,f,C.f,2,0.8);var n=Math.floor(seg(t%9,1,7)*40),st=[];for(var i=0;i<=n;i++){var x=i*0.25,v=f(x),q=Math.round((v+1)/2*(L-1))/(L-1)*2-1;D.line(A.X(x),A.Y(0),A.X(x),A.Y(v),C.mut,1,[2,3]);D.dot(A.X(x),A.Y(q),4,C.m);st.push([A.X(x),A.Y(q)]);st.push([A.X(x+0.25),A.Y(q)]);}
   D.path(st,C.m,2.4);for(var k=0;k<L;k++){var y=k/(L-1)*2-1;D.line(A.X(0),A.Y(y),A.X(0.15),A.Y(y),C.hl,1.4);}
@@ -44,4 +44,19 @@ M.reg('fei-t6',M.base({title:'Puertas lógicas: cronograma',H:560,dur:16,caps:[[
  function(D,t){var A=[0,1,1,0,1,0,0,1,1,0],B=[0,0,1,1,1,0,1,1,0,0],x0=110,w=46,u=seg(t,1,14)*10,rows=[['A',A,C.f],['B',B,C.f],['A·B (AND)',A.map(function(a,i){return a&B[i];}),C.m],['A+B (OR)',A.map(function(a,i){return a|B[i];}),C.g],['A⊕B (XOR)',A.map(function(a,i){return a^B[i];}),C.hl]];
   rows.forEach(function(r,k){var y=110+k*76;D.text(r[0],x0-12,y-6,{s:14,a:'right',c:r[2]});var p=[];for(var i=0;i<10;i++){if(i>u)break;var v=r[1][i],e=Math.min(i+1,u),yy=y-v*34;if(p.length)p.push([x0+i*w,yy]);else p.push([x0,yy]);p.push([x0+e*w,yy]);}if(p.length>1)D.path(p,r[2],2.6);D.line(x0,y,x0+10*w,y,C.grid,1);});
   var i=Math.min(9,Math.floor(u));D.rect(x0+i*w,80,w,380,null,RG(C.y,.08));D.text('A = '+A[i]+'  B = '+B[i]+'  →  AND '+(A[i]&B[i])+'  OR '+(A[i]|B[i])+'  XOR '+(A[i]^B[i]),W/2,500,{s:19,a:'center',c:C.m,mono:true});}));
+/* T1 ley de Ohm y divisor de tensión */
+M.reg('fei-t1',M.base({title:'Ley de Ohm y divisor de tensión',H:580,dur:18,caps:[[6,'Dos resistencias en serie llevan la misma corriente: <i>I = V/(R₁ + R₂)</i>. La resistencia equivalente es la suma.'],[12,'Cada una se queda con una parte de la tensión proporcional a su valor: <i>V<sub>2</sub> = V·R₂/(R₁ + R₂)</i>. Es el divisor de tensión.'],[99,'Al subir R₂ baja la corriente y sube V₂. Mueve «Prueba tú» para fijar R₂ y comprobarlo con la ley de Ohm, <i>V = I·R</i>, en cada resistencia.']]},
+ function(D,t){var V=12,R1=4.7,R2=lerp(1,10,U.pp(t,18)),I=V/(R1+R2),V2=I*R2,x0=110,x1=430,y0=130,y1=380;
+  D.line(x0,y0,x1,y0,C.ax,2.4);D.line(x1,y0,x1,y1,C.ax,2.4);D.line(x1,y1,x0,y1,C.ax,2.4);D.line(x0,y1,x0,y0,C.ax,2.4);
+  D.dot(x0,(y0+y1)/2,22,C.bg);D.ring(x0,(y0+y1)/2,22,C.bad,2.4);D.text('12 V',x0-30,(y0+y1)/2+6,{s:16,c:C.bad,a:'right'});D.text('+',x0,(y0+y1)/2-6,{s:14,a:'center',c:C.bad});
+  var per=2*(x1-x0)+2*(y1-y0),sp=t*60*I;for(var k=0;k<16;k++){var s=(k/16*per+sp)%per,px,py;if(s<x1-x0){px=x0+s;py=y0;}else if(s<x1-x0+y1-y0){px=x1;py=y0+s-(x1-x0);}else if(s<2*(x1-x0)+y1-y0){px=x1-(s-(x1-x0)-(y1-y0));py=y1;}else{px=x0;py=y1-(s-2*(x1-x0)-(y1-y0));}D.dot(px,py,3.6,C.m,0.85);}
+  D.rect(230,y0-18,110,36,C.f,C.bg,2.4);D.text('R₁ = 4,7 kΩ',285,y0+6,{s:15,a:'center',c:C.f,bold:true});
+  D.rect(x1-18,200,36,110,C.hl,C.bg,2.4);D.text('R₂',x1+28,250,{s:16,c:C.hl,bold:true});D.text(nf(R2,1)+' kΩ',x1+28,272,{s:15,c:C.hl});
+  var bx=530,by=y0,bh=y1-y0;D.rect(bx,by,40,bh,C.grid,null,1.2);D.rect(bx,by+bh*(1-V2/V),40,bh*V2/V,null,RG(C.hl,.55));D.rect(bx,by,40,bh*(1-V2/V),null,RG(C.f,.35));
+  D.text('V₁',bx+48,by+bh*(1-V2/V)/2+5,{s:15,c:C.f});D.text('V₂',bx+48,by+bh*(1-V2/V/2)+5,{s:15,c:C.hl});
+  U.readout(D,['I = 12/(4,7 + '+nf(R2,1)+') = '+nf(I,2)+' mA','V₁ = I·R₁ = '+nf(I*R1,2)+' V     V₂ = I·R₂ = '+nf(V2,2)+' V'],460);}));
+M.reg('fei-t4b',M.traza({title:'MOSFET: corriente de drenador frente a V_{GS}',H:560,dur:16,x0:0,x1:5,ax:{xr:[0,5.2],yr:[0,40],xt:[1,2,3,4,5],yt:[10,20,30,40],xd:0,yd:0,xl:'V_{GS} (V)',yl:'I_{D} (mA)'},h:300,f:function(v){return v<2?0:5*Math.pow(v-2,2);},
+ extra:function(D,A){D.line(A.X(2),A.Y(0),A.X(2),A.Y(40),C.hl,1.2,[4,4]);D.text('V_{th} = 2 V',A.X(2)+6,A.Y(37),{s:14,c:C.hl});},
+ read:function(v){return ['V_{GS} = '+nf(v,2)+' V    '+(v<2?'corte: I_{D} = 0':'saturación: I_{D} = k(V_{GS} − V_{th})²'),'I_{D} = '+nf(v<2?0:5*Math.pow(v-2,2),1)+' mA    (k = 5 mA/V²)'];},
+ caps:[[5,'El MOSFET de enriquecimiento no conduce hasta que la tensión puerta-fuente supera el umbral V<sub>th</sub>: forma el canal.'],[10,'En saturación la corriente crece con el cuadrado del exceso sobre el umbral: <i>I<sub>D</sub> = k(V<sub>GS</sub> − V<sub>th</sub>)²</i>.'],[99,'La puerta está aislada: no consume corriente en continua. Por eso el MOSFET se controla por tensión y es ideal como interruptor.']]}));
 })();

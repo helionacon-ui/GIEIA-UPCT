@@ -59,7 +59,7 @@ M.reg('ai-t6',M.base({title:'GRAFCET: etapas, transiciones y receptividades',H:6
   D.text('etapa activa: '+k,470,300,{s:20,a:'center',c:C.m,bold:true});D.text('esperando: '+G6[k][2],470,334,{s:16,a:'center',c:C.bad,it:true});}));
 
 /* T7 divergencia en Y (paralelo) */
-M.reg('ai-t7',M.base({title:'Estructuras: secuencias simultáneas',H:580,dur:18,caps:[[6,'Una divergencia en Y (doble línea) activa a la vez varias ramas: las dos secuencias evolucionan en paralelo.'],[12,'Cada rama avanza a su ritmo, según sus propias receptividades.'],[99,'La convergencia en Y solo se franquea cuando todas las ramas han llegado a su última etapa: es una sincronización.']]},
+M.reg('ai-t7b',M.base({title:'Estructuras: secuencias simultáneas',H:580,dur:18,caps:[[6,'Una divergencia en Y (doble línea) activa a la vez varias ramas: las dos secuencias evolucionan en paralelo.'],[12,'Cada rama avanza a su ritmo, según sus propias receptividades.'],[99,'La convergencia en Y solo se franquea cuando todas las ramas han llegado a su última etapa: es una sincronización.']]},
  function(D,t){var u=seg(t,1,17)*6,act={1:u<1,2:u>=1&&u<2.4,3:u>=2.4&&u<4.5,4:u>=1&&u<3.3,5:u>=3.3&&u<4.5,6:u>=4.5};
   var P={1:[320,100],2:[200,210],3:[200,320],4:[440,210],5:[440,320],6:[320,440]};
   D.line(150,165,490,165,C.ax,1.6);D.line(150,171,490,171,C.ax,1.6);D.line(150,385,490,385,C.ax,1.6);D.line(150,391,490,391,C.ax,1.6);D.line(320,150,320,165,C.ax,2);D.line(320,391,320,420,C.ax,2);
@@ -99,4 +99,22 @@ M.reg('ai-t10',M.base({title:'Modos de marcha y parada: la guía GEMMA',H:580,du
   for(var i=0;i<GP.length-1;i++){var a=GM[GP[i]],b=GM[GP[i+1]];var done=i<k||(i===k&&f>0.2);D.arrow(lerp(a[0],b[0],0.25),lerp(a[1],b[1],0.25)+(a[1]===b[1]?(b[0]>a[0]?-30:30):0),lerp(a[0],b[0],0.75),lerp(a[1],b[1],0.75)+(a[1]===b[1]?(b[0]>a[0]?-30:30):0),done?C.m:C.grid,done?2.4:1.2);}
   U.readout(D,[GP[k]+' → '+GP[k+1]+':  '+GT[k]],480);}));
 
+/* T7 estructura alternativa con contador y salto */
+var AP=['grande','pequeña','grande'],AS=(function(){var s=[0];AP.forEach(function(p,i){s.push(1);s.push(p==='grande'?2:3);s.push(4);});s.push(5);return s;})();
+M.reg('ai-t7',M.base({title:'Estructuras: alternativa, contador y salto',H:620,dur:22,caps:[[7,'Tras medir la pieza hay una divergencia en O (línea simple): solo se activa la rama cuya receptividad es verdadera, «grande» o «pequeña».'],[14,'Las dos ramas convergen en la etapa 4, que incrementa un contador C.'],[99,'Mientras C < 3 hay un salto de vuelta a la etapa 1; cuando C = 3 la secuencia sigue a la etapa 5 y termina el lote.']]},
+ function(D,t){var u=seg(t,0.5,21)*(AS.length-1),k=Math.min(AS.length-1,Math.floor(u)),st=AS[k],c=0;for(var i=0;i<=k;i++)if(AS[i]===4)c++;var pz=Math.min(2,Math.floor((k-1)/3));
+  var P={0:[300,90,'reposo'],1:[300,180,'medir pieza'],2:[200,290,'caja A'],3:[400,290,'caja B'],4:[300,400,'C := C + 1'],5:[300,510,'fin de lote']};
+  D.line(300,114,300,180,C.ax,2);D.line(286,146,314,146,C.ax,3);D.text('marcha',320,150,{s:13,c:C.mut,it:true});
+  D.line(300,204,300,236,C.ax,2);D.line(200,236,400,236,C.ax,1.6);D.line(200,236,200,290,C.ax,2);D.line(400,236,400,290,C.ax,2);D.line(186,262,214,262,C.ax,3);D.line(386,262,414,262,C.ax,3);D.text('grande',220,266,{s:13,c:C.mut,it:true});D.text('pequeña',420,266,{s:13,c:C.mut,it:true});
+  D.line(200,314,200,350,C.ax,2);D.line(400,314,400,350,C.ax,2);D.line(186,334,214,334,C.ax,3);D.line(386,334,414,334,C.ax,3);D.line(200,350,400,350,C.ax,1.6);D.line(300,350,300,400,C.ax,2);
+  D.line(300,424,300,510,C.ax,2);D.line(286,466,314,466,C.ax,3);D.text('C = 3',320,470,{s:13,c:C.mut,it:true});D.line(300,444,120,444,C.ax,1.6);D.line(120,444,120,170,C.ax,1.6);D.arrow(120,170,262,170,C.ax,1.6);D.line(106,330,134,330,C.ax,3);D.text('C < 3',60,334,{s:13,c:C.mut,it:true});
+  Object.keys(P).forEach(function(n){var p=P[n],on=+n===st;D.rect(p[0]-38,p[1]-24,76,48,on?C.m:C.f,on?RG(C.m,.22):C.bg,on?3:1.8);if(+n===0)D.rect(p[0]-33,p[1]-19,66,38,on?C.m:C.f,null,1.2);D.text(n,p[0],p[1]+7,{s:18,a:'center',c:on?C.m:C.f,bold:true});D.text(p[2],p[0]+48,p[1]+6,{s:14,c:on?C.hl:C.mut});});
+  U.readout(D,['pieza '+(pz+1)+': '+AP[Math.max(0,pz)]+'    C = '+c],580);}));
+M.reg('ai-t5b',M.base({title:'Inversión de giro: dos contactores y un enclavamiento',H:580,dur:18,caps:[[6,'Para invertir el sentido de un motor trifásico se intercambian dos fases. Se usan dos contactores: KM1 (derecha) y KM2 (izquierda).'],[12,'Si los dos se cerraran a la vez habría un cortocircuito entre fases. Por eso cada uno lleva en su bobina un contacto cerrado del otro: enclavamiento eléctrico.'],[99,'Para cambiar de sentido hay que pasar por PARO. Muchos contactores llevan además un enclavamiento mecánico.']]},
+ function(D,t){var st=t<7?1:(t<9?0:2),k1=st===1,k2=st===2,x0=170;['L1','L2','L3'].forEach(function(l,i){D.text(l,x0+i*60,96,{s:14,a:'center',c:C.mut});D.line(x0+i*60,104,x0+i*60,150,C.ax,2.2);});
+  D.line(x0,150,x0+120,150,C.grid,0);D.rect(x0-30,150,180,40,k1?C.f:C.ax,k1?RG(C.f,.2):null,1.8);D.text('KM1',x0-40,176,{s:15,a:'right',c:k1?C.f:C.mut,bold:true});
+  D.rect(x0+190,150,180,40,k2?C.hl:C.ax,k2?RG(C.hl,.2):null,1.8);D.text('KM2',x0+380,176,{s:15,c:k2?C.hl:C.mut,bold:true});[0,1,2].forEach(function(i){D.line(x0+i*60,120,x0+220+i*60,120,C.grid,1.2);D.line(x0+220+i*60,120,x0+220+i*60,150,C.grid,1.2);});
+  [0,1,2].forEach(function(i){D.line(x0+i*60,190,x0+i*60,260,k1?C.f:C.grid,2.2);var j=[2,1,0][i];D.line(x0+220+i*60,190,x0+220+i*60,230,k2?C.hl:C.grid,2.2);D.line(x0+220+i*60,230,x0+j*60,250,k2?C.hl:C.grid,2.2);});
+  D.ring(x0+60,320,50,k1?C.f:(k2?C.hl:C.ax),2.6);D.text('M 3~',x0+60,326,{s:16,a:'center',c:C.w,bold:true});if(k1||k2){var a=t*(k1?4:-4);D.arrow(x0+60+30*Math.cos(a),320+30*Math.sin(a),x0+60+30*Math.cos(a+0.5),320+30*Math.sin(a+0.5),k1?C.f:C.hl,2.4);}
+  D.text('enclavamiento: KM1 bloquea KM2 y viceversa',W/2,420,{s:15,a:'center',c:C.bad});U.readout(D,[st===1?'KM1: giro a derechas':(st===2?'KM2: giro a izquierdas (L1 y L3 intercambiadas)':'PARO: los dos abiertos')],480);}));
 })();

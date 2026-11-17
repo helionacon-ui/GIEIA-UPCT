@@ -77,4 +77,10 @@ M.reg('et-t8',M.base({title:'Motor de reluctancia conmutada: par y conmutación'
   U.plotf(D,A,L8,C.f,2.6);U.plotf(D,A,function(x){return i8(x)*1.5;},C.hl,2.2);D.text('L(θ)',A.X(30),A.Y(L8(30))-10,{it:true,s:17,c:C.f});D.text('i',A.X(14),A.Y(1.5)-8,{it:true,s:17,c:C.hl});
   D.line(A.X(th),A.Y(-0.4),A.X(th),A.Y(6),C.m,1.8,[4,3]);D.dot(A.X(th),A.Y(L8(th)),6,C.m);
   var dL=(L8(th+0.5)-L8(th-0.5)),T=0.5*i8(th)*dL;U.readout(D,['θ = '+nf(th,0)+'°   L = '+nf(L8(th),2)+'   i = '+i8(th)+'   dL/dθ '+(dL>0.01?'> 0':dL<-0.01?'< 0':'= 0'),T>0.001?'par motor':'sin par'],468);}));
+M.reg('et-t2b',M.base({title:'Transformador ideal: relación de transformación',H:560,dur:18,caps:[[6,'El flujo alterno del núcleo atraviesa las dos bobinas. Cada espira ve la misma fem, así que <i>V₁/V₂ = N₁/N₂ = m</i>.'],[12,'La potencia se conserva (transformador ideal): <i>V₁I₁ = V₂I₂</i>, de modo que las corrientes van al revés, <i>I₁/I₂ = 1/m</i>.'],[99,'Una impedancia en el secundario se ve desde el primario multiplicada por m²: así se adaptan impedancias.']]},
+ function(D,t){var N2=Math.round(lerp(50,400,U.pp(t,18))),N1=200,V1=230,V2=V1*N2/N1,R=50,I2=V2/R,I1=I2*N2/N1,cx=320,cy=230;
+  D.rect(cx-130,cy-110,260,220,C.ax,null,14);var ph=t*4;D.ctx.save();D.ctx.globalAlpha=0.5+0.5*Math.sin(ph);D.rect(cx-130,cy-110,260,220,C.hl,null,4);D.ctx.restore();
+  for(var k=0;k<8;k++)D.line(cx-145,cy-80+k*20,cx-115,cy-70+k*20,C.f,3);var n2=Math.max(2,Math.round(N2/25));for(var k2=0;k2<n2;k2++)D.line(cx+115,cy-80+k2*160/n2,cx+145,cy-70+k2*160/n2,C.m,3);
+  D.text('N₁ = '+N1,cx-170,cy-120,{s:15,c:C.f,a:'center'});D.text('N₂ = '+N2,cx+170,cy-120,{s:15,c:C.m,a:'center'});D.text('V₁ = 230 V',cx-170,cy+140,{s:15,c:C.f,a:'center'});D.text('V₂ = '+nf(V2,0)+' V',cx+170,cy+140,{s:15,c:C.m,a:'center'});
+  U.readout(D,['m = N₁/N₂ = '+nf(N1/N2,2)+'    carga R = 50 Ω','I₂ = '+nf(I2,2)+' A    I₁ = I₂/m = '+nf(I1,2)+' A    P = '+nf(V2*I2/1000,2)+' kW'],440);}));
 })();
