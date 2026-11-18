@@ -35,7 +35,7 @@
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:18px;line-height:1.7;letter-spacing:.012em;word-spacing:.05em;padding-bottom:64px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:21px;line-height:1.62;letter-spacing:.004em;word-spacing:.02em;padding-bottom:64px}
 a{color:var(--accent)}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 h1,h2,h3{text-wrap:balance;margin:0}
@@ -49,7 +49,7 @@ p{margin:0 0 14px;max-width:70ch}
 .brand .mk{flex:none;width:62px;height:40px;display:grid;place-items:center}.brand .mk svg{width:62px;height:38px}
 .brand b{font-family:var(--display);font-weight:800;font-size:25px;letter-spacing:.01em;text-transform:uppercase;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .brand b span{color:var(--accent)}
-.btn{font:600 14.5px/1 var(--body);letter-spacing:.01em;padding:11px 18px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;text-decoration:none;white-space:nowrap;box-shadow:var(--shadow)}
+.btn{font:600 16px/1 var(--body);letter-spacing:.01em;padding:11px 18px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;text-decoration:none;white-space:nowrap;box-shadow:var(--shadow)}
 .btn:hover{border-color:var(--accent)}
 .btn.pri{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
 @media (max-width:640px){.top .btn.opt{display:none}.brand b{font-size:21px}}
@@ -98,13 +98,13 @@ h2.sec{font-family:var(--display);font-weight:700;font-size:32px;line-height:1.1
 .search input{width:100%;font:inherit;font-size:16.5px;padding:13px 46px 13px 18px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);box-shadow:var(--shadow)}
 .search input::-webkit-search-cancel-button,.search input::-webkit-search-decoration{-webkit-appearance:none;appearance:none}
 #clr{position:absolute;right:9px;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;border:0;background:color-mix(in srgb,var(--fg) 10%,transparent);color:var(--fg);font:600 18px/1 system-ui,sans-serif;cursor:pointer;display:grid;place-items:center;padding:0 0 2px}
-.chip{font:600 14.5px/1 var(--body);padding:11px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.chip{font:600 16px/1 var(--body);padding:11px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
 .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .chips2{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 6px}
 .chips2 .label{color:var(--muted);margin-right:4px}
 #res{min-height:1.6em;font-size:14.5px;color:var(--muted);margin:2px 2px 0}
 .acc-tools{display:flex;gap:16px;margin:0 0 14px}
-.link{background:none;border:0;padding:4px 0;font:600 14.5px var(--body);color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.link{background:none;border:0;padding:4px 0;font:600 16px var(--body);color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 mark{background:color-mix(in srgb,var(--accent) 24%,transparent);color:inherit;border-radius:3px;padding:0 1px}
 /* cursos */
 details.curso{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--k);border-radius:20px;margin:0 0 16px;box-shadow:var(--shadow);overflow:clip}
@@ -177,8 +177,8 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;bac
 </style>
 
 <script>(function(){try{var d=document.documentElement,s=localStorage,p=s.getItem("apuntes-piel");if(p==="min")d.setAttribute("data-piel","min");var t=s.getItem("apuntes-tema");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);var f=s.getItem("apuntes-fondo");if(f)d.setAttribute("data-fondo",f);}catch(e){}})();</script>
-<link rel="stylesheet" href="piel.css?v=3">
-<script src="piel.js?v=3" defer></script>
+<link rel="stylesheet" href="piel.css?v=4">
+<script src="piel.js?v=4" defer></script>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
