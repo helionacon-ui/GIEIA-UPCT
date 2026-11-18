@@ -11,6 +11,8 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:light;
+  --sobre-acento:#ffffff;
+  --on-accent:#ffffff;
   --hubc:#388f64;
   --accent:#388f64;
   --accent-soft:#e9f9f1;
@@ -45,6 +47,8 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#090f0c;
+  --on-accent:#090f0c;
   --hubc:#77d9a9;
   --accent:#77d9a9;
   --accent-soft:#15442d;
@@ -79,6 +83,8 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#090f0c;
+  --on-accent:#090f0c;
   --hubc:#77d9a9;
   --accent:#77d9a9;
   --accent-soft:#15442d;
@@ -113,6 +119,8 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#090f0c;
+  --on-accent:#090f0c;
   --hubc:#77d9a9;
   --accent:#77d9a9;
   --accent-soft:#15442d;
@@ -147,6 +155,8 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#090f0c;
+  --on-accent:#090f0c;
   --hubc:#77d9a9;
   --accent:#77d9a9;
   --accent-soft:#15442d;
@@ -181,6 +191,8 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#1c1c1e;
+  --on-accent:#1c1c1e;
   --hubc:#6fd7a4;
   --accent:#6fd7a4;
   --accent-soft:#15442d;
@@ -215,6 +227,8 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#1c1c1e;
+  --on-accent:#1c1c1e;
   --hubc:#6fd7a4;
   --accent:#6fd7a4;
   --accent-soft:#15442d;
@@ -249,6 +263,8 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#141416;
+  --on-accent:#141416;
   --hubc:#6bd6a1;
   --accent:#6bd6a1;
   --accent-soft:#15442d;
@@ -283,6 +299,8 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#141416;
+  --on-accent:#141416;
   --hubc:#6bd6a1;
   --accent:#6bd6a1;
   --accent-soft:#15442d;
@@ -317,6 +335,8 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#000000;
+  --on-accent:#000000;
   --hubc:#67d59f;
   --accent:#67d59f;
   --accent-soft:#15442d;
@@ -351,6 +371,8 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#000000;
+  --on-accent:#000000;
   --hubc:#67d59f;
   --accent:#67d59f;
   --accent-soft:#15442d;
@@ -385,6 +407,8 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#0d1117;
+  --on-accent:#0d1117;
   --hubc:#79d8a9;
   --accent:#79d8a9;
   --accent-soft:#15442d;
@@ -419,6 +443,8 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#0d1117;
+  --on-accent:#0d1117;
   --hubc:#79d8a9;
   --accent:#79d8a9;
   --accent-soft:#15442d;
@@ -489,12 +515,21 @@
 :root[data-piel="min"] .tw{overflow:auto}
 :root[data-piel="min"] h1,:root[data-piel="min"] h2,:root[data-piel="min"] h3{letter-spacing:-.022em;font-weight:600}
 :root[data-piel="min"] h4,:root[data-piel="min"] .eyebrow,:root[data-piel="min"] .toc .grp,
-:root[data-piel="min"] th,:root[data-piel="min"] figure.fig .ft{
+:root[data-piel="min"] th,:root[data-piel="min"] .ft{
   text-transform:none!important;letter-spacing:.012em!important;font-weight:500!important}
-:root[data-piel="min"] .eyebrow,:root[data-piel="min"] .toc .grp,:root[data-piel="min"] figure.fig .ft{color:var(--muted)!important}
+/* Solo se apaga a gris el rótulo que no lleva fondo propio. El que va dentro de una
+   píldora de color conserva su pareja de colores, o el texto quedaría ilegible encima. */
+:root[data-piel="min"] .eyebrow,:root[data-piel="min"] .toc .grp{color:var(--muted)!important}
 :root[data-piel="min"] .tag,:root[data-piel="min"] .pill,:root[data-piel="min"] .exf,:root[data-piel="min"] .qt{
   border-radius:999px;font-weight:500}
-:root[data-piel="min"] .btn{border:none!important;background:var(--surface)!important;box-shadow:var(--shadow)!important}
+/* Botones y píldoras marcadas: manda el relleno y encima va el color que contrasta con él. */
+:root[data-piel="min"] .btn:not(.pri):not(.primary):not(.on){
+  border:none!important;background:var(--surface)!important;box-shadow:var(--shadow)!important}
+:root[data-piel="min"] .btn.pri,:root[data-piel="min"] .btn.primary{
+  background:var(--accent)!important;color:var(--sobre-acento)!important;border-color:transparent!important}
+:root[data-piel="min"] .exf.on,:root[data-piel="min"] .qt.on,:root[data-piel="min"] .pill.on,
+:root[data-piel="min"] .tag.on,:root[data-piel="min"] .qz-o.on{
+  background:var(--accent-soft)!important;color:var(--accent)!important;border-color:transparent!important}
 :root[data-piel="min"] th{background:transparent!important;border:none!important;border-bottom:1px solid var(--line)!important}
 :root[data-piel="min"] td{border-color:var(--line)!important}
 :root[data-piel="min"] .toc a{border-left:none!important;border-radius:10px;padding-left:10px}
