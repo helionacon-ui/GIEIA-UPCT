@@ -168,6 +168,10 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .temas ul{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:6px}
 .temas li span{color:var(--muted,#5a6372)}
 </style>
+
+<script>(function(){try{var d=document.documentElement,s=localStorage,p=s.getItem("apuntes-piel");if(p==="min")d.setAttribute("data-piel","min");var t=s.getItem("apuntes-tema");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);var f=s.getItem("apuntes-fondo");if(f)d.setAttribute("data-fondo",f);}catch(e){}})();</script>
+<link rel="stylesheet" href="piel.css">
+<script src="piel.js" defer></script>
 </head>
 <body>
 <div class="top"><div class="in">
