@@ -1,11 +1,11 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Animaciones · Apuntes</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,700;1,400&family=Big+Shoulders+Display:wght@500;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+
+
 <style>
 :root{--bg:#f5f7f6;--surface:#ffffff;--fg:#18232b;--muted:#5a6870;--line:#d3dcdf;--accent:#1f4fd1;--accent-soft:#e9effc;--tc:#1f4fd1;
  --c2:#0b7f93;--c3:#7d45c9;--c4:#b8730c;--c5:#c43d63;--c6:#2c8a52;--warn:#b33a2c;
- --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;--body:"Atkinson Hyperlegible Next","Segoe UI",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace}
+ --display:"Inter","Inter Display",-apple-system,"Segoe UI",system-ui,sans-serif;--body:"Caladea","Cambria",Georgia,"Times New Roman",serif;--mono:"IBM Plex Mono",ui-monospace,Consolas,monospace}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1519;--surface:#151d22;--fg:#e2e9ed;--muted:#94a3ab;--line:#2b373e;--accent:#7ea4ff;--accent-soft:#18233a;--tc:#7ea4ff;
  --c2:#4fc3d6;--c3:#b48cff;--c4:#f0a24a;--c5:#ff7da0;--c6:#4cc38a;--warn:#ff7d6c;color-scheme:dark}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6}
@@ -24,7 +24,8 @@ select{font:inherit;font-size:16px;padding:8px 10px;border-radius:10px;border:1p
 .card .go{font:600 14px/1 var(--body)}
 .count{color:var(--muted);font-size:15px;margin-left:auto}
 @media (max-width:560px){.card{padding:10px 6px}.bar{position:static}}
-</style></head><body>
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+</head><body>
 <header><div class="in"><a class="back" href="../">← Volver a las asignaturas</a><h1>Animaciones</h1>
 <p class="lede">Todas las animaciones de las guías, por curso y asignatura. Cada una se puede pausar, mover con la barra, ajustar con «Prueba tú» cuando tiene un parámetro y descargar como vídeo vertical. Las de Control por computador están en <a href="https://helionacon-ui.github.io/Control-por-computador-GIEIA/">su propia guía</a>.</p></div></header>
 <div class="bar"><div class="in"><span id="cursos"></span><select id="asig" aria-label="Asignatura"></select><span class="count" id="count"></span></div></div>
