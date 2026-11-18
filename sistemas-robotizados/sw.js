@@ -1,14 +1,35 @@
-const VERSION = "robotizados-2026-11-15d";
-const ASSETS = ["index.html", "t1.html", "t2.html", "t3.html", "t4.html", "t5.html", "t6.html", "demostraciones.html", "practicas.html", "resueltos.html", "diapositivas.html", "interactivos.html", "resolver.html", "figuras.html", "animaciones.html", "calculadoras.html", "diapositivas-temario.html", "examenes.html", "simulacros.html", "autoevaluacion.html", "formulario.html", "glosario.html", "plan.html", "bibliografia.html", "manifest.webmanifest", "icon.svg", "search-index.json"];
-self.addEventListener("install", e => {
-  e.waitUntil(caches.open(VERSION).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+// Guarda la guía para poder leerla sin conexión.
+// Las páginas se piden primero a la red, así que una actualización se ve en cuanto hay cobertura.
+const CACHE = 'sistemas-robotizados-portal-v1';
+const CORE = ["./", "./anim-manim.js", "./anim-temas.js", "./animaciones.html", "./app.js", "./asig-nav.js", "./autoevaluacion.html", "./bibliografia.html", "./buscador-index.js", "./calculadoras.html", "./cuestiones.html", "./demostraciones.html", "./diapositivas-temario.html", "./diapositivas.html", "./examenes.html", "./figuras.html", "./formulario.html", "./glosario.html", "./icon.svg", "./index.html", "./interactivos.html", "./laboratorio.html", "./manifest.webmanifest", "./piel.css", "./piel.js", "./plan.html", "./practicas.html", "./problemas.html", "./resolver.html", "./resueltos.html", "./sims.js", "./simulacros.html", "./style.css", "./t1.html", "./t2.html", "./t3.html", "./t4.html", "./t5.html", "./t6.html", "./tema-01.html", "./tema-02.html", "./tema-03.html", "./tema-04.html", "./tema-05.html", "./tema-06.html", "./tema-07.html", "./tema-08.html", "./tema-09.html", "./tema-10.html", "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"];
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE)
+    .then(c => Promise.all(CORE.map(u => c.add(new Request(u, {mode: u.startsWith('http') ? 'no-cors' : 'same-origin'})).catch(() => {}))))
+    .then(() => self.skipWaiting()));
 });
-self.addEventListener("activate", e => {
-  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== VERSION).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys()
+    .then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k))))
+    .then(() => self.clients.claim()));
 });
-self.addEventListener("fetch", e => {
-  if (e.request.method !== "GET") return;
-  e.respondWith(caches.match(e.request).then(hit => hit || fetch(e.request).then(r => {
-    const copy = r.clone(); caches.open(VERSION).then(c => c.put(e.request, copy)); return r;
-  }).catch(() => caches.match("index.html"))));
+self.addEventListener('message', e => { if (e.data === 'saltar') self.skipWaiting(); });
+self.addEventListener('fetch', e => {
+  const req = e.request;
+  if (req.method !== 'GET') return;
+  const url = new URL(req.url);
+  if (url.protocol !== 'http:' && url.protocol !== 'https:') return;
+  const esPagina = req.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname.endsWith('/');
+  if (esPagina) {
+    e.respondWith(fetch(req)
+      .then(r => { const cp = r.clone(); caches.open(CACHE).then(c => c.put(req, cp)); return r; })
+      .catch(() => caches.match(req, {ignoreSearch: true}).then(h => h || caches.match('./index.html'))));
+    return;
+  }
+  e.respondWith(caches.match(req).then(hit => {
+    const red = fetch(req).then(r => {
+      if (r && (r.ok || r.type === 'opaque')) { const cp = r.clone(); caches.open(CACHE).then(c => c.put(req, cp)); }
+      return r;
+    }).catch(() => hit);
+    return hit || red;
+  }));
 });
