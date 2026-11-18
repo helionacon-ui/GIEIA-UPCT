@@ -167,11 +167,25 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .temas{margin:12px 0 18px;padding:14px 16px;border:1px solid var(--line,#d0d7e2);border-radius:12px;background:var(--surface)}
 .temas ul{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:6px}
 .temas li span{color:var(--muted,#5a6372)}
+
+.instalar{margin:34px 0 40px}
+.instalar h2{font:700 clamp(20px,3vw,26px)/1.2 var(--display);letter-spacing:-.015em;margin:0 0 10px}
+.instalar>p{margin:0 0 16px;max-width:62ch;line-height:1.7}
+.pasos2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:0 0 14px}
+@media (max-width:720px){.pasos2{grid-template-columns:minmax(0,1fr)}}
+.nota-inst{margin:0;color:var(--muted);font-size:15px;line-height:1.65;max-width:62ch}
 </style>
 
 <script>(function(){try{var d=document.documentElement,s=localStorage,p=s.getItem("apuntes-piel");if(p==="min")d.setAttribute("data-piel","min");var t=s.getItem("apuntes-tema");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);var f=s.getItem("apuntes-fondo");if(f)d.setAttribute("data-fondo",f);}catch(e){}})();</script>
 <link rel="stylesheet" href="piel.css">
 <script src="piel.js" defer></script>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Apuntes">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
 </head>
 <body>
 <div class="top"><div class="in">
@@ -240,6 +254,23 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;bac
 <section id="temas" class="temas" aria-label="Temas que coinciden" hidden><span class="label">Temas que coinciden</span><ul id="temas-ul"></ul></section>
 <main id="list" aria-busy="true"><div class="sk"></div><div class="sk"></div><div class="sk"></div><div class="sk"></div><noscript><p class="empty">Activa JavaScript para ver el listado de asignaturas.</p></noscript></main>
 <p class="empty" id="empty" hidden>No hay ninguna asignatura que coincida con la búsqueda.</p>
+
+<section class="instalar" aria-labelledby="instalar-t">
+  <h2 id="instalar-t">Llévatela en el móvil</h2>
+  <p>Cada guía se instala como una aplicación: icono propio, pantalla completa y sin barra del
+     navegador. Una vez abierta, se lee <b>sin cobertura</b>, así que sirve en el metro o en un aula
+     sin wifi. No hay que pasar por ninguna tienda.</p>
+  <div class="pasos2">
+    <div class="step"><i>A</i><p><b>Android.</b> Abre la guía en Chrome, toca el menú de los tres
+      puntos y elige <b>«Instalar aplicación»</b> o <b>«Añadir a pantalla de inicio»</b>.</p></div>
+    <div class="step"><i>i</i><p><b>iPhone y iPad.</b> Abre la guía en Safari, toca
+      <b>Compartir</b> y elige <b>«Añadir a pantalla de inicio»</b>. Tiene que ser Safari; desde
+      Chrome en iPhone no sale la opción.</p></div>
+  </div>
+  <p class="nota-inst">Instala esta portada para tenerlas todas a mano, o cada asignatura por
+     separado si prefieres un icono por materia. El aspecto que elijas —clásico o minimalista— se
+     mantiene también dentro de la aplicación.</p>
+</section>
 
 <footer>
   <p>Proyecto personal de estudio, hecho por un estudiante y sin ánimo de lucro. No es una página oficial ni está afiliada, revisada o respaldada por la universidad ni por la Escuela, y no sustituye a la documentación de las asignaturas. Los vídeos enlazados son material externo de otros autores. Proyecto iniciado el <time datetime="2026-11-05">5 de noviembre de 2026</time>.</p>
