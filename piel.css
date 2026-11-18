@@ -11,18 +11,18 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:light;
-  --hubc:#40558c;
-  --accent:#40558c;
-  --accent-soft:#f1f2f6;
-  --ok:#478566;
-  --c1:#4a5c8c;
-  --c1s:#f2f3f6;
-  --c2:#4f876b;
-  --c2s:#f3f6f4;
-  --c3:#956941;
-  --c3s:#f7f4f2;
-  --c4:#865650;
-  --c4s:#f6f3f3;
+  --hubc:#2d4a9a;
+  --accent:#2d4a9a;
+  --accent-soft:#e7ecfb;
+  --ok:#369164;
+  --c1:#34509d;
+  --c1s:#e8edfa;
+  --c2:#3d9469;
+  --c2s:#e9f9f1;
+  --c3:#aa6427;
+  --c3s:#fcf0e6;
+  --c4:#94463e;
+  --c4s:#f8ebea;
 }
 @media (prefers-color-scheme: dark){:root[data-piel="min"]:not([data-theme="light"]){
   --bg:#090b0f;
@@ -34,18 +34,18 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
-  --hubc:#7691da;
-  --accent:#7691da;
-  --accent-soft:#1c2233;
-  --ok:#7fd2a9;
-  --c1:#92a1c9;
-  --c1s:#202531;
-  --c2:#97c4ae;
-  --c2s:#223029;
-  --c3:#cfab8b;
-  --c3s:#33281e;
-  --c4:#c49c97;
-  --c4s:#302322;
+  --hubc:#6b8ce5;
+  --accent:#6b8ce5;
+  --accent-soft:#152244;
+  --ok:#76dba9;
+  --c1:#8299d9;
+  --c1s:#1e2741;
+  --c2:#89d2ae;
+  --c2s:#213e2f;
+  --c3:#e4aa77;
+  --c3s:#452e19;
+  --c4:#d1918a;
+  --c4s:#3d2421;
 }}
 :root[data-piel="min"][data-theme="dark"]{
   --bg:#090b0f;
@@ -57,18 +57,18 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
-  --hubc:#7691da;
-  --accent:#7691da;
-  --accent-soft:#1c2233;
-  --ok:#7fd2a9;
-  --c1:#92a1c9;
-  --c1s:#202531;
-  --c2:#97c4ae;
-  --c2s:#223029;
-  --c3:#cfab8b;
-  --c3s:#33281e;
-  --c4:#c49c97;
-  --c4s:#302322;
+  --hubc:#6b8ce5;
+  --accent:#6b8ce5;
+  --accent-soft:#152244;
+  --ok:#76dba9;
+  --c1:#8299d9;
+  --c1s:#1e2741;
+  --c2:#89d2ae;
+  --c2s:#213e2f;
+  --c3:#e4aa77;
+  --c3s:#452e19;
+  --c4:#d1918a;
+  --c4s:#3d2421;
 }
 @media (prefers-color-scheme: dark){:root[data-piel="min"][data-fondo="calido"]:not([data-theme="light"]){
   --bg:#090b0f;
@@ -80,18 +80,18 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
-  --hubc:#7691da;
-  --accent:#7691da;
-  --accent-soft:#1c2233;
-  --ok:#7fd2a9;
-  --c1:#92a1c9;
-  --c1s:#202531;
-  --c2:#97c4ae;
-  --c2s:#223029;
-  --c3:#cfab8b;
-  --c3s:#33281e;
-  --c4:#c49c97;
-  --c4s:#302322;
+  --hubc:#6b8ce5;
+  --accent:#6b8ce5;
+  --accent-soft:#152244;
+  --ok:#76dba9;
+  --c1:#8299d9;
+  --c1s:#1e2741;
+  --c2:#89d2ae;
+  --c2s:#213e2f;
+  --c3:#e4aa77;
+  --c3s:#452e19;
+  --c4:#d1918a;
+  --c4s:#3d2421;
 }}
 :root[data-piel="min"][data-fondo="calido"][data-theme="dark"]{
   --bg:#090b0f;
@@ -103,18 +103,18 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
-  --hubc:#7691da;
-  --accent:#7691da;
-  --accent-soft:#1c2233;
-  --ok:#7fd2a9;
-  --c1:#92a1c9;
-  --c1s:#202531;
-  --c2:#97c4ae;
-  --c2s:#223029;
-  --c3:#cfab8b;
-  --c3s:#33281e;
-  --c4:#c49c97;
-  --c4s:#302322;
+  --hubc:#6b8ce5;
+  --accent:#6b8ce5;
+  --accent-soft:#152244;
+  --ok:#76dba9;
+  --c1:#8299d9;
+  --c1s:#1e2741;
+  --c2:#89d2ae;
+  --c2s:#213e2f;
+  --c3:#e4aa77;
+  --c3s:#452e19;
+  --c4:#d1918a;
+  --c4s:#3d2421;
 }
 @media (prefers-color-scheme: dark){:root[data-piel="min"][data-fondo="grafito"]:not([data-theme="light"]){
   --bg:#1c1c1e;
@@ -126,18 +126,18 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
-  --hubc:#6e8bd8;
-  --accent:#6e8bd8;
-  --accent-soft:#1c2233;
-  --ok:#77cfa4;
-  --c1:#92a1c9;
-  --c1s:#202531;
-  --c2:#97c4ae;
-  --c2s:#223029;
-  --c3:#cfab8b;
-  --c3s:#33281e;
-  --c4:#c49c97;
-  --c4s:#302322;
+  --hubc:#6385e4;
+  --accent:#6385e4;
+  --accent-soft:#152244;
+  --ok:#6dd9a4;
+  --c1:#8299d9;
+  --c1s:#1e2741;
+  --c2:#89d2ae;
+  --c2s:#213e2f;
+  --c3:#e4aa77;
+  --c3s:#452e19;
+  --c4:#d1918a;
+  --c4s:#3d2421;
 }}
 :root[data-piel="min"][data-fondo="grafito"][data-theme="dark"]{
   --bg:#1c1c1e;
@@ -149,18 +149,18 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
-  --hubc:#6e8bd8;
-  --accent:#6e8bd8;
-  --accent-soft:#1c2233;
-  --ok:#77cfa4;
-  --c1:#92a1c9;
-  --c1s:#202531;
-  --c2:#97c4ae;
-  --c2s:#223029;
-  --c3:#cfab8b;
-  --c3s:#33281e;
-  --c4:#c49c97;
-  --c4s:#302322;
+  --hubc:#6385e4;
+  --accent:#6385e4;
+  --accent-soft:#152244;
+  --ok:#6dd9a4;
+  --c1:#8299d9;
+  --c1s:#1e2741;
+  --c2:#89d2ae;
+  --c2s:#213e2f;
+  --c3:#e4aa77;
+  --c3s:#452e19;
+  --c4:#d1918a;
+  --c4s:#3d2421;
 }
 @media (prefers-color-scheme: dark){:root[data-piel="min"][data-fondo="elevado"]:not([data-theme="light"]){
   --bg:#141416;
@@ -172,18 +172,18 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
-  --hubc:#6a88d7;
-  --accent:#6a88d7;
-  --accent-soft:#1c2233;
-  --ok:#73cea1;
-  --c1:#92a1c9;
-  --c1s:#202531;
-  --c2:#97c4ae;
-  --c2s:#223029;
-  --c3:#cfab8b;
-  --c3s:#33281e;
-  --c4:#c49c97;
-  --c4s:#302322;
+  --hubc:#5e82e3;
+  --accent:#5e82e3;
+  --accent-soft:#152244;
+  --ok:#69d8a1;
+  --c1:#8299d9;
+  --c1s:#1e2741;
+  --c2:#89d2ae;
+  --c2s:#213e2f;
+  --c3:#e4aa77;
+  --c3s:#452e19;
+  --c4:#d1918a;
+  --c4s:#3d2421;
 }}
 :root[data-piel="min"][data-fondo="elevado"][data-theme="dark"]{
   --bg:#141416;
@@ -195,18 +195,18 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
-  --hubc:#6a88d7;
-  --accent:#6a88d7;
-  --accent-soft:#1c2233;
-  --ok:#73cea1;
-  --c1:#92a1c9;
-  --c1s:#202531;
-  --c2:#97c4ae;
-  --c2s:#223029;
-  --c3:#cfab8b;
-  --c3s:#33281e;
-  --c4:#c49c97;
-  --c4s:#302322;
+  --hubc:#5e82e3;
+  --accent:#5e82e3;
+  --accent-soft:#152244;
+  --ok:#69d8a1;
+  --c1:#8299d9;
+  --c1s:#1e2741;
+  --c2:#89d2ae;
+  --c2s:#213e2f;
+  --c3:#e4aa77;
+  --c3s:#452e19;
+  --c4:#d1918a;
+  --c4s:#3d2421;
 }
 @media (prefers-color-scheme: dark){:root[data-piel="min"][data-fondo="oled"]:not([data-theme="light"]){
   --bg:#000000;
@@ -218,18 +218,18 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
-  --hubc:#6684d6;
-  --accent:#6684d6;
-  --accent-soft:#1c2233;
-  --ok:#70cd9f;
-  --c1:#92a1c9;
-  --c1s:#202531;
-  --c2:#97c4ae;
-  --c2s:#223029;
-  --c3:#cfab8b;
-  --c3s:#33281e;
-  --c4:#c49c97;
-  --c4s:#302322;
+  --hubc:#5a7fe2;
+  --accent:#5a7fe2;
+  --accent-soft:#152244;
+  --ok:#65d79f;
+  --c1:#8299d9;
+  --c1s:#1e2741;
+  --c2:#89d2ae;
+  --c2s:#213e2f;
+  --c3:#e4aa77;
+  --c3s:#452e19;
+  --c4:#d1918a;
+  --c4s:#3d2421;
 }}
 :root[data-piel="min"][data-fondo="oled"][data-theme="dark"]{
   --bg:#000000;
@@ -241,18 +241,18 @@
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
-  --hubc:#6684d6;
-  --accent:#6684d6;
-  --accent-soft:#1c2233;
-  --ok:#70cd9f;
-  --c1:#92a1c9;
-  --c1s:#202531;
-  --c2:#97c4ae;
-  --c2s:#223029;
-  --c3:#cfab8b;
-  --c3s:#33281e;
-  --c4:#c49c97;
-  --c4s:#302322;
+  --hubc:#5a7fe2;
+  --accent:#5a7fe2;
+  --accent-soft:#152244;
+  --ok:#65d79f;
+  --c1:#8299d9;
+  --c1s:#1e2741;
+  --c2:#89d2ae;
+  --c2s:#213e2f;
+  --c3:#e4aa77;
+  --c3s:#452e19;
+  --c4:#d1918a;
+  --c4s:#3d2421;
 }
 @media (prefers-color-scheme: dark){:root[data-piel="min"][data-fondo="pizarra"]:not([data-theme="light"]){
   --bg:#0d1117;
@@ -266,16 +266,16 @@
   color-scheme:dark;
   --hubc:#7992d8;
   --accent:#7992d8;
-  --accent-soft:#1c2233;
-  --ok:#7fd2a9;
-  --c1:#92a1c9;
-  --c1s:#202531;
-  --c2:#97c4ae;
-  --c2s:#223029;
-  --c3:#cfab8b;
-  --c3s:#33281e;
-  --c4:#c49c97;
-  --c4s:#302322;
+  --accent-soft:#152244;
+  --ok:#76dba9;
+  --c1:#8299d9;
+  --c1s:#1e2741;
+  --c2:#89d2ae;
+  --c2s:#213e2f;
+  --c3:#e4aa77;
+  --c3s:#452e19;
+  --c4:#d1918a;
+  --c4s:#3d2421;
 }}
 :root[data-piel="min"][data-fondo="pizarra"][data-theme="dark"]{
   --bg:#0d1117;
@@ -289,16 +289,16 @@
   color-scheme:dark;
   --hubc:#7992d8;
   --accent:#7992d8;
-  --accent-soft:#1c2233;
-  --ok:#7fd2a9;
-  --c1:#92a1c9;
-  --c1s:#202531;
-  --c2:#97c4ae;
-  --c2s:#223029;
-  --c3:#cfab8b;
-  --c3s:#33281e;
-  --c4:#c49c97;
-  --c4s:#302322;
+  --accent-soft:#152244;
+  --ok:#76dba9;
+  --c1:#8299d9;
+  --c1s:#1e2741;
+  --c2:#89d2ae;
+  --c2s:#213e2f;
+  --c3:#e4aa77;
+  --c3s:#452e19;
+  --c4:#d1918a;
+  --c4s:#3d2421;
 }
 
 /* ---------- piel minimalista: estructura ---------- */
