@@ -1,8 +1,8 @@
 /* Service worker del índice: abre sin conexión. Solo gestiona la portada;
    las guías de cada asignatura tienen su propio service worker. */
-const V = 'gieia-hub-2026-11-18-app-tip5';
+const V = 'gieia-hub-2026-11-18-app-tip6';
 const BASE = new URL('./', self.registration.scope).pathname;
-self.addEventListener('install', e => { e.waitUntil(caches.open(V).then(c => Promise.all([BASE, BASE + 'index.html', BASE + 'piel.css?v=4', BASE + 'piel.js?v=4', BASE + 'sugerencias.js?v=1', BASE + 'manifest.webmanifest', BASE + 'icon-192.png', BASE + 'icon-512.png', BASE + 'icon-maskable-512.png', BASE + 'apple-touch-icon.png', BASE + 'busqueda.json'].map(u => c.add(u).catch(() => {})))).then(() => self.skipWaiting())); });
+self.addEventListener('install', e => { e.waitUntil(caches.open(V).then(c => Promise.all([BASE, BASE + 'index.html', BASE + 'piel.css?v=4', BASE + 'piel.js?v=4', BASE + 'sugerencias.js?v=2', BASE + 'manifest.webmanifest', BASE + 'icon-192.png', BASE + 'icon-512.png', BASE + 'icon-maskable-512.png', BASE + 'apple-touch-icon.png', BASE + 'busqueda.json'].map(u => c.add(u).catch(() => {})))).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('gieia-hub') && k !== V).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', e => {
   const u = new URL(e.request.url);
