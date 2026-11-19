@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T4 Sistemas MES y ERP · Informática para la Automatización Industrial · Apuntes</title>
+<meta name="description" content="Informática para la Automatización Industrial (GIEyA): tema 4, Sistemas MES y ERP">
+
+
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<script src="asig-nav.js" defer></script>
+
+<style id="lectura">
+@media screen{
+:root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
+body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
+p{margin:0 0 1.75em}
+li{margin:.8em 0}
+p,li{max-width:62ch}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
+h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
+h4{margin-top:34px;margin-bottom:10px}
+.box{padding:24px 30px;margin:32px 0}
+table{font-size:18px;line-height:1.75}
+td,th{padding-top:.85em;padding-bottom:.85em}
+figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+figure.fig{margin-block:34px}
+.lede{line-height:1.85}
+.toc a{font-size:16.5px;padding:8px 0 8px 10px}
+svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+details>summary{line-height:1.7;padding-block:.5em}
+@media (max-width:600px){body{font-size:19px;line-height:2}}
+}
+</style>
+
+<script>(function(){try{var d=document.documentElement,s=localStorage,p=s.getItem("apuntes-piel");if(p==="min")d.setAttribute("data-piel","min");var t=s.getItem("apuntes-tema");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);var f=s.getItem("apuntes-fondo");if(f)d.setAttribute("data-fondo",f);}catch(e){}})();</script>
+<link rel="stylesheet" href="piel.css?v=4">
+<script src="piel.js?v=4" defer></script>
+<script src="sugerencias.js?v=2" defer></script>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1d5f7a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Inf. Autom.">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+<script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados de unos apuntes de teoría (55 cuestiones respondidas) y del programa oficial del curso <time datetime="2026-09">2026/27</time> · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Informática para la Automatización Industrial</a><span class="sep">›</span><span>Gestión</span><span class="sep">›</span><span>T4 · Sistemas MES y ERP</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Evaluación y temario oficial</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Arquitectura</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Informática industrial y pirámide de la automatización</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Sistemas operativos</a><div class="grp">Supervisión</div><a href="tema-03.html" style="--tc:var(--c4)">T3 SCADA, RTU, MTU y HMI</a><div class="grp">Gestión</div><a href="tema-04.html" style="--tc:var(--c5)" class="on" aria-current="page">T4 Sistemas MES y ERP</a><div class="grp">Comunicaciones</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Redes: LAN, WAN, topologías, OSI y TCP/IP</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Buses de campo: PROFIBUS, PROFINET, MODBUS y DCS</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Las 55 cuestiones</a><a href="siglas.html" style="--tc:var(--c8)">Siglas y comparativas</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c5);--tcs:var(--c5s)">
+<div class="sh"><span aria-hidden="true" class="badge">4</span><div class="shx"><p class="kick">Gestión · Tema 4</p><h2 id="t4">Sistemas MES y ERP</h2><div class="tags"><span class="tag">11 cuestiones</span><span class="tag">Gestión</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Definir MES y ERP, enumerar sus funciones y ventajas, explicar su relación y clasificar los ERP.</p><p class="ft">La idea</p><p>El <b>MES</b> mira la <b>fábrica</b>: qué se está produciendo ahora, con qué calidad y con qué recursos. El <b>ERP</b> mira la <b>empresa</b> entera: finanzas, compras, ventas, inventario, personal.</p><p class="ft">Cómo encajan</p><p>Son complementarios. El ERP da la vista <b>global</b>; el MES, la vista <b>detallada</b> de producción. El MES puede incluso ser un módulo del ERP.</p><p class="ft">Las clasificaciones del ERP</p><p>Se pregunta por cuatro criterios: <b>dónde se instala</b> (cloud público, privado, híbrido o local), <b>cómo se licencia</b> (SaaS, de pago o free), <b>quién ve el código</b> (open source o propietario) y <b>para quién se diseña</b> (vertical, horizontal o a medida).</p></div>
+
+<div class="box key"><h4>Truco para acordarte</h4><p><b>Truco para las cuatro clasificaciones del ERP:</b> «<b>dónde, cómo se paga, quién ve el código, para quién</b>». Y para las 7 funciones del ERP: ventas, suministro, finanzas, inventario, compras, producción y personas.</p></div>
+<div class="box trap"><h4>Error típico</h4><p>Mezclar funciones del MES con las del ERP. Si la palabra es <b>tiempo real</b> o <b>planta</b>, es MES. Si es <b>financiera</b>, <b>ventas</b> o <b>compras</b>, es ERP.</p></div>
+<h3 id="cuestiones">Las cuestiones del tema, respondidas</h3>
+<p class="muted">Intenta contestar cada una antes de abrir la respuesta. Lo que va en <b>negrita</b> son las palabras que no pueden faltar.</p>
+<div class="prob" id="q24"><div class="enun"><p class="et">Cuestión 24</p><p>¿Qué es un sistema MES (Manufacturing Execution System) y cuál es su función principal?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>Es un <b>sistema de software integral y dinámico</b> que se usa en la industria para <b>gestionar y optimizar los procesos de producción</b>.</p><p>Su función principal es <b>recolectar, analizar y presentar datos en tiempo real</b> para mejorar la <b>eficiencia y la calidad</b> de la producción.</p></div></details></div>
+<div class="prob" id="q25"><div class="enun"><p class="et">Cuestión 25</p><p>Enumerar las funcionalidades de un sistema MES.</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><ul><li><b>Planificación de la producción</b>: crea y programa órdenes de producción según los recursos disponibles y la demanda.</li><li><b>Seguimiento de la producción</b>: monitoriza en tiempo real el avance para detectar problemas y tomar decisiones.</li><li><b>Control de calidad</b>: módulos de inspección, pruebas de rendimiento y cumplimiento de normativas.</li><li><b>Gestión de inventarios</b>: control del inventario de materias primas y productos terminados, y de los niveles de stock en tiempo real.</li><li><b>Adquisición de datos</b>: recoge información de sensores y otros dispositivos sobre el proceso y la maquinaria.</li><li><b>Análisis de datos</b>: identifica patrones y tendencias para optimizar los procesos.</li><li><b>Gestión de recursos humanos</b>: registro de horas y rendimiento de los trabajadores.</li></ul></div></details></div>
+<div class="prob" id="q26"><div class="enun"><p class="et">Cuestión 26</p><p>Enumerar las ventajas de usar sistemas MES.</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><ul><li>Aumento de la <b>calidad</b>, la <b>productividad</b> y la eficiencia.</li><li><b>Reducción de costes</b>.</li><li><b>Recolección digital de datos</b> en un mismo sistema.</li><li>Monitorización del desempeño <b>en tiempo real</b>.</li><li><b>Eliminación del papel</b> a nivel de planta.</li></ul></div></details></div>
+<div class="prob" id="q27"><div class="enun"><p class="et">Cuestión 27</p><p>¿Qué es un sistema ERP (Enterprise Resource Planning) y cuál es su objetivo principal?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>Es un <b>sistema de gestión integral</b> que permite a las empresas <b>gestionar y planificar sus recursos</b> de manera eficiente y efectiva.</p><p>Su objetivo es <b>integrar y centralizar</b> la gestión de todos los procesos de negocio <b>en un solo sistema</b>: financiera, compras, ventas, inventario, producción, recursos humanos y cadena de suministro.</p><p>En una frase: centraliza la información de todas las áreas de la empresa.</p></div></details></div>
+<div class="prob" id="q28"><div class="enun"><p class="et">Cuestión 28</p><p>Enumerar las ventajas de usar sistemas ERP.</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><ul><li>Facilita la <b>toma de decisiones</b> y la <b>colaboración entre departamentos</b>, porque todos los datos están en una <b>única base de datos</b> y se comparten en tiempo real.</li><li>Toda la información se gestiona de forma <b>integrada y optimizada</b>.</li><li>Mejora la <b>eficiencia y la rentabilidad</b> de la empresa.</li></ul></div></details></div>
+<div class="prob" id="q29"><div class="enun"><p class="et">Cuestión 29</p><p>Enumerar las funciones de un sistema ERP.</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><ol><li>Gestión de <b>ventas</b>.</li><li>Gestión de la <b>cadena de suministro</b>.</li><li>Gestión <b>financiera</b>.</li><li>Gestión de <b>inventario</b>.</li><li>Gestión de <b>compras</b>.</li><li>Gestión de <b>producción</b>.</li><li>Gestión de <b>recursos humanos</b>.</li></ol></div></details></div>
+<div class="prob" id="q30"><div class="enun"><p class="et">Cuestión 30</p><p>¿Qué relación existe entre sistemas MES y ERP?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>Son sistemas <b>complementarios</b>: se usan para gestionar y optimizar los procesos de producción y los recursos de la empresa.</p><ul><li>El <b>ERP</b> da una <b>visión global de la empresa</b>: centraliza la información de todas las áreas.</li><li>El <b>MES</b> da una <b>visión más detallada de los procesos de producción</b>.</li></ul><p>El MES <b>puede ser parte integrante de un ERP</b>.</p></div></details></div>
+<div class="prob" id="q31"><div class="enun"><p class="et">Cuestión 31</p><p>Clasificar los sistemas ERP según el tipo de instalación de software.</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>Hay dos entornos: <b>cloud</b> y <b>local</b>.</p><ul><li><b>Cloud público</b>: el ERP está en los servidores del proveedor y se accede por internet. La seguridad la garantiza el proveedor.</li><li><b>Cloud privado</b>: infraestructura cloud propiedad de la empresa. La seguridad y la administración dependen de la propia organización.</li><li><b>Cloud híbrido</b> o mixto: la seguridad se comparte entre la empresa y el proveedor.</li><li><b>Entorno local</b>: parecido al cloud privado, pero el software está en los servidores y equipos de la empresa y se accede por una red privada. La seguridad y la administración son responsabilidad de la empresa.</li></ul></div></details></div>
+<div class="prob" id="q32"><div class="enun"><p class="et">Cuestión 32</p><p>Clasificar los sistemas ERP según la modalidad de uso de la licencia software.</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><ul><li><b>SaaS</b>: la empresa paga al proveedor por el <b>uso</b> del software.</li><li><b>Licencia de pago</b>: un pago único inicial y pagos periódicos para renovarla y recibir actualizaciones y soporte. Suele traer costes importantes en IT y hardware.</li><li><b>Free</b>: las licencias son gratis, aunque puede haber otros gastos.</li></ul></div></details></div>
+<div class="prob" id="q33"><div class="enun"><p class="et">Cuestión 33</p><p>Clasificar los sistemas ERP según el acceso y disponibilidad del código fuente.</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><ul><li><b>Open Source</b>: acceso total al código fuente y libertad para modificarlo. <i>Ventaja:</i> bajo coste o gratis, y personalización en manos de los técnicos de la empresa. <i>Inconveniente:</i> para aprovecharlo hace falta un equipo técnico de IT capaz de desarrollar.</li><li><b>Propietario</b>: solo los desarrolladores del proveedor acceden al código y pueden modificarlo.</li></ul></div></details></div>
+<div class="prob" id="q34"><div class="enun"><p class="et">Cuestión 34</p><p>Detallar la clasificación de los sistemas ERP según el diseño funcional de los procesos: vertical, horizontal y a medida.</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><ul><li><b>Especializado o vertical</b>: diseñado para procesos específicos, a veces exclusivos de un sector. Suele tener funcionalidades avanzadas y un alto nivel de personalización.</li><li><b>Generalista u horizontal</b>: diseño genérico válido para varios sectores. Ofrece funciones básicas, se adapta menos y cuesta menos. Suele usarse como <b>núcleo</b> sobre el que integrar otros sistemas más específicos.</li><li><b>A medida</b>: personalización total a los requisitos de la empresa. Da un enfoque y control precisos sobre las áreas críticas, pero <b>a mayor coste</b>.</li></ul></div></details></div>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-03.html"><small>← Anterior</small>T3 · SCADA, RTU, MTU y HMI</a><a class="nx" href="tema-05.html"><small>Siguiente →</small>T5 · Redes: LAN, WAN, topologías, OSI y TCP/IP</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Informática para la Automatización Industrial (GIEyA) · Datos tomados de unos apuntes de teoría (55 cuestiones respondidas) y del programa oficial del curso <time datetime="2026-09">2026/27</time> · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
