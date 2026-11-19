@@ -501,5 +501,157 @@ SIMS.__paso=(el,D)=>build(el,{w:D.w||660,h:D.h||340,
 /* ---- paso2 zenerPaso ---- */
 SIMS.zenerPaso=el=>SIMS.__paso(el,{"w":620,"h":250,"q":"Calcula la resistencia serie de un regulador zener de 5,1 V para una carga de 20 mA con entrada entre 10 y 14 V. Sube el paso.","base":[["t","Entrada 10–14 V · zener 5,1 V · carga 20 mA · I_z,mín = 5 mA",30,26,13,"left"]],"steps":[{"text":"Se diseña un regulador con <b>diodo zener de 5,1 V</b> para una carga de <b>20 mA</b> con una tensión de entrada que varía entre <b>10 y 14 V</b>. El zener necesita al menos <b>5 mA</b> para estabilizar. ¿Qué resistencia serie hay que poner?","add":[]},{"text":"La peor situación para que el zener conserve su corriente mínima es la <b>entrada más baja</b> (10 V): la corriente que circula por R debe ser ≥ I<sub>L</sub> + I<sub>z,mín</sub> = 20 + 5 = <b>25 mA</b>.","add":[["t","I_R(mín) ≥ I_L + I_z,mín = 25 mA",40,70,15,"left"]]},{"text":"Valor máximo de R: <b>R ≤ (V<sub>in,mín</sub> − V<sub>z</sub>)/(I<sub>L</sub> + I<sub>z,mín</sub>) = (10 − 5,1)/0,025 = 196 Ω</b>.","add":[["t","R ≤ 4,9 V / 25 mA = 196 Ω",40,104,15,"left"]]},{"text":"Se elige un valor normalizado menor: <b>R = 180 Ω</b> (serie E12). Con él, en V<sub>in</sub> = 10 V: I<sub>z</sub> = (10 − 5,1)/180 − 0,02 = <b>7,2 mA</b> ≥ 5 mA ✓.","add":[["t","R = 180 Ω  →  I_z(10 V) = 7,2 mA",40,138,15,"left"]]},{"text":"En la <b>entrada máxima</b> (14 V) el zener absorbe más: I<sub>z</sub> = (14 − 5,1)/180 − 0,02 = <b>29,4 mA</b>. Hay que comprobar que no supera su máximo.","add":[["t","I_z(14 V) = 29,4 mA",40,172,15,"left"]]},{"text":"Potencias: <b>P<sub>z</sub> = V<sub>z</sub>·I<sub>z,máx</sub> = 5,1·0,0294 = 150 mW</b> (zener de 500 mW suficiente) y <b>P<sub>R</sub> = (14 − 5,1)²/180 = 0,44 W</b> (resistencia de 1/2 W justa: mejor de 1 W).","add":[["t","P_z = 150 mW ; P_R = 0,44 W",40,206,15,"left"]]},{"text":"Límite del zener: la regulación es mala (la tensión varía con la corriente) y el rendimiento bajo (la corriente que sobra se disipa). Para más carga se usa un transistor (zener + BJT) o un regulador lineal/LDO.","add":[]}]});
 /* ---- fin paso2 zenerPaso ---- */
+/* ---- sim elevador ---- */
+/* Convertidor elevador (boost) animado: circuito, i_L y ganancia M(D). */
+SIMS.elevador = el => {
+  const nf = (x, d) => (Math.abs(x) < 1e-12 ? 0 : x).toFixed(d === undefined ? 2 : d).replace('.', ',');
+  const pal = cv => { const cs = getComputedStyle(cv.parentNode), v = n => cs.getPropertyValue(n).trim();
+    return { azul: v('--c5') || '#2a5f9e', rojo: v('--warn') || '#b03a1e', verde: v('--c2') || '#1f7a5a',
+             morado: v('--c3') || '#8a4a9e', naranja: v('--c4') || '#a8601a' }; };
+  let fase = 0, ultimo = '', quieto = false;
+  const spec = {
+    w: 680, h: 470,
+    sliders: [{ k: 'D', v: 0.5, min: 0.05, max: 0.95, step: 0.01, l: 'Ciclo de trabajo D', u: '' },
+              { k: 'Vin', v: 12, min: 3, max: 24, step: 0.5, l: 'Tensión de entrada V_in', u: 'V' },
+              { k: 'R', v: 24, min: 5, max: 100, step: 1, l: 'Carga R', u: 'Ω' },
+              { k: 'L', v: 100, min: 22, max: 470, step: 2, l: 'Bobina L', u: 'µH' },
+              { k: 'rL', v: 0.1, min: 0, max: 1, step: 0.02, l: 'Resistencia de la bobina r_L', u: 'Ω' }],
+    selects: [{ k: 'anim', v: 'si', l: 'Animación', opts: [['si', 'En marcha'], ['no', 'Parada']] }],
+    draw(a) {
+      const st = a.st, g = a.g, S = pal(a.cv), f = 1e5;
+      const D = st.D, d1 = 1 - D;
+      const Vid = st.Vin / d1, Vo = st.Vin * d1 / (d1 * d1 + st.rL / st.R);
+      const IL = Vo / (st.R * d1), dI = st.Vin * D / (st.L * 1e-6 * f);
+      const mcc = IL > dI / 2, on = fase < D;
+      a.clear();
+      const col = on ? S.rojo : S.azul;
+      // ---------- circuito ----------
+      const xL = 44, xN = 250, xC = 360, xR = 430, yT = 52, yB = 176;
+      const hilo = (x1, y1, x2, y2, vivo, c) => a.line(x1, y1, x2, y2, vivo ? c : C.grid, vivo ? 3 : 1.6);
+      hilo(xL, yT, 86, yT, true, col);
+      // bobina
+      g.strokeStyle = col; g.lineWidth = 3; g.beginPath();
+      for (let k = 0; k < 4; k++) g.arc(101 + k * 30, yT, 15, Math.PI, 0);
+      g.stroke();
+      hilo(206, yT, xN, yT, true, col);
+      a.txt('L', 146, yT - 24, C.text, 13, 'center');
+      // interruptor
+      hilo(xN, yT, xN, 88, on, S.rojo);
+      if (on) hilo(xN, 88, xN, 136, true, S.rojo); else a.line(xN, 136, xN + 26, 92, C.muted, 2.4);
+      hilo(xN, 136, xN, yB, on, S.rojo);
+      a.circ(xN, 88, 3.5, C.muted, true); a.circ(xN, 136, 3.5, C.muted, true);
+      a.txt('S', xN - 22, 116, C.text, 13);
+      // diodo
+      hilo(xN, yT, 292, yT, !on, S.azul);
+      g.fillStyle = on ? C.grid : S.azul; g.beginPath(); g.moveTo(292, yT - 11); g.lineTo(292, yT + 11); g.lineTo(312, yT); g.closePath(); g.fill();
+      a.line(312, yT - 11, 312, yT + 11, on ? C.grid : S.azul, 3);
+      a.txt('D', 302, yT - 20, C.text, 13, 'center');
+      hilo(312, yT, xC, yT, !on, S.azul);
+      // condensador y carga (la carga conduce siempre)
+      hilo(xC, yT, xR, yT, true, S.azul);
+      hilo(xC, yT, xC, 104, true, S.azul);
+      a.line(xC - 13, 104, xC + 13, 104, C.text, 2.4); a.line(xC - 13, 113, xC + 13, 113, C.text, 2.4);
+      hilo(xC, 113, xC, yB, true, S.azul);
+      a.txt('C', xC - 28, 113, C.text, 13);
+      hilo(xR, yT, xR, 92, true, S.azul);
+      g.strokeStyle = C.text; g.lineWidth = 2; g.strokeRect(xR - 8, 92, 16, 44);
+      hilo(xR, 136, xR, yB, true, S.azul);
+      a.txt('R', xR + 14, 118, C.text, 13);
+      a.line(xL, yB, xR, yB, C.muted, 1.6);
+      a.txt('V_in', xL - 2, yT - 12, C.text, 12.5);
+      a.line(xL, yT - 6, xL, yT + 6, C.text, 2); a.line(xL - 8, yB, xL + 8, yB, C.text, 2);
+      a.circ(xN, yT, 4, C.text, true); a.circ(xC, yT, 4, C.text, true);
+      a.txt('V_o', xC + 8, yT - 12, C.text, 12.5);
+      // cargas en movimiento por el camino activo
+      const camino = on ? [[xL, yT], [xN, yT], [xN, yB]] : [[xL, yT], [xC, yT], [xR, yT], [xR, yB]];
+      let largo = 0; const tr = [];
+      for (let k = 1; k < camino.length; k++) { const l = Math.hypot(camino[k][0] - camino[k - 1][0], camino[k][1] - camino[k - 1][1]); tr.push(l); largo += l; }
+      const av = (fase * 3) % 1;
+      for (let n = 0; n < 6; n++) {
+        let s = ((n / 6 + av / 6) % 1) * largo, k = 0;
+        while (k < tr.length - 1 && s > tr[k]) { s -= tr[k]; k++; }
+        const u = Math.min(1, s / tr[k]);
+        a.circ(camino[k][0] + (camino[k + 1][0] - camino[k][0]) * u, camino[k][1] + (camino[k + 1][1] - camino[k][1]) * u, 4, col, true);
+      }
+      // estado
+      const chip = (x, w, t, c) => { g.strokeStyle = c; g.lineWidth = 1.6; g.beginPath(); g.roundRect ? g.roundRect(x, 196, w, 24, 12) : g.rect(x, 196, w, 24); g.stroke(); a.txt(t, x + w / 2, 213, c, 12, 'center'); };
+      chip(44, 130, on ? 'S cerrado' : 'S abierto', col);
+      chip(184, 130, on ? 'L se carga' : 'L se descarga', col);
+      chip(324, 130, on ? 'C alimenta a R' : 'C se recarga', S.azul);
+      // ---------- barras de tensión ----------
+      const bx = 520, bb = 176, esc = 150 / Math.max(Vid, 30);
+      a.line(bx - 14, bb, bx + 124, bb, C.muted, 1.4);
+      g.fillStyle = C.muted; g.fillRect(bx, bb - st.Vin * esc, 38, st.Vin * esc);
+      g.fillStyle = S.rojo; g.fillRect(bx + 62, bb - Vo * esc, 38, Vo * esc);
+      a.line(bx + 54, bb - Vid * esc, bx + 108, bb - Vid * esc, C.text, 1.4, [4, 3]);
+      a.txt('ideal', bx + 112, bb - Vid * esc + 4, C.muted, 10.5);
+      a.txt('V_in', bx + 19, bb + 16, C.text, 12, 'center'); a.txt('V_o', bx + 81, bb + 16, C.text, 12, 'center');
+      a.txt(nf(st.Vin, 1) + ' V', bx + 19, bb - st.Vin * esc - 6, C.text, 11.5, 'center');
+      a.txt(nf(Vo, 1) + ' V', bx + 81, Math.max(14, bb - Vo * esc - 6), S.rojo, 12, 'center');
+      // ---------- i_L ----------
+      const px = 44, py = 244, pw = 340, ph = 96, NP = 3;
+      a.txt('i_L en la bobina', px, py - 8, C.text, 12.5);
+      const lo = Math.max(0, IL - dI / 2), hi = lo + dI, top = Math.max(hi * 1.25, 0.2);
+      const Y = v => py + ph - v / top * ph;
+      for (let k = 0; k < NP; k++) {
+        const x0 = px + k * pw / NP, wOn = D * pw / NP;
+        g.save(); g.globalAlpha = .13; g.fillStyle = S.rojo; g.fillRect(x0, py, wOn, ph);
+        g.fillStyle = S.azul; g.fillRect(x0 + wOn, py, pw / NP - wOn, ph); g.restore();
+      }
+      a.line(px, py + ph, px + pw, py + ph, C.muted, 1.4); a.line(px, py, px, py + ph, C.muted, 1.4);
+      g.strokeStyle = S.morado; g.lineWidth = 2.6; g.beginPath(); g.moveTo(px, Y(lo));
+      for (let k = 0; k < NP; k++) { const x0 = px + k * pw / NP; g.lineTo(x0 + D * pw / NP, Y(hi)); g.lineTo(x0 + pw / NP, Y(lo)); }
+      g.stroke();
+      a.line(px, Y(IL), px + pw, Y(IL), C.muted, 1, [4, 3]);
+      a.txt('media I_L = ' + nf(IL) + ' A', px + pw, py - 8, C.muted, 11.5, 'right');
+      const xc = px + (1 + fase) * pw / NP, ic = on ? lo + dI * fase / D : hi - dI * (fase - D) / d1;
+      a.line(xc, py, xc, py + ph, C.text, 1); a.circ(xc, Y(ic), 4.5, S.morado, true);
+      a.txt('ON', px + 4, py + ph + 15, S.rojo, 11); a.txt('OFF', px + 34, py + ph + 15, S.azul, 11);
+      // ---------- M(D) ----------
+      const mx = 440, my = 244, mw = 210, mh = 96, Mtop = 10;
+      a.txt('Ganancia M = V_o / V_in', mx, my - 8, C.text, 12.5);
+      a.line(mx, my + mh, mx + mw, my + mh, C.muted, 1.4); a.line(mx, my, mx, my + mh, C.muted, 1.4);
+      const MX = d => mx + d * mw, MY = m => my + mh - Math.min(m, Mtop) / Mtop * mh;
+      g.save(); g.beginPath(); g.rect(mx, my, mw, mh); g.clip();
+      g.strokeStyle = C.muted; g.lineWidth = 1.4; g.setLineDash([5, 4]); g.beginPath();
+      for (let k = 0; k <= 95; k++) { const d = k / 100; k ? g.lineTo(MX(d), MY(1 / (1 - d))) : g.moveTo(MX(d), MY(1)); }
+      g.stroke(); g.setLineDash([]);
+      g.strokeStyle = S.rojo; g.lineWidth = 2.6; g.beginPath();
+      for (let k = 0; k <= 99; k++) { const d = k / 100, e = 1 - d, m = e / (e * e + st.rL / st.R); k ? g.lineTo(MX(d), MY(m)) : g.moveTo(MX(d), MY(m)); }
+      g.stroke(); g.restore();
+      a.circ(MX(D), MY(Vo / st.Vin), 5, C.text, true);
+      a.txt('D', mx + mw, my + mh + 15, C.muted, 11, 'right'); a.txt('0', mx, my + mh + 15, C.muted, 11, 'center');
+      a.txt('ideal 1/(1−D)', mx + 8, my + 14, C.muted, 10.5); a.txt('real', mx + 8, my + 30, S.rojo, 10.5);
+      a.txt('Balance voltios·segundo en L (ideal):  V_in·D = (V_o − V_in)·(1 − D)', 44, 400, C.text, 12.5);
+      a.txt(mcc ? 'Conducción continua: i_L no llega a cero.' : 'Ojo: con esta carga i_L llega a cero (conducción discontinua) y la fórmula ya no vale.',
+            44, 420, mcc ? C.muted : S.rojo, 11.5);
+      const clave = [D, st.Vin, st.R, st.L, st.rL].join('|');
+      if (clave !== ultimo) {
+        ultimo = clave;
+        const Dm = 1 - Math.sqrt(st.rL / st.R);
+        a.html('Ideal: V_o = V_in/(1 − D) = <b>' + nf(Vid, 1) + ' V</b> · con r_L: <b>' + nf(Vo, 1) + ' V</b> · '
+          + 'I_L = V_o/(R(1 − D)) = <b>' + nf(IL) + ' A</b> · Δi_L = V_in·D/(L·f) = <b>' + nf(dI) + ' A</b> a 100 kHz · '
+          + 'η = <b>' + nf(100 * Vo * Vo / st.R / (st.Vin * IL), 1) + ' %</b><br>'
+          + 'Con S cerrado la bobina ve V_in y su corriente sube; al abrir, la bobina no deja que la corriente se corte, '
+          + 'su tensión cambia de signo y <b>se suma a V_in</b>: por eso la salida queda por encima de la entrada.<br>'
+          + (st.rL > 0
+            ? 'La curva ideal sube sin límite, la real no: como I_L crece con 1/(1 − D)², la caída en r_L acaba ganando. '
+              + 'Con estos valores el máximo es M = ' + nf(1 / (2 * Math.sqrt(st.rL / st.R)), 1) + ' en D = ' + nf(Dm) + '; pasar de ahí <b>baja</b> la salida.'
+            : 'Con r_L = 0 la ganancia crecería sin límite al acercar D a 1. Sube r_L y verás que una bobina real lo impide.'));
+      }
+    }
+  };
+  const api = build(el, spec);
+  quieto = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let visto = true, t0 = null;
+  if ('IntersectionObserver' in window) new IntersectionObserver(e => { visto = e[0].isIntersecting; }).observe(api.cv);
+  function paso(t) {
+    if (t0 === null) t0 = t;
+    if (visto && !quieto && api.st.anim === 'si' && !document.hidden) { fase = (fase + (t - t0) / 3200) % 1; spec.draw(api); }
+    t0 = t; requestAnimationFrame(paso);
+  }
+  requestAnimationFrame(paso);
+};
+/* ---- fin sim elevador ---- */
 document.querySelectorAll("[data-sim]").forEach(function(el){var k=el.getAttribute("data-sim");if(SIMS[k]){try{SIMS[k](el);}catch(e){console.error("sim "+k,e);}}else console.warn("sim no encontrada: "+k);});
 })();
