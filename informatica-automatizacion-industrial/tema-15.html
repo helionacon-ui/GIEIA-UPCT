@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T15 Inteligencia artificial en sistemas industriales · Informática para la Automatización Industrial · Apuntes</title>
+<meta name="description" content="Informática para la Automatización Industrial (GIEyA): tema 15, Inteligencia artificial en sistemas industriales">
+
+
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<script src="asig-nav.js" defer></script>
+
+<style id="lectura">
+@media screen{
+:root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
+body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
+p{margin:0 0 1.75em}
+li{margin:.8em 0}
+p,li{max-width:62ch}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
+h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
+h4{margin-top:34px;margin-bottom:10px}
+.box{padding:24px 30px;margin:32px 0}
+table{font-size:18px;line-height:1.75}
+td,th{padding-top:.85em;padding-bottom:.85em}
+figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+figure.fig{margin-block:34px}
+.lede{line-height:1.85}
+.toc a{font-size:16.5px;padding:8px 0 8px 10px}
+svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+details>summary{line-height:1.7;padding-block:.5em}
+@media (max-width:600px){body{font-size:19px;line-height:2}}
+}
+</style>
+
+<script>(function(){try{var d=document.documentElement,s=localStorage,p=s.getItem("apuntes-piel");if(p==="min")d.setAttribute("data-piel","min");var t=s.getItem("apuntes-tema");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);var f=s.getItem("apuntes-fondo");if(f)d.setAttribute("data-fondo",f);}catch(e){}})();</script>
+<link rel="stylesheet" href="piel.css?v=4">
+<script src="piel.js?v=4" defer></script>
+<script src="sugerencias.js?v=2" defer></script>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1d5f7a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Inf. Autom.">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+<script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados de unos apuntes de teoría (55 cuestiones respondidas) y del programa oficial del curso <time datetime="2026-09">2026/27</time>, con el que se han elaborado los temas que los apuntes no cubren · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Informática para la Automatización Industrial</a><span class="sep">›</span><span>UD7 · Integración avanzada</span><span class="sep">›</span><span>T15 · Inteligencia artificial en sistemas industriales</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Evaluación y temario oficial</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">UD1 · Arquitectura</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Informática industrial y pirámide de la automatización</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Redes: LAN, WAN, topologías, OSI y TCP/IP</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Buses de campo: PROFIBUS, PROFINET, MODBUS, CAN y DCS</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Firmware, microcontroladores y PLC</a><div class="grp">UD2 · Supervisión y SCADA</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Sistemas operativos</a><a href="tema-06.html" style="--tc:var(--c7)">T6 SCADA, RTU, MTU y HMI</a><a href="tema-07.html" style="--tc:var(--c2)">T7 OPC UA: comunicación con los PLC</a><div class="grp">UD3 · Programación</div><a href="tema-08.html" style="--tc:var(--c3)">T8 Programas, procesos y C++ orientado a objetos</a><a href="tema-09.html" style="--tc:var(--c4)">T9 Qt: eventos, signal-slot y diseño de HMI</a><a href="tema-10.html" style="--tc:var(--c5)">T10 Concurrencia: procesos, hilos y tiempo real</a><div class="grp">UD4 · Ingeniería del software</div><a href="tema-11.html" style="--tc:var(--c6)">T11 Ingeniería del software: arquitectura, SOA, microservicios y middleware</a><div class="grp">UD5 · Sistemas distribuidos y ROS2</div><a href="tema-12.html" style="--tc:var(--c7)">T12 Sistemas distribuidos y ROS2</a><div class="grp">UD6 · Integración empresarial</div><a href="tema-13.html" style="--tc:var(--c2)">T13 Sistemas MES y ERP</a><a href="tema-14.html" style="--tc:var(--c3)">T14 Industria 4.0, cloud, datos OT/IT y ciberseguridad</a><div class="grp">UD7 · Integración avanzada</div><a href="tema-15.html" style="--tc:var(--c4)" class="on" aria-current="page">T15 Inteligencia artificial en sistemas industriales</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Las 133 cuestiones</a><a href="examenes.html" style="--tc:var(--c8)">Problemas resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c8)">Prácticas</a><a href="formulario.html" style="--tc:var(--c8)">Chuleta</a><a href="siglas.html" style="--tc:var(--c8)">Siglas y comparativas</a></nav>
+<main>
+<section class="sec" style="--tc:var(--c4);--tcs:var(--c4s)"><div class="sh"><span aria-hidden="true" class="badge">15</span><div class="shx"><p class="kick">UD7 · Integración avanzada · Tema 15</p><h2 id="t15">Inteligencia artificial en sistemas industriales</h2><div class="tags"><span class="tag">7 cuestiones</span><span class="tag">UD7</span><span class="tag">elaborado del programa</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Definir agente inteligente y agente basado en LLM, conocer los usos y riesgos de la IA generativa en planta, qué son los conectores y las APIs y cómo se preparan los datos industriales para la IA.</p><p class="ft">La idea</p><p>La IA entra en la fábrica por arriba: no controla las máquinas, sino que <b>ayuda a las personas</b> a entender lo que pasa. Escribe informes, contesta preguntas y propone diagnósticos.</p><p class="ft">Los agentes</p><p>Un <b>agente</b> percibe, decide y actúa. Si el cerebro es un modelo de lenguaje y se le dan herramientas (leer variables, consultar el historiador), puede resolver tareas de varios pasos.</p><p class="ft">La regla</p><p>La IA <b>propone</b> y una persona <b>valida</b>. Nunca en el lazo de control ni en funciones de seguridad, y siempre con datos reales y contexto.</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Siglas del tema 15 <span class="src">3 entradas</span></summary><div class="inner"><div class="tw"><table><tr><th>Sigla</th><th>Significado</th><th>Qué es</th></tr><tr><td class="sym">LLM</td><td>Large Language Model</td><td class="u">Modelo de lenguaje grande</td></tr><tr><td class="sym">RAG</td><td>Retrieval-Augmented Generation</td><td class="u">Dar al modelo documentos relevantes con la pregunta</td></tr><tr><td class="sym">API</td><td>Application Programming Interface</td><td class="u">Interfaz que un programa ofrece a otros</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva · detección de anomalías con la puntuación z</p><div data-sim="anomalia"></div><figcaption>Mueve el umbral k y mira cuántas falsas alarmas y cuántos fallos reales detectas.</figcaption></figure>
+<div class="box key"><h4>Truco para acordarte</h4><p><b>Truco de los usos de la IA generativa en planta:</b> «<b>IAD</b>»: <b>I</b>nformes, <b>A</b>sistencia al operador y <b>D</b>iagnóstico básico. Los tres puntos del programa oficial.</p></div>
+<div class="box trap"><h4>Error típico</h4><p>Dejar que un modelo de lenguaje tome decisiones de control o de seguridad. Puede inventarse una respuesta convincente: siempre <b>supervisión humana</b> y datos verificables.</p></div>
+<p class="muted" style="font-size:15px">Este tema no está en los apuntes: está <b>elaborado a partir del programa oficial</b> de la asignatura. Contrástalo con lo que se explique en clase.</p>
+<h3 id="cuestiones">Las cuestiones del tema, respondidas</h3>
+<p class="muted">Intenta contestar cada una antes de abrir la respuesta. Lo que va en <b>negrita</b> son las palabras que no pueden faltar.</p>
+<div class="prob" id="q127"><div class="enun"><p class="et">Cuestión 127 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Qué es un agente inteligente?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>Un sistema que <b>percibe su entorno</b> (con sensores o datos), <b>decide</b> y <b>actúa</b> (con actuadores o herramientas) para cumplir un <b>objetivo</b>.</p><ul><li><b>Reactivo simple</b>: reglas condición-acción.</li><li><b>Basado en modelo</b>: recuerda el estado del mundo.</li><li><b>Basado en objetivos</b> y <b>basado en utilidad</b>: elige la acción que mejor cumple su meta.</li><li><b>Que aprende</b>: mejora con la experiencia.</li></ul></div></details></div>
+<div class="prob" id="q128"><div class="enun"><p class="et">Cuestión 128 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Qué es un agente basado en un modelo de lenguaje?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>Un modelo de lenguaje grande (<b>LLM</b>) al que se le dan <b>herramientas</b> (consultar una base de datos, leer una variable OPC UA, generar un informe) y que trabaja en un <b>bucle</b>: razona qué hacer, llama a una herramienta, mira el resultado y sigue hasta cumplir la tarea.</p><p>Sus piezas: el modelo, las herramientas (APIs), una <b>memoria</b> o contexto y unas <b>instrucciones</b> que delimitan lo que puede hacer.</p></div></details></div>
+<div class="prob" id="q129"><div class="enun"><p class="et">Cuestión 129 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Para qué se usa la IA generativa en entornos industriales?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><ul><li><b>Generar informes</b>: resúmenes de turno, de producción o de incidencias a partir de los datos.</li><li><b>Asistente del operador</b>: preguntas en lenguaje natural sobre la planta, los manuales o los procedimientos.</li><li><b>Diagnóstico básico</b>: proponer causas probables de una alarma a partir del historial.</li><li><b>Ingeniería</b>: ayudar a escribir código PLC o C++, documentación y pruebas.</li></ul></div></details></div>
+<div class="prob" id="q130"><div class="enun"><p class="et">Cuestión 130 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Qué riesgos tiene la IA generativa en la industria y cómo se limitan?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><ul><li><b>Alucinaciones</b>: respuestas convincentes pero falsas. Se limitan dando datos reales al modelo (RAG) y exigiendo que cite la fuente.</li><li><b>Confidencialidad</b>: no enviar datos de la empresa a servicios externos sin control.</li><li><b>No debe estar en el lazo de control</b> crítico ni en funciones de seguridad: propone, y una <b>persona valida</b> (human in the loop).</li><li><b>Responsabilidad y trazabilidad</b>: registrar qué ha hecho y por qué.</li></ul></div></details></div>
+<div class="prob" id="q131"><div class="enun"><p class="et">Cuestión 131 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Qué son los conectores y las APIs en un sistema con IA?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>Una <b>API</b> es la interfaz con la que un programa ofrece sus funciones a otros; las más comunes son <b>REST</b> sobre HTTP con datos en <b>JSON</b> y una clave de autenticación.</p><p>Los <b>conectores</b> son las piezas que dan al modelo acceso a esas APIs como herramientas (function calling). Existen estándares abiertos, como el <b>Model Context Protocol</b> (MCP), para conectar modelos con fuentes de datos y herramientas de forma uniforme.</p></div></details></div>
+<div class="prob" id="q132"><div class="enun"><p class="et">Cuestión 132 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Cómo se integran los datos industriales en un sistema de IA?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><ul><li><b>Limpiar y contextualizar</b>: unidades, nombres de variables, marcas de tiempo, estados de la máquina. Un número sin contexto no le sirve a nadie.</li><li><b>Agregar</b>: resúmenes y eventos en lugar de millones de muestras.</li><li><b>RAG</b> (generación aumentada por recuperación): buscar en manuales, históricos y procedimientos lo relevante y dárselo al modelo junto con la pregunta.</li><li>Para <b>series temporales</b> (vibraciones, temperaturas) se usa aprendizaje automático clásico: detección de anomalías y mantenimiento predictivo.</li></ul></div></details></div>
+<div class="prob" id="q133"><div class="enun"><p class="et">Cuestión 133 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Cómo se detecta una anomalía en una señal de proceso de forma sencilla?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>Con la puntuación <b>z</b>: se calcula la media μ y la desviación típica σ de la señal en funcionamiento normal y se marca como anómala cada muestra con</p><p style="text-align:center"><b>|x − μ| / σ &gt; k</b></p><p>con un umbral k típico de 3. Si k es bajo salen <b>falsas alarmas</b>; si es alto, se <b>escapan fallos</b>. Es la base del diagnóstico básico antes de usar modelos más complejos.</p></div></details></div>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-14.html"><small>← Anterior</small>T14 · Industria 4.0, cloud, datos OT/IT y ciberseguridad</a><a class="nx" href="cuestiones.html"><small>Siguiente →</small>Las 133 cuestiones</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Informática para la Automatización Industrial (GIEyA) · Datos tomados de unos apuntes de teoría (55 cuestiones respondidas) y del programa oficial del curso <time datetime="2026-09">2026/27</time>, con el que se han elaborado los temas que los apuntes no cubren · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

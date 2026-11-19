@@ -1,7 +1,7 @@
 // Guarda la guía para poder leerla sin conexión.
 // Las páginas se piden primero a la red, así que una actualización se ve en cuanto hay cobertura.
 const CACHE = 'informatica-automatizacion-v1';
-const CORE = ["./", "./app.js", "./asig-nav.js", "./buscador-index.js", "./cuestiones.html", "./index.html", "./manifest.webmanifest", "./piel.css?v=4", "./piel.js?v=4", "./plan.html", "./siglas.html", "./style.css", "./sugerencias.js?v=2", "./tema-01.html", "./tema-02.html", "./tema-03.html", "./tema-04.html", "./tema-05.html", "./tema-06.html"];
+const CORE = ["./", "./app.js", "./asig-nav.js", "./buscador-index.js", "./cuestiones.html", "./examenes.html", "./formulario.html", "./index.html", "./laboratorio.html", "./manifest.webmanifest", "./piel.css?v=4", "./piel.js?v=4", "./plan.html", "./problemas.html", "./siglas.html", "./sims.js", "./style.css", "./sugerencias.js?v=2", "./tema-01.html", "./tema-02.html", "./tema-03.html", "./tema-04.html", "./tema-05.html", "./tema-06.html", "./tema-07.html", "./tema-08.html", "./tema-09.html", "./tema-10.html", "./tema-11.html", "./tema-12.html", "./tema-13.html", "./tema-14.html", "./tema-15.html"];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE)
     .then(c => Promise.all(CORE.map(u => c.add(new Request(u, {mode: u.startsWith('http') ? 'no-cors' : 'same-origin'})).catch(() => {}))))

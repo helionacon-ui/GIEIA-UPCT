@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T9 Qt: eventos, signal-slot y diseño de HMI · Informática para la Automatización Industrial · Apuntes</title>
+<meta name="description" content="Informática para la Automatización Industrial (GIEyA): tema 9, Qt: eventos, signal-slot y diseño de HMI">
+
+
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<script src="asig-nav.js" defer></script>
+
+<style id="lectura">
+@media screen{
+:root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
+body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
+p{margin:0 0 1.75em}
+li{margin:.8em 0}
+p,li{max-width:62ch}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
+h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
+h4{margin-top:34px;margin-bottom:10px}
+.box{padding:24px 30px;margin:32px 0}
+table{font-size:18px;line-height:1.75}
+td,th{padding-top:.85em;padding-bottom:.85em}
+figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+figure.fig{margin-block:34px}
+.lede{line-height:1.85}
+.toc a{font-size:16.5px;padding:8px 0 8px 10px}
+svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+details>summary{line-height:1.7;padding-block:.5em}
+@media (max-width:600px){body{font-size:19px;line-height:2}}
+}
+</style>
+
+<script>(function(){try{var d=document.documentElement,s=localStorage,p=s.getItem("apuntes-piel");if(p==="min")d.setAttribute("data-piel","min");var t=s.getItem("apuntes-tema");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);var f=s.getItem("apuntes-fondo");if(f)d.setAttribute("data-fondo",f);}catch(e){}})();</script>
+<link rel="stylesheet" href="piel.css?v=4">
+<script src="piel.js?v=4" defer></script>
+<script src="sugerencias.js?v=2" defer></script>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1d5f7a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Inf. Autom.">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+<script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados de unos apuntes de teoría (55 cuestiones respondidas) y del programa oficial del curso <time datetime="2026-09">2026/27</time>, con el que se han elaborado los temas que los apuntes no cubren · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Informática para la Automatización Industrial</a><span class="sep">›</span><span>UD3 · Programación</span><span class="sep">›</span><span>T9 · Qt: eventos, signal-slot y diseño de HMI</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Evaluación y temario oficial</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">UD1 · Arquitectura</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Informática industrial y pirámide de la automatización</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Redes: LAN, WAN, topologías, OSI y TCP/IP</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Buses de campo: PROFIBUS, PROFINET, MODBUS, CAN y DCS</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Firmware, microcontroladores y PLC</a><div class="grp">UD2 · Supervisión y SCADA</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Sistemas operativos</a><a href="tema-06.html" style="--tc:var(--c7)">T6 SCADA, RTU, MTU y HMI</a><a href="tema-07.html" style="--tc:var(--c2)">T7 OPC UA: comunicación con los PLC</a><div class="grp">UD3 · Programación</div><a href="tema-08.html" style="--tc:var(--c3)">T8 Programas, procesos y C++ orientado a objetos</a><a href="tema-09.html" style="--tc:var(--c4)" class="on" aria-current="page">T9 Qt: eventos, signal-slot y diseño de HMI</a><a href="tema-10.html" style="--tc:var(--c5)">T10 Concurrencia: procesos, hilos y tiempo real</a><div class="grp">UD4 · Ingeniería del software</div><a href="tema-11.html" style="--tc:var(--c6)">T11 Ingeniería del software: arquitectura, SOA, microservicios y middleware</a><div class="grp">UD5 · Sistemas distribuidos y ROS2</div><a href="tema-12.html" style="--tc:var(--c7)">T12 Sistemas distribuidos y ROS2</a><div class="grp">UD6 · Integración empresarial</div><a href="tema-13.html" style="--tc:var(--c2)">T13 Sistemas MES y ERP</a><a href="tema-14.html" style="--tc:var(--c3)">T14 Industria 4.0, cloud, datos OT/IT y ciberseguridad</a><div class="grp">UD7 · Integración avanzada</div><a href="tema-15.html" style="--tc:var(--c4)">T15 Inteligencia artificial en sistemas industriales</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Las 133 cuestiones</a><a href="examenes.html" style="--tc:var(--c8)">Problemas resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c8)">Prácticas</a><a href="formulario.html" style="--tc:var(--c8)">Chuleta</a><a href="siglas.html" style="--tc:var(--c8)">Siglas y comparativas</a></nav>
+<main>
+<section class="sec" style="--tc:var(--c4);--tcs:var(--c4s)"><div class="sh"><span aria-hidden="true" class="badge">9</span><div class="shx"><p class="kick">UD3 · Programación · Tema 9</p><h2 id="t9">Qt: eventos, signal-slot y diseño de HMI</h2><div class="tags"><span class="tag">7 cuestiones</span><span class="tag">UD3</span><span class="tag">elaborado del programa</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Explicar la programación orientada a eventos, el mecanismo signal-slot y sus tipos de conexión, y cómo se monta una HMI en Qt.</p><p class="ft">La idea</p><p>Una HMI no ejecuta instrucciones de arriba abajo: <b>espera</b>. Cuando pasa algo (un clic, un dato nuevo, un temporizador) reacciona. Eso es la <b>programación orientada a eventos</b>.</p><p class="ft">Signal-slot</p><p>En Qt los objetos se hablan con <b>señales</b> y <b>slots</b>: el sensor emite «he cambiado» y la barra de nivel, conectada a esa señal, se actualiza. El sensor no sabe quién le escucha.</p><p class="ft">La interfaz</p><p>Se dibuja con Qt Designer o QML, se organiza con layouts y se refresca con temporizadores o suscripciones. La regla de oro: la interfaz solo se toca desde el <b>hilo principal</b>.</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Siglas del tema 9 <span class="src">2 entradas</span></summary><div class="inner"><div class="tw"><table><tr><th>Sigla</th><th>Significado</th><th>Qué es</th></tr><tr><td class="sym">moc</td><td>Meta-Object Compiler</td><td class="u">Genera el código de señales y slots de Qt</td></tr><tr><td class="sym">QML</td><td>Qt Modeling Language</td><td class="u">Lenguaje declarativo de interfaces de Qt Quick</td></tr></table></div></div></details>
+<p class="ft" style="margin-bottom:4px">C++</p><pre class="code">// Un sensor que avisa cuando cambia su nivel
+class Sensor : public QObject {
+    Q_OBJECT                                   // necesario para señales y slots
+public:
+    void actualizar(int v) { if (v != nivel_) { nivel_ = v; emit nivelCambiado(v); } }
+signals:
+    void nivelCambiado(int nuevo);
+private:
+    int nivel_ = 0;
+};
+
+// En la ventana principal: una línea conecta el dato con la pantalla
+connect(sensor, &amp;Sensor::nivelCambiado, ui-&gt;barraNivel, &amp;QProgressBar::setValue);
+connect(sensor, &amp;Sensor::nivelCambiado, this, [this](int v) {
+    ui-&gt;alarma-&gt;setVisible(v &gt; 90);            // un slot puede ser una lambda
+});</pre><figure class="fig"><p class="ft">Figura interactiva · conexión directa frente a conexión en cola</p><div data-sim="eventos"></div><figcaption>Elige el tipo de conexión y mira en qué orden se ejecutan las cosas.</figcaption></figure>
+<div class="box key"><h4>Truco para acordarte</h4><p><b>Truco:</b> «la <b>señal</b> es un <b>aviso</b>, el <b>slot</b> es la <b>reacción</b>, y <code>connect</code> es el <b>cable</b>». Entre hilos, el cable siempre es <b>en cola</b>.</p></div>
+<div class="box trap"><h4>Error típico</h4><p>Olvidar la macro <code>Q_OBJECT</code> (las señales no funcionan y el error del enlazador es críptico) o modificar un widget desde un hilo de trabajo en vez de emitir una señal.</p></div>
+<p class="muted" style="font-size:15px">Este tema no está en los apuntes: está <b>elaborado a partir del programa oficial</b> de la asignatura. Contrástalo con lo que se explique en clase.</p>
+<h3 id="cuestiones">Las cuestiones del tema, respondidas</h3>
+<p class="muted">Intenta contestar cada una antes de abrir la respuesta. Lo que va en <b>negrita</b> son las palabras que no pueden faltar.</p>
+<div class="prob" id="q74"><div class="enun"><p class="et">Cuestión 74 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Qué es la programación orientada a eventos?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>Un estilo en el que el programa <b>no sigue una secuencia fija</b>: espera y <b>reacciona a eventos</b> (un clic, una tecla, un temporizador, un dato que llega de la red) ejecutando la función asociada.</p><p>El corazón es el <b>bucle de eventos</b>: recoge los eventos en una cola y los reparte. En Qt se arranca con <code>app.exec()</code> en <code>main</code>.</p></div></details></div>
+<div class="prob" id="q75"><div class="enun"><p class="et">Cuestión 75 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Qué es un evento en Qt?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>Un <b>objeto</b> (derivado de <code>QEvent</code>) que representa algo que ha pasado: <code>QMouseEvent</code>, <code>QKeyEvent</code>, <code>QTimerEvent</code>, <code>QPaintEvent</code>. El bucle de eventos lo entrega al objeto destinatario, que lo trata en un método como <code>mousePressEvent()</code>.</p></div></details></div>
+<div class="prob" id="q76"><div class="enun"><p class="et">Cuestión 76 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Qué es el mecanismo signal-slot de Qt?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>Es la forma de comunicar objetos en Qt. Un objeto <b>emite una señal</b> cuando le pasa algo (<code>emit nivelCambiado(v)</code>) y esa señal se <b>conecta</b> a uno o varios <b>slots</b>, que son funciones normales de otros objetos.</p><p class="ft" style="margin-bottom:4px">C++</p><pre class="code">connect(sensor, &amp;Sensor::nivelCambiado, ui-&gt;barraNivel, &amp;QProgressBar::setValue);</pre><p>La gran ventaja es el <b>desacoplamiento</b>: el emisor no sabe quién le escucha. Para usarlo, la clase hereda de <code>QObject</code> y lleva la macro <code>Q_OBJECT</code>; la herramienta <b>moc</b> genera el código necesario.</p></div></details></div>
+<div class="prob" id="q77"><div class="enun"><p class="et">Cuestión 77 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Qué tipos de conexión signal-slot existen?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><ul><li><b>Directa</b> (DirectConnection): el slot se ejecuta <b>en el momento</b> de emitir, en el hilo del emisor, como una llamada normal.</li><li><b>En cola</b> (QueuedConnection): la llamada se mete en la <b>cola de eventos del hilo del receptor</b> y se ejecuta cuando ese bucle de eventos llegue a ella.</li><li><b>Automática</b> (por defecto): directa si emisor y receptor están en el mismo hilo, en cola si están en hilos distintos.</li></ul><p>Por eso un hilo de trabajo puede actualizar la interfaz sin peligro: su señal llega <b>en cola</b> al hilo principal.</p></div></details></div>
+<div class="prob" id="q78"><div class="enun"><p class="et">Cuestión 78 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Qué diferencia hay entre señales/slots y callbacks?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>Un <b>callback</b> es un puntero a función que se pasa a otra función para que lo llame: acoplado, sin comprobación de tipos y con un solo destinatario. Las <b>señales y slots</b> comprueban los tipos al compilar, permiten <b>varios receptores</b>, se desconectan solas cuando un objeto se destruye y funcionan <b>entre hilos</b>.</p></div></details></div>
+<div class="prob" id="q79"><div class="enun"><p class="et">Cuestión 79 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Cómo se diseña la interfaz de una HMI en Qt?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><ul><li>Con <b>Qt Widgets</b> (ventanas clásicas, se diseñan con <b>Qt Designer</b> en ficheros <code>.ui</code>) o con <b>Qt Quick/QML</b> (interfaces fluidas y táctiles, lenguaje declarativo).</li><li>Los elementos se colocan con <b>layouts</b> (QVBoxLayout, QHBoxLayout, QGridLayout), que se adaptan al tamaño de la ventana.</li><li>Widgets típicos de una HMI: <code>QLabel</code>, <code>QPushButton</code>, <code>QProgressBar</code> o <code>QLCDNumber</code> para valores, gráficos con <b>Qt Charts</b>.</li><li>Un <code>QTimer</code> o una suscripción OPC UA refresca los valores; y conviene seguir la <b>ISA-101</b>: grises, color solo para alarmas.</li></ul></div></details></div>
+<div class="prob" id="q80"><div class="enun"><p class="et">Cuestión 80 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Por qué la interfaz de Qt no puede tocarse desde otro hilo?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>Porque los widgets <b>no son seguros entre hilos</b>: solo el <b>hilo principal</b> (el de la GUI) puede crearlos y modificarlos. Si un hilo de trabajo los toca directamente, el programa puede fallar de forma aleatoria. El hilo de trabajo debe <b>emitir una señal</b>, que llega en cola al hilo principal y allí se actualiza la pantalla.</p></div></details></div>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-08.html"><small>← Anterior</small>T8 · Programas, procesos y C++ orientado a objetos</a><a class="nx" href="tema-10.html"><small>Siguiente →</small>T10 · Concurrencia: procesos, hilos y tiempo real</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Informática para la Automatización Industrial (GIEyA) · Datos tomados de unos apuntes de teoría (55 cuestiones respondidas) y del programa oficial del curso <time datetime="2026-09">2026/27</time>, con el que se han elaborado los temas que los apuntes no cubren · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

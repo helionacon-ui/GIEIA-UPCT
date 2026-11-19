@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T7 OPC UA: comunicación con los PLC · Informática para la Automatización Industrial · Apuntes</title>
+<meta name="description" content="Informática para la Automatización Industrial (GIEyA): tema 7, OPC UA: comunicación con los PLC">
+
+
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<script src="asig-nav.js" defer></script>
+
+<style id="lectura">
+@media screen{
+:root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
+body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
+p{margin:0 0 1.75em}
+li{margin:.8em 0}
+p,li{max-width:62ch}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
+h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
+h4{margin-top:34px;margin-bottom:10px}
+.box{padding:24px 30px;margin:32px 0}
+table{font-size:18px;line-height:1.75}
+td,th{padding-top:.85em;padding-bottom:.85em}
+figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+figure.fig{margin-block:34px}
+.lede{line-height:1.85}
+.toc a{font-size:16.5px;padding:8px 0 8px 10px}
+svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+details>summary{line-height:1.7;padding-block:.5em}
+@media (max-width:600px){body{font-size:19px;line-height:2}}
+}
+</style>
+
+<script>(function(){try{var d=document.documentElement,s=localStorage,p=s.getItem("apuntes-piel");if(p==="min")d.setAttribute("data-piel","min");var t=s.getItem("apuntes-tema");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);var f=s.getItem("apuntes-fondo");if(f)d.setAttribute("data-fondo",f);}catch(e){}})();</script>
+<link rel="stylesheet" href="piel.css?v=4">
+<script src="piel.js?v=4" defer></script>
+<script src="sugerencias.js?v=2" defer></script>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1d5f7a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Inf. Autom.">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+<script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados de unos apuntes de teoría (55 cuestiones respondidas) y del programa oficial del curso <time datetime="2026-09">2026/27</time>, con el que se han elaborado los temas que los apuntes no cubren · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Informática para la Automatización Industrial</a><span class="sep">›</span><span>UD2 · Supervisión y SCADA</span><span class="sep">›</span><span>T7 · OPC UA: comunicación con los PLC</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Evaluación y temario oficial</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">UD1 · Arquitectura</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Informática industrial y pirámide de la automatización</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Redes: LAN, WAN, topologías, OSI y TCP/IP</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Buses de campo: PROFIBUS, PROFINET, MODBUS, CAN y DCS</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Firmware, microcontroladores y PLC</a><div class="grp">UD2 · Supervisión y SCADA</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Sistemas operativos</a><a href="tema-06.html" style="--tc:var(--c7)">T6 SCADA, RTU, MTU y HMI</a><a href="tema-07.html" style="--tc:var(--c2)" class="on" aria-current="page">T7 OPC UA: comunicación con los PLC</a><div class="grp">UD3 · Programación</div><a href="tema-08.html" style="--tc:var(--c3)">T8 Programas, procesos y C++ orientado a objetos</a><a href="tema-09.html" style="--tc:var(--c4)">T9 Qt: eventos, signal-slot y diseño de HMI</a><a href="tema-10.html" style="--tc:var(--c5)">T10 Concurrencia: procesos, hilos y tiempo real</a><div class="grp">UD4 · Ingeniería del software</div><a href="tema-11.html" style="--tc:var(--c6)">T11 Ingeniería del software: arquitectura, SOA, microservicios y middleware</a><div class="grp">UD5 · Sistemas distribuidos y ROS2</div><a href="tema-12.html" style="--tc:var(--c7)">T12 Sistemas distribuidos y ROS2</a><div class="grp">UD6 · Integración empresarial</div><a href="tema-13.html" style="--tc:var(--c2)">T13 Sistemas MES y ERP</a><a href="tema-14.html" style="--tc:var(--c3)">T14 Industria 4.0, cloud, datos OT/IT y ciberseguridad</a><div class="grp">UD7 · Integración avanzada</div><a href="tema-15.html" style="--tc:var(--c4)">T15 Inteligencia artificial en sistemas industriales</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Las 133 cuestiones</a><a href="examenes.html" style="--tc:var(--c8)">Problemas resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c8)">Prácticas</a><a href="formulario.html" style="--tc:var(--c8)">Chuleta</a><a href="siglas.html" style="--tc:var(--c8)">Siglas y comparativas</a></nav>
+<main>
+<section class="sec" style="--tc:var(--c2);--tcs:var(--c2s)"><div class="sh"><span aria-hidden="true" class="badge">7</span><div class="shx"><p class="kick">UD2 · Supervisión y SCADA · Tema 7</p><h2 id="t7">OPC UA: comunicación con los PLC</h2><div class="tags"><span class="tag">7 cuestiones</span><span class="tag">UD2</span><span class="tag">elaborado del programa</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Explicar qué es OPC UA, cómo organiza la información, qué servicios ofrece y por qué es la forma moderna de conectar un SCADA con un PLC.</p><p class="ft">La idea</p><p>Cada fabricante tiene su protocolo. <b>OPC UA</b> es el idioma común: cualquier cliente habla con cualquier servidor, y además sabe qué significa cada dato (unidad, rango, tipo).</p><p class="ft">Cliente y servidor</p><p>El <b>servidor</b> (por ejemplo dentro del PLC) publica un <b>espacio de direcciones</b> con objetos, variables y métodos. El <b>cliente</b> (la aplicación SCADA) lo recorre, lee, escribe y se suscribe a cambios.</p><p class="ft">Por qué importa en esta asignatura</p><p>El proyecto de prácticas conecta una aplicación C++/Qt con un PLC a través de OPC UA. Saber qué es un NodeId o una suscripción es la base para hacerlo funcionar.</p></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Siglas del tema 7 <span class="src">1 entradas</span></summary><div class="inner"><div class="tw"><table><tr><th>Sigla</th><th>Significado</th><th>Qué es</th></tr><tr><td class="sym">OPC UA</td><td>Open Platform Communications Unified Architecture</td><td class="u">Comunicación industrial independiente del fabricante (IEC 62541)</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura · Cliente y servidor OPC UA</p><svg viewBox="0 0 640 240" role="img" aria-label="Aplicación Qt cliente OPC UA conectada al servidor del PLC con su espacio de direcciones" style="width:100%;height:auto;font-family:system-ui,sans-serif">
+<defs><marker id="fo" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--muted)"/></marker></defs>
+<rect x="20" y="60" width="170" height="110" rx="12" fill="var(--c5s)" stroke="var(--c5)" stroke-width="2"/><text x="105" y="98" text-anchor="middle" font-weight="700" fill="var(--c5)" font-size="16">Cliente</text><text x="105" y="122" text-anchor="middle" fill="var(--fg)" font-size="13">aplicación C++/Qt</text><text x="105" y="142" text-anchor="middle" fill="var(--muted)" font-size="12">QOpcUaClient</text>
+<g stroke="var(--muted)" stroke-width="2" fill="none" marker-end="url(#fo)"><path d="M190,95 H286"/><path d="M290,140 H194"/></g>
+<text x="240" y="85" text-anchor="middle" font-size="12" fill="var(--muted)">Read · Write · Call</text><text x="240" y="160" text-anchor="middle" font-size="12" fill="var(--muted)">notificaciones</text>
+<text x="240" y="200" text-anchor="middle" font-size="12" fill="var(--muted)">opc.tcp://PLC:4840</text>
+<rect x="290" y="20" width="330" height="200" rx="12" fill="var(--c4s)" stroke="var(--c4)" stroke-width="2"/><text x="455" y="46" text-anchor="middle" font-weight="700" fill="var(--c4)" font-size="16">Servidor OPC UA del PLC</text>
+<g font-size="13" fill="var(--fg)" font-family="IBM Plex Mono, monospace"><text x="312" y="78">Objects</text><text x="330" y="102">└ Tanque1  (objeto)</text><text x="350" y="126">├ Nivel    = 72,4 %  (variable)</text><text x="350" y="150">├ Bomba    = ON      (variable)</text><text x="350" y="174">└ Vaciar() (método)</text><text x="312" y="204" fill="var(--muted)">NodeId: ns=3;s="Tanque1"."Nivel"</text></g>
+</svg><figcaption>El cliente no necesita saber nada del PLC por dentro: recorre el árbol, lee, escribe, llama métodos y se suscribe a los cambios.</figcaption></figure><figure class="fig"><p class="ft">Figura interactiva · lectura cíclica frente a suscripción</p><div data-sim="opcua"></div><figcaption>Compara el tráfico y el retraso de preguntar cada cierto tiempo con suscribirse a los cambios.</figcaption></figure>
+<div class="box key"><h4>Truco para acordarte</h4><p><b>Truco de los tres tipos de nodo:</b> los <b>objetos</b> son <b>cosas</b>, las <b>variables</b> son <b>valores</b> y los <b>métodos</b> son <b>órdenes</b>. Y el puerto, «<b>48-40</b>».</p></div>
+<div class="box trap"><h4>Error típico</h4><p>Refrescar un HMI con lecturas cíclicas muy rápidas. Satura la red y aun así se escapan cambios. Lo correcto es una <b>suscripción</b>: el servidor avisa solo cuando algo cambia.</p></div>
+<p class="muted" style="font-size:15px">Este tema no está en los apuntes: está <b>elaborado a partir del programa oficial</b> de la asignatura. Contrástalo con lo que se explique en clase.</p>
+<h3 id="cuestiones">Las cuestiones del tema, respondidas</h3>
+<p class="muted">Intenta contestar cada una antes de abrir la respuesta. Lo que va en <b>negrita</b> son las palabras que no pueden faltar.</p>
+<div class="prob" id="q59"><div class="enun"><p class="et">Cuestión 59 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Qué es OPC UA?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p><b>OPC UA</b> (Open Platform Communications Unified Architecture, norma <b>IEC 62541</b>) es un estándar de comunicación industrial <b>independiente del fabricante y de la plataforma</b>.</p><p>Sustituye al OPC clásico, que dependía de la tecnología COM/DCOM de Windows. OPC UA funciona en Windows, Linux o un PLC, y no solo transporta datos: transporta su <b>significado</b> (modelo de información).</p></div></details></div>
+<div class="prob" id="q60"><div class="enun"><p class="et">Cuestión 60 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Cómo se organiza la información en un servidor OPC UA?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>En un <b>espacio de direcciones</b> (address space): una red de <b>nodos</b> unidos por referencias, que se recorre como un árbol de carpetas.</p><ul><li><b>Objetos</b>: agrupan cosas (Tanque1, Bomba2).</li><li><b>Variables</b>: tienen un valor (Nivel, Temperatura) con su tipo, su calidad y su marca de tiempo.</li><li><b>Métodos</b>: funciones que el cliente puede llamar (Arrancar, Resetear).</li></ul><p>Cada nodo tiene un <b>NodeId</b> único: índice de espacio de nombres más identificador, por ejemplo <code>ns=3;s="Tanque1"."Nivel"</code>.</p></div></details></div>
+<div class="prob" id="q61"><div class="enun"><p class="et">Cuestión 61 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Qué servicios ofrece OPC UA a un cliente?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><ul><li><b>Browse</b>: recorrer el espacio de direcciones para descubrir qué hay.</li><li><b>Read</b> y <b>Write</b>: leer y escribir atributos de nodos.</li><li><b>Call</b>: ejecutar métodos.</li><li><b>Subscriptions</b> con <b>MonitoredItems</b>: el servidor avisa solo cuando un valor cambia, sin que el cliente tenga que preguntar.</li></ul></div></details></div>
+<div class="prob" id="q62"><div class="enun"><p class="et">Cuestión 62 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Qué diferencia hay entre leer cíclicamente y suscribirse en OPC UA?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>Con <b>lectura cíclica</b> (polling) el cliente pregunta cada cierto tiempo, cambie o no el valor: mucho tráfico inútil y cambios rápidos que se escapan entre lecturas.</p><p>Con <b>suscripción</b>, el servidor muestrea la variable con un <b>intervalo de muestreo</b> y envía notificaciones <b>solo cuando hay cambios</b>, agrupadas cada <b>intervalo de publicación</b>. Menos tráfico y menos retraso. Es lo que hay que usar para refrescar un HMI.</p></div></details></div>
+<div class="prob" id="q63"><div class="enun"><p class="et">Cuestión 63 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Cómo protege OPC UA las comunicaciones?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>Lleva la seguridad <b>integrada</b> en el protocolo:</p><ul><li><b>Certificados X.509</b> para que cliente y servidor se autentiquen.</li><li>Tres modos: <b>None</b> (sin seguridad), <b>Sign</b> (firmado: no se puede alterar) y <b>SignAndEncrypt</b> (firmado y cifrado: tampoco se puede leer).</li><li><b>Autenticación de usuario</b> con usuario y contraseña o certificado, y permisos por nodo.</li></ul></div></details></div>
+<div class="prob" id="q64"><div class="enun"><p class="et">Cuestión 64 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Qué transporte y puerto usa OPC UA y cómo se conecta un PLC Siemens?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>El transporte habitual es el binario sobre TCP, con direcciones del tipo <code>opc.tcp://192.168.0.1:4840</code>; el <b>puerto por defecto es el 4840</b>.</p><p>Los S7-1200 y S7-1500 llevan un <b>servidor OPC UA</b> que se activa en TIA Portal, donde se eligen las variables que se publican. La aplicación del proyecto actúa como <b>cliente</b> (en Qt, con el módulo Qt OPC UA y la clase <code>QOpcUaClient</code>).</p></div></details></div>
+<div class="prob" id="q65"><div class="enun"><p class="et">Cuestión 65 <span class="tag" style="font-size:11px">añadida</span></p><p>¿Qué es OPC UA PubSub y cuándo se usa?</p></div><details class="paso"><summary><span class="pn">✓</span>Respuesta</summary><div class="inner"><p>Es un modelo de comunicación añadido a OPC UA (desde la versión 1.04) en el que los publicadores envían datos <b>sin conexión</b> a los suscriptores, directamente sobre UDP o a través de un broker MQTT. Sirve para muchos receptores o para enviar datos a la nube, y combinado con <b>TSN</b> (Ethernet de tiempo sensible) para comunicación determinista entre controladores.</p></div></details></div>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-06.html"><small>← Anterior</small>T6 · SCADA, RTU, MTU y HMI</a><a class="nx" href="tema-08.html"><small>Siguiente →</small>T8 · Programas, procesos y C++ orientado a objetos</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Informática para la Automatización Industrial (GIEyA) · Datos tomados de unos apuntes de teoría (55 cuestiones respondidas) y del programa oficial del curso <time datetime="2026-09">2026/27</time>, con el que se han elaborado los temas que los apuntes no cubren · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>
