@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -61,7 +124,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
 <div class="sh"><span aria-hidden="true" class="badge">1</span><div class="shx"><p class="kick">Continua: circuitos magnéticos y máquinas de CC · Tema 1</p><h2 id="t1">Accionamientos y requerimientos mecánicos</h2><div class="tags"><span class="tag">Continua: circuitos magnéticos y máquinas de CC</span><span class="tag">1.ª prueba (35 %)</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> entender qué es un accionamiento eléctrico, saber traducir lo que pide la carga (par y velocidad) a lo que debe dar el motor, y tener a punto el repaso de circuitos de alterna y trifásica que se usa en toda la asignatura.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> entender qué es un accionamiento eléctrico, saber traducir lo que pide la carga (par y velocidad) a lo que debe dar el motor, y tener a punto el repaso de circuitos de alterna y trifásica que se usa en toda la asignatura.</p><ul>
 <li>Un <b>accionamiento eléctrico</b> es el conjunto <b>UPP + motor + carga + control</b>. La unidad de procesado de potencia (UPP) toma la red (amplitud y frecuencia fijas) y entrega al motor una tensión de <b>amplitud y frecuencia ajustables</b>. Esto es lo que permite trabajar a la velocidad que interesa en vez de estrangular una válvula, y es la razón de que los motores pasen del 43-46 % del consumo eléctrico a consumir bastante menos.</li>
 <li>Lo que <b>fija el tamaño</b> del accionamiento no es la velocidad, es el <b>par</b>: \(T=J\frac{d\omega}{dt}+B\omega+T_{carga}\). El pico aparece durante la aceleración, no en régimen.</li>
 <li>Al poner un <b>reductor</b> de relación \(n\) el par se multiplica por \(n\) y la velocidad se divide por \(n\); las <b>inercias</b> del lado de la carga se reflejan divididas por \(n^2\).</li>
@@ -71,10 +134,19 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Los cuatro modos de funcionamiento de un motor</div><svg viewBox="0 0 560 262" role="img" aria-label="Cuadrantes par–velocidad" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="30" y1="130" x2="252.8" y2="130" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="260,130 252.7,133.3 252.7,126.7" fill="var(--muted)"/><line x1="140" y1="214" x2="140" y2="43.2" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="140,36 143.3,43.3 136.7,43.3" fill="var(--muted)"/><text x="260" y="146" fill="var(--muted)" font-size="12.5" text-anchor="end" font-weight="700" opacity="1">ω</text><text x="148" y="42" fill="var(--muted)" font-size="12.5" text-anchor="start" font-weight="700" opacity="1">M</text><text x="202" y="74" fill="var(--c5,#c43d63)" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">I · motor</text><text x="78" y="74" fill="var(--c6,#2c8a52)" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">II · freno</text><text x="78" y="192" fill="var(--c5,#c43d63)" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">III · motor</text><text x="202" y="192" fill="var(--c6,#2c8a52)" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">IV · freno</text><text x="24" y="246" fill="var(--fg)" font-size="12" text-anchor="start" font-weight="600" opacity="1">motor: M·ω &gt; 0   ·   freno: M·ω &lt; 0</text><text x="290" y="56" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">Un accionamiento</text><text x="290" y="78" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">reversible trabaja</text><text x="290" y="100" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">en los cuatro</text><text x="290" y="122" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">cuadrantes.</text><text x="290" y="155" fill="var(--muted)" font-size="13" text-anchor="start" opacity="1">Ascensor: sube (I),</text><text x="290" y="177" fill="var(--muted)" font-size="13" text-anchor="start" opacity="1">baja con freno (IV).</text></svg><figcaption>El signo del producto par por velocidad dice si la máquina entrega potencia (motor) o la absorbe (freno).</figcaption></figure><figure class="ill"><div class="ill-t">Lo que pide la carga a cada velocidad</div><svg viewBox="0 0 560 262" role="img" aria-label="Curvas de carga" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="36" y1="214" x2="282.8" y2="214" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="290,214 282.7,217.3 282.7,210.7" fill="var(--muted)"/><line x1="36" y1="214" x2="36" y2="37.2" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="36,30 39.3,37.3 32.7,37.3" fill="var(--muted)"/><text x="290" y="230" fill="var(--muted)" font-size="12" text-anchor="end" font-style="italic" opacity="1">ω</text><text x="42" y="28" fill="var(--muted)" font-size="12" text-anchor="start" font-style="italic" opacity="1">M</text><line x1="36" y1="150" x2="280" y2="150" stroke="var(--tc,var(--accent))" stroke-width="2.8" opacity="1" stroke-linecap="round"/><path d="M36,214 L40,214 L44,213.8 L48,213.6 L52,213.3 L56,213 L60,212.5 L64,212 L68,211.3 L72,210.6 L76,209.8 L80,209 L84,208 L88,207 L92,205.8 L96,204.6 L100,203.3 L104,202 L108,200.5 L112,199 L116,197.3 L120,195.6 L124,193.8 L128,192 L132,190 L136,188 L140,185.8 L144,183.6 L148,181.3 L152,179 L156,176.5 L160,174 L164,171.3 L168,168.6 L172,165.8 L176,163 L180,160 L184,157 L188,153.8 L192,150.6 L196,147.3 L200,144 L204,140.5 L208,137 L212,133.3 L216,129.6 L220,125.8 L224,122 L228,118 L232,114 L236,109.8 L240,105.6 L244,101.3 L248,97 L252,92.5 L256,88 L260,83.3 L264,78.6 L268,73.8 L272,69 L276,64" fill="none" stroke="var(--c5,#c43d63)" stroke-width="2.8" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><path d="M64.8,80.1 L68.3,89.8 L71.8,98.3 L75.4,105.6 L78.9,112.1 L82.4,117.8 L85.9,123 L89.4,127.6 L93,131.8 L96.5,135.5 L100,139 L103.5,142.2 L107,145.1 L110.6,147.7 L114.1,150.2 L117.6,152.5 L121.1,154.7 L124.6,156.7 L128.2,158.5 L131.7,160.3 L135.2,161.9 L138.7,163.5 L142.2,164.9 L145.8,166.3 L149.3,167.6 L152.8,168.8 L156.3,170 L159.8,171.1 L163.4,172.1 L166.9,173.2 L170.4,174.1 L173.9,175 L177.4,175.9 L181,176.7 L184.5,177.5 L188,178.3 L191.5,179 L195,179.7 L198.6,180.4 L202.1,181 L205.6,181.7 L209.1,182.3 L212.6,182.9 L216.2,183.4 L219.7,184 L223.2,184.5 L226.7,185 L230.2,185.5 L233.8,185.9 L237.3,186.4 L240.8,186.8 L244.3,187.3 L247.8,187.7 L251.4,188.1 L254.9,188.5 L258.4,188.8 L261.9,189.2 L265.4,189.6 L269,189.9 L272.5,190.2 L276,190.6" fill="none" stroke="var(--c6,#2c8a52)" stroke-width="2.8" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><circle cx="189.6" cy="152.5" r="5" fill="var(--warn,#b8730c)" stroke="none" stroke-width="1.8" opacity="1"/><text x="300" y="50" fill="var(--tc,var(--accent))" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">par constante</text><text x="300" y="72" fill="var(--fg)" font-size="11.5" text-anchor="start" opacity="1">grúa, cinta, bomba pistón</text><text x="300" y="94" fill="var(--c5,#c43d63)" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">cuadrática</text><text x="300" y="116" fill="var(--fg)" font-size="11.5" text-anchor="start" opacity="1">ventilador, bomba centr.</text><text x="300" y="138" fill="var(--c6,#2c8a52)" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">potencia constante</text><text x="300" y="160" fill="var(--fg)" font-size="11.5" text-anchor="start" opacity="1">torno, bobinadora</text><text x="300" y="193" fill="var(--fg)" font-size="12.5" text-anchor="start" opacity="1">Punto de trabajo =</text><text x="300" y="215" fill="var(--fg)" font-size="12.5" text-anchor="start" opacity="1">cruce motor–carga.</text></svg><figcaption>Cada tipo de carga tiene su curva par–velocidad; el motor debe elegirse para cubrirla en todo el rango de trabajo.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 1 <span class="src">9 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">T</td><td>Par</td><td class="u">N·m</td></tr><tr><td class="sym">ω</td><td>Velocidad angular</td><td class="u">rad/s = n·π/30</td></tr><tr><td class="sym">J</td><td>Momento de inercia</td><td class="u">kg·m²</td></tr><tr><td class="sym">B</td><td>Coeficiente de fricción viscosa</td><td class="u">N·m·s</td></tr><tr><td class="sym">n</td><td>Relación del reductor</td><td class="u">ω_motor/ω_carga</td></tr><tr><td class="sym">UPP</td><td>Unidad de procesado de potencia</td><td class="u">el convertidor</td></tr><tr><td class="sym">P = Tω</td><td>Potencia mecánica</td><td class="u">W</td></tr><tr><td class="sym">f.d.p.</td><td>cos φ</td><td class="u"></td></tr><tr><td class="sym">S = P + jQ</td><td>Potencia compleja</td><td class="u">VA</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - perfil de velocidad y par que debe dar el motor</p><div data-sim="accion"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Todo el accionamiento es una sola ecuación de movimiento</p><p>Un accionamiento eléctrico (motor + transmisión + carga) se resuelve con la segunda ley de Newton para el giro: \(J\dfrac{d\omega}{dt}=T_{em}-T_{carga}-B\omega\). Si el motor da más par que la carga pide, el conjunto <b>acelera</b>; si da menos, <b>frena</b>; si son iguales, gira a velocidad constante. La potencia es siempre \(P=T\omega\). Lo único que cambia en cada problema es qué carga hay y a qué eje se refiere todo.</p>
+<figure class="fig"><p class="ft">Figura interactiva - los cuatro cuadrantes del plano par-velocidad</p><div data-sim="cuadrantes"></div><figcaption>Mueve el par y la velocidad y mira el signo de la potencia: es lo único que separa motor de freno.</figcaption></figure>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Todo el accionamiento es una sola ecuación de movimiento</p><p class="lede">Un accionamiento eléctrico (motor + transmisión + carga) se resuelve con la segunda ley de Newton para el giro: \(J\dfrac{d\omega}{dt}=T_{em}-T_{carga}-B\omega\). Si el motor da más par que la carga pide, el conjunto <b>acelera</b>; si da menos, <b>frena</b>; si son iguales, gira a velocidad constante. La potencia es siempre \(P=T\omega\). Lo único que cambia en cada problema es qué carga hay y a qué eje se refiere todo.</p>
 <p>Tres ideas que lo resumen: <b>(1)</b> escribe la ecuación en el eje del motor; <b>(2)</b> el reductor de relación \(n\) multiplica la velocidad del motor por \(1/n\) y divide el par por \(n\) (más \(\eta\) por las pérdidas); <b>(3)</b> las inercias se pasan al eje del motor dividiéndolas por \(n^2\) (por eso una carga muy pesada tras un reductor grande «pesa» muy poco para el motor).</p><p class="ft">Tipos de carga y cómo reconocerlos</p><p>Según cómo depende el par de la carga de la velocidad se agrupan las cargas: <b>par constante</b> (grúas, cintas, ascensores: \(T=\) cte, \(P\propto\omega\)); <b>par cuadrático</b> (ventiladores, bombas centrífugas: \(T\propto\omega^2\), \(P\propto\omega^3\)); <b>potencia constante</b> (bobinadoras, tracción por encima de la velocidad base: \(T\propto1/\omega\)). Esto decide el dimensionado: un ventilador a media velocidad consume solo un <b>octavo</b> de la potencia, razón por la que se usan variadores en bombas y ventiladores.</p>
 <p>Para pasar masas que se trasladan a un eje que gira se usa la equivalencia de energía cinética: \(\tfrac12mv^2=\tfrac12J_{eq}\omega^2\) con \(v=\omega R\) ⇒ \(J_{eq}=mR^2\). Y en alterna trifásica equilibrada en estrella, \(V_L=\sqrt3V_F\) y \(P=\sqrt3V_LI_L\cos\varphi\): estas fórmulas son la base de toda la asignatura.</p></div><!--/amp1--><!--manim:et-t1--><figure class="fig manim-fig" id="anim-et-t1"><p class="ft">Animación · Arranque de un accionamiento</p><div class="manim" data-anim="et-t1"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
-<h3 id="t1-formulas">Lo que tienes que saber</h3>
+<!--deep--><h3 id="t1-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Qué es un accionamiento</h4>
+<div class="box key deepnote"><b>Idea clave.</b> un accionamiento eléctrico es el conjunto <b>motor, convertidor y control</b> que transforma energía eléctrica en movimiento mecánico con la velocidad y el par que pide la carga.</div>
+<ul><li><b>Par</b> \(T\) (N·m) y <b>velocidad angular</b> \(\omega\) (rad/s). Potencia mecánica: \(P=T\,\omega\).</li><li>Velocidad en rpm: \(n=60\,\omega/(2\pi)\).</li></ul>
+<details class="dem"><summary><span class="pn">∴</span>Curva par-velocidad de la carga</summary><div class="inner"><ul><li><b>Par constante</b> (grúas, cintas): el par no depende de la velocidad.</li><li><b>Par cuadrático</b> (ventiladores, bombas centrífugas): \(T\propto\omega^2\), la potencia crece con \(\omega^3\).</li><li><b>Potencia constante</b> (bobinadoras): el par baja al subir la velocidad.</li></ul>
+<div class="box trap deepnote"><b>Cuidado.</b> El motor debe tener, en cada velocidad, un par mayor que el de la carga. Si no, no arranca o se para.</div></div></details>
+<h4><span class="hn">2</span>Cuatro cuadrantes</h4>
+<p>Un accionamiento puede mover la carga hacia delante o hacia atrás, y también frenar o generar. Por eso se habla de <b>cuatro cuadrantes</b> en el plano par-velocidad. En frenado regenerativo, el motor devuelve energía a la red.</p>
+</div><!--/deep--><h3 id="t1-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>
 <li>Dinámica: \(T_{em}-T_{carga}-B\omega=J\dfrac{d\omega}{dt}\); potencia mecánica \(P=T\omega\).</li>
 <li>Inercias: cilindro macizo \(J=\frac12 mR^2\); masa en traslación con tambor de radio \(R\): \(J_{eq}=mR^2\); teorema de Steiner \(J=J_G+md^2\).</li>

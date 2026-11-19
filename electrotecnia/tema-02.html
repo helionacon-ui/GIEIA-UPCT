@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -61,7 +124,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
 <div class="sh"><span aria-hidden="true" class="badge">2</span><div class="shx"><p class="kick">Continua: circuitos magnéticos y máquinas de CC · Tema 2</p><h2 id="t2">Circuitos magnéticos y transformadores</h2><div class="tags"><span class="tag">Continua: circuitos magnéticos y máquinas de CC</span><span class="tag">1.ª prueba (35 %)</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> resolver un circuito magnético con entrehierro por analogía con los circuitos eléctricos, obtener inductancias, y manejar el circuito equivalente del transformador: sus parámetros a partir de los ensayos de vacío y cortocircuito, y su comportamiento en carga.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> resolver un circuito magnético con entrehierro por analogía con los circuitos eléctricos, obtener inductancias, y manejar el circuito equivalente del transformador: sus parámetros a partir de los ensayos de vacío y cortocircuito, y su comportamiento en carga.</p><ul>
 <li>Las líneas de \(\vec B\) son <b>cerradas</b> (\(\nabla\cdot\vec B=0\)). Con materiales de alta permeabilidad se canalizan por donde interesa: eso es un <b>circuito magnético</b>.</li>
 <li>La <b>analogía</b> con los circuitos eléctricos: la fuerza magnetomotriz \(F=Ni\) hace de fuente de tensión, el flujo \(\phi\) de intensidad y la <b>reluctancia</b> \(\Re=l/(\mu A)\) de resistencia. Se resuelve con las mismas leyes de Kirchhoff.</li>
 <li>Un <b>entrehierro de 1 mm</b> puede tener más reluctancia que un metro de hierro, porque \(\mu_{Fe}=\mu_r\mu_0\) con \(\mu_r\) de 2000 a 6000. Casi todo el "esfuerzo" magnético se gasta en el aire.</li>
@@ -72,11 +135,24 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">El flujo sigue un camino, como la corriente</div><svg viewBox="0 0 560 262" role="img" aria-label="Circuito magnético" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="40" y="60" width="170" height="130" rx="2" fill="None" stroke="var(--tc,var(--accent))" stroke-width="14" opacity="1"/><line x1="30" y1="92" x2="52" y2="92" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><line x1="30" y1="104" x2="52" y2="104" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><line x1="30" y1="116" x2="52" y2="116" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><line x1="30" y1="128" x2="52" y2="128" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><line x1="30" y1="140" x2="52" y2="140" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><line x1="30" y1="152" x2="52" y2="152" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><text x="20" y="146" fill="var(--warn,#b8730c)" font-size="13" text-anchor="end" font-weight="700" opacity="1">N</text><text x="124" y="50" fill="var(--c5,#c43d63)" font-size="13" text-anchor="middle" font-weight="700" opacity="1">Φ</text><line x1="100" y1="125" x2="141.9" y2="125" stroke="var(--c5,#c43d63)" stroke-width="2.4" opacity="1" stroke-linecap="round"/><polygon points="150,125 141.8,128.7 141.8,121.3" fill="var(--c5,#c43d63)"/><text x="24" y="230" fill="var(--tc,var(--accent))" font-size="13" text-anchor="start" font-weight="700" opacity="1">ℱ = N·I = Φ·ℛ   ·   ℛ = l / (μ·A)</text><text x="300" y="56" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">Como Ohm:</text><text x="300" y="78" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">fmm ℱ  ↔  tensión</text><text x="300" y="100" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">flujo Φ  ↔  corriente</text><text x="300" y="122" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">reluctancia ℛ ↔ R</text><text x="300" y="155" fill="var(--muted)" font-size="13" text-anchor="start" opacity="1">Entrehierro: ℛ muy</text><text x="300" y="177" fill="var(--muted)" font-size="13" text-anchor="start" opacity="1">alta, domina el circuito.</text></svg><figcaption>La fuerza magnetomotriz juega el papel de la tensión, el flujo el de la corriente y la reluctancia el de la resistencia.</figcaption></figure><figure class="ill"><div class="ill-t">Cambiar tensión sin cambiar potencia</div><svg viewBox="0 0 560 262" role="img" aria-label="Transformador ideal" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="100" y="50" width="80" height="130" rx="2" fill="None" stroke="var(--tc,var(--accent))" stroke-width="10" opacity="1"/><line x1="84" y1="76" x2="108" y2="76" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><line x1="172" y1="76" x2="196" y2="76" stroke="var(--c5,#c43d63)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><line x1="84" y1="90" x2="108" y2="90" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><line x1="172" y1="90" x2="196" y2="90" stroke="var(--c5,#c43d63)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><line x1="84" y1="104" x2="108" y2="104" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><line x1="172" y1="104" x2="196" y2="104" stroke="var(--c5,#c43d63)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><line x1="84" y1="118" x2="108" y2="118" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><line x1="172" y1="118" x2="196" y2="118" stroke="var(--c5,#c43d63)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><line x1="84" y1="132" x2="108" y2="132" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><line x1="172" y1="132" x2="196" y2="132" stroke="var(--c5,#c43d63)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><line x1="84" y1="146" x2="108" y2="146" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><line x1="172" y1="146" x2="196" y2="146" stroke="var(--c5,#c43d63)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><text x="60" y="110" fill="var(--warn,#b8730c)" font-size="13" text-anchor="end" font-weight="700" opacity="1">V₁</text><text x="60" y="126" fill="var(--warn,#b8730c)" font-size="12" text-anchor="end" font-weight="700" opacity="1">N₁</text><text x="220" y="110" fill="var(--c5,#c43d63)" font-size="13" text-anchor="start" font-weight="700" opacity="1">V₂</text><text x="220" y="126" fill="var(--c5,#c43d63)" font-size="12" text-anchor="start" font-weight="700" opacity="1">N₂</text><text x="24" y="216" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">V₁/V₂ = N₁/N₂ = I₂/I₁</text><text x="300" y="56" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">Potencia conservada:</text><text x="300" y="78" fill="var(--fg)" font-size="14" text-anchor="start" font-weight="600" opacity="1">V₁·I₁ = V₂·I₂</text><text x="300" y="111" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">N₂ &gt; N₁: eleva</text><text x="300" y="133" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">N₂ &lt; N₁: reduce</text><text x="300" y="166" fill="var(--muted)" font-size="13" text-anchor="start" opacity="1">Sólo en alterna.</text></svg><figcaption>La relación de espiras fija la de tensiones y, a la inversa, la de corrientes; con ello se transporta energía con pocas pérdidas.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 2 <span class="src">10 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">F = Ni</td><td>Fuerza magnetomotriz</td><td class="u">A·v</td></tr><tr><td class="sym">ℜ = l/μA</td><td>Reluctancia</td><td class="u">A·v/Wb</td></tr><tr><td class="sym">φ</td><td>Flujo magnético</td><td class="u">Wb</td></tr><tr><td class="sym">λ = Nφ</td><td>Enlaces de flujo</td><td class="u">Wb·v</td></tr><tr><td class="sym">L = N²/ℜ</td><td>Autoinducción</td><td class="u">H</td></tr><tr><td class="sym">μ_r</td><td>Permeabilidad relativa</td><td class="u">2000-6000 en hierro</td></tr><tr><td class="sym">a = N₁/N₂</td><td>Relación de transformación</td><td class="u"></td></tr><tr><td class="sym">R_c, X_m</td><td>Rama de magnetización</td><td class="u">del ensayo de vacío</td></tr><tr><td class="sym">R_eq, X_eq</td><td>Rama serie</td><td class="u">del ensayo de cortocircuito</td></tr><tr><td class="sym">l_g</td><td>Entrehierro</td><td class="u">mm</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - circuito magnetico con entrehierro y transformador en carga</p><div data-sim="trafo"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">El circuito magnético es un circuito eléctrico con otros nombres</p><p>Los problemas de circuitos magnéticos se resuelven igual que los eléctricos con esta traducción: fuerza magnetomotriz \(F=Ni\) (equivale a la tensión), flujo \(\phi\) (equivale a la corriente) y <b>reluctancia</b> \(\Re=\dfrac{l}{\mu A}\) (equivale a la resistencia). La ley de Ohm magnética es \(\phi=F/\Re\). Las reluctancias en serie se suman; en paralelo se combinan como resistencias. El hierro tiene \(\mu\) muy grande (reluctancia pequeña) y el aire \(\mu_0\): un <b>entrehierro de 1 mm</b> puede tener más reluctancia que todo el núcleo.</p>
+<figure class="fig"><p class="ft">Figura interactiva - saturacion del nucleo y papel del entrehierro</p><div data-sim="saturacion"></div><figcaption>El hierro deja de ser lineal al llegar al codo. Cambia el entrehierro y mira cómo se reparte la fuerza magnetomotriz.</figcaption></figure>
+<figure class="fig"><p class="ft">Figura interactiva - tension, flujo y saturacion en el transformador</p><div data-sim="flujo"></div><figcaption>La tensión fija el flujo. Baja la frecuencia sin bajar la tensión y mira lo que le pasa al núcleo.</figcaption></figure>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">El circuito magnético es un circuito eléctrico con otros nombres</p><p class="lede">Los problemas de circuitos magnéticos se resuelven igual que los eléctricos con esta traducción: fuerza magnetomotriz \(F=Ni\) (equivale a la tensión), flujo \(\phi\) (equivale a la corriente) y <b>reluctancia</b> \(\Re=\dfrac{l}{\mu A}\) (equivale a la resistencia). La ley de Ohm magnética es \(\phi=F/\Re\). Las reluctancias en serie se suman; en paralelo se combinan como resistencias. El hierro tiene \(\mu\) muy grande (reluctancia pequeña) y el aire \(\mu_0\): un <b>entrehierro de 1 mm</b> puede tener más reluctancia que todo el núcleo.</p>
 <p>La inductancia sale directamente: \(L=\lambda/i=N\phi/i=N^2/\Re\). Y la energía almacenada \(W=\tfrac12Li^2\) se guarda casi toda en el entrehierro, no en el hierro.</p><p class="ft">El transformador: ideal, real y los dos ensayos</p><p>El transformador ideal solo cambia niveles: \(V_1/V_2=N_1/N_2=a\), \(I_1/I_2=1/a\) y las impedancias se pasan de un lado a otro multiplicando por \(a^2\). El real añade una rama de <b>magnetización</b> en paralelo (\(R_c\), \(X_m\): pérdidas en el hierro y corriente de vacío) y una impedancia serie (\(R_{eq}\), \(X_{eq}\): pérdidas en el cobre y flujo de dispersión).</p>
 <p>Esos cuatro parámetros se miden con dos ensayos: <b>vacío</b> (se alimenta un lado a tensión nominal, con el otro abierto; casi toda la potencia son pérdidas en el hierro) y <b>cortocircuito</b> (a corriente nominal con tensión reducida, ~5 %; casi toda la potencia son pérdidas en el cobre). Truco: cada ensayo se hace por el lado más cómodo y los valores se refieren después al lado que pida el problema.</p></div><!--/amp1--><!--manim:et-t2--><figure class="fig manim-fig" id="anim-et-t2"><p class="ft">Animación · Ciclo de histéresis</p><div class="manim" data-anim="et-t2"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t2-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Circuito magnético</h4>
+<div class="box key deepnote"><b>Idea clave.</b> un campo magnético se canaliza por un núcleo de material ferromagnético. Su comportamiento es análogo al de un circuito eléctrico: la fuerza magnetomotriz (\(\mathcal F=N\,I\)) impulsa un flujo a través de una reluctancia.</div>
+<div class="eqd">\[\mathcal F=N\,I=\mathcal R\,\Phi\qquad\mathcal R=\frac{l}{\mu\,A}\]</div>
+<ul><li>\(\mu=\mu_0\mu_r\): permeabilidad. En el hierro, \(\mu_r\) es de miles, pero se satura.</li><li><b>Entrehierro:</b> aunque es pequeño, su reluctancia suele dominar; limita la corriente de magnetización.</li></ul>
 <!--manim:et-t2b--><figure class="fig manim-fig" id="anim-et-t2b"><p class="ft">Animación · Transformador ideal</p><div class="manim" data-anim="et-t2b"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
-<h3 id="t2-formulas">Lo que tienes que saber</h3>
+<h4><span class="hn">2</span>Transformador ideal y real</h4>
+<div class="eqd">\[\frac{V_1}{V_2}=\frac{N_1}{N_2}=a\qquad\frac{I_1}{I_2}=\frac{1}{a}\]</div>
+<ul><li>En el transformador ideal, la potencia se conserva: \(V_1I_1=V_2I_2\).</li><li>Real: aparecen pérdidas en el <b>hierro</b> (histéresis y Foucault, constantes con la tensión) y en el <b>cobre</b> (\(RI^2\), que dependen de la carga).</li><li><b>Ensayo de vacío</b>: mide las pérdidas en el hierro. <b>Ensayo de cortocircuito</b>: mide las pérdidas en el cobre.</li></ul>
+<div class="box trap deepnote"><b>Cuidado.</b> El rendimiento es máximo cuando las pérdidas en el hierro son iguales a las del cobre.</div>
+<details class="dem"><summary><span class="pn">∴</span>Circuito equivalente simplificado</summary><div class="inner"><p>Se reduce el secundario al primario: \(R_2^{\prime}=a^2R_2\). Con los ensayos se obtienen \(R_{Fe}\), \(X_m\), \(R_{eq}\) y \(X_{eq}\), y se calculan la regulación y el rendimiento:</p>
+<div class="eqd">\[\eta=\frac{S\cos\varphi}{S\cos\varphi+P_{Fe}+P_{Cu}}\qquad\varepsilon\approx\frac{R_{eq}I\cos\varphi+X_{eq}I\sin\varphi}{V}\]</div></div></details>
+</div><!--/deep--><h3 id="t2-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>
 <li>Ampère: \(\oint\vec H\,d\vec l=\sum Ni\); Faraday: \(e=\dfrac{d\lambda}{dt}=N\dfrac{d\phi}{dt}\); \(\vec B=\mu\vec H\).</li>
 <li>Reluctancia \(\Re=\dfrac{l}{\mu A}\) [A·v/Wb]; en serie se suman, en paralelo se combinan como resistencias.</li>

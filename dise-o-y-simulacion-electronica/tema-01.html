@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -61,7 +124,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
 <div class="sh"><span aria-hidden="true" class="badge">1</span><div class="shx"><p class="kick">Diseño analógico y simulación · Tema 1</p><h2 id="t1">El flujo de diseño electrónico</h2><div class="tags"><span class="tag">Diseño analógico y simulación</span><span class="tag">1.er parcial (30 %)</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> entender las etapas por las que pasa un diseño — especificaciones, esquemático, simulación, huellas, colocación, ruteo, salida y montaje — y por qué el orden importa.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> entender las etapas por las que pasa un diseño — especificaciones, esquemático, simulación, huellas, colocación, ruteo, salida y montaje — y por qué el orden importa.</p><ul>
 <li>La asignatura es <b>un proyecto completo</b>: se parte de unas especificaciones y se termina con una placa fabricada y verificada. Los exámenes son prácticos, en ordenador, con el mismo flujo.</li>
 <li>Las herramientas son <b>DipTrace</b> (captura de esquemáticos y PCB) y <b>LTspice</b> (simulación). Cada una tiene su papel y sus ficheros.</li>
 <li>Un componente necesita <b>tres cosas</b>: símbolo (para el esquema), huella o <i>patrón</i> (para la placa) y modelo (para simular). Si falta alguna, el flujo se rompe en esa etapa.</li>
@@ -71,10 +134,16 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">De la idea a la placa pasando por la simulación</div><svg viewBox="0 0 560 262" role="img" aria-label="Flujo de diseño" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="20" y="50" width="84" height="38" rx="8" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.12"/><text x="62" y="73" fill="var(--tc,var(--accent))" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">Requisitos</text><rect x="116" y="50" width="84" height="38" rx="8" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="2" opacity="0.12"/><text x="158" y="73" fill="var(--c5,#c43d63)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">Esquema</text><rect x="212" y="50" width="84" height="38" rx="8" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="0.12"/><text x="254" y="73" fill="var(--c6,#2c8a52)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">Simulación</text><rect x="20" y="116" width="84" height="38" rx="8" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="2" opacity="0.12"/><text x="62" y="139" fill="var(--warn,#b8730c)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">PCB</text><rect x="116" y="116" width="84" height="38" rx="8" fill="var(--c2,#3a63c4)" stroke="var(--c2,#3a63c4)" stroke-width="2" opacity="0.12"/><text x="158" y="139" fill="var(--c2,#3a63c4)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">Fabricación</text><line x1="106" y1="69" x2="110.6" y2="69" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="116,69 110.5,71.4 110.5,66.6" fill="var(--muted)"/><line x1="202" y1="69" x2="206.6" y2="69" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="212,69 206.5,71.4 206.5,66.6" fill="var(--muted)"/><line x1="106" y1="135" x2="110.6" y2="135" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="116,135 110.5,137.4 110.5,132.6" fill="var(--muted)"/><path d="M244,90 L244,104 L62,104 L62,112" fill="none" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><line x1="62" y1="106" x2="62" y2="108.6" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="62,114 59.6,108.5 64.4,108.5" fill="var(--muted)"/><text x="24" y="216" fill="var(--fg)" font-size="12" text-anchor="start" font-weight="600" opacity="1">Cada fase se valida antes de pasar a la siguiente</text><text x="330" y="56" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">Iterar pronto:</text><text x="330" y="78" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">un fallo en simulación</text><text x="330" y="100" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">cuesta minutos;</text><text x="330" y="122" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">en la placa fabricada,</text><text x="330" y="144" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">semanas y dinero.</text></svg><figcaption>El flujo de diseño electrónico encadena especificación, esquema, simulación, layout y fabricación, con iteraciones entre fases.</figcaption></figure><figure class="ill"><div class="ill-t">Cuanto más tarde se detecta, más caro sale</div><svg viewBox="0 0 560 262" role="img" aria-label="Coste de corregir un error" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="36" y1="214" x2="282.8" y2="214" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="290,214 282.7,217.3 282.7,210.7" fill="var(--muted)"/><line x1="36" y1="214" x2="36" y2="37.2" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="36,30 39.3,37.3 32.7,37.3" fill="var(--muted)"/><text x="42" y="28" fill="var(--muted)" font-size="12" text-anchor="start" font-style="italic" opacity="1">coste</text><path d="M36,214 L39.8,213.2 L43.7,212.3 L47.5,211.4 L51.3,210.5 L55.2,209.5 L59,208.6 L62.8,207.5 L66.7,206.5 L70.5,205.4 L74.3,204.3 L78.2,203.2 L82,202 L85.8,200.8 L89.7,199.5 L93.5,198.2 L97.3,196.8 L101.2,195.5 L105,194 L108.8,192.5 L112.7,191 L116.5,189.4 L120.3,187.8 L124.2,186.1 L128,184.4 L131.8,182.6 L135.7,180.8 L139.5,178.9 L143.3,176.9 L147.2,174.9 L151,172.8 L154.8,170.6 L158.7,168.4 L162.5,166.1 L166.3,163.7 L170.2,161.2 L174,158.7 L177.8,156.1 L181.7,153.4 L185.5,150.6 L189.3,147.7 L193.2,144.8 L197,141.7 L200.8,138.5 L204.7,135.3 L208.5,131.9 L212.3,128.4 L216.2,124.8 L220,121.1 L223.8,117.3 L227.7,113.3 L231.5,109.3 L235.3,105.1 L239.2,100.7 L243,96.2 L246.8,91.6 L250.7,86.8 L254.5,81.9 L258.3,76.8 L262.2,71.6 L266,66.2" fill="none" stroke="var(--tc,var(--accent))" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="60" y="230" fill="var(--muted)" font-size="9.5" text-anchor="middle" font-weight="700" opacity="1">esquema</text><text x="112" y="230" fill="var(--muted)" font-size="9.5" text-anchor="middle" font-weight="700" opacity="1">sim.</text><text x="164" y="230" fill="var(--muted)" font-size="9.5" text-anchor="middle" font-weight="700" opacity="1">PCB</text><text x="216" y="230" fill="var(--muted)" font-size="9.5" text-anchor="middle" font-weight="700" opacity="1">prototipo</text><text x="268" y="230" fill="var(--muted)" font-size="9.5" text-anchor="middle" font-weight="700" opacity="1">producción</text><text x="330" y="56" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">Regla del 10:</text><text x="330" y="78" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">corregir cuesta ~10×</text><text x="330" y="100" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">más en cada fase.</text><text x="330" y="133" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">Por eso: simular,</text><text x="330" y="155" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">revisar, y sólo</text><text x="330" y="177" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">entonces fabricar.</text></svg><figcaption>El coste de un error crece de forma exponencial a medida que avanza el proyecto, de ahí el valor de la simulación temprana.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 1 <span class="src">8 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">—</td><td>flujo de diseño</td><td class="u">idea → esquema → simulación → PCB → fabricación</td></tr><tr><td class="sym">BOM</td><td>lista de materiales</td><td class="u">Bill Of Materials</td></tr><tr><td class="sym">ERC</td><td>comprobación eléctrica del esquema</td><td class="u">Electrical Rule Check</td></tr><tr><td class="sym">DRC</td><td>comprobación de reglas de la placa</td><td class="u">Design Rule Check</td></tr><tr><td class="sym">DFM</td><td>diseño para fabricación</td><td class="u">Design For Manufacturing</td></tr><tr><td class="sym">Gerber</td><td>ficheros de fabricación</td><td class="u">uno por capa</td></tr><tr><td class="sym">netlist</td><td>lista de conexiones</td><td class="u">puente esquema → PCB</td></tr><tr><td class="sym">prototipo</td><td>primera placa física</td><td class="u">para validar, no para vender</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - el flujo de diseño de principio a fin</p><div data-sim="flujo"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Diseñar una placa es un proceso, no un dibujo</p><p>El diseño electrónico sigue siempre la misma cadena: <b>especificaciones → esquemático → simulación → huellas → colocación → ruteo → salida a fábrica → montaje → verificación</b>. Cada etapa produce un fichero que alimenta a la siguiente y, si algo falla al final, casi siempre el error se coló en una etapa anterior (una huella equivocada, un pin mal conectado). Por eso la asignatura insiste en comprobar pronto: simular antes de dibujar la placa y pasar el ERC antes de convertir a PCB.</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Diseñar una placa es un proceso, no un dibujo</p><p class="lede">El diseño electrónico sigue siempre la misma cadena: <b>especificaciones → esquemático → simulación → huellas → colocación → ruteo → salida a fábrica → montaje → verificación</b>. Cada etapa produce un fichero que alimenta a la siguiente y, si algo falla al final, casi siempre el error se coló en una etapa anterior (una huella equivocada, un pin mal conectado). Por eso la asignatura insiste en comprobar pronto: simular antes de dibujar la placa y pasar el ERC antes de convertir a PCB.</p>
 <p>Regla práctica: <b>cuanto antes se detecta un error, más barato es corregirlo</b>. Cambiar un valor en el esquemático cuesta segundos; cambiarlo en una placa ya fabricada, una semana y dinero.</p><p class="ft">Dos programas, dos juegos de ficheros</p><p>Se usan dos herramientas con propósitos distintos. <b>LTspice</b> simula el circuito: el esquema es un <code>.asc</code>, los símbolos <code>.asy</code>, los modelos <code>.lib/.mod</code> y los resultados <code>.raw</code>. <b>DipTrace</b> diseña la placa: esquemático <code>.dch</code>, librería de componentes <code>.eli</code>, librería de patrones (huellas) <code>.lib</code> y la placa <code>.dip</code>. Confundirlos es un error típico de examen: <em>el símbolo y el patrón son cosas diferentes</em> (uno es el dibujo del esquema y el otro es la huella física sobre el cobre).</p>
 <figure class="fig"><p class="ft">Flujo de diseño</p><div data-sim="flujo"></div><figcaption>Recorre las etapas y comprueba qué fichero produce cada una.</figcaption></figure></div><!--/amp1--><!--manim:dse-t1--><figure class="fig manim-fig" id="anim-dse-t1"><p class="ft">Animación · El flujo de diseño</p><div class="manim" data-anim="dse-t1"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
-<h3 id="t1-formulas">Fórmulas y datos que hay que saber</h3>
+<!--deep--><h3 id="t1-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Las fases del diseño electrónico</h4>
+<ol class="pasos"><li><b>Especificación:</b> qué debe hacer el circuito (tensión, corriente, precisión, coste, tamaño).</li><li><b>Diseño y cálculo:</b> elegir la topología y calcular los valores.</li><li><b>Simulación:</b> comprobar el comportamiento antes de fabricar.</li><li><b>Prototipo y medida:</b> comparar con la simulación.</li><li><b>Producción:</b> documentación, ensamblado y pruebas.</li></ol>
+<div class="box key deepnote"><b>Idea clave.</b> los errores son mucho más baratos de corregir en la simulación que en la placa fabricada.</div>
+<details class="dem"><summary><span class="pn">∴</span>Iterar es normal</summary><div class="inner"><p>El diseño es un bucle: se calcula, se simula, se mide y se vuelve a calcular. Cada vuelta debe cerrar una especificación concreta.</p>
+<div class="box trap deepnote"><b>Cuidado.</b> Un diseño que solo funciona en la simulación ideal puede fallar con tolerancias reales de componentes y temperatura. Simula en peor caso.</div></div></details>
+</div><!--/deep--><h3 id="t1-formulas">Fórmulas y datos que hay que saber</h3>
 <div class="box key"><ul>
 <li><b>Etapas:</b> especificaciones → esquemático → simulación → huellas → colocación → ruteo → salida (Gerber) → fabricación → montaje → verificación.</li>
 <li><b>Ficheros de DipTrace:</b> <i>.dch</i> esquemático · <i>.eli</i> librería de componentes (símbolos) · <i>.lib</i> librería de patrones (huellas) · <i>.dip</i> placa.</li>

@@ -656,5 +656,438 @@ SIMS.__paso=(el,D)=>build(el,{w:D.w||660,h:D.h||340,
 /* ---- paso3 mccPaso ---- */
 SIMS.mccPaso=el=>SIMS.__paso(el,{"w":660,"h":260,"q":"¿A qué velocidad gira el motor de CC al pasar de 25 A a 50 A de inducido? Sube el paso.","base":[["t","Motor de excitación independiente: V = 230 V , Ra = 0,4 Ω , Φ constante",30,26,14,"left"]],"steps":[{"text":"Un motor de CC con excitación constante trabaja a 230 V, R<sub>a</sub> = 0,4 Ω. Con I<sub>a</sub> = 25 A gira a 1500 rpm. ¿A qué velocidad gira con I<sub>a</sub> = 50 A?","add":[["t","V = E + Ra·Ia",30,62,15,"left"]]},{"text":"<b>Paso 1:</b> el circuito del inducido da V = E + R<sub>a</sub>I<sub>a</sub>. Con 25 A: E₁ = 230 − 0,4·25 = <b>220 V</b>.","add":[["t","E1 = 230 − 0,4·25 = 220 V",30,96,15,"left"]]},{"text":"<b>Paso 2:</b> la fuerza contraelectromotriz es E = kΦ·n. Con flujo constante, <b>E es proporcional a la velocidad</b>.","add":[["t","E = kΦ·n   ⇒   n ∝ E",30,130,15,"left"]]},{"text":"<b>Paso 3:</b> con 50 A: E₂ = 230 − 0,4·50 = <b>210 V</b>. Ha caído porque la resistencia del inducido consume más tensión.","add":[["t","E2 = 230 − 0,4·50 = 210 V",30,164,15,"left"]]},{"text":"<b>Paso 4:</b> n₂ = n₁·E₂/E₁ = 1500·210/220 = <b>1431,8 rpm</b>. Al cargar el motor, la velocidad baja ligeramente.","add":[["t","n2 = 1500 · 210/220 = 1431,8 rpm",30,198,15,"left"]]},{"text":"<b>Paso 5:</b> potencia electromagnética con 25 A: P = E·I<sub>a</sub> = 220·25 = <b>5500 W</b>. Con 50 A sería 210·50 = 10500 W: el par se ha duplicado (T ∝ I<sub>a</sub>) pero la velocidad apenas cambia.","add":[["t","P1 = 5500 W ,  P2 = 10500 W  (par ×2)",30,232,15,"left"]]}]});
 /* ---- fin paso3 mccPaso ---- */
+/* ---- nuevos sims ---- */
+const U0 = 4e-7 * Math.PI;
+const nf = (x, d) => (Math.abs(x) < 1e-12 ? 0 : x).toFixed(d === undefined ? 2 : d).replace('.', ',');
+const ing = x => {                       // 2,5e5 -> "2,50·10⁵"
+  if (!isFinite(x) || x === 0) return '0';
+  const e = Math.floor(Math.log10(Math.abs(x)));
+  const sup = String(e).replace(/-/g, '⁻').replace(/[0-9]/g, c => '⁰¹²³⁴⁵⁶⁷⁸⁹'[+c]);
+  return nf(x / Math.pow(10, e)) + '·10' + sup;
+};
+
+/* rejilla + ejes; devuelve los conversores de coordenadas */
+function nxPlot(a, L) {
+  const X = v => L.x + (v - L.xmin) / (L.xmax - L.xmin) * L.w;
+  const Y = v => L.y + L.h - (v - L.ymin) / (L.ymax - L.ymin) * L.h;
+  const nx = L.nx || 5, ny = L.ny || 4;
+  for (let i = 0; i <= nx; i++) { const v = L.xmin + (L.xmax - L.xmin) * i / nx; a.line(X(v), L.y, X(v), L.y + L.h, C.grid, 1); }
+  for (let j = 0; j <= ny; j++) { const v = L.ymin + (L.ymax - L.ymin) * j / ny; a.line(L.x, Y(v), L.x + L.w, Y(v), C.grid, 1); }
+  const yz = (L.ymin < 0 && L.ymax > 0) ? Y(0) : L.y + L.h;
+  const xz = (L.xmin < 0 && L.xmax > 0) ? X(0) : L.x;
+  a.line(L.x, yz, L.x + L.w, yz, C.muted, 1.6);
+  a.line(xz, L.y, xz, L.y + L.h, C.muted, 1.6);
+  if (L.xlab) a.txt(L.xlab, L.x + L.w, L.y + L.h + (yz < L.y + L.h ? 17 : 31), C.muted, 12, 'right');
+  if (L.ylab) a.txt(L.ylab, L.x - 2, L.y - 9, C.muted, 12, 'right');
+  (L.xt || []).forEach(v => a.txt(nf(v, 0) + (L.xsuf || ''), X(v), yz + 16, C.muted, 11, 'center'));
+  (L.yt || []).forEach(v => a.txt(nf(v, L.yd === undefined ? 0 : L.yd), L.x - 6, Y(v) + 4, C.muted, 11, 'right'));
+  return { X, Y, L };
+}
+function nxCurva(a, P, pts, col, wd, dash) {
+  const L = P.L, g = a.g;
+  g.save(); g.beginPath(); g.rect(L.x - 1, L.y - 1, L.w + 2, L.h + 2); g.clip();
+  g.strokeStyle = col; g.lineWidth = wd || 2.2; g.setLineDash(dash || []);
+  g.beginPath();
+  pts.forEach((p, i) => { const x = P.X(p[0]), y = P.Y(p[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); });
+  g.stroke(); g.setLineDash([]); g.restore();
+}
+function nxLeyenda(a, x, y, items) {           // [[color, texto], ...]
+  items.forEach((it, i) => {
+    const yy = y + i * 18;
+    a.line(x, yy - 4, x + 20, yy - 4, it[0], 3);
+    a.txt(it[1], x + 26, yy, C.text, 12);
+  });
+}
+/* Colores de serie fijos: nunca el acento del tema, que cambia de un tema a
+   otro y puede coincidir con ellos y dejar dos curvas del mismo color. */
+function nxPal(a) {
+  const cs = getComputedStyle(a.cv.parentNode), v = n => cs.getPropertyValue(n).trim();
+  return { azul: v('--c5') || '#2a5f9e', naranja: v('--c4') || '#a8601a',
+           rojo: v('--warn') || '#b03a1e', verde: v('--c2') || '#1f7a5a',
+           teja: v('--c6') || '#0f6f74', morado: v('--c3') || '#8a4a9e' };
+}
+
+/* =============================================================== T1
+   Los cuatro cuadrantes del plano par-velocidad                     */
+SIMS.cuadrantes = el => build(el, {
+  w: 680, h: 430,
+  sliders: [{ k: 'n', v: 1200, min: -2000, max: 2000, step: 50, l: 'Velocidad n', u: 'rpm' },
+            { k: 'T', v: 6, min: -12, max: 12, step: 0.5, l: 'Par de la máquina T', u: 'N·m' }],
+  selects: [{ k: 'app', v: 'grua', l: 'Qué está moviendo', opts: [['grua', 'Una grúa (n > 0 = subir)'], ['coche', 'Un coche eléctrico'], ['nada', 'Sólo el plano']] }],
+  draw(a) {
+    a.clear();
+    const st = a.st, S = nxPal(a), w = 2 * Math.PI * st.n / 60, P = st.T * w;
+    const L = { x: 56, y: 28, w: 340, h: 344, xmin: -2300, xmax: 2300, ymin: -13.5, ymax: 13.5,
+                xlab: 'n (rpm)', ylab: 'T (N·m)', nx: 4, ny: 4, xt: [-2000, -1000, 1000, 2000], yt: [-10, -5, 5, 10] };
+    const Q = nxPlot(a, L);
+    const x0 = Q.X(0), y0 = Q.Y(0);
+    a.g.save(); a.g.globalAlpha = .12;
+    a.g.fillStyle = S.verde; a.g.fillRect(x0, L.y, L.x + L.w - x0, y0 - L.y);          // Q1
+    a.g.fillRect(L.x, y0, x0 - L.x, L.y + L.h - y0);                                   // Q3
+    a.g.fillStyle = S.naranja; a.g.fillRect(L.x, L.y, x0 - L.x, y0 - L.y);             // Q2
+    a.g.fillRect(x0, y0, L.x + L.w - x0, L.y + L.h - y0);                              // Q4
+    a.g.restore();
+    const textos = {
+      grua: [['SUBE la carga', 'el motor tira'], ['BAJA frenando', 'devuelve energía'],
+             ['BAJA tirando', 'el gancho pesa poco'], ['SUBE frenando', 'al final del trayecto']],
+      coche: [['ACELERA adelante', 'gasta batería'], ['FRENA yendo atrás', 'carga batería'],
+              ['ACELERA marcha atrás', 'gasta batería'], ['FRENA yendo adelante', 'carga batería']],
+      nada: [['potencia positiva', ''], ['potencia negativa', ''],
+             ['potencia positiva', ''], ['potencia negativa', '']]
+    }[st.app];
+    // los rótulos van pegados a las esquinas de fuera, lejos del punto de trabajo
+    const m = 12;
+    const esq = [[L.x + L.w - m, L.y + m + 12, 'I · MOTOR', S.verde, 'right'],
+                 [L.x + m, L.y + m + 12, 'II · FRENO', S.naranja, 'left'],
+                 [L.x + m, L.y + L.h - m, 'III · MOTOR', S.verde, 'left'],
+                 [L.x + L.w - m, L.y + L.h - m, 'IV · FRENO', S.naranja, 'right']];
+    esq.forEach(q => a.txt(q[2], q[0], q[1], q[3], 13, q[4]));
+    // punto de trabajo
+    const px = Q.X(st.n), py = Q.Y(st.T);
+    a.line(px, y0, px, py, C.muted, 1, [4, 3]);
+    a.line(x0, py, px, py, C.muted, 1, [4, 3]);
+    a.circ(px, py, 6.5, C.text, true);
+    a.circ(px, py, 11, C.text, false);
+    const q = st.n >= 0 ? (st.T >= 0 ? 1 : 4) : (st.T >= 0 ? 2 : 3);
+    // panel derecho: qué pasa en el cuadrante activo + potencia
+    const bx = 436, by = 160, bh = 200, col = (q === 1 || q === 3) ? S.verde : S.naranja;
+    a.txt('Cuadrante ' + ['I', 'II', 'III', 'IV'][q - 1], bx, 48, col, 15);
+    a.txt((q === 1 || q === 3) ? 'MOTOR' : 'FRENO / GENERADOR', bx, 68, col, 12.5);
+    a.txt(textos[q - 1][0], bx, 94, C.text, 12.5);
+    a.txt(textos[q - 1][1], bx, 112, C.muted, 11.5);
+    a.txt(P >= 0 ? 'La red entrega energía.' : 'La red recibe energía.', bx, 136, C.muted, 11.5);
+    a.txt('P = T · ω', bx, by + 22, C.muted, 12);
+    a.line(bx, by + bh / 2, bx + 150, by + bh / 2, C.muted, 1.4);
+    const Pmax = 12 * 2 * Math.PI * 2000 / 60, hb = Math.max(2, Math.abs(P) / Pmax * (bh / 2 - 14));
+    a.g.fillStyle = col;
+    a.g.fillRect(bx + 34, P >= 0 ? by + bh / 2 - hb : by + bh / 2, 78, hb);
+    a.txt(nf(Math.abs(P), 0) + ' W', bx + 73, P >= 0 ? by + bh / 2 - hb - 8 : by + bh / 2 + hb + 16, C.text, 13, 'center');
+    a.html('<b>Cuadrante ' + ['I', 'II', 'III', 'IV'][q - 1] + '</b> · '
+      + 'ω = 2π·n/60 = <b>' + nf(w) + ' rad/s</b> · '
+      + 'P = T·ω = <b>' + nf(P, 0) + ' W</b> · '
+      + (P >= 0 ? 'par y velocidad tienen el mismo signo: la máquina <b>da par motor</b> y consume de la red.'
+                : 'par y velocidad tienen signos contrarios: la máquina <b>frena</b> y, si el convertidor lo permite, devuelve energía.')
+      + '<br>El signo de P es lo único que separa motor de freno. El accionamiento tiene que poder trabajar en los cuatro cuadrantes si la carga se lo pide.');
+  }
+});
+
+/* =============================================================== T2
+   Circuito magnético con entrehierro                                */
+function nxB(Ni, lfe, lg, A, mur0, Bs) {   // resuelve N·i = H_fe·l_fe + (B/µ0)·l_g
+  const f = B => B * lfe * (1 + Math.pow(B / Bs, 6)) / (U0 * mur0) + B * lg / U0 - Ni;
+  let lo = 0, hi = 6;
+  for (let k = 0; k < 80; k++) { const m = (lo + hi) / 2; if (f(m) < 0) lo = m; else hi = m; }
+  return (lo + hi) / 2;
+}
+SIMS.saturacion = el => build(el, {
+  w: 680, h: 420,
+  sliders: [{ k: 'N', v: 300, min: 50, max: 600, step: 10, l: 'Espiras N', u: '' },
+            { k: 'i', v: 2, min: 0, max: 6, step: 0.1, l: 'Intensidad i', u: 'A' },
+            { k: 'lfe', v: 50, min: 15, max: 90, step: 1, l: 'Longitud media del hierro', u: 'cm' },
+            { k: 'A', v: 16, min: 4, max: 40, step: 1, l: 'Sección A', u: 'cm²' },
+            { k: 'lg', v: 1, min: 0, max: 3, step: 0.05, l: 'Entrehierro l_g', u: 'mm' },
+            { k: 'mur', v: 3000, min: 500, max: 6000, step: 100, l: 'μ_r del hierro (sin saturar)', u: '' }],
+  draw(a) {
+    const st = a.st, S = nxPal(a), A = st.A / 1e4, lfe = st.lfe / 100, lg = st.lg / 1000, Bs = 1.6;
+    const B = nxB(st.N * st.i, lfe, lg, A, st.mur, Bs);
+    const murEf = st.mur / (1 + Math.pow(B / Bs, 6));
+    const Rfe = lfe / (U0 * murEf * A), Rg = lg / (U0 * A), Rt = Rfe + Rg;
+    const phi = B * A, Lh = st.N * st.N / Rt;
+    a.clear();
+    // --- el núcleo ---
+    const X = 40, Y = 40, W = 250, H = 190, e = 26;
+    a.g.strokeStyle = C.muted; a.g.lineWidth = 2;
+    a.g.strokeRect(X, Y, W, H); a.g.strokeRect(X + e, Y + e, W - 2 * e, H - 2 * e);
+    const gw = Math.max(2, st.lg * 9);
+    a.g.fillStyle = C.bg; a.g.fillRect(X + W / 2 - gw / 2, Y + H - e - 1, gw, e + 2);
+    a.g.strokeStyle = S.azul; a.g.lineWidth = 2;
+    a.g.beginPath(); a.g.moveTo(X + W / 2 - gw / 2, Y + H - e); a.g.lineTo(X + W / 2 - gw / 2, Y + H);
+    a.g.moveTo(X + W / 2 + gw / 2, Y + H - e); a.g.lineTo(X + W / 2 + gw / 2, Y + H); a.g.stroke();
+    a.txt('entrehierro', X + W / 2, Y + H + 20, S.azul, 12, 'center');
+    for (let k = 0; k < 6; k++) {
+      const yy = Y + 26 + k * 24;
+      a.line(X - 12, yy + 8, X + e + 10, yy - 4, S.morado, 2.4);
+    }
+    a.txt('N = ' + st.N, X - 14, Y + 18, S.morado, 12.5);
+    a.txt('i = ' + nf(st.i, 1) + ' A', X - 14, Y + H + 20, S.morado, 12.5);
+    a.txt('Φ', X + W / 2, Y + e + 22, C.text, 14, 'center');
+    a.arrow(X + W / 2 - 26, Y + e / 2, X + W / 2 + 26, Y + e / 2, S.teja, 2.2);
+    // --- reparto de la fuerza magnetomotriz ---
+    const bx = 330, by = 56, bw = 310;
+    a.txt('¿Dónde se gasta la fuerza magnetomotriz N·i?', bx, by - 16, C.text, 13);
+    const fg = Rg / Rt;
+    a.g.fillStyle = S.naranja; a.g.fillRect(bx, by, bw * (1 - fg), 26);
+    a.g.fillStyle = S.azul; a.g.fillRect(bx + bw * (1 - fg), by, bw * fg, 26);
+    if (fg < .7) a.txt('hierro ' + nf(100 * (1 - fg), 0) + '%', bx + 6, by + 18, C.bg, 12);
+    else a.txt('hierro ' + nf(100 * (1 - fg), 0) + '%', bx, by + 44, S.naranja, 12);
+    if (fg > .18) a.txt('entrehierro ' + nf(100 * fg, 0) + '%', bx + bw - 6, by + 18, C.bg, 12, 'right');
+    else a.txt('entrehierro ' + nf(100 * fg, 0) + '%', bx + bw, by + 44, S.azul, 12, 'right');
+    // --- induccion frente a la saturacion ---
+    const gy = 158, gh = 148;
+    const Pg = nxPlot(a, { x: bx, y: gy, w: bw, h: gh, xmin: 0, xmax: 3, ymin: 0, ymax: 2,
+                           xlab: 'l_g (mm)', ylab: 'B (T)', nx: 6, ny: 4, xt: [1, 2, 3], yt: [0.5, 1, 1.5, 2], yd: 1 });
+    const cur = [];
+    for (let k = 0; k <= 120; k++) { const g2 = k / 120 * 3 / 1000; cur.push([k / 120 * 3, nxB(st.N * st.i, lfe, g2, A, st.mur, Bs)]); }
+    nxCurva(a, Pg, cur, S.teja, 2.6);
+    nxCurva(a, Pg, [[0, Bs], [3, Bs]], S.rojo, 1.6, [6, 4]);
+    a.txt('B de saturación', Pg.X(3) - 4, Pg.Y(Bs) - 7, S.rojo, 11, 'right');
+    a.circ(Pg.X(st.lg), Pg.Y(B), 6, C.text, true);
+    a.circ(Pg.X(st.lg), Pg.Y(B), 9.5, C.text, false);
+    a.html('ℜ<sub>hierro</sub> = l<sub>fe</sub>/(μ₀μ<sub>r</sub>A) = <b>' + ing(Rfe) + ' A·v/Wb</b> · '
+      + 'ℜ<sub>entrehierro</sub> = l<sub>g</sub>/(μ₀A) = <b>' + ing(Rg) + ' A·v/Wb</b><br>'
+      + 'Φ = N·i/ℜ = <b>' + nf(phi * 1000) + ' mWb</b> · B = Φ/A = <b>' + nf(B) + ' T</b> · '
+      + 'L = N²/ℜ = <b>' + nf(Lh * 1000, 1) + ' mH</b> · μ_r efectiva = <b>' + nf(murEf, 0) + '</b><br>'
+      + (st.lg === 0
+        ? 'Sin entrehierro manda el hierro. Si B se acerca a 1,6 T el hierro satura, μ_r se desploma y ℜ sube de golpe.'
+        : 'Un entrehierro de sólo ' + nf(st.lg, 2) + ' mm se lleva el <b>' + nf(100 * fg, 0)
+          + ' %</b> de la fuerza magnetomotriz, porque el aire tiene μ_r = 1 frente a los miles del hierro. '
+          + 'Por eso el entrehierro es el que decide B, L y la energía que cabe en el circuito.'));
+  }
+});
+
+/* =============================================================== T2
+   Tensión, flujo y saturación del núcleo                            */
+SIMS.flujo = el => build(el, {
+  w: 680, h: 430,
+  sliders: [{ k: 'V', v: 230, min: 60, max: 400, step: 5, l: 'Tensión aplicada V₁ (eficaz)', u: 'V' },
+            { k: 'f', v: 50, min: 10, max: 60, step: 1, l: 'Frecuencia f', u: 'Hz' },
+            { k: 'N', v: 200, min: 50, max: 600, step: 10, l: 'Espiras N₁', u: '' },
+            { k: 'A', v: 37, min: 5, max: 70, step: 1, l: 'Sección del núcleo A', u: 'cm²' },
+            { k: 'Bs', v: 1.6, min: 1, max: 2, step: 0.05, l: 'B de saturación', u: 'T' }],
+  draw(a) {
+    const st = a.st, S = nxPal(a), A = st.A / 1e4;
+    const phim = st.V / (4.4429 * st.f * st.N), B = phim / A, sat = B > st.Bs;
+    a.clear();
+    // --- v(t) y phi(t) ---
+    const P = nxPlot(a, { x: 56, y: 24, w: 382, h: 146, xmin: 0, xmax: 2, ymin: -1.25, ymax: 1.25,
+                          xlab: 'ciclos', nx: 8, ny: 4 });
+    const v = [], ph = [];
+    for (let k = 0; k <= 240; k++) {
+      const t = k / 240 * 2;
+      ph.push([t, Math.sin(2 * Math.PI * t)]);
+      v.push([t, Math.cos(2 * Math.PI * t)]);
+    }
+    nxCurva(a, P, ph, S.morado, 2.6);
+    nxCurva(a, P, v, S.rojo, 2.6);
+    nxLeyenda(a, 456, 40, [[S.rojo, 'v₁ = N·dΦ/dt'], [S.morado, 'Φ, 90° por detrás']]);
+    a.txt('La tensión manda:', 456, 92, C.text, 12.5);
+    a.txt('el flujo es su integral,', 456, 110, C.muted, 12);
+    a.txt('y por eso va retrasado.', 456, 128, C.muted, 12);
+    // --- barra de induccion ---
+    const bx = 56, by = 244, bw = 290, bh = 30;
+    a.txt('Inducción de pico B̂ en el núcleo', bx, by - 16, C.text, 13);
+    a.g.strokeStyle = C.grid; a.g.lineWidth = 1; a.g.strokeRect(bx, by, bw, bh);
+    const esc = bw / 3;
+    a.g.fillStyle = sat ? S.rojo : S.verde; a.g.fillRect(bx, by, Math.min(bw, B * esc), bh);
+    a.line(bx + st.Bs * esc, by - 6, bx + st.Bs * esc, by + bh + 26, S.rojo, 2, [5, 3]);
+    a.txt('B_sat', bx + st.Bs * esc + 5, by + bh + 38, S.rojo, 11.5);
+    a.txt(nf(B) + ' T', bx + 8, by + 20, C.bg, 13.5);
+    [0, 1, 2, 3].forEach(t => a.txt(nf(t, 0), bx + t * esc, by + bh + 18, C.muted, 11, 'center'));
+    a.txt('T', bx + bw + 16, by + bh + 18, C.muted, 11, 'center');
+    // --- corriente de vacio ---
+    a.txt('Corriente de vacío i_m', 408, by - 16, C.text, 13);
+    const Pi = nxPlot(a, { x: 408, y: by - 4, w: 238, h: 104, xmin: 0, xmax: 2, ymin: -1.2, ymax: 1.2, nx: 8, ny: 4 });
+    const H = x => x * (1 + Math.pow(Math.abs(x) / st.Bs, 12));
+    const im = []; let pico = 0;
+    for (let k = 0; k <= 240; k++) { const t = k / 240 * 2, y = H(B * Math.sin(2 * Math.PI * t)); im.push([t, y]); pico = Math.max(pico, Math.abs(y)); }
+    nxCurva(a, Pi, im.map(p => [p[0], p[1] / pico]), sat ? S.rojo : S.verde, 2.4);
+    const veces = pico / B;
+    a.txt(sat ? 'se dispara: pico ×' + nf(veces, 1) : 'senoidal: el núcleo no satura',
+          408, by + 122, sat ? S.rojo : C.muted, 11.5);
+    a.html('Φ̂ = V₁/(4,44·f·N₁) = <b>' + nf(phim * 1000) + ' mWb</b> · '
+      + 'B̂ = Φ̂/A = <b>' + nf(B) + ' T</b>  (límite ' + nf(st.Bs) + ' T)<br>'
+      + 'Al revés es la fórmula de diseño: <b>V₁ = 4,44·f·N₁·A·B̂</b>. '
+      + 'B̂ no depende de la carga: sólo de la tensión, la frecuencia, las espiras y la sección.<br>'
+      + (sat
+        ? '<b>El núcleo satura.</b> Pasado el codo hace falta muchísima más fuerza magnetomotriz para el mismo flujo, '
+          + 'así que la corriente de vacío deja de ser senoidal y se dispara (aquí, ×' + nf(veces, 1) + ' el pico). '
+          + 'Baja la tensión, sube la frecuencia o pon más espiras.'
+        : 'Fíjate en que f está dividiendo: <b>si bajas la frecuencia a la mitad sin bajar la tensión, B̂ se duplica</b>. '
+          + 'Por eso un transformador de 50 Hz se quema a 25 Hz a tensión nominal.'));
+  }
+});
+
+/* =============================================================== T4
+   Curva n-T de la máquina de continua según la excitación           */
+SIMS.excitacion = el => build(el, {
+  w: 680, h: 420,
+  sliders: [{ k: 'V', v: 230, min: 100, max: 400, step: 5, l: 'Tensión V', u: 'V' },
+            { k: 'Ra', v: 0.4, min: 0.05, max: 2, step: 0.05, l: 'Resistencia del inducido R_a', u: 'Ω' },
+            { k: 'kf', v: 1.2, min: 0.4, max: 2.5, step: 0.05, l: 'kΦ de la excitación fija', u: 'V·s/rad' },
+            { k: 'ks', v: 0.02, min: 0.005, max: 0.05, step: 0.001, l: 'Constante de la serie', u: '' },
+            { k: 'T', v: 10, min: 0.5, max: 40, step: 0.5, l: 'Par resistente de la carga', u: 'N·m' }],
+  draw(a) {
+    const st = a.st, S = nxPal(a), R = st.Ra;
+    const rpm = w => w * 60 / (2 * Math.PI);
+    const indep = T => (st.V - R * T / st.kf) / st.kf;
+    const serie = T => { const Ia = Math.sqrt(T / st.ks); return (st.V - (R + 0.2) * Ia) / (st.ks * Ia); };
+    const comp = T => { const c = st.ks * 1.5, Ia = (-st.kf + Math.sqrt(st.kf * st.kf + 4 * c * T)) / (2 * c);
+                        return (st.V - R * Ia) / (st.kf + c * Ia); };
+    a.clear();
+    const P = nxPlot(a, { x: 66, y: 26, w: 420, h: 320, xmin: 0, xmax: 40, ymin: 0, ymax: 6000,
+                          xlab: 'T (N·m)', ylab: 'n (rpm)', nx: 8, ny: 4,
+                          xt: [10, 20, 30, 40], yt: [1500, 3000, 4500, 6000] });
+    const curva = f => { const o = []; for (let k = 1; k <= 200; k++) { const T = k / 200 * 40; o.push([T, rpm(f(T))]); } return o; };
+    nxCurva(a, P, curva(indep), S.azul, 2.6);
+    nxCurva(a, P, curva(comp), S.naranja, 2.6);
+    nxCurva(a, P, curva(serie), S.rojo, 2.6);
+    nxLeyenda(a, 506, 54, [[S.azul, 'Indep. / derivación'], [S.naranja, 'Compuesta'], [S.rojo, 'Serie']]);
+    [indep, comp, serie].forEach(fn => {
+      const y = rpm(fn(st.T));
+      if (y > 0 && y < 6000) { a.circ(P.X(st.T), P.Y(y), 5.5, C.text, true); a.circ(P.X(st.T), P.Y(y), 9, C.text, false); }
+    });
+    a.line(P.X(st.T), P.L.y, P.X(st.T), P.L.y + P.L.h, C.muted, 1, [4, 3]);
+    a.txt('carga', P.X(st.T), P.L.y - 8, C.muted, 11.5, 'center');
+    const ni = rpm(indep(st.T)), ns = rpm(serie(st.T)), nc = rpm(comp(st.T));
+    const Iai = st.T / st.kf, Ias = Math.sqrt(st.T / st.ks);
+    a.html('Con ' + nf(st.T, 1) + ' N·m: independiente <b>' + nf(ni, 0) + ' rpm</b> (I_a = ' + nf(Iai, 1) + ' A) · '
+      + 'compuesta <b>' + nf(nc, 0) + ' rpm</b> · serie <b>' + nf(ns, 0) + ' rpm</b> (I_a = ' + nf(Ias, 1) + ' A)<br>'
+      + '<b>Independiente:</b> Φ fijo, n = (V − R_a·T/kΦ)/kΦ, casi una recta plana: la velocidad apenas cae al cargar. '
+      + '<b>Serie:</b> Φ crece con I_a, el par va con I_a² y n con 1/√T, así que da un par de arranque enorme '
+      + 'pero <b>en vacío se embala</b>. <b>Compuesta:</b> cae más que la independiente al cargar, pero tiene velocidad de vacío definida y no se embala.<br>'
+      + 'Sube el par de la carga y mira cómo se separan: por eso un motor serie mueve una locomotora y uno de '
+      + 'excitación independiente mueve una máquina herramienta.');
+  }
+});
+
+/* =============================================================== T5
+   Clarke y Park                                                     */
+SIMS.clarkepark = el => build(el, {
+  w: 680, h: 440,
+  sliders: [{ k: 'wt', v: 60, min: 0, max: 360, step: 2, l: 'ωt', u: '°' },
+            { k: 'Ip', v: 10, min: 1, max: 20, step: 0.5, l: 'Pico de la corriente Î', u: 'A' },
+            { k: 'des', v: 0, min: -90, max: 90, step: 5, l: 'Desalineación del marco d-q', u: '°' }],
+  selects: [{ k: 'modo', v: 'gira', l: 'Marco d-q', opts: [['gira', 'Gira con el campo (Park)'], ['fijo', 'Quieto (sólo Clarke)']] }],
+  draw(a) {
+    const st = a.st, S = nxPal(a), r = Math.PI / 180, wt = st.wt * r;
+    const th = (st.modo === 'gira' ? wt : 0) + st.des * r;
+    const fase = k => st.Ip * Math.cos(wt - k * 2 * Math.PI / 3);
+    const abc = t => [0, 1, 2].map(k => st.Ip * Math.cos(t - k * 2 * Math.PI / 3));
+    const clarke = i => [(2 / 3) * (i[0] - i[1] / 2 - i[2] / 2), (2 / 3) * (Math.sqrt(3) / 2) * (i[1] - i[2])];
+    const i3 = abc(wt), [al, be] = clarke(i3);
+    const id = al * Math.cos(th) + be * Math.sin(th), iq = -al * Math.sin(th) + be * Math.cos(th);
+    a.clear();
+    // --- ondas abc ---
+    const FASE = [S.azul, S.naranja, S.rojo];
+    const P = nxPlot(a, { x: 48, y: 24, w: 330, h: 142, xmin: 0, xmax: 360, ymin: -21, ymax: 21, nx: 6, ny: 4,
+                          xt: [90, 180, 270], xsuf: '°' });
+    FASE.forEach((col, k) => {
+      const o = []; for (let j = 0; j <= 180; j++) { const t = j / 180 * 360; o.push([t, st.Ip * Math.cos(t * r - k * 2 * Math.PI / 3)]); }
+      nxCurva(a, P, o, col, 2.2);
+      a.circ(P.X(st.wt), P.Y(fase(k)), 4.5, col, true);
+    });
+    a.line(P.X(st.wt), P.L.y, P.X(st.wt), P.L.y + P.L.h, C.muted, 1.2, [4, 3]);
+    nxLeyenda(a, 398, 36, [[FASE[0], 'i_a'], [FASE[1], 'i_b'], [FASE[2], 'i_c']]);
+    a.txt('Suman cero en todo', 398, 112, C.muted, 11.5);
+    a.txt('instante: sólo dos', 398, 128, C.muted, 11.5);
+    a.txt('son independientes.', 398, 144, C.muted, 11.5);
+    // --- plano alfa-beta ---
+    const cx = 150, cy = 310, u = 4.6;
+    a.line(cx - 104, cy, cx + 104, cy, C.muted, 1.3);
+    a.line(cx, cy - 104, cx, cy + 104, C.muted, 1.3);
+    a.txt('α', cx + 110, cy + 5, C.muted, 12);
+    a.txt('β', cx + 6, cy - 108, C.muted, 12);
+    a.circ(cx, cy, st.Ip * u, C.grid, false);
+    FASE.forEach((col, k) => {
+      const ang = k * 2 * Math.PI / 3 + (k ? 0 : 0);
+      const R1 = 78;
+      a.line(cx, cy, cx + R1 * Math.cos(ang), cy - R1 * Math.sin(ang), col, 1, [3, 3]);
+      a.txt('eje ' + 'abc'[k], cx + (R1 + 16) * Math.cos(ang) - 10, cy - (R1 + 16) * Math.sin(ang) + (k ? 4 : 18), col, 11);
+    });
+    a.line(cx, cy, cx + 96 * Math.cos(th), cy - 96 * Math.sin(th), S.teja, 1.8, [6, 4]);
+    a.txt('d', cx + 106 * Math.cos(th) - 4, cy - 106 * Math.sin(th) + 4, S.teja, 12.5);
+    a.line(cx, cy, cx - 72 * Math.sin(th), cy - 72 * Math.cos(th), S.morado, 1.6, [4, 4]);
+    a.txt('q', cx - 82 * Math.sin(th) - 4, cy - 82 * Math.cos(th) + 4, S.morado, 12.5);
+    a.arrow(cx, cy, cx + al * u, cy - be * u, C.text, 3);
+    a.txt('i_s', cx + al * u + 8, cy - be * u - 6, C.text, 13);
+    a.txt('plano α-β', cx, cy + 122, C.text, 12.5, 'center');
+    // --- barras d-q ---
+    const bx = 330, by = 248, bw = 230;
+    a.txt('En el marco d-q', bx, by - 22, C.text, 13);
+    [['i_d', id, S.teja], ['i_q', iq, S.morado]].forEach(([nm, val, col], k) => {
+      const yy = by + k * 44, zx = bx + 220;
+      a.txt(nm + ' = ' + nf(val) + ' A', bx, yy + 16, C.text, 12.5);
+      a.line(zx, yy - 4, zx, yy + 28, C.muted, 1.2);
+      a.g.fillStyle = col;
+      const L2 = val / 21 * 100;
+      a.g.fillRect(zx + Math.min(0, L2), yy + 1, Math.abs(L2), 22);
+    });
+    a.txt(st.modo === 'gira' && st.des === 0
+      ? 'Mueve ωt: no se mueven.'
+      : (st.modo === 'gira' ? 'El marco va desalineado ' + nf(st.des, 0) + '°.' : 'Marco quieto: vuelven a oscilar.'),
+      bx, by + 106, C.muted, 11.5);
+    a.html('i_a = <b>' + nf(i3[0]) + '</b> · i_b = <b>' + nf(i3[1]) + '</b> · i_c = <b>' + nf(i3[2]) + '</b> A  →  '
+      + 'i_α = <b>' + nf(al) + '</b> · i_β = <b>' + nf(be) + '</b> A  →  i_d = <b>' + nf(id) + '</b> · i_q = <b>' + nf(iq) + '</b> A<br>'
+      + '<b>Clarke</b> cambia tres magnitudes ligadas (suman cero) por dos independientes: i_α = ⅔(i_a − i_b/2 − i_c/2), '
+      + 'i_β = (1/√3)(i_b − i_c). El vector espacial tiene módulo Î = ' + nf(Math.hypot(al, be)) + ' A y gira a velocidad constante.<br>'
+      + '<b>Park</b> se sube a ese vector que gira: mueve ωt y verás que i_d e i_q <b>no cambian</b>. Tres senoides se han '
+      + 'convertido en dos valores continuos, y por eso se puede regular la máquina con reguladores PI como en continua.');
+  }
+});
+
+/* =============================================================== T6
+   Control V/f de la máquina asíncrona                               */
+SIMS.vhz = el => build(el, {
+  w: 680, h: 430,
+  sliders: [{ k: 'f', v: 50, min: 5, max: 80, step: 1, l: 'Frecuencia de salida f', u: 'Hz' },
+            { k: 'Vn', v: 230, min: 100, max: 400, step: 5, l: 'Tensión nominal (por fase)', u: 'V' },
+            { k: 'boost', v: 0, min: 0, max: 40, step: 1, l: 'Refuerzo a baja frecuencia', u: 'V' },
+            { k: 'Rs', v: 0.3, min: 0, max: 1, step: 0.05, l: 'R_s', u: 'Ω' },
+            { k: 'Rr', v: 0.3, min: 0.1, max: 1, step: 0.05, l: "R'_r", u: 'Ω' },
+            { k: 'X50', v: 1.2, min: 0.4, max: 3, step: 0.1, l: 'X de dispersión a 50 Hz', u: 'Ω' }],
+  selects: [{ k: 'p', v: '2', l: 'Pares de polos', opts: [['1', '1 par (2 polos)'], ['2', '2 pares (4 polos)'], ['3', '3 pares (6 polos)']] }],
+  draw(a) {
+    const st = a.st, S = nxPal(a), p = +st.p, fn = 50;
+    const Vde = f => Math.min(st.Vn, st.boost + (st.Vn / fn) * f);
+    const par = (f, s) => { if (s <= 0) return 0;
+      const X = st.X50 * f / fn, ws = 2 * Math.PI * f / p, V = Vde(f);
+      return (3 / ws) * V * V * (st.Rr / s) / (Math.pow(st.Rs + st.Rr / s, 2) + X * X); };
+    const ns = f => 60 * f / p;
+    a.clear();
+    const nmax = 60 * 80 / p;
+    const Tcresta = f => { const X = st.X50 * f / fn, ws = 2 * Math.PI * f / p, V = Vde(f);
+      return (3 / (2 * ws)) * V * V / (st.Rs + Math.sqrt(st.Rs * st.Rs + X * X)); };
+    let Tm = 0; [10, 20, 30, 40, 50, 60, 70, 80].forEach(f => { if (f <= 80) Tm = Math.max(Tm, Tcresta(f)); });
+    Tm = Math.max(Tm, Tcresta(st.f)) * 1.15;
+    const paso = Tm > 400 ? 200 : (Tm > 200 ? 100 : (Tm > 80 ? 50 : 20)), yts = [];
+    for (let v = paso; v < Tm; v += paso) yts.push(v);
+    const P = nxPlot(a, { x: 66, y: 26, w: 420, h: 350, xmin: 0, xmax: nmax, ymin: 0, ymax: Tm,
+                          xlab: 'n (rpm)', ylab: 'T (N·m)', nx: 6, ny: 4,
+                          xt: [1, 2, 3, 4, 5].map(k => Math.round(nmax * k / 6)), yt: yts });
+    const curva = f => { const o = []; for (let k = 1; k <= 240; k++) { const s = Math.pow(k / 240, 1.6); o.push([ns(f) * (1 - s), par(f, s)]); } return o; };
+    [10, 20, 30, 40, 50, 60, 70].forEach(f => { if (Math.abs(f - st.f) > 2) nxCurva(a, P, curva(f), C.grid, 1.6); });
+    nxCurva(a, P, curva(st.f), S.rojo, 2.8);
+    const smax = st.Rr / Math.sqrt(st.Rs * st.Rs + Math.pow(st.X50 * st.f / fn, 2));
+    const Tmax = Tcresta(st.f);
+    a.circ(P.X(ns(st.f) * (1 - smax)), P.Y(Tmax), 5.5, C.text, true);
+    a.circ(P.X(ns(st.f) * (1 - smax)), P.Y(Tmax), 9, C.text, false);
+    a.txt('T_max', P.X(ns(st.f) * (1 - smax)) - 12, P.Y(Tmax) - 14, C.text, 11.5, 'right');
+    a.line(P.X(ns(st.f)), P.L.y, P.X(ns(st.f)), P.L.y + P.L.h, S.azul, 1.4, [5, 3]);
+    a.txt('n_s = ' + nf(ns(st.f), 0), P.X(ns(st.f)) + 5, P.L.y + 14, S.azul, 11.5);
+    // tension aplicada
+    const bx = 508, by = 60;
+    a.txt('Tensión que aplica', bx, by - 14, C.text, 12.5);
+    const Pv = nxPlot(a, { x: bx, y: by, w: 140, h: 110, xmin: 0, xmax: 80, ymin: 0, ymax: st.Vn * 1.15,
+                           nx: 4, ny: 3, xlab: 'f (Hz)' });
+    const cv = []; for (let k = 0; k <= 80; k++) cv.push([k, Vde(k)]);
+    nxCurva(a, Pv, cv, S.verde, 2.4);
+    a.circ(Pv.X(st.f), Pv.Y(Vde(st.f)), 5, C.text, true);
+    a.txt('V/f constante', bx, by + 142, C.muted, 11);
+    a.txt('luego, tensión tope', bx, by + 158, C.muted, 11);
+    a.html('f = ' + nf(st.f, 0) + ' Hz · V = <b>' + nf(Vde(st.f), 1) + ' V</b> · V/f = <b>' + nf(Vde(st.f) / st.f) + ' V/Hz</b> · '
+      + 'n_s = <b>' + nf(ns(st.f), 0) + ' rpm</b> · s_max = <b>' + nf(smax, 3) + '</b> · T_max = <b>' + nf(Tmax, 1) + ' N·m</b><br>'
+      + (st.f <= fn
+        ? 'Por debajo de ' + fn + ' Hz se mantiene V/f para que el <b>flujo no cambie</b>, así que la curva de par se '
+          + 'traslada casi igual y el par máximo se conserva. '
+          + (st.f < 20 && st.boost < 5
+            ? 'Pero mira T_max a esta frecuencia: a tensión baja la caída en R_s se come una parte grande de V y el par se hunde. '
+              + 'Sube el refuerzo y lo recuperas.'
+            : 'El refuerzo compensa la caída en R_s, que a baja frecuencia pesa mucho.')
+        : 'Por encima de ' + fn + ' Hz la tensión ya está al tope, así que V/f baja: el flujo se debilita y <b>T_max cae con 1/f²</b>. '
+          + 'Es la zona de potencia constante.')
+      + '<br>Las curvas grises son las demás frecuencias: el motor asíncrono con variador es una familia de curvas que se desplaza.');
+  }
+});
+/* ---- fin nuevos sims ---- */
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();

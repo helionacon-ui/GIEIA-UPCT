@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -61,7 +124,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
 <div class="sh"><span aria-hidden="true" class="badge">3</span><div class="shx"><p class="kick">Diseño analógico y simulación · Tema 3</p><h2 id="t3">Reguladores: zener, lineales y LDO</h2><div class="tags"><span class="tag">Diseño analógico y simulación</span><span class="tag">1.er parcial (30 %)</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> elegir y dimensionar el elemento estabilizador: zener con resistencia serie, regulador de tres terminales de la familia 78XX y reguladores de baja caída (LDO) como el LM1117 o el AMS1117.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> elegir y dimensionar el elemento estabilizador: zener con resistencia serie, regulador de tres terminales de la familia 78XX y reguladores de baja caída (LDO) como el LM1117 o el AMS1117.</p><ul>
 <li>El <b>zener con resistencia serie</b> es el estabilizador más simple: la resistencia absorbe la diferencia de tensión y el zener fija la salida. Sólo sirve para corrientes pequeñas y rizados poco exigentes.</li>
 <li>El <b>78XX</b> es un regulador serie con realimentación: rechaza el rizado unos <b>65 dB</b>, tiene protección térmica y de cortocircuito, pero exige <b>2 V de caída</b>.</li>
 <li>El <b>LDO</b> hace lo mismo con una caída de <b>0,1 a 0,5 V</b>: es lo que permite sacar 3,3 V de una entrada de 3,6 V. A cambio es más exigente con el condensador de salida y su <b>ESR</b>.</li>
@@ -73,10 +136,18 @@ details>summary{line-height:1.7;padding-block:.5em}
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">V_Z</td><td>tensión del zener</td><td class="u">V</td></tr><tr><td class="sym">Z_Z</td><td>impedancia dinámica del zener</td><td class="u">Ω</td></tr><tr><td class="sym">I_ZRM</td><td>corriente máxima del zener</td><td class="u">A</td></tr><tr><td class="sym">V_dropout</td><td>caída mínima del regulador</td><td class="u">2 V en 78XX, 0,1-0,5 V en LDO</td></tr><tr><td class="sym">RR</td><td>rechazo de rizado</td><td class="u">dB</td></tr><tr><td class="sym">I_Q</td><td>corriente de reposo</td><td class="u">A</td></tr><tr><td class="sym">η</td><td>rendimiento</td><td class="u">\(V_{out}/V_{in}\)</td></tr><tr><td class="sym">LDO</td><td>Low Drop-Out</td><td class="u">regulador de baja caída</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - zener, lineal y LDO frente a frente</p><div data-sim="regulador"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
 <figure class="fig"><p class="ft">Figura interactiva - el convertidor elevador, la alternativa conmutada</p><div data-sim="elevador"></div><figcaption>Cuando el lineal disipa demasiado se pasa a un conmutado. Éste es el elevador: mueve D y mira cómo una bobina y un interruptor sacan más tensión de la que entra.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Regular es dar una tensión fija aunque cambien la entrada y la carga</p><p>El regulador más sencillo es el <b>zener</b>: una resistencia en serie y un zener en paralelo con la carga. El zener fija la tensión y la resistencia se queda con la diferencia. La clave del diseño es el <b>peor caso doble</b>: con la entrada mínima y la carga máxima el zener aún debe conducir (\(I_{Z,min}\)); con la entrada máxima y la carga desconectada, <b>toda</b> la corriente va al zener y no debe superar \(I_{ZRM}\) ni su potencia. De ahí \(R=\dfrac{V_{in,min}-V_Z}{I_L+I_{Z,min}}\) y la comprobación con \(V_{in,max}\).</p><p class="ft">Reguladores lineales: potencia perdida y caída mínima</p><p>Un regulador lineal (78xx, LM317, LDO) se comporta como una resistencia variable en serie con la carga: «quema» la diferencia de tensión. Potencia disipada: \(P_d=(V_{in}-V_{out})(I_L+I_Q)\) y rendimiento \(\eta\approx V_{out}/V_{in}\). Necesita una <b>caída mínima</b> (dropout): 2 V típico en un 7805, 0,2–0,5 V en un LDO; si la entrada baja de \(V_{out}+V_{dropout}\), la salida deja de estar regulada.</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Regular es dar una tensión fija aunque cambien la entrada y la carga</p><p class="lede">El regulador más sencillo es el <b>zener</b>: una resistencia en serie y un zener en paralelo con la carga. El zener fija la tensión y la resistencia se queda con la diferencia. La clave del diseño es el <b>peor caso doble</b>: con la entrada mínima y la carga máxima el zener aún debe conducir (\(I_{Z,min}\)); con la entrada máxima y la carga desconectada, <b>toda</b> la corriente va al zener y no debe superar \(I_{ZRM}\) ni su potencia. De ahí \(R=\dfrac{V_{in,min}-V_Z}{I_L+I_{Z,min}}\) y la comprobación con \(V_{in,max}\).</p><p class="ft">Reguladores lineales: potencia perdida y caída mínima</p><p>Un regulador lineal (78xx, LM317, LDO) se comporta como una resistencia variable en serie con la carga: «quema» la diferencia de tensión. Potencia disipada: \(P_d=(V_{in}-V_{out})(I_L+I_Q)\) y rendimiento \(\eta\approx V_{out}/V_{in}\). Necesita una <b>caída mínima</b> (dropout): 2 V típico en un 7805, 0,2–0,5 V en un LDO; si la entrada baja de \(V_{out}+V_{dropout}\), la salida deja de estar regulada.</p>
 <p>Un buen regulador además <b>rechaza el rizado</b> de la entrada: con 65 dB se divide entre 1778. En los ajustables (LM317, LM1117): \(V_{out}=1{,}25\left(1+\dfrac{R_2}{R_1}\right)+I_{adj}R_2\), con \(R_1\) típico de 240 Ω.</p>
 <figure class="fig"><p class="ft">Regulador: zener y lineal</p><div data-sim="regulador"></div><figcaption>Varía la tensión de entrada y la carga: observa la corriente del zener y la potencia disipada.</figcaption></figure></div><!--/amp1--><!--manim:dse-t3--><figure class="fig manim-fig" id="anim-dse-t3"><p class="ft">Animación · Regulador clásico frente a LDO</p><div class="manim" data-anim="dse-t3"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
-<h3 id="t3-formulas">Fórmulas y datos que hay que saber</h3>
+<!--deep--><h3 id="t3-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Regulador zener con transistor</h4>
+<div class="box key deepnote"><b>Idea clave.</b> un zener fija la tensión de referencia, y un transistor en serie suministra la corriente de carga. Así el zener solo soporta una corriente pequeña.</div>
+<div class="eqd">\[V_{out}\approx V_Z-V_{BE}\]</div>
+<details class="dem"><summary><span class="pn">∴</span>Regulador integrado lineal (serie 78xx)</summary><div class="inner"><ul><li>Tres terminales: entrada, masa y salida. El 7805 da 5 V; el 7812, 12 V.</li><li>Necesita una diferencia mínima de tensión entre entrada y salida (\(\approx2\) V) para regular.</li><li>Limitación térmica y de corriente internas.</li></ul></div></details>
+<h4><span class="hn">2</span>Regulador LDO</h4>
+<p>Un LDO (low dropout) funciona con una diferencia de tensión de pocas décimas de voltio. Es la opción cuando la batería o la fuente tienen poco margen. Atención a la corriente de reposo y a la estabilidad (condensador de salida con ESR adecuado).</p>
+<div class="box trap deepnote"><b>Cuidado.</b> Un LDO sin condensador de salida, o con un condensador que no cumple el ESR indicado, puede oscilar.</div>
+</div><!--/deep--><h3 id="t3-formulas">Fórmulas y datos que hay que saber</h3>
 <div class="box key"><ul>
 <li><b>Zener:</b> \(R=\dfrac{V_{in,min}-V_Z}{I_L+I_{Z,min}}\); comprobar \(I_{Z,max}=\dfrac{V_{in,max}-V_Z}{R}\le I_{ZRM}\) (caso de carga desconectada).</li>
 <li>Atenuación del rizado en el zener: \(\dfrac{V_{r,out}}{V_{r,in}}=\dfrac{Z_Z}{R+Z_Z}\).</li>

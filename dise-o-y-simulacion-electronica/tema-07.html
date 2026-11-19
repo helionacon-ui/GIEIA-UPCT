@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -61,7 +124,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c8);--tcs:var(--c8s)">
 <div class="sh"><span aria-hidden="true" class="badge">7</span><div class="shx"><p class="kick">Diseño analógico y simulación · Tema 7</p><h2 id="t7">Componentes SMD y encapsulados</h2><div class="tags"><span class="tag">Diseño analógico y simulación</span><span class="tag">2.º parcial (40 %)</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> conocer los tamaños y códigos de los componentes de montaje superficial, sus ventajas frente al through-hole y lo que implican para el diseño y el montaje de la placa.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> conocer los tamaños y códigos de los componentes de montaje superficial, sus ventajas frente al through-hole y lo que implican para el diseño y el montaje de la placa.</p><ul>
 <li>El <b>SMD</b> (Surface Mounting Device) se suelda sobre la superficie del cobre, sin atravesar la placa. Permite montaje automático y componentes mucho más pequeños.</li>
 <li>El <b>código de tamaño</b> son las dimensiones en centésimas de pulgada: <b>0805</b> = 0,08 × 0,05 pulgadas = 2,0 × 1,25 mm.</li>
 <li>Los tamaños habituales van del 0402 (1,0 × 0,5 mm, 1/16 W) al 2512 (6,3 × 3,2 mm, 1 W). <b>Menor tamaño = menos potencia disipable</b>.</li>
@@ -72,10 +135,16 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">El nombre del encapsulado es su tamaño</div><svg viewBox="0 0 560 262" role="img" aria-label="Tamaños de chip" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="40" y="105" width="20" height="10" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.3"/><rect x="40" y="105" width="3.6" height="10" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.6"/><rect x="56.4" y="105" width="3.6" height="10" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.6"/><text x="50" y="160" fill="var(--tc,var(--accent))" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">0402</text><rect x="106" y="102" width="32" height="16" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.3"/><rect x="106" y="102" width="5.8" height="16" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.6"/><rect x="132.2" y="102" width="5.8" height="16" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.6"/><text x="122" y="160" fill="var(--tc,var(--accent))" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">0603</text><rect x="172" y="97.5" width="50" height="25" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.3"/><rect x="172" y="97.5" width="9" height="25" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.6"/><rect x="213" y="97.5" width="9" height="25" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.6"/><text x="197" y="160" fill="var(--tc,var(--accent))" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">0805</text><rect x="238" y="90" width="80" height="40" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.3"/><rect x="238" y="90" width="14.4" height="40" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.6"/><rect x="303.6" y="90" width="14.4" height="40" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.6"/><text x="278" y="160" fill="var(--tc,var(--accent))" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">1206</text><text x="24" y="200" fill="var(--fg)" font-size="12" text-anchor="start" font-weight="600" opacity="1">0603 = 0,06″ × 0,03″  (1,6 × 0,8 mm)</text><text x="330" y="56" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">Código en pulgadas:</text><text x="330" y="78" fill="var(--fg)" font-size="13" text-anchor="start" opacity="1">1206 = 3,2 × 1,6 mm</text><text x="330" y="111" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">Más pequeño: más</text><text x="330" y="133" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">denso, pero más</text><text x="330" y="155" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">difícil de soldar.</text></svg><figcaption>El código de cuatro cifras indica largo y ancho en centésimas de pulgada; elegir tamaño es compromiso entre densidad y facilidad de montaje.</figcaption></figure><figure class="ill"><div class="ill-t">Tres encapsulados muy habituales</div><svg viewBox="0 0 560 262" role="img" aria-label="Familias de encapsulados" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="40" y="70" width="40" height="24" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.3"/><rect x="44" y="94" width="4" height="10" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="58" y="94" width="4" height="10" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="72" y="94" width="4" height="10" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="51" y="60" width="4" height="10" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="65" y="60" width="4" height="10" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><text x="60" y="126" fill="var(--tc,var(--accent))" font-size="12" text-anchor="middle" font-weight="700" opacity="1">SOT-23</text><rect x="130" y="64" width="44" height="50" rx="0" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="2" opacity="0.3"/><rect x="122" y="68" width="8" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="174" y="68" width="8" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="122" y="80" width="8" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="174" y="80" width="8" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="122" y="92" width="8" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="174" y="92" width="8" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="122" y="104" width="8" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="174" y="104" width="8" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><text x="152" y="134" fill="var(--c5,#c43d63)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">SOIC-8</text><rect x="220" y="66" width="48" height="48" rx="0" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="0.3"/><rect x="230" y="64" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="230" y="112" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="242" y="64" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="242" y="112" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="254" y="64" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="254" y="112" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="230" y="64" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="230" y="112" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="242" y="64" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="242" y="112" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="254" y="64" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="254" y="112" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="230" y="64" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="230" y="112" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="242" y="64" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="242" y="112" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="254" y="64" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="254" y="112" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="230" y="64" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="230" y="112" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="242" y="64" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="242" y="112" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="254" y="64" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><rect x="254" y="112" width="4" height="4" rx="0" fill="var(--muted)" stroke="none" stroke-width="1.5" opacity="0.8"/><text x="244" y="134" fill="var(--c6,#2c8a52)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">QFN</text><text x="24" y="190" fill="var(--fg)" font-size="11.5" text-anchor="start" font-weight="600" opacity="1">SOT: transistores  ·  SOIC: CI estándar  ·  QFN: pads bajo el chip</text></svg><figcaption>Cada familia sirve a un tipo de componente; los QFN y BGA ocultan los contactos bajo el cuerpo y obligan a un montaje más cuidadoso.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 7 <span class="src">8 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">0805</td><td>encapsulado SMD</td><td class="u">2,0 × 1,25 mm</td></tr><tr><td class="sym">0603</td><td>encapsulado SMD</td><td class="u">1,6 × 0,8 mm</td></tr><tr><td class="sym">SOT-23</td><td>transistor SMD</td><td class="u">3 terminales</td></tr><tr><td class="sym">SOIC / TSSOP</td><td>integrados SMD</td><td class="u">paso 1,27 / 0,65 mm</td></tr><tr><td class="sym">QFN / BGA</td><td>sin patillas / bolas</td><td class="u">difíciles de soldar a mano</td></tr><tr><td class="sym">pitch</td><td>paso entre pines</td><td class="u">mm</td></tr><tr><td class="sym">reflow</td><td>soldadura por refusión</td><td class="u">horno</td></tr><tr><td class="sym">473</td><td>marcado de resistencia</td><td class="u">47 kΩ</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - encapsulados SMD y codigos de marcado</p><div data-sim="smd"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Los códigos de los componentes SMD</p><p>En SMD no hay espacio para bandas de colores: se imprime un código numérico. En resistencias de <b>3 cifras</b>, las dos primeras son significativas y la tercera es el número de ceros: <b>473 = 47 × 10³ = 47 kΩ</b>. Si aparece la letra R, es la coma: <b>4R7 = 4,7 Ω</b>. En las de <b>4 cifras</b> (serie E96): tres significativas y un multiplicador: 4702 = 470 × 10² = 47 kΩ. Los condensadores cerámicos pequeños casi nunca llevan marcado: se mira la bolsa o la lista de materiales.</p><p class="ft">Tamaño, potencia y proceso de soldadura</p><p>El tamaño del encapsulado fija también la <b>potencia</b>: 0402 → 1/16 W; 0603 → 0,1 W; 0805 → 1/8 W; 1206 → 1/4 W; 2512 → 1 W. Para elegirlo: calcula \(P=V^2/R\) y deja un margen del 50 % o más. Los integrados vienen en SOT-23 (transistores), SOT-223 y DPAK (reguladores con pastilla térmica), SOIC, TSSOP, QFP, QFN y BGA; y sus equivalentes en agujero pasante son DIP, TO-92, TO-220 y TO-3.</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Los códigos de los componentes SMD</p><p class="lede">En SMD no hay espacio para bandas de colores: se imprime un código numérico. En resistencias de <b>3 cifras</b>, las dos primeras son significativas y la tercera es el número de ceros: <b>473 = 47 × 10³ = 47 kΩ</b>. Si aparece la letra R, es la coma: <b>4R7 = 4,7 Ω</b>. En las de <b>4 cifras</b> (serie E96): tres significativas y un multiplicador: 4702 = 470 × 10² = 47 kΩ. Los condensadores cerámicos pequeños casi nunca llevan marcado: se mira la bolsa o la lista de materiales.</p><p class="ft">Tamaño, potencia y proceso de soldadura</p><p>El tamaño del encapsulado fija también la <b>potencia</b>: 0402 → 1/16 W; 0603 → 0,1 W; 0805 → 1/8 W; 1206 → 1/4 W; 2512 → 1 W. Para elegirlo: calcula \(P=V^2/R\) y deja un margen del 50 % o más. Los integrados vienen en SOT-23 (transistores), SOT-223 y DPAK (reguladores con pastilla térmica), SOIC, TSSOP, QFP, QFN y BGA; y sus equivalentes en agujero pasante son DIP, TO-92, TO-220 y TO-3.</p>
 <p>El montaje SMD se hace por <b>soldadura por reflujo</b>: pasta de soldar con plantilla, colocación y horno con perfil (precalentamiento → activación del flux → pico de ~245 °C → enfriamiento), con pendientes limitadas para no estresar los componentes. Se inspecciona con IPC-A-610.</p>
 <figure class="fig"><p class="ft">Códigos y tamaños SMD</p><div data-sim="smd"></div><figcaption>Cambia el valor y el tamaño: se calcula el código impreso y la potencia máxima.</figcaption></figure></div><!--/amp1--><!--manim:dse-t7--><figure class="fig manim-fig" id="anim-dse-t7"><p class="ft">Animación · Tamaños de encapsulados SMD</p><div class="manim" data-anim="dse-t7"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
-<h3 id="t7-formulas">Fórmulas y datos que hay que saber</h3>
+<!--deep--><h3 id="t7-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Componentes de montaje superficial</h4>
+<ul><li><b>SMD</b>: se sueldan sobre la cara de la placa, sin agujeros. Ocupan menos y permiten montaje automático.</li><li><b>Códigos de tamaño</b>: 0603 significa 0,06 × 0,03 pulgadas (1,6 × 0,8 mm). Cuanto menor el número, más pequeño el componente.</li><li><b>Encapsulados</b> como SOT-23 (transistores), SOIC (circuitos integrados) o QFN (con pads por debajo).</li></ul>
+<h4><span class="hn">2</span>Soldadura y montaje</h4>
+<p>La soldadura en horno de refusión usa pasta de soldadura sobre los pads, colocación automática y calentamiento controlado. Para prototipo a mano, se usa soldador con punta fina y flujo.</p>
+<div class="box trap deepnote"><b>Cuidado.</b> Un componente con tolerancia de temperatura o de humedad (MSL) debe almacenarse y hornearse según su nivel. Si no, el encapsulado puede agrietarse en el horno.</div>
+</div><!--/deep--><h3 id="t7-formulas">Fórmulas y datos que hay que saber</h3>
 <div class="box key"><ul>
 <li><b>Tamaños:</b> 0402 (1,0 × 0,5 mm, 1/16 W) · 0603 (1,6 × 0,8, 0,1 W) · 0805 (2,0 × 1,25, 1/8 W) · 1206 (3,2 × 1,6, 1/4 W) · 1210 (3,2 × 2,5, 1/2 W) · 2512 (6,3 × 3,2, 1 W).</li>
 <li><b>Código de resistencia de 3 cifras:</b> las dos primeras son significativas y la tercera el número de ceros. 473 = 47 × 10³ = <b>47 kΩ</b>. Con «R» marca la coma: 4R7 = 4,7 Ω.</li>
