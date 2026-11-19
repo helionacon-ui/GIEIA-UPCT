@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -51,9 +114,6 @@ details>summary{line-height:1.7;padding-block:.5em}
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
 <script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
-
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body>
@@ -64,7 +124,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
 <div class="sh"><span aria-hidden="true" class="badge">3</span><div class="shx"><p class="kick">Continua: circuitos magnéticos y máquinas de CC · Tema 3</p><h2 id="t3">Conversión de energía electromecánica</h2><div class="tags"><span class="tag">Continua: circuitos magnéticos y máquinas de CC</span><span class="tag">1.ª prueba (35 %)</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> saber de dónde sale el par de cualquier máquina eléctrica: cómo se produce el campo en el entrehierro, cómo aparece la fuerza sobre los conductores (Lorentz) y la fuerza electromotriz inducida (Faraday), y cómo se cierra el balance de energía.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> saber de dónde sale el par de cualquier máquina eléctrica: cómo se produce el campo en el entrehierro, cómo aparece la fuerza sobre los conductores (Lorentz) y la fuerza electromotriz inducida (Faraday), y cómo se cierra el balance de energía.</p><ul>
 <li>Toda máquina rotativa tiene <b>estátor</b>, <b>rotor</b> y <b>entrehierro</b>. El entrehierro se hace lo más pequeño posible (del orden de 1 mm para 10 kW) porque es donde se gasta casi toda la fuerza magnetomotriz.</li>
 <li>Los devanados se distribuyen de forma <b>senoidal</b> en las ranuras para que la densidad de flujo en el entrehierro sea senoidal: \(B_a(\theta)=\hat B_a\cos\theta\). Con esto, \(F\), \(H\) y \(B\) tienen la <b>misma forma de onda</b> y sólo se diferencian en un factor.</li>
 <li><b>Fuerza de Lorentz</b> \(\vec f=i\,\vec l\times\vec B\): es la que produce el par sobre los conductores. <b>Ley de Faraday</b> \(e=Blu\): es la que produce la fem inducida al moverse el conductor en el campo.</li>
@@ -75,10 +135,20 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">El área bajo la curva λ–i es la energía almacenada</div><svg viewBox="0 0 560 262" role="img" aria-label="Energía y coenergía" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="36" y1="214" x2="282.8" y2="214" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="290,214 282.7,217.3 282.7,210.7" fill="var(--muted)"/><line x1="36" y1="214" x2="36" y2="37.2" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="36,30 39.3,37.3 32.7,37.3" fill="var(--muted)"/><text x="290" y="230" fill="var(--muted)" font-size="12" text-anchor="end" font-style="italic" opacity="1">i</text><text x="42" y="28" fill="var(--muted)" font-size="12" text-anchor="start" font-style="italic" opacity="1">λ</text><polygon points="36,214 36,214 39.8,206.2 43.7,198.8 47.5,191.8 51.3,185.2 55.2,178.9 59,172.9 62.8,167.3 66.7,161.9 70.5,156.8 74.3,152 78.2,147.4 82,143.1 85.8,139 89.7,135.1 93.5,131.4 97.3,127.9 101.2,124.6 105,121.4 108.8,118.5 112.7,115.6 116.5,112.9 120.3,110.4 124.2,108 128,105.7 131.8,103.5 135.7,101.5 139.5,99.5 143.3,97.7 147.2,95.9 151,94.3 154.8,92.7 158.7,91.2 162.5,89.8 166.3,88.5 170.2,87.2 174,86 177.8,84.8 181.7,83.8 185.5,82.7 189.3,81.8 193.2,80.8 197,80 200.8,79.1 204.7,78.4 208.5,77.6 212.3,76.9 216.2,76.2 220,75.6 223.8,75 227.7,74.4 231.5,73.9 235.3,73.4 239.2,72.9 243,72.4 246.8,72 250.7,71.6 254.5,71.2 258.3,70.8 262.2,70.4 266,70.1 266,214" fill="var(--tc,var(--accent))" stroke="None" stroke-width="1.8" opacity="0.18" stroke-linejoin="round" stroke-linecap="round"/><polygon points="36,214 39.8,206.2 43.7,198.8 47.5,191.8 51.3,185.2 55.2,178.9 59,172.9 62.8,167.3 66.7,161.9 70.5,156.8 74.3,152 78.2,147.4 82,143.1 85.8,139 89.7,135.1 93.5,131.4 97.3,127.9 101.2,124.6 105,121.4 108.8,118.5 112.7,115.6 116.5,112.9 120.3,110.4 124.2,108 128,105.7 131.8,103.5 135.7,101.5 139.5,99.5 143.3,97.7 147.2,95.9 151,94.3 154.8,92.7 158.7,91.2 162.5,89.8 166.3,88.5 170.2,87.2 174,86 177.8,84.8 181.7,83.8 185.5,82.7 189.3,81.8 193.2,80.8 197,80 200.8,79.1 204.7,78.4 208.5,77.6 212.3,76.9 216.2,76.2 220,75.6 223.8,75 227.7,74.4 231.5,73.9 235.3,73.4 239.2,72.9 243,72.4 246.8,72 250.7,71.6 254.5,71.2 258.3,70.8 262.2,70.4 266,70.1 36,70.1" fill="var(--warn,#b8730c)" stroke="None" stroke-width="1.8" opacity="0.2" stroke-linejoin="round" stroke-linecap="round"/><path d="M36,214 L38.9,208.1 L41.8,202.5 L44.6,197 L47.5,191.8 L50.4,186.8 L53.2,182 L56.1,177.4 L59,172.9 L61.9,168.7 L64.8,164.5 L67.6,160.6 L70.5,156.8 L73.4,153.2 L76.2,149.7 L79.1,146.3 L82,143.1 L84.9,140 L87.8,137 L90.6,134.1 L93.5,131.4 L96.4,128.8 L99.2,126.2 L102.1,123.8 L105,121.4 L107.9,119.2 L110.8,117 L113.6,114.9 L116.5,112.9 L119.4,111 L122.2,109.2 L125.1,107.4 L128,105.7 L130.9,104.1 L133.8,102.5 L136.6,101 L139.5,99.5 L142.4,98.1 L145.2,96.8 L148.1,95.5 L151,94.3 L153.9,93.1 L156.8,92 L159.6,90.9 L162.5,89.8 L165.4,88.8 L168.2,87.8 L171.1,86.9 L174,86 L176.9,85.1 L179.8,84.3 L182.6,83.5 L185.5,82.7 L188.4,82 L191.2,81.3 L194.1,80.6 L197,80 L199.9,79.3 L202.8,78.7 L205.6,78.2 L208.5,77.6 L211.4,77.1 L214.2,76.6 L217.1,76.1 L220,75.6 L222.9,75.1 L225.8,74.7 L228.6,74.3 L231.5,73.9 L234.4,73.5 L237.2,73.1 L240.1,72.8 L243,72.4 L245.9,72.1 L248.8,71.8 L251.6,71.5 L254.5,71.2 L257.4,70.9 L260.2,70.6 L263.1,70.4 L266,70.1" fill="none" stroke="var(--fg)" stroke-width="2.8" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="190" y="196" fill="var(--tc,var(--accent))" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">coenergía W′ (bajo la curva)</text><text x="48" y="84" fill="var(--warn,#b8730c)" font-size="12" text-anchor="start" font-weight="700" opacity="1">energía W</text></svg><figcaption>El campo almacena energía igual al área a un lado de la curva de magnetización; la derivada de la coenergía con el ángulo da el par.</figcaption></figure><figure class="ill"><div class="ill-t">Un campo como intermediario entre electricidad y movimiento</div><svg viewBox="0 0 560 262" role="img" aria-label="Cadena de conversión" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="24" y="70" width="84" height="44" rx="8" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.12"/><text x="66" y="97" fill="var(--tc,var(--accent))" font-size="13" text-anchor="middle" font-weight="700" opacity="1">Eléctrica</text><line x1="110" y1="92" x2="125.7" y2="92" stroke="var(--muted)" stroke-width="1.8" opacity="1" stroke-linecap="round"/><polygon points="132,92 125.6,94.9 125.6,89.1" fill="var(--muted)"/><rect x="120" y="70" width="84" height="44" rx="8" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="2" opacity="0.12"/><text x="162" y="97" fill="var(--c5,#c43d63)" font-size="13" text-anchor="middle" font-weight="700" opacity="1">Campo</text><line x1="206" y1="92" x2="221.7" y2="92" stroke="var(--muted)" stroke-width="1.8" opacity="1" stroke-linecap="round"/><polygon points="228,92 221.6,94.9 221.6,89.1" fill="var(--muted)"/><rect x="216" y="70" width="84" height="44" rx="8" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="0.12"/><text x="258" y="97" fill="var(--c6,#2c8a52)" font-size="13" text-anchor="middle" font-weight="700" opacity="1">Mecánica</text><text x="24" y="150" fill="var(--tc,var(--accent))" font-size="13" text-anchor="start" font-weight="700" opacity="1">dW_elec = dW_campo + dW_mec + pérdidas</text><text x="24" y="180" fill="var(--fg)" font-size="12.5" text-anchor="start" font-weight="600" opacity="1">M = ∂W′/∂θ   ·   F = ∂W′/∂x</text></svg><figcaption>Toda máquina eléctrica transforma energía a través del campo magnético del entrehierro; el balance energético permite deducir el par.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 3 <span class="src">9 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">l_g</td><td>Longitud del entrehierro</td><td class="u">m</td></tr><tr><td class="sym">N_s</td><td>Espiras por fase del estátor</td><td class="u"></td></tr><tr><td class="sym">p</td><td>Número de polos</td><td class="u">2, 4, 6…</td></tr><tr><td class="sym">θ, θ_m</td><td>Ángulo eléctrico y mecánico</td><td class="u">θ = (p/2)θ_m</td></tr><tr><td class="sym">F̂ = Ni/p</td><td>fmm de pico</td><td class="u">A·v</td></tr><tr><td class="sym">B̂ = μ₀F̂/l_g</td><td>Densidad de flujo de pico</td><td class="u">T</td></tr><tr><td class="sym">r, l</td><td>Radio y longitud axial</td><td class="u">m</td></tr><tr><td class="sym">δ</td><td>Ángulo entre los dos campos</td><td class="u">eléctrico</td></tr><tr><td class="sym">e = Blu</td><td>fem inducida</td><td class="u">V</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - campos en el entrehierro y par electromagnetico</p><div data-sim="conversion"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Dos campos que se «atraen» son un motor</p><p>Todas las máquinas rotativas (de continua, asíncronas, síncronas) producen par por el mismo mecanismo: <b>el campo del estátor y el del rotor tratan de alinearse</b>, como dos imanes. El par depende de la intensidad de cada campo y del ángulo entre ellos: \(T\propto\hat B_s\hat B_r\operatorname{sen}\delta\). Con \(\delta=0\) están alineados y el par es nulo; con \(\delta=90^\circ\) el par es máximo. Todo el diseño de una máquina consiste en conseguir dos campos de valor constante con un ángulo fijo mientras gira.</p><p class="ft">De la bobina al campo: densidad de conductores y fmm</p><p>Una fase con \(N_s\) espiras distribuidas senoidalmente produce en el entrehierro una fmm \(F(\theta)=\dfrac{N_si}{p}\cos\theta\) con valor de pico \(\hat F=N_si/p\) (con \(p\) = número de polos) y un campo \(\hat B=\mu_0\hat F/l_g\). Fíjate en la dependencia con \(l_g\): <b>entrehierro pequeño, mucho campo con poca corriente</b>.</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Dos campos que se «atraen» son un motor</p><p class="lede">Todas las máquinas rotativas (de continua, asíncronas, síncronas) producen par por el mismo mecanismo: <b>el campo del estátor y el del rotor tratan de alinearse</b>, como dos imanes. El par depende de la intensidad de cada campo y del ángulo entre ellos: \(T\propto\hat B_s\hat B_r\operatorname{sen}\delta\). Con \(\delta=0\) están alineados y el par es nulo; con \(\delta=90^\circ\) el par es máximo. Todo el diseño de una máquina consiste en conseguir dos campos de valor constante con un ángulo fijo mientras gira.</p><p class="ft">De la bobina al campo: densidad de conductores y fmm</p><p>Una fase con \(N_s\) espiras distribuidas senoidalmente produce en el entrehierro una fmm \(F(\theta)=\dfrac{N_si}{p}\cos\theta\) con valor de pico \(\hat F=N_si/p\) (con \(p\) = número de polos) y un campo \(\hat B=\mu_0\hat F/l_g\). Fíjate en la dependencia con \(l_g\): <b>entrehierro pequeño, mucho campo con poca corriente</b>.</p>
 <p>La conversión de energía se resume en el balance \(e\,i=T\omega_m\) (potencia eléctrica = mecánica, sin pérdidas), con la fem \(e=Blu\) y la fuerza \(f=Bil\) de un conductor. Las dos son la misma ley vista desde dos lados: si hay movimiento y campo aparece tensión; si hay corriente y campo aparece fuerza.</p>
 <figure class="fig"><p class="ft">Conversión de energía electromecánica</p><div data-sim="conversion"></div><figcaption>Prueba a variar la velocidad y la corriente: la potencia eléctrica \(ei\) coincide con la mecánica \(T\omega\).</figcaption></figure></div><!--/amp1--><!--manim:et-t3--><figure class="fig manim-fig" id="anim-et-t3"><p class="ft">Animación · Par sobre una espira</p><div class="manim" data-anim="et-t3"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
-<h3 id="t3-formulas">Lo que tienes que saber</h3>
+<!--deep--><h3 id="t3-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Fuerza sobre un conductor y par</h4>
+<div class="box key deepnote"><b>Idea clave.</b> un conductor con corriente dentro de un campo magnético sufre una fuerza. Es el principio de todos los motores.</div>
+<div class="eqd">\[\vec F=I\,\vec l\times\vec B\qquad F=B\,I\,l\,\sin\theta\]</div>
+<ul><li>La <b>fuerza</b> es perpendicular al conductor y al campo (regla de la mano izquierda, en el motor).</li><li>La <b>fuerza electromotriz</b> inducida: \(e=B\,l\,v\). En un motor, la fuerza contraelectromotriz se opone a la tensión aplicada.</li></ul>
+<details class="dem"><summary><span class="pn">∴</span>Energía y coenergía</summary><div class="inner"><p>En un sistema electromecánico, la energía eléctrica suministrada se reparte en energía almacenada en el campo y trabajo mecánico. El par se obtiene como derivada de la coenergía respecto al ángulo:</p>
+<div class="eqd">\[T=\left.\frac{\partial W^{\prime}_{c}}{\partial\theta}\right|_{I=\text{cte}}\]</div>
+<div class="box trap deepnote"><b>Cuidado.</b> El par de reluctancia aparece en máquinas con entrehierro variable. Tiende a alinear el rotor con el campo que lo atrae.</div></div></details>
+<h4><span class="hn">2</span>Balance de potencias</h4>
+<ul><li><b>Potencia eléctrica</b> absorbida, menos pérdidas en el cobre y en el hierro, da la <b>potencia mecánica</b> en el eje.</li><li><b>Rendimiento</b> \(\eta=P_{mec}/P_{el}\).</li></ul>
+</div><!--/deep--><h3 id="t3-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>
 <li>Densidad de conductores (máquina de \(p\) polos, \(N_s\) espiras por fase): \(n_s(\theta)=\dfrac{N_s}{p}\operatorname{sen}\theta\).</li>
 <li>Campo de una fase: \(H_a(\theta)=\dfrac{N_si_a}{p\,l_g}\cos\theta\), \(\hat B_a=\dfrac{\mu_0N_si_a}{p\,l_g}\), fmm de pico \(\hat F_a=\dfrac{N_si_a}{p}=\dfrac{\hat B_al_g}{\mu_0}\).</li>

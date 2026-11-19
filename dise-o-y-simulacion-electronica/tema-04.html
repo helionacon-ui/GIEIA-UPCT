@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -51,9 +114,6 @@ details>summary{line-height:1.7;padding-block:.5em}
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
 <script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
-
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body>
@@ -64,7 +124,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c5);--tcs:var(--c5s)">
 <div class="sh"><span aria-hidden="true" class="badge">4</span><div class="shx"><p class="kick">Diseño analógico y simulación · Tema 4</p><h2 id="t4">Cálculo térmico y disipadores</h2><div class="tags"><span class="tag">Diseño analógico y simulación</span><span class="tag">1.er parcial (30 %)</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> calcular si un componente necesita disipador y cuál, con el modelo de resistencias térmicas en serie entre la unión y el ambiente.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> calcular si un componente necesita disipador y cuál, con el modelo de resistencias térmicas en serie entre la unión y el ambiente.</p><ul>
 <li>El calor se trata como un <b>circuito eléctrico</b>: la potencia disipada hace de corriente, la temperatura de tensión y las resistencias térmicas se suman en serie.</li>
 <li>La cadena es \(T_j\to T_c\to T_s\to T_a\): unión, cápsula, disipador y ambiente, con \(R_{jc}\), \(R_{cs}\) y \(R_{sa}\).</li>
 <li>\(R_{jc}\) la fija el fabricante del chip; \(R_{cs}\) depende del <b>montaje</b> (pasta térmica, mica, kapton); \(R_{sa}\) es lo único que se elige: el disipador.</li>
@@ -75,9 +135,16 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">El calor sigue un camino con resistencias térmicas</div><svg viewBox="0 0 560 262" role="img" aria-label="Modelo térmico" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><circle cx="40" cy="110" r="6" fill="var(--tc,var(--accent))" stroke="none" stroke-width="1.8" opacity="1"/><text x="40" y="96" fill="var(--tc,var(--accent))" font-size="12" text-anchor="middle" font-weight="700" opacity="1">T_j</text><circle cx="110" cy="110" r="6" fill="var(--c5,#c43d63)" stroke="none" stroke-width="1.8" opacity="1"/><text x="110" y="96" fill="var(--c5,#c43d63)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">T_c</text><circle cx="180" cy="110" r="6" fill="var(--c6,#2c8a52)" stroke="none" stroke-width="1.8" opacity="1"/><text x="180" y="96" fill="var(--c6,#2c8a52)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">T_s</text><circle cx="250" cy="110" r="6" fill="var(--warn,#b8730c)" stroke="none" stroke-width="1.8" opacity="1"/><text x="250" y="96" fill="var(--warn,#b8730c)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">T_a</text><polyline points="46,110 51.4,110 56.8,102 67.6,118 78.4,102 89.2,118 94.6,110 100,110" fill="none" stroke="var(--c5,#c43d63)" stroke-width="2.4" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="73" y="136" fill="var(--c5,#c43d63)" font-size="11" text-anchor="middle" font-weight="700" opacity="1">R_θjc</text><polyline points="116,110 121.4,110 126.8,102 137.6,118 148.4,102 159.2,118 164.6,110 170,110" fill="none" stroke="var(--c6,#2c8a52)" stroke-width="2.4" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="143" y="136" fill="var(--c6,#2c8a52)" font-size="11" text-anchor="middle" font-weight="700" opacity="1">R_θcs</text><polyline points="186,110 191.4,110 196.8,102 207.6,118 218.4,102 229.2,118 234.6,110 240,110" fill="none" stroke="var(--warn,#b8730c)" stroke-width="2.4" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="213" y="136" fill="var(--warn,#b8730c)" font-size="11" text-anchor="middle" font-weight="700" opacity="1">R_θsa</text><text x="24" y="190" fill="var(--tc,var(--accent))" font-size="13" text-anchor="start" font-weight="700" opacity="1">T_j = T_a + P · (R_θjc + R_θcs + R_θsa)</text></svg><figcaption>La temperatura de la unión es la ambiente más la potencia por la suma de resistencias térmicas desde la unión al aire.</figcaption></figure><figure class="ill"><div class="ill-t">Más calor alrededor, menos potencia permitida</div><svg viewBox="0 0 560 262" role="img" aria-label="Reducción de potencia (derating)" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="36" y1="214" x2="282.8" y2="214" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="290,214 282.7,217.3 282.7,210.7" fill="var(--muted)"/><line x1="36" y1="214" x2="36" y2="37.2" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="36,30 39.3,37.3 32.7,37.3" fill="var(--muted)"/><text x="42" y="28" fill="var(--muted)" font-size="12" text-anchor="start" font-style="italic" opacity="1">P_máx</text><text x="290" y="244" fill="var(--muted)" font-size="12" text-anchor="end" font-weight="700" opacity="1">T_amb</text><path d="M36,70 L150,70 L250,204" fill="none" stroke="var(--tc,var(--accent))" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="86" y="60" fill="var(--muted)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">P nominal</text><text x="150" y="226" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-weight="700" opacity="1">T_derate</text><text x="250" y="226" fill="var(--c6,#2c8a52)" font-size="10.5" text-anchor="middle" font-weight="700" opacity="1">T_j,máx</text><line x1="150" y1="70" x2="150" y2="214" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><line x1="250" y1="70" x2="250" y2="214" stroke="var(--c6,#2c8a52)" stroke-width="1" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><text x="330" y="56" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">A más temperatura</text><text x="330" y="78" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">ambiente, menos</text><text x="330" y="100" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">potencia admisible.</text><text x="330" y="133" fill="var(--tc,var(--accent))" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">Dimensionar el</text><text x="330" y="155" fill="var(--tc,var(--accent))" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">disipador con el</text><text x="330" y="177" fill="var(--tc,var(--accent))" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">peor caso.</text></svg><figcaption>Por encima de cierta temperatura ambiente el componente debe trabajar con menos potencia para no superar su temperatura de unión máxima.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 4 <span class="src">8 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">P_d</td><td>potencia disipada</td><td class="u">W</td></tr><tr><td class="sym">T_j</td><td>temperatura de unión</td><td class="u">°C</td></tr><tr><td class="sym">T_a</td><td>temperatura ambiente</td><td class="u">°C</td></tr><tr><td class="sym">R_jc</td><td>resistencia térmica unión-cápsula</td><td class="u">°C/W</td></tr><tr><td class="sym">R_cs</td><td>resistencia cápsula-disipador</td><td class="u">°C/W</td></tr><tr><td class="sym">R_sa</td><td>resistencia disipador-ambiente</td><td class="u">°C/W</td></tr><tr><td class="sym">R_ja</td><td>unión-ambiente sin disipador</td><td class="u">≈ 65 °C/W en TO-220</td></tr><tr><td class="sym">T_jmax</td><td>límite de unión</td><td class="u">125-150 °C</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - cadena termica y eleccion de disipador</p><div data-sim="disipador"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">El calor es una corriente y las resistencias térmicas se suman</p><p>La analogía térmica es idéntica a la eléctrica: <b>potencia disipada \(P_d\) = corriente</b>, <b>temperatura = tensión</b>, y <b>resistencia térmica \(R_{th}\) (°C/W) = resistencia</b>. Del chip (unión) al aire hay tres tramos en serie: unión–cápsula \(R_{jc}\), cápsula–disipador \(R_{cs}\) (pasta térmica o mica) y disipador–ambiente \(R_{sa}\). Por tanto: \(T_j=T_a+P_d(R_{jc}+R_{cs}+R_{sa})\). Todo el cálculo consiste en despejar \(R_{sa}\).</p><p class="ft">Método de elección del disipador</p><p>Pasos: <b>(1)</b> calcula \(P_d\) en el peor caso (por ejemplo \((V_{in,max}-V_{out})I_{max}\)); <b>(2)</b> fija \(T_{j,max}\) (125 °C en silicio comercial, mejor diseñar a 100 °C) y la \(T_a\) más alta del equipo (con el aire caliente dentro de la caja); <b>(3)</b> calcula \(R_{th,max}=\dfrac{T_{j,max}-T_a}{P_d}\); <b>(4)</b> resta \(R_{jc}\) y \(R_{cs}\): lo que queda es la \(R_{sa}\) máxima que debe tener el disipador; <b>(5)</b> elige uno comercial con \(R_{sa}\) menor. Siempre se redondea hacia abajo (más disipador, no menos).</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">El calor es una corriente y las resistencias térmicas se suman</p><p class="lede">La analogía térmica es idéntica a la eléctrica: <b>potencia disipada \(P_d\) = corriente</b>, <b>temperatura = tensión</b>, y <b>resistencia térmica \(R_{th}\) (°C/W) = resistencia</b>. Del chip (unión) al aire hay tres tramos en serie: unión–cápsula \(R_{jc}\), cápsula–disipador \(R_{cs}\) (pasta térmica o mica) y disipador–ambiente \(R_{sa}\). Por tanto: \(T_j=T_a+P_d(R_{jc}+R_{cs}+R_{sa})\). Todo el cálculo consiste en despejar \(R_{sa}\).</p><p class="ft">Método de elección del disipador</p><p>Pasos: <b>(1)</b> calcula \(P_d\) en el peor caso (por ejemplo \((V_{in,max}-V_{out})I_{max}\)); <b>(2)</b> fija \(T_{j,max}\) (125 °C en silicio comercial, mejor diseñar a 100 °C) y la \(T_a\) más alta del equipo (con el aire caliente dentro de la caja); <b>(3)</b> calcula \(R_{th,max}=\dfrac{T_{j,max}-T_a}{P_d}\); <b>(4)</b> resta \(R_{jc}\) y \(R_{cs}\): lo que queda es la \(R_{sa}\) máxima que debe tener el disipador; <b>(5)</b> elige uno comercial con \(R_{sa}\) menor. Siempre se redondea hacia abajo (más disipador, no menos).</p>
 <figure class="fig"><p class="ft">Disipador y temperatura de unión</p><div data-sim="disipador"></div><figcaption>Prueba con y sin disipador: sin él, un TO-220 con 4 W supera con mucho los 125 °C.</figcaption></figure></div><!--/amp1--><!--manim:dse-t4--><figure class="fig manim-fig" id="anim-dse-t4"><p class="ft">Animación · Resistencias térmicas en serie</p><div class="manim" data-anim="dse-t4"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
-<h3 id="t4-formulas">Fórmulas y datos que hay que saber</h3>
+<!--deep--><h3 id="t4-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Potencia disipada y temperatura</h4>
+<div class="box key deepnote"><b>Idea clave.</b> todo componente que disipa potencia se calienta. La temperatura de la unión no debe superar el límite \(T_j\) del fabricante, y para evitarlo se usa un disipador.</div>
+<div class="eqd">\[T_j=T_a+P\,R_{\theta JA}\]</div>
+<ul><li>\(R_{\theta JA}\) es la resistencia térmica unión-ambiente (°C/W). Cuanto menor, mejor disipa.</li><li>Con disipador: la cadena es \(T_j=T_a+P\,(R_{\theta JC}+R_{\theta CS}+R_{\theta SA})\).</li></ul>
+<details class="dem"><summary><span class="pn">∴</span>Ejemplo de cálculo</summary><div class="inner"><p>Un regulador disipa 4 W, con \(T_a=40\) °C y \(T_{j,max}=125\) °C. El \(R_{\theta JA}\) máximo admisible es \((125-40)/4\approx21\) °C/W. Si el encapsulado tiene 50 °C/W, hace falta disipador.</p>
+<div class="box trap deepnote"><b>Cuidado.</b> La potencia no es el único dato: a temperatura ambiente alta, el mismo disipador puede ser insuficiente.</div></div></details>
+</div><!--/deep--><h3 id="t4-formulas">Fórmulas y datos que hay que saber</h3>
 <div class="box key"><ul>
 <li>\(T_j=T_a+P_d\,(R_{jc}+R_{cs}+R_{sa})\).</li>
 <li>Resistencia total admisible: \(R_{th,max}=\dfrac{T_{j,max}-T_a}{P_d}\).</li>

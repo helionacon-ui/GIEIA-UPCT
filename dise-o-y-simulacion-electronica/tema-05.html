@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -51,9 +114,6 @@ details>summary{line-height:1.7;padding-block:.5em}
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
 <script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
-
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body>
@@ -64,7 +124,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
 <div class="sh"><span aria-hidden="true" class="badge">5</span><div class="shx"><p class="kick">Diseño analógico y simulación · Tema 5</p><h2 id="t5">Simulación con LTspice</h2><div class="tags"><span class="tag">Diseño analógico y simulación</span><span class="tag">1.er parcial (30 %)</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> manejar LTspice: dibujar el esquema, elegir el análisis adecuado (.op, .tran, .ac, .dc, .noise), leer los resultados y hacer análisis estadístico con Monte Carlo.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> manejar LTspice: dibujar el esquema, elegir el análisis adecuado (.op, .tran, .ac, .dc, .noise), leer los resultados y hacer análisis estadístico con Monte Carlo.</p><ul>
 <li>LTspice es gratuito, rápido y el estándar de facto: lo que se simula aquí es lo que después se mide en el laboratorio, siempre que se usen <b>modelos reales</b>.</li>
 <li>Cada tipo de análisis responde a una pregunta distinta: <b>.op</b> (punto de trabajo), <b>.tran</b> (forma de onda), <b>.ac</b> (respuesta en frecuencia), <b>.dc</b> (barrido) y <b>.noise</b> (ruido).</li>
 <li>Para un análisis <b>.ac</b> la fuente debe tener amplitud AC definida (<i>AC 1</i>); sin eso el resultado es cero y parece que el circuito no funciona.</li>
@@ -75,10 +135,16 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Cuatro análisis cubren casi todo</div><svg viewBox="0 0 560 262" role="img" aria-label="Análisis de LTspice" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="24" y="40" width="250" height="36" rx="8" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="1.8" opacity="0.1"/><text x="40" y="64" fill="var(--tc,var(--accent))" font-size="15" text-anchor="start" font-weight="700" opacity="1">.op</text><text x="110" y="63" fill="var(--fg)" font-size="12.5" text-anchor="start" font-weight="500" opacity="1">punto de trabajo</text><rect x="24" y="84" width="250" height="36" rx="8" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="1.8" opacity="0.1"/><text x="40" y="108" fill="var(--c5,#c43d63)" font-size="15" text-anchor="start" font-weight="700" opacity="1">.dc</text><text x="110" y="107" fill="var(--fg)" font-size="12.5" text-anchor="start" font-weight="500" opacity="1">barrido de una fuente</text><rect x="24" y="128" width="250" height="36" rx="8" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="1.8" opacity="0.1"/><text x="40" y="152" fill="var(--c6,#2c8a52)" font-size="15" text-anchor="start" font-weight="700" opacity="1">.tran</text><text x="110" y="151" fill="var(--fg)" font-size="12.5" text-anchor="start" font-weight="500" opacity="1">respuesta en el tiempo</text><rect x="24" y="172" width="250" height="36" rx="8" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="1.8" opacity="0.1"/><text x="40" y="196" fill="var(--warn,#b8730c)" font-size="15" text-anchor="start" font-weight="700" opacity="1">.ac</text><text x="110" y="195" fill="var(--fg)" font-size="12.5" text-anchor="start" font-weight="500" opacity="1">respuesta en frecuencia</text></svg><figcaption>Cada directiva de simulación responde a una pregunta distinta: qué valores hay en reposo, cómo varía con una fuente, cómo evoluciona en el tiempo o cómo responde en frecuencia.</figcaption></figure><figure class="ill"><div class="ill-t">Leer la respuesta en frecuencia de la simulación</div><svg viewBox="0 0 560 262" role="img" aria-label="Diagrama de Bode" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="36" y1="214" x2="282.8" y2="214" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="290,214 282.7,217.3 282.7,210.7" fill="var(--muted)"/><line x1="36" y1="214" x2="36" y2="37.2" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="36,30 39.3,37.3 32.7,37.3" fill="var(--muted)"/><text x="290" y="230" fill="var(--muted)" font-size="12" text-anchor="end" font-style="italic" opacity="1">f (log)</text><text x="42" y="28" fill="var(--muted)" font-size="12" text-anchor="start" font-style="italic" opacity="1">|H| dB</text><line x1="36" y1="100" x2="290" y2="100" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><text x="290" y="94" fill="var(--muted)" font-size="10.5" text-anchor="end" font-weight="700" opacity="1">0 dB</text><path d="M40,100 L150,100 C170,100 180,115 200,140 L270,200" fill="none" stroke="var(--tc,var(--accent))" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><circle cx="160" cy="107" r="4" fill="var(--warn,#b8730c)" stroke="none" stroke-width="1.8" opacity="1"/><text x="170" y="92" fill="var(--warn,#b8730c)" font-size="11.5" text-anchor="start" font-weight="700" opacity="1">−3 dB: f_c</text><line x1="160" y1="214" x2="160" y2="107" stroke="var(--warn,#b8730c)" stroke-width="1" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><text x="330" y="56" fill="var(--tc,var(--accent))" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">f_c = 1/(2π·R·C)</text><text x="330" y="89" fill="var(--fg)" font-size="13" text-anchor="start" opacity="1">Pendiente −20 dB/déc</text><text x="330" y="111" fill="var(--fg)" font-size="13" text-anchor="start" opacity="1">por cada polo.</text><text x="330" y="144" fill="var(--muted)" font-size="13" text-anchor="start" opacity="1">.ac → Bode directo.</text></svg><figcaption>En el análisis AC el resultado es un diagrama de Bode: la frecuencia de corte está donde la ganancia cae 3 dB.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 5 <span class="src">8 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">.tran</td><td>análisis temporal</td><td class="u">formas de onda</td></tr><tr><td class="sym">.ac</td><td>respuesta en frecuencia</td><td class="u">Bode</td></tr><tr><td class="sym">.dc</td><td>barrido de continua</td><td class="u">curvas características</td></tr><tr><td class="sym">.op</td><td>punto de trabajo</td><td class="u">valores de reposo</td></tr><tr><td class="sym">.meas</td><td>medida automática</td><td class="u">escribe en el log</td></tr><tr><td class="sym">.step</td><td>barrido de un parámetro</td><td class="u">familias de curvas</td></tr><tr><td class="sym">.include</td><td>incluir un modelo</td><td class="u">del fabricante</td></tr><tr><td class="sym">GBW</td><td>producto ganancia-ancho de banda</td><td class="u">Hz</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - respuesta en frecuencia y analisis .ac</p><div data-sim="bode"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Elegir el análisis: qué quieres ver</p><p>LTspice resuelve el mismo circuito de maneras distintas según la directiva que escribas. Pregúntate <b>qué quieres saber</b>: ¿la tensión de reposo? → <code>.op</code>; ¿cómo evoluciona en el tiempo? → <code>.tran</code>; ¿cómo responde a cada frecuencia? → <code>.ac</code>; ¿la curva característica de un dispositivo? → <code>.dc</code>; ¿el ruido? → <code>.noise</code>; ¿cómo cambia al variar un valor? → <code>.step</code>. Un solo esquema vale para todos; lo que cambia es la directiva y las fuentes (para <code>.ac</code> la fuente debe llevar <code>AC 1</code>).</p><p class="ft">Transitorio, barridos y tolerancias</p><p>En <code>.tran 0 20m 0 10u</code> los números son: tiempo inicial de guardado (0), <b>tiempo final</b> (20 ms), <b>tiempo en que se empieza a guardar</b> (0) y <b>paso máximo</b> (10 µs). Regla: usar al menos 100–200 puntos por periodo de la señal más rápida, y simular varios periodos hasta que el régimen sea estacionario. Con <code>.ac dec 100 1 1Meg</code>: 100 puntos por década entre 1 Hz y 1 MHz, es decir, 600 puntos.</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Elegir el análisis: qué quieres ver</p><p class="lede">LTspice resuelve el mismo circuito de maneras distintas según la directiva que escribas. Pregúntate <b>qué quieres saber</b>: ¿la tensión de reposo? → <code>.op</code>; ¿cómo evoluciona en el tiempo? → <code>.tran</code>; ¿cómo responde a cada frecuencia? → <code>.ac</code>; ¿la curva característica de un dispositivo? → <code>.dc</code>; ¿el ruido? → <code>.noise</code>; ¿cómo cambia al variar un valor? → <code>.step</code>. Un solo esquema vale para todos; lo que cambia es la directiva y las fuentes (para <code>.ac</code> la fuente debe llevar <code>AC 1</code>).</p><p class="ft">Transitorio, barridos y tolerancias</p><p>En <code>.tran 0 20m 0 10u</code> los números son: tiempo inicial de guardado (0), <b>tiempo final</b> (20 ms), <b>tiempo en que se empieza a guardar</b> (0) y <b>paso máximo</b> (10 µs). Regla: usar al menos 100–200 puntos por periodo de la señal más rápida, y simular varios periodos hasta que el régimen sea estacionario. Con <code>.ac dec 100 1 1Meg</code>: 100 puntos por década entre 1 Hz y 1 MHz, es decir, 600 puntos.</p>
 <p>Para saber cómo afectan las <b>tolerancias</b>, <code>.step param</code> repite la simulación y <code>{mc(valor,tol)}</code> sortea un valor aleatorio (Monte Carlo); la respuesta del circuito se obtiene como un haz de curvas. Las medidas (<code>.meas</code>) extraen números (frecuencia de corte, valor pico a pico, etc.) sin tener que leerlos del gráfico.</p>
 <figure class="fig"><p class="ft">Barrido en frecuencia: Bode de un filtro</p><div data-sim="bode"></div><figcaption>Modifica R y C: la frecuencia de corte y los −3 dB se mueven.</figcaption></figure></div><!--/amp1--><!--manim:dse-t5--><figure class="fig manim-fig" id="anim-dse-t5"><p class="ft">Animación · Paso de integración en la simulación</p><div class="manim" data-anim="dse-t5"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
-<h3 id="t5-formulas">Fórmulas y datos que hay que saber</h3>
+<!--deep--><h3 id="t5-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Qué es una simulación SPICE</h4>
+<div class="box key deepnote"><b>Idea clave.</b> SPICE resuelve las ecuaciones del circuito (nudos, mallas y modelos de componentes) para obtener tensiones y corrientes. LTspice es una versión gratuita muy usada.</div>
+<ul><li><b>Operating point (.op):</b> tensiones y corrientes en continua.</li><li><b>DC sweep (.dc):</b> barrido de una fuente de continua.</li><li><b>AC analysis (.ac):</b> respuesta en frecuencia (Bode).</li><li><b>Transient (.tran):</b> respuesta en el tiempo.</li></ul>
+<details class="dem"><summary><span class="pn">∴</span>Buenas prácticas</summary><div class="inner"><ul><li>Empieza con un circuito simple y valida cada etapa.</li><li>Usa modelos reales de componentes (con tolerancias y, si puedes, temperatura).</li><li>Comprueba la simulación con cálculo a mano para un punto.</li></ul>
+<div class="box trap deepnote"><b>Cuidado.</b> El simulador da el resultado que le pides. Si el circuito está mal planteado, la respuesta también lo estará. Revisa siempre el esquema.</div></div></details>
+</div><!--/deep--><h3 id="t5-formulas">Fórmulas y datos que hay que saber</h3>
 <div class="box key"><ul>
 <li><b>.op</b> — punto de trabajo en continua. Lo primero que hay que mirar: polarización de transistores y tensiones de reposo.</li>
 <li><b>.tran 0 20m 0 10u</b> — transitorio: 20 ms de simulación, con paso máximo de 10 µs. El tercer número descarta el arranque.</li>

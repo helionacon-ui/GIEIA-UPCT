@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -51,9 +114,6 @@ details>summary{line-height:1.7;padding-block:.5em}
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
 <script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
-
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body>
@@ -64,7 +124,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c5);--tcs:var(--c5s)">
 <div class="sh"><span aria-hidden="true" class="badge">4</span><div class="shx"><p class="kick">Continua: circuitos magnéticos y máquinas de CC · Tema 4</p><h2 id="t4">Máquinas de corriente continua</h2><div class="tags"><span class="tag">Continua: circuitos magnéticos y máquinas de CC</span><span class="tag">1.ª prueba (35 %)</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> manejar el circuito equivalente de la máquina de CC y su característica par-velocidad: calcular la velocidad con una carga dada, la tensión necesaria, el funcionamiento como generador y el frenado regenerativo en los cuatro cuadrantes.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> manejar el circuito equivalente de la máquina de CC y su característica par-velocidad: calcular la velocidad con una carga dada, la tensión necesaria, el funcionamiento como generador y el frenado regenerativo en los cuatro cuadrantes.</p><ul>
 <li>El <b>colector de delgas y las escobillas</b> conmutan mecánicamente la corriente del inducido para que la fmm del rotor se mantenga siempre <b>perpendicular</b> al campo del estátor: ahí está la clave del par máximo a cualquier velocidad.</li>
 <li>Por eso las ecuaciones son tan simples: \(e_a=k_E\omega_m\) y \(T_{em}=k_Ti_a\), y en el SI <b>\(k_E=k_T\)</b> (misma constante, dos unidades).</li>
 <li>El <b>circuito de armadura</b> es \(v_a=R_ai_a+L_a\frac{di_a}{dt}+e_a\). En régimen permanente \(L_a\) desaparece.</li>
@@ -75,11 +135,21 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Campo, inducido y colector</div><svg viewBox="0 0 560 262" role="img" aria-label="Máquina de corriente continua" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><circle cx="120" cy="125" r="52" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="2.6" opacity="0.1"/><circle cx="120" cy="125" r="6" fill="var(--fg)" stroke="none" stroke-width="1.8" opacity="1"/><rect x="54" y="92" width="14" height="66" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.3"/><rect x="172" y="92" width="14" height="66" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.3"/><text x="54" y="86" fill="var(--tc,var(--accent))" font-size="12" text-anchor="start" font-weight="700" opacity="1">N</text><text x="186" y="86" fill="var(--tc,var(--accent))" font-size="12" text-anchor="end" font-weight="700" opacity="1">S</text><rect x="100" y="174" width="12" height="10" rx="0" fill="var(--muted)" stroke="var(--fg)" stroke-width="2" opacity="0.5"/><rect x="128" y="174" width="12" height="10" rx="0" fill="var(--muted)" stroke="var(--fg)" stroke-width="2" opacity="0.5"/><text x="120" y="210" fill="var(--c5,#c43d63)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">escobillas sobre el colector</text><text x="290" y="56" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">Inductor: crea Φ</text><text x="290" y="78" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">Inducido: lleva I_a</text><text x="290" y="100" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">Colector: conmuta I</text><text x="290" y="133" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">E = k·Φ·ω</text><text x="290" y="155" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">M = k·Φ·I_a</text><text x="290" y="177" fill="var(--fg)" font-size="13.5" text-anchor="start" font-weight="600" opacity="1">V = E + R_a·I_a</text></svg><figcaption>El campo del inductor y la corriente del inducido producen el par; el colector invierte la corriente en cada bobina para mantenerlo.</figcaption></figure><figure class="ill"><div class="ill-t">Controlar la velocidad con la tensión de inducido</div><svg viewBox="0 0 560 262" role="img" aria-label="Curva par–velocidad del motor CC" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="36" y1="214" x2="282.8" y2="214" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="290,214 282.7,217.3 282.7,210.7" fill="var(--muted)"/><line x1="36" y1="214" x2="36" y2="37.2" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="36,30 39.3,37.3 32.7,37.3" fill="var(--muted)"/><text x="290" y="230" fill="var(--muted)" font-size="12" text-anchor="end" font-style="italic" opacity="1">M</text><text x="42" y="28" fill="var(--muted)" font-size="12" text-anchor="start" font-style="italic" opacity="1">ω</text><line x1="36" y1="64" x2="206" y2="139" stroke="var(--tc,var(--accent))" stroke-width="2.8" opacity="1" stroke-linecap="round"/><text x="212" y="143" fill="var(--tc,var(--accent))" font-size="11" text-anchor="start" font-weight="700" opacity="1">V nominal</text><line x1="36" y1="109" x2="206" y2="161.5" stroke="var(--c5,#c43d63)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><text x="212" y="165.5" fill="var(--c5,#c43d63)" font-size="11" text-anchor="start" font-weight="700" opacity="1">0,7·V</text><line x1="36" y1="149" x2="206" y2="181.5" stroke="var(--c6,#2c8a52)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><text x="212" y="185.5" fill="var(--c6,#2c8a52)" font-size="11" text-anchor="start" font-weight="700" opacity="1">0,4·V</text><text x="24" y="246" fill="var(--fg)" font-size="11" text-anchor="start" font-weight="600" opacity="1">ω = V/(kΦ) − R_a·M/(kΦ)²   · bajar V baja la curva en paralelo</text></svg><figcaption>Reducir la tensión desplaza la recta par–velocidad hacia abajo sin cambiar su pendiente; debilitar el campo la inclina y sube la velocidad.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 4 <span class="src">8 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">k_E</td><td>Constante de tensión</td><td class="u">V·s/rad</td></tr><tr><td class="sym">k_T</td><td>Constante de par</td><td class="u">N·m/A</td></tr><tr><td class="sym">e_a = k_Eω</td><td>fem de armadura</td><td class="u">V</td></tr><tr><td class="sym">i_a</td><td>Corriente de armadura</td><td class="u">A</td></tr><tr><td class="sym">R_a, L_a</td><td>Resistencia e inductancia de armadura</td><td class="u"></td></tr><tr><td class="sym">ω₀ = V_a/k_E</td><td>Velocidad de vacío</td><td class="u">rad/s</td></tr><tr><td class="sym">T = k_Ti_a</td><td>Par electromagnético</td><td class="u">N·m</td></tr><tr><td class="sym">φ_f</td><td>Flujo de excitación</td><td class="u">debilitamiento de campo</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - caracteristica par-velocidad y los cuatro cuadrantes</p><div data-sim="mcc"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">La máquina de continua en dos ecuaciones</p><p>Una máquina de corriente continua se entiende con dos ecuaciones que son «la misma ley» vista desde dos lados: la <b>fuerza contraelectromotriz</b> \(e_a=k_E\omega_m\) (gira ⇒ aparece tensión) y el <b>par</b> \(T_{em}=k_Ti_a\) (hay corriente ⇒ aparece par). En el SI \(k_E=k_T=k\). Con la tensión del inducido \(V_a=R_ai_a+k\omega_m\) se obtiene todo lo demás.</p>
+<figure class="fig"><p class="ft">Figura interactiva - curva velocidad-par segun el tipo de excitacion</p><div data-sim="excitacion"></div><figcaption>La misma máquina con tres excitaciones distintas da tres curvas que no se parecen en nada.</figcaption></figure>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">La máquina de continua en dos ecuaciones</p><p class="lede">Una máquina de corriente continua se entiende con dos ecuaciones que son «la misma ley» vista desde dos lados: la <b>fuerza contraelectromotriz</b> \(e_a=k_E\omega_m\) (gira ⇒ aparece tensión) y el <b>par</b> \(T_{em}=k_Ti_a\) (hay corriente ⇒ aparece par). En el SI \(k_E=k_T=k\). Con la tensión del inducido \(V_a=R_ai_a+k\omega_m\) se obtiene todo lo demás.</p>
 <p>Lectura de la ecuación: cuando el motor está parado, \(e_a=0\) y la corriente de arranque es \(V_a/R_a\) (muy grande); a medida que acelera, \(e_a\) crece, la corriente baja y el par también, hasta que iguala al de la carga. Por eso los motores grandes necesitan limitar la corriente en el arranque.</p><p class="ft">Característica par-velocidad y control</p><p>Despejando: \(\omega_m=\dfrac{V_a}{k}-\dfrac{R_a}{k^2}T\): es una <b>recta</b> con ordenada \(\omega_0=V_a/k\) (velocidad en vacío) y pendiente \(-R_a/k^2\) (cuanto menor \(R_a\), más «rígida»). Se controla la velocidad de dos maneras: variando \(V_a\) (la recta se desplaza hacia abajo, mismo par disponible) o debilitando el campo (\(k\) baja: sube \(\omega_0\) pero el par por amperio baja).</p>
 <p>Dinámica: con \(J\dfrac{d\omega}{dt}=T-T_L-B\omega\) y una carga constante, la velocidad evoluciona con la constante de tiempo electromecánica \(\tau_m=JR_a/k^2\), mucho mayor que la eléctrica \(L_a/R_a\). Un motor BLDC es la misma máquina con la conmutación hecha por electrónica.</p>
 <figure class="fig"><p class="ft">Máquina de continua</p><div data-sim="mcc"></div><figcaption>Cambia la tensión y la carga: el punto de funcionamiento recorre la recta par-velocidad.</figcaption></figure></div><!--/amp1--><!--manim:et-t4--><figure class="fig manim-fig" id="anim-et-t4"><p class="ft">Animación · Motor de CC y tensión de inducido</p><div class="manim" data-anim="et-t4"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
-<h3 id="t4-formulas">Lo que tienes que saber</h3>
+<!--deep--><h3 id="t4-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Estructura de la máquina de continua</h4>
+<ul><li><b>Estator:</b> polos de campo (imanes o bobinas inductoras).</li><li><b>Rotor (inducido):</b> bobinas en las ranuras, conectadas al <b>colector</b> de delgas.</li><li><b>Escobillas:</b> contacto deslizante entre el colector y el circuito exterior. Rectifican la tensión del inducido.</li></ul>
+<h4><span class="hn">2</span>Ecuaciones del motor y del generador</h4>
+<div class="eqd">\[\text{Motor: }V=E+R_a I_a\qquad E=K\,\Phi\,\omega\]</div>
+<div class="eqd">\[\text{Generador: }V=E-R_a I_a\]</div>
+<ul><li>En el motor, la f.c.e.m. \(E\) limita la corriente: al arrancar, \(I_a=V/R_a\) es muy grande, por eso se usan arrancadores.</li><li>El par electromagnético es \(T=K\,\Phi\,I_a\).</li></ul>
+<div class="box trap deepnote"><b>Cuidado.</b> Si se corta el campo de un motor en serie, el par sube a la vez que la corriente: puede embalarse. En un motor en derivación, el campo no debe abrirse.</div>
+<details class="dem"><summary><span class="pn">∴</span>Tipos de excitación</summary><div class="inner"><ul><li><b>Serie:</b> par de arranque alto, velocidad muy variable con la carga. Para tracción.</li><li><b>Derivación (shunt):</b> velocidad casi constante. Para tornos y cintas.</li><li><b>Compuesta:</b> combina ambas. <b>Independiente:</b> campo de fuente aparte, control muy preciso.</li></ul></div></details>
+</div><!--/deep--><h3 id="t4-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>
 <li>\(e_a=k_E\omega_m\), \(T_{em}=k_Ti_a\), con \(k_E\,[\text{V·s/rad}]=k_T\,[\text{N·m/A}]\).</li>
 <li>Régimen permanente: \(V_a=R_ai_a+k_E\omega_m\) ⇒ \(\omega_m=\dfrac{V_a-R_a\,T/k_T}{k_E}\).</li>

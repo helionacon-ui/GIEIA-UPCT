@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -51,9 +114,6 @@ details>summary{line-height:1.7;padding-block:.5em}
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
 <script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
-
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body>
@@ -64,7 +124,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c8);--tcs:var(--c8s)">
 <div class="sh"><span aria-hidden="true" class="badge">7</span><div class="shx"><p class="kick">Alterna: vectores espaciales y máquinas de CA · Tema 7</p><h2 id="t7">Máquinas síncronas de imanes permanentes</h2><div class="tags"><span class="tag">Alterna: vectores espaciales y máquinas de CA</span><span class="tag">2.ª prueba (35 %)</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> analizar la máquina síncrona de imanes permanentes (PMAC) y el generador síncrono: diagrama fasorial, par en función de la corriente, tensión que debe dar la UPP y ángulo de carga.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> analizar la máquina síncrona de imanes permanentes (PMAC) y el generador síncrono: diagrama fasorial, par en función de la corriente, tensión que debe dar la UPP y ángulo de carga.</p><ul>
 <li>En la <b>PMAC</b> (máquina síncrona de imanes permanentes, también llamada "brushless" de alterna) el campo del rotor lo dan unos <b>imanes</b>: no hay corriente de excitación ni escobillas.</li>
 <li>El rotor gira <b>exactamente a la velocidad del campo</b> del estátor: \(\omega_{sinc}=\omega/(p/2)\). No hay deslizamiento y por tanto no hay pérdidas en el rotor.</li>
 <li>El control mantiene la corriente del estátor <b>en fase con la fem</b> (es decir, su vector espacial a 90° del campo del rotor). Con eso el par es proporcional a la corriente, \(T=k_T\hat I\), exactamente igual que en un motor de continua: de ahí su uso en <b>servoaccionamientos</b>.</li>
@@ -75,11 +135,17 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">El rotor es un imán que sigue al campo giratorio</div><svg viewBox="0 0 560 262" role="img" aria-label="PMSM: estátor y rotor con imanes" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><circle cx="120" cy="125" r="78" fill="None" stroke="var(--fg)" stroke-width="8" opacity="1"/><circle cx="120" cy="125" r="56" fill="var(--surface,#fff)" stroke="var(--muted)" stroke-width="1.6" opacity="1"/><polygon points="90,81 150,81 142,111 98,111" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="2.2" opacity="0.4" stroke-linejoin="round" stroke-linecap="round"/><text x="120" y="99" fill="var(--c6,#2c8a52)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">N</text><polygon points="90,169 150,169 142,139 98,139" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="2.2" opacity="0.4" stroke-linejoin="round" stroke-linecap="round"/><text x="120" y="159" fill="var(--c5,#c43d63)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">S</text><circle cx="120" cy="125" r="3" fill="var(--fg)" stroke="none" stroke-width="1.8" opacity="1"/><rect x="111" y="38" width="18" height="18" rx="0" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="2" opacity="0.3"/><rect x="43.5" y="155" width="18" height="18" rx="0" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="2" opacity="0.3"/><rect x="178.5" y="155" width="18" height="18" rx="0" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="2" opacity="0.3"/><text x="24" y="236" fill="var(--fg)" font-size="12" text-anchor="start" font-weight="600" opacity="1">estátor trifásico  ·  rotor con imanes permanentes</text><text x="310" y="56" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">Sin escobillas,</text><text x="310" y="78" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">sin devanado rotórico.</text><text x="310" y="111" fill="var(--tc,var(--accent))" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">Rotor y campo giran</text><text x="310" y="133" fill="var(--tc,var(--accent))" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">sincronizados:</text><text x="310" y="155" fill="var(--fg)" font-size="14" text-anchor="start" font-weight="600" opacity="1">n = 60·f / p</text></svg><figcaption>El rotor de imanes permanentes engancha con el campo del estátor y gira a la velocidad de sincronismo, sin deslizamiento.</figcaption></figure><figure class="ill"><div class="ill-t">Controlar el par con la corriente en el eje q</div><svg viewBox="0 0 560 262" role="img" aria-label="Control por orientación de campo" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="14" y="70" width="54" height="34" rx="8" fill="var(--muted)" stroke="var(--muted)" stroke-width="2" opacity="0.12"/><text x="41" y="92" fill="var(--muted)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">ω*</text><line x1="69" y1="87" x2="73.6" y2="87" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="79,87 73.5,89.4 73.5,84.6" fill="var(--muted)"/><rect x="80" y="70" width="54" height="34" rx="8" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.12"/><text x="107" y="92" fill="var(--tc,var(--accent))" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">PI</text><line x1="135" y1="87" x2="139.6" y2="87" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="145,87 139.5,89.4 139.5,84.6" fill="var(--muted)"/><rect x="146" y="70" width="54" height="34" rx="8" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="2" opacity="0.12"/><text x="173" y="92" fill="var(--c5,#c43d63)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">i_q*</text><line x1="201" y1="87" x2="205.6" y2="87" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="211,87 205.5,89.4 205.5,84.6" fill="var(--muted)"/><rect x="212" y="70" width="54" height="34" rx="8" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="0.12"/><text x="239" y="92" fill="var(--c6,#2c8a52)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">dq→abc</text><line x1="267" y1="87" x2="271.6" y2="87" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="277,87 271.5,89.4 271.5,84.6" fill="var(--muted)"/><rect x="278" y="70" width="54" height="34" rx="8" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="2" opacity="0.12"/><text x="305" y="92" fill="var(--warn,#b8730c)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">inversor</text><rect x="14" y="130" width="330" height="30" rx="8" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="1.4" opacity="0.06"/><text x="179" y="150" fill="var(--c5,#c43d63)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">i_d* = 0  (máx. par por amperio)</text><text x="24" y="196" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">M = 3/2 · p · ψ_m · i_q</text></svg><figcaption>Con la corriente de eje directo a cero, el par es proporcional a la de eje en cuadratura; el lazo de velocidad fija esa referencia.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 7 <span class="src">8 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">k_E, k_T</td><td>Constantes de tensión y par</td><td class="u">SI</td></tr><tr><td class="sym">Ê = k_Eω_m</td><td>fem de pico por fase</td><td class="u">V</td></tr><tr><td class="sym">X_s = ωL_s</td><td>Reactancia síncrona</td><td class="u">Ω</td></tr><tr><td class="sym">δ</td><td>Ángulo de carga</td><td class="u">entre V̂ y Ê</td></tr><tr><td class="sym">L_s</td><td>Inductancia síncrona</td><td class="u">H</td></tr><tr><td class="sym">f = (n/60)(p/2)</td><td>Frecuencia eléctrica</td><td class="u">Hz</td></tr><tr><td class="sym">i_q</td><td>Corriente en cuadratura</td><td class="u">la que da par</td></tr><tr><td class="sym">PMAC</td><td>Síncrona de imanes permanentes</td><td class="u"></td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - diagrama fasorial de la maquina sincrona de imanes</p><div data-sim="pmac"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Un imán en el rotor es un «campo gratis»</p><p>En una máquina síncrona de imanes permanentes el rotor ya trae su campo (el del imán), de valor constante, y gira <b>exactamente</b> a la velocidad del campo del estátor: \(f=\dfrac{n}{60}\cdot\dfrac p2\). Al girar, el flujo del imán induce en el estátor una tensión \(\hat E=\omega_e\lambda_{fr}\) proporcional a la velocidad (la «fem»). Por fase, la máquina es una fuente de tensión \(\bar E\) en serie con una impedancia \(R_s+jX_s\): \(\bar V=\bar E+(R_s+jX_s)\bar I\).</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Un imán en el rotor es un «campo gratis»</p><p class="lede">En una máquina síncrona de imanes permanentes el rotor ya trae su campo (el del imán), de valor constante, y gira <b>exactamente</b> a la velocidad del campo del estátor: \(f=\dfrac{n}{60}\cdot\dfrac p2\). Al girar, el flujo del imán induce en el estátor una tensión \(\hat E=\omega_e\lambda_{fr}\) proporcional a la velocidad (la «fem»). Por fase, la máquina es una fuente de tensión \(\bar E\) en serie con una impedancia \(R_s+jX_s\): \(\bar V=\bar E+(R_s+jX_s)\bar I\).</p>
 <p>El par lo produce la componente de corriente en <b>cuadratura</b> con el flujo del imán: \(T=\tfrac32\tfrac p2\hat\lambda_{fr}i_q\). Con control de corriente (\(i_q\) lo que se pida), el par es proporcional a la corriente, igual que en continua, pero sin escobillas.</p><p class="ft">Ángulo de carga, velocidad base y debilitamiento</p><p>El diagrama fasorial \(\bar V=\bar E+jX_s\bar I\) tiene un ángulo \(\delta\) entre \(\bar V\) y \(\bar E\) (<b>ángulo de carga</b>): crece con la carga y da la potencia \(P=\dfrac{VE}{X_s}\operatorname{sen}\delta\) por fase. Como el inversor tiene una tensión máxima, existe una <b>velocidad base</b> (donde \(|\bar V|\) llega a ese máximo): por debajo se dispone del par máximo; por encima hay que reducir el par con \(T\propto1/\omega\) (potencia constante) y, si hace falta, inyectar corriente de eje directo para debilitar el campo.</p>
 <p>En generador, la relación entre \(E\) y \(V\) manda: <b>sobreexcitado</b> (\(E\cos\delta>V\)) entrega reactiva a la red, <b>subexcitado</b> la absorbe.</p>
 <figure class="fig"><p class="ft">Síncrona de imanes permanentes</p><div data-sim="pmac"></div><figcaption>Cambia la velocidad y la corriente en cuadratura: observa el fasor \(\bar V\) y el ángulo de carga.</figcaption></figure></div><!--/amp1--><!--manim:et-t7--><figure class="fig manim-fig" id="anim-et-t7"><p class="ft">Animación · Diagrama dq y debilitamiento de campo</p><div class="manim" data-anim="et-t7"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
-<h3 id="t7-formulas">Lo que tienes que saber</h3>
+<!--deep--><h3 id="t7-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Imanes permanentes en el rotor</h4>
+<div class="box key deepnote"><b>Idea clave.</b> la excitación viene de imanes, no de bobinas. No hay pérdidas en el rotor ni necesidad de escobillas. El motor es más compacto y eficiente.</div>
+<ul><li><b>Síncrona:</b> el rotor gira exactamente a la velocidad del campo \(n_s\), sin deslizamiento.</li><li><b>BLDC</b> (brushless DC): alimentada con onda cuadrada y controlada por la posición del rotor.</li><li><b>PMSM</b>: alimentada con onda senoidal, con control vectorial.</li></ul>
+<details class="dem"><summary><span class="pn">∴</span>Par y riesgo de desincronización</summary><div class="inner"><p>El par es \(T=\tfrac32\,p\,\psi_m\,i_q\) en control orientado. Si la carga supera el par máximo, el motor <b>pierde el sincronismo</b> y se detiene.</p>
+<div class="box trap deepnote"><b>Cuidado.</b> Los imanes de tierras raras se desmagnetizan por encima de una temperatura. No superes el límite de temperatura del fabricante.</div></div></details>
+</div><!--/deep--><h3 id="t7-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>
 <li>\(\hat E=k_E\omega_m\), \(T_{em}=k_T\hat I\) con \(k_E=k_T\) en el SI (referidos al valor de <b>pico</b> de la corriente de fase).</li>
 <li>Frecuencia eléctrica: \(f=\dfrac{n}{60}\cdot\dfrac{p}{2}\); \(X_s=\omega L_s\) con \(\omega=2\pi f\).</li>
