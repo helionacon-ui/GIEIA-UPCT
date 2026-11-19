@@ -151,9 +151,9 @@ details.curso[open] .chev{transform:rotate(-135deg);margin-bottom:-4px}
 .badge{font:600 11.5px/1 var(--mono);letter-spacing:.04em;padding:6px 9px;border-radius:999px;white-space:nowrap}
 .badge.ok{color:var(--ok);background:color-mix(in srgb,var(--ok) 13%,transparent);border:1px solid color-mix(in srgb,var(--ok) 35%,transparent)}
 .badge.soon{color:var(--muted);border:1px dashed var(--muted)}
-.badge.obra{color:#b45309;background:color-mix(in srgb,#f59e0b 14%,transparent);border:1px dashed #d97706}
-:root[data-theme="dark"] .badge.obra{color:#fbbf24}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .badge.obra{color:#fbbf24}}
+.badge.obra{color:#fff;background:#e8590c;border:1px solid #c2410c;font-weight:700;box-shadow:0 0 0 3px color-mix(in srgb,#e8590c 25%,transparent);animation:obra-pulso 2.4s ease-in-out infinite}
+@keyframes obra-pulso{50%{box-shadow:0 0 0 6px color-mix(in srgb,#e8590c 8%,transparent)}}
+@media (prefers-reduced-motion:reduce){.badge.obra{animation:none}}
 .empty{padding:30px 0;color:var(--muted);text-align:center}
 .sk{height:88px;margin:0 0 16px;border-radius:20px;border:1px solid var(--line);background:linear-gradient(100deg,var(--surface) 30%,color-mix(in srgb,var(--fg) 6%,var(--surface)) 50%,var(--surface) 70%) 0 0/300% 100%;animation:sk 1.4s linear infinite}
 @keyframes sk{to{background-position:-300% 0}}
@@ -420,7 +420,7 @@ function card(a, c, toks){
   const top = cap('div','top2');
   const ic = cap('div','ic',mono(a.t)); ic.setAttribute('aria-hidden','true');
   const _ic = ICONS[slug(a.url||'')]; if(_ic){ ic.textContent=''; ic.classList.add('im'); ic.innerHTML=_ic; }
-  top.append(ic, cap('span','badge '+(ready?(a.obra?'obra':'ok'):'soon'), ready ? (a.obra ? '🚧 En construcción' : 'Guía disponible') : (a.wip ? 'En progreso' : 'Próximamente')));
+  top.append(ic, cap('span','badge '+(ready?(a.obra?'obra':'ok'):'soon'), ready ? (a.obra ? '🚧 Guía en proceso' : 'Guía disponible') : (a.wip ? 'En progreso' : 'Próximamente')));
   if (ready && a.obra) el.title = 'Guía en construcción: se puede usar, pero aún se está completando';
   const t = cap('h3','t');
   if (ready){ const l = cap('a'); l.href = a.url; hl(l, a.t, toks); t.append(l); } else hl(t, a.t, toks);
