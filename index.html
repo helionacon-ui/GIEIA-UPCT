@@ -151,6 +151,9 @@ details.curso[open] .chev{transform:rotate(-135deg);margin-bottom:-4px}
 .badge{font:600 11.5px/1 var(--mono);letter-spacing:.04em;padding:6px 9px;border-radius:999px;white-space:nowrap}
 .badge.ok{color:var(--ok);background:color-mix(in srgb,var(--ok) 13%,transparent);border:1px solid color-mix(in srgb,var(--ok) 35%,transparent)}
 .badge.soon{color:var(--muted);border:1px dashed var(--muted)}
+.badge.obra{color:#b45309;background:color-mix(in srgb,#f59e0b 14%,transparent);border:1px dashed #d97706}
+:root[data-theme="dark"] .badge.obra{color:#fbbf24}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .badge.obra{color:#fbbf24}}
 .empty{padding:30px 0;color:var(--muted);text-align:center}
 .sk{height:88px;margin:0 0 16px;border-radius:20px;border:1px solid var(--line);background:linear-gradient(100deg,var(--surface) 30%,color-mix(in srgb,var(--fg) 6%,var(--surface)) 50%,var(--surface) 70%) 0 0/300% 100%;animation:sk 1.4s linear infinite}
 @keyframes sk{to{background-position:-300% 0}}
@@ -320,7 +323,7 @@ const CURSOS = [
      d:'Muestreo, transformada Z, estabilidad, Ragazzini y deadbeat. 24 simuladores y exámenes 2012–2026 resueltos.'},
     {t:'Tecnología medioambiental', url:'https://helionacon-ui.github.io/Tecnolog-a-Medioambiental/', r:['Teoría', 'Simulador', 'Exámenes'],
      d:'Legislación UE, calidad y tratamiento del agua, dispersión y control de contaminantes. Problemas resueltos, banco de preguntas y simulador de examen.'},{t:'Electrónica digital', url:'https://helionacon-ui.github.io/Electr-nica-digital/', r:['Teoría', 'Simulador', 'Prácticas'],
-     d:'Numeración, Boole, combinacional, biestables, autómatas y VHDL. Exámenes y hojas resueltos paso a paso, prácticas con simulador y simulacros.'},{t:'Informática para la automatización industrial', url:'informatica-automatizacion-industrial/', r:['Teoría', 'Simulador', 'Formulario'],
+     d:'Numeración, Boole, combinacional, biestables, autómatas y VHDL. Exámenes y hojas resueltos paso a paso, prácticas con simulador y simulacros.'},{t:'Informática para la automatización industrial', url:'informatica-automatizacion-industrial/', obra:true, r:['Teoría', 'Simulador', 'Formulario'],
      d:'La pirámide de la automatización, redes OSI y TCP/IP, buses PROFIBUS, PROFINET, MODBUS y CAN, PLC y firmware, SCADA y HMI con la ISA-101, OPC UA, C++ orientado a objetos, Qt con signal-slot, hilos y tiempo real, SOA, microservicios y MQTT, ROS2, MES y ERP, Industria 4.0 y ciberseguridad, e IA industrial. 15 temas con 133 cuestiones respondidas, 12 figuras interactivas y 10 problemas resueltos con código compilado.'},
     {t:'Modelado y simulación de sistemas', url:'https://helionacon-ui.github.io/Modelado-y-Simulaci-n-de-Sistemas/', r:['Teoría', 'Exámenes', 'Prácticas'],
      d:'Modelado, identificación, métodos numéricos, análisis del error, prácticas y qué se pregunta en el examen (2023–2026).'},{t:'Electrónica analógica', url:'electronica-analogica/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
@@ -330,8 +333,6 @@ const CURSOS = [
      d:'C++ moderno y la STL, clases, herencia y polimorfismo, hilos, mutex y variables de condición, el planificador del sistema operativo, planificación en tiempo real con RM, DM y EDF, ejecutivo cíclico, tiempos de respuesta con techo de prioridad, lógica difusa y kNN. 12 figuras interactivas y 8 ejercicios resueltos con código completo. Ampliada: cada tema con explicación desde cero y tres ejercicios resueltos paso a paso.'},{t:'Sistemas robotizados', url:'sistemas-robotizados/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario', 'Prácticas', 'Autoevaluación'],
      d:'El robot industrial y su volumen de trabajo, matrices de rotación y transformación homogénea, cuaternios, Denavit-Hartenberg, cinemática inversa con todas las soluciones, jacobiana y singularidades, estática, trayectorias con splines y programación en RAPID. 12 figuras interactivas que calculan de verdad y 8 problemas tipo resueltos. Ampliada: cada tema con explicación desde cero y tres ejercicios resueltos paso a paso.'},{t:'Automatización industrial', url:'automatizacion-industrial/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
      d:'Neumática y electroneumática con FluidSim, válvulas n/m y fuerzas del cilindro, relés, enclavamientos y temporizadores, circuitos de mando y potencia, protecciones y pérdida de fase, arranque estrella-triángulo e inversión de giro, GRAFCET con alternativas, paralelos y contadores, y el PLC S7-1200 con la traducción a diagrama de contactos. 10 figuras interactivas y 8 problemas resueltos. Ampliada: cada tema con explicación desde cero y tres ejercicios resueltos paso a paso.'},
-    {t:'Informática para la automatización industrial', url:'informatica-automatizacion-industrial/', r:['Teoría'],
-     d:'La pirámide de la automatización, sistemas operativos y llamadas al sistema, SCADA con RTU, MTU y HMI según la ISA 101, sistemas MES y ERP, redes LAN y WAN, pila OSI frente a TCP/IP, y buses de campo PROFIBUS, PROFINET y MODBUS. Seis temas con 55 cuestiones de teoría respondidas, trucos para recordar y una hoja de siglas y comparativas.'},
     {t:'Ingeniería de control', url:'https://helionacon-ui.github.io/Ingenieria-de-control/', r:['Teoría'],
      d:'Bode, Nyquist, márgenes de fase y ganancia, PID y compensadores de adelanto y retardo. Exámenes resueltos y simulacro.'},
     {t:'Ingeniería de los sistemas de producción', url:'sistemas-produccion/', r:['Teoría', 'Simulador', 'Exámenes', 'Formulario'],
@@ -419,7 +420,8 @@ function card(a, c, toks){
   const top = cap('div','top2');
   const ic = cap('div','ic',mono(a.t)); ic.setAttribute('aria-hidden','true');
   const _ic = ICONS[slug(a.url||'')]; if(_ic){ ic.textContent=''; ic.classList.add('im'); ic.innerHTML=_ic; }
-  top.append(ic, cap('span','badge '+(ready?'ok':'soon'), ready ? 'Guía disponible' : (a.wip ? 'En progreso' : 'Próximamente')));
+  top.append(ic, cap('span','badge '+(ready?(a.obra?'obra':'ok'):'soon'), ready ? (a.obra ? '🚧 En construcción' : 'Guía disponible') : (a.wip ? 'En progreso' : 'Próximamente')));
+  if (ready && a.obra) el.title = 'Guía en construcción: se puede usar, pero aún se está completando';
   const t = cap('h3','t');
   if (ready){ const l = cap('a'); l.href = a.url; hl(l, a.t, toks); t.append(l); } else hl(t, a.t, toks);
   el.append(top, cap('div','lb',c.n+'.º curso'), t);
