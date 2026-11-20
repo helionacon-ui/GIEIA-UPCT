@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -51,44 +114,41 @@ details>summary{line-height:1.7;padding-block:.5em}
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
 <script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
-
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body>
 <div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p></div>
 <div class="crumb"><a href="index.html">Física I</a><span class="sep">›</span><span>Parcial 1</span><span class="sep">›</span><span>T3 · Dinámica, fuerzas de inercia y gravitación</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
 <div class="wrap" id="top">
-<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Parcial 1</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes, unidades y vectores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Cinemática y movimiento relativo</a><a href="tema-03.html" style="--tc:var(--c4)" class="on" aria-current="page">T3 Dinámica, fuerzas de inercia y gravitación</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Trabajo y energía</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Movimiento oscilatorio</a><div class="grp">Parcial 2</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Sistemas de partículas</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Dinámica y estática del sólido rígido</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Estática del sólido rígido</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Estática de fluidos</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Equilibrio termodinámico y temperatura</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Primer y segundo principio de la termodinámica</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones teóricas de examen</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Recopilación por temas</a><a href="laboratorio.html" style="--tc:var(--c7)">Laboratorio y prácticas</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Parcial 1</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes, unidades y vectores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Cinemática y movimiento relativo</a><a href="tema-03.html" style="--tc:var(--c4)" class="on" aria-current="page">T3 Dinámica, fuerzas de inercia y gravitación</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Trabajo y energía</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Movimiento oscilatorio</a><div class="grp">Parcial 2</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Sistemas de partículas</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Dinámica del sólido rígido. Sistemas de fuerzas</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Estática del sólido rígido</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Estática de fluidos</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Equilibrio termodinámico y temperatura</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Primer y segundo principio de la termodinámica</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones teóricas de examen</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Recopilación por temas</a><a href="laboratorio.html" style="--tc:var(--c7)">Laboratorio y prácticas</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
 <main>
 <section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
 <div class="sh"><span aria-hidden="true" class="badge">3</span><div class="shx"><p class="kick">Parcial 1 · Tema 3</p><h2 id="t3">Dinámica, fuerzas de inercia y gravitación</h2><div class="tags"><span class="tag">Parcial 1</span><span class="tag">Problemas</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Aplicar las leyes de Newton, el rozamiento, los momentos lineal y angular y la ley de gravitación.</p><p><b>Masa inerte</b> (resistencia a cambiar de movimiento) y <b>masa gravitatoria</b> (la que atrae y es atraída) coinciden. <b>Fuerza</b>: causa del cambio de movimiento o de la deformación.</p>
-<p>Leyes de Newton: inercia; \(\sum\vec F=m\vec a\) (más general: \(\sum\vec F=d\vec p/dt\), válida aunque la masa varíe); acción y reacción.</p>
-<p><b>Rozamiento entre sólidos</b>: se opone al movimiento o a su tendencia, no depende del área; mientras no hay deslizamiento \(F_r=F_{aplicada}\le\mu_eN\), y al deslizar \(F_r=\mu_dN\) con \(\mu_d<\mu_e\). <b>En un fluido</b>: \(F_r=-k\eta\vec v\) (proporcional a la velocidad), lo que da una <b>velocidad límite</b>.</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Aplicar las leyes de Newton, el rozamiento, los momentos lineal y angular y la ley de gravitación.</p><p class="run"><b>Masa inerte:</b> (resistencia a cambiar de movimiento) y <b>masa gravitatoria</b> (la que atrae y es atraída) coinciden. <b>Fuerza</b>: causa del cambio de movimiento o de la deformación.</p>
+<p class="lede">Leyes de Newton: inercia; \(\sum\vec F=m\vec a\) (más general: \(\sum\vec F=d\vec p/dt\), válida aunque la masa varíe); acción y reacción.</p>
+<p class="run"><b>Rozamiento entre sólidos:</b> se opone al movimiento o a su tendencia, no depende del área; mientras no hay deslizamiento \(F_r=F_{aplicada}\le\mu_eN\), y al deslizar \(F_r=\mu_dN\) con \(\mu_d<\mu_e\). <b>En un fluido</b>: \(F_r=-k\eta\vec v\) (proporcional a la velocidad), lo que da una <b>velocidad límite</b>.</p>
 <p>En un <b>sistema no inercial</b> hay que añadir fuerzas ficticias (\(-m\vec a_0\); centrífuga \(m\omega^2r\); Coriolis). El profesor recomienda plantear siempre desde el sistema inercial.</p></div>
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Elige ejes paralelo y perpendicular al plano</div><svg viewBox="0 0 560 262" role="img" aria-label="Diagrama de cuerpo libre en plano inclinado" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><polygon points="30,222 290,222 290,104" fill="var(--tc,var(--accent))" stroke="none" stroke-width="1.8" opacity="0.1" stroke-linejoin="round" stroke-linecap="round"/><polygon points="30,222 290,222 290,104" fill="none" stroke="var(--muted)" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><polygon points="132.7,175.4 187.3,150.6 169.1,110.5 114.5,135.3" fill="var(--surface,#fff)" stroke="var(--fg)" stroke-width="2.2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><line x1="150.9" y1="143" x2="150.9" y2="206.2" stroke="var(--warn,#b8730c)" stroke-width="3" opacity="1" stroke-linecap="round"/><polygon points="150.9,217 146,206 155.8,206" fill="var(--warn,#b8730c)"/><text x="158.9" y="219" fill="var(--warn,#b8730c)" font-size="15" text-anchor="start" font-weight="700" opacity="1">mg</text><line x1="150.9" y1="143" x2="128.9" y2="94.5" stroke="var(--c2,#3a63c4)" stroke-width="3" opacity="1" stroke-linecap="round"/><polygon points="124.5,84.7 133.4,92.6 124.5,96.7" fill="var(--c2,#3a63c4)"/><text x="114.5" y="80.7" fill="var(--c2,#3a63c4)" font-size="15" text-anchor="end" font-weight="700" opacity="1">N</text><line x1="150.9" y1="143" x2="181.1" y2="129.2" stroke="var(--c5,#c43d63)" stroke-width="3" opacity="1" stroke-linecap="round"/><polygon points="191,124.8 183,133.8 179,124.9" fill="var(--c5,#c43d63)"/><text x="183" y="116.8" fill="var(--c5,#c43d63)" font-size="15" text-anchor="end" font-weight="700" opacity="1">Fr</text><line x1="150.9" y1="143" x2="123.6" y2="155.4" stroke="var(--muted)" stroke-width="1.3" stroke-dasharray="4 4" opacity="1" stroke-linecap="round"/><line x1="150.9" y1="217" x2="150.9" y2="217" stroke="var(--muted)" stroke-width="0" opacity="1" stroke-linecap="round"/><path d="M80,222 A50,50 0 0 0 75.5,201.3" fill="none" stroke="var(--warn,#b8730c)" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="88" y="214" fill="var(--warn,#b8730c)" font-size="15" text-anchor="start" font-style="italic" opacity="1">α</text><text x="150" y="250" fill="var(--muted)" font-size="12.5" text-anchor="middle" opacity="1">mg senα baja · mg cosα aprieta</text><text x="330" y="64" fill="var(--tc,var(--accent))" font-size="16.5" text-anchor="start" font-weight="700" opacity="1">Σ F = m a</text><text x="330" y="97" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="600" opacity="1">⟂ plano: N = mg cosα</text><text x="330" y="119" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="600" opacity="1">∥ plano:</text><text x="330" y="141" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="600" opacity="1">mg senα − μN = m a</text><text x="330" y="174" fill="var(--tc,var(--accent))" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">a = g (senα − μ cosα)</text><text x="330" y="207" fill="var(--muted)" font-size="14" text-anchor="start" opacity="1">Reposo si tgα ≤ μ</text></svg><figcaption>Se descompone el peso en dos componentes. La normal compensa la perpendicular; la paralela, menos el rozamiento, produce la aceleración.</figcaption></figure><figure class="ill"><div class="ill-t">Más cerca del Sol, más deprisa</div><svg viewBox="0 0 560 262" role="img" aria-label="Leyes de Kepler" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><ellipse cx="150" cy="128" rx="122" ry="96" fill="none" stroke="var(--tc,var(--accent))" stroke-width="2.6" opacity="1"/><polygon points="225.3,128 250.7,182.2 255.6,176.1 259.9,169.8 263.5,163.2 266.6,156.4 268.9,149.4 270.6,142.3 271.7,135.2 272,128 271.7,120.8 270.6,113.7 268.9,106.6 266.6,99.6 263.5,92.8 259.9,86.2 255.6,79.9 250.7,73.8" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="1.4" opacity="0.3" stroke-linejoin="round" stroke-linecap="round"/><polygon points="225.3,128 29.5,113.1 29.1,115 28.8,116.8 28.6,118.7 28.4,120.5 28.2,122.4 28.1,124.3 28,126.1 28,128 28,129.9 28.1,131.7 28.2,133.6 28.4,135.5 28.6,137.3 28.8,139.2 29.1,141 29.5,142.9" fill="var(--c2,#3a63c4)" stroke="var(--c2,#3a63c4)" stroke-width="1.4" opacity="0.3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="225.3" cy="128" r="9" fill="var(--warn,#b8730c)" stroke="none" stroke-width="1.8" opacity="1"/><text x="221.3" y="154" fill="var(--muted)" font-size="13" text-anchor="middle" opacity="1">Sol</text><circle cx="272" cy="128" r="5.5" fill="var(--fg)" stroke="none" stroke-width="1.8" opacity="1"/><line x1="272" y1="128" x2="272" y2="87" stroke="var(--c5,#c43d63)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><polygon points="272,78 276.1,87.1 267.9,87.1" fill="var(--c5,#c43d63)"/><text x="266" y="84" fill="var(--c5,#c43d63)" font-size="13" text-anchor="end" font-weight="700" opacity="1">rápido</text><circle cx="28" cy="128" r="5.5" fill="var(--fg)" stroke="none" stroke-width="1.8" opacity="1"/><line x1="28" y1="128" x2="28" y2="141" stroke="var(--c5,#c43d63)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><polygon points="28,150 23.9,140.9 32.1,140.9" fill="var(--c5,#c43d63)"/><text x="62" y="172" fill="var(--c5,#c43d63)" font-size="13" text-anchor="middle" font-weight="700" opacity="1">lento</text><text x="284" y="178" fill="var(--muted)" font-size="12.5" text-anchor="end" opacity="1">perihelio</text><text x="38" y="98" fill="var(--muted)" font-size="12.5" text-anchor="start" opacity="1">afelio</text><text x="312" y="64" fill="var(--tc,var(--accent))" font-size="16" text-anchor="start" font-weight="700" opacity="1">F = G M m / r²</text><text x="312" y="97" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="600" opacity="1">I: órbita elíptica</text><text x="312" y="119" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="600" opacity="1">II: áreas iguales en</text><text x="312" y="141" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="600" opacity="1">     tiempos iguales</text><text x="312" y="163" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="600" opacity="1">III: T² ∝ a³</text><text x="312" y="196" fill="var(--warn,#b8730c)" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">v circular = √(G M / r)</text><text x="312" y="229" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">Mismo área = mismo t.</text></svg><figcaption>Las dos zonas sombreadas tienen la misma área y se recorren en el mismo tiempo: por eso el planeta va más rápido cerca del Sol (momento angular constante).</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 3 <span class="src">6 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(N\)</td><td>Fuerza normal</td><td class="u">N</td></tr><tr><td class="sym">\(\mu_e,\mu_d\)</td><td>Coeficientes de rozamiento estático y dinámico</td><td class="u">sin dimensiones</td></tr><tr><td class="sym">\(\vec p\)</td><td>Momento lineal</td><td class="u">kg·m/s</td></tr><tr><td class="sym">\(\vec L_O\)</td><td>Momento angular respecto a O</td><td class="u">kg·m²/s</td></tr><tr><td class="sym">\(G\)</td><td>Constante de gravitación</td><td class="u">6,67·10⁻¹¹ N·m²/kg²</td></tr><tr><td class="sym">\(g_0\)</td><td>Gravedad en la superficie</td><td class="u">9,8 m/s²</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Simulador · fuerzas en un plano inclinado</p><div data-sim="plano"></div><figcaption>Mueve los controles y observa cómo cambian las magnitudes del recuadro.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Las tres leyes de Newton en una frase cada una</p><p><b>1.ª (inercia):</b> sin fuerza neta, un cuerpo conserva su velocidad. <b>2.ª:</b> \(\sum\vec F=m\vec a\). <b>3.ª:</b> si A empuja a B, B empuja a A con la misma fuerza y sentido contrario <b>sobre otro cuerpo</b>; por eso nunca se cancelan entre sí en el diagrama de uno solo.</p>
-<p><b>Método universal:</b> (1) dibuja el cuerpo aislado y todas las fuerzas que actúan <b>sobre él</b> (diagrama de cuerpo libre), (2) elige ejes cómodos (en un plano inclinado, uno paralelo y otro perpendicular), (3) escribe \(\sum F=ma\) en cada eje, (4) resuelve. El 80 % de los fallos está en el paso 1.</p><p class="ft">Rozamiento, tensiones y movimiento circular</p><p>El rozamiento estático se adapta hasta un máximo \(\mu_eN\); el cinético vale \(\mu_cN\) y se opone al movimiento. Ojo: \(N\) <b>no siempre es \(mg\)</b>; en un plano inclinado, \(N=mg\cos\theta\).</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Las tres leyes de Newton en una frase cada una</p><p class="run"><b>1.ª (inercia):</b> sin fuerza neta, un cuerpo conserva su velocidad. <b>2.ª:</b> \(\sum\vec F=m\vec a\). <b>3.ª:</b> si A empuja a B, B empuja a A con la misma fuerza y sentido contrario <b>sobre otro cuerpo</b>; por eso nunca se cancelan entre sí en el diagrama de uno solo.</p>
+<p class="run"><b>Método universal:</b> (1) dibuja el cuerpo aislado y todas las fuerzas que actúan <b>sobre él</b> (diagrama de cuerpo libre), (2) elige ejes cómodos (en un plano inclinado, uno paralelo y otro perpendicular), (3) escribe \(\sum F=ma\) en cada eje, (4) resuelve. El 80 % de los fallos está en el paso 1.</p><p class="ft">Rozamiento, tensiones y movimiento circular</p><p class="lede">El rozamiento estático se adapta hasta un máximo \(\mu_eN\); el cinético vale \(\mu_cN\) y se opone al movimiento. Ojo: \(N\) <b>no siempre es \(mg\)</b>; en un plano inclinado, \(N=mg\cos\theta\).</p>
 <p>En una cuerda ideal y una polea sin masa, la tensión es la misma a ambos lados. En el <b>movimiento circular</b>, la fuerza neta hacia el centro vale \(m v^2/R\) (fuerza centrípeta): no es una fuerza nueva, es el nombre de la suma de las reales (rozamiento, tensión, normal…) en esa dirección.</p>
 <p>Y la gravitación: \(F=G\,\dfrac{Mm}{r^2}\), lo que da \(g=GM/R^2\) en la superficie y la velocidad orbital \(v=\sqrt{GM/r}\).</p></div><!--/amp1--><!--manim:fis1-t3--><figure class="fig manim-fig" id="anim-fis1-t3"><p class="ft">Animación · Gravitación: órbita elíptica y ley de las áreas</p><div class="manim" data-anim="fis1-t3"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
 <!--deep--><h3 id="t3-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. La segunda ley: qué dice realmente</h4>
+<h4><span class="hn">1</span>La segunda ley: qué dice realmente</h4>
 <div class="eqd">\[\vec F=\frac{\mathrm d\vec p}{\mathrm dt}\;\;\xrightarrow{\;m\text{ cte}\;}\;\;\vec F=m\vec a\]</div>
 <ul><li>\(\vec F\) es la suma de <b>todas las fuerzas que actúan sobre el cuerpo</b>, nunca las que él ejerce.</li><li>Solo vale en un <b>sistema inercial</b>.</li><li>La forma \(\mathrm d\vec p/\mathrm dt\) sigue valiendo con masa variable (cohetes, tema 6).</li></ul>
 <details class="dem"><summary><span class="pn">∴</span>Plano inclinado: ¿cuándo empieza a deslizar?</summary><div class="inner"><ol class="pasos"><li>Perpendicular al plano: \(N=mg\cos\theta\).</li><li>A lo largo del plano, el rozamiento estático equilibra el peso: \(f=mg\sin\theta\).</li><li>Condición de reposo: \(f\le\mu_eN\), es decir \(mg\sin\theta\le\mu_e\,mg\cos\theta\).</li><li>Simplificando:</li></ol>
 <div class="eqd">\[\tan\theta\le\mu_e\;\;\Rightarrow\;\;\theta_c=\arctan\mu_e\]</div>
 <p>El ángulo crítico <b>no depende de la masa</b>; sirve para medir \(\mu_e\) con una rampa. Una vez desliza, \(a=g(\sin\theta-\mu_c\cos\theta)\).</p></div></details>
-<h4>2. Fuerzas de inercia (sistemas no inerciales)</h4>
+<h4><span class="hn">2</span>Fuerzas de inercia (sistemas no inerciales)</h4>
 <div class="box key deepnote"><b>Idea clave.</b> desde un sistema que acelera con \(\vec A\), la segunda ley exige añadir una fuerza ficticia \(-m\vec A\).</div>
 <div class="eqd">\[m\vec a\,'=\vec F-m\vec A\]</div>
 <p>No es una interacción real: no hay nadie que la ejerza ni pareja de acción-reacción. Es el precio de describir el movimiento desde un sistema acelerado.</p>
 <details class="dem"><summary><span class="pn">∴</span>Dos casos que aparecen siempre</summary><div class="inner"><ul><li><b>Ascensor</b> que sube con aceleración \(a\): peso aparente \(N=m(g+a)\). Pesas más al arrancar hacia arriba y menos al frenar. En caída libre (\(a=-g\)), \(N=0\).</li><li><b>Sistema que gira</b> con \(\omega\): aparece la fuerza <b>centrífuga</b> \(m\omega^2\vec r\) (hacia fuera) y, si el cuerpo se mueve respecto al sistema, la de <b>Coriolis</b> \(-2m\vec\omega\times\vec v\,'\).</li></ul>
 <p>Ambas salen de los términos de aceleración del tema 2.</p></div></details>
-<h4>3. Gravitación</h4>
+<h4><span class="hn">3</span>Gravitación</h4>
 <div class="eqd">\[F=G\frac{Mm}{r^2}\]</div>
 <p>Con ella se explican las leyes de Kepler y el valor de \(g\).</p>
 <details class="dem"><summary><span class="pn">∴</span>Tercera ley de Kepler y velocidad orbital</summary><div class="inner"><ol class="pasos"><li>Órbita circular: la gravedad es la fuerza centrípeta, \(\dfrac{GMm}{r^2}=\dfrac{mv^2}{r}\).</li><li>Velocidad orbital: \(v=\sqrt{GM/r}\).</li><li>Con \(v=2\pi r/T\):</li></ol>

@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -51,39 +114,36 @@ details>summary{line-height:1.7;padding-block:.5em}
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
 <script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
-
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body>
 <div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, boletines y prácticas) · página creada en noviembre de 2026</p></div>
 <div class="crumb"><a href="index.html">Análisis de Circuitos</a><span class="sep">›</span><span>Primer parcial · continua y fasores</span><span class="sep">›</span><span>T3 · Teoremas fundamentales en continua</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
 <div class="wrap" id="top">
-<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Primer parcial · continua y fasores</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes eléctricas</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos de corriente continua: reducción de redes</a><a href="tema-03.html" style="--tc:var(--c4)" class="on" aria-current="page">T3 Teoremas fundamentales en continua</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Ondas periódicas, señal senoidal y fasor</a><a href="tema-05.html" style="--tc:var(--c6)">T5 R, L y C en alterna: impedancia y admitancia</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Potencia en corriente alterna</a><div class="grp">Segundo parcial · alterna, transitorios y trifásica</div><a href="tema-07.html" style="--tc:var(--c8)">T7 Teoremas fundamentales en alterna</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Régimen transitorio</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Sistemas trifásicos equilibrados</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Potencia en sistemas trifásicos</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Primer parcial · continua y fasores</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes eléctricas</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos de corriente continua: reducción de redes</a><a href="tema-03.html" class="on" aria-current="page" style="--tc:var(--c4)">T3 Teoremas fundamentales en continua</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Ondas periódicas, señal senoidal y fasor</a><a href="tema-05.html" style="--tc:var(--c6)">T5 R, L y C en alterna: impedancia y admitancia</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Potencia en corriente alterna</a><div class="grp">Segundo parcial · alterna, transitorios y trifásica</div><a href="tema-07.html" style="--tc:var(--c8)">T7 Teoremas fundamentales en alterna</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Régimen transitorio</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Sistemas trifásicos equilibrados</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Potencia en sistemas trifásicos</a><div class="grp">Cuadripolos y elementos no lineales</div><a href="tema-11.html" style="--tc:var(--c4)">T11 Redes de dos puertas (cuadripolos)</a><a href="tema-12.html" style="--tc:var(--c5)">T12 Elementos no lineales: diodos y transistores</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
 <main>
 <section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
 <div class="sh"><span aria-hidden="true" class="badge">3</span><div class="shx"><p class="kick">Primer parcial · continua y fasores · Tema 3</p><h2 id="t3">Teoremas fundamentales en continua</h2><div class="tags"><span class="tag">Primer parcial · continua y fasores</span><span class="tag">Primer parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Resolver circuitos por mallas (Maxwell) y por nudos, y aplicar superposición, Thévenin, Norton, Millman y la máxima transferencia de potencia.</p><p><b>Número de ecuaciones independientes</b>: con \(r\) ramas y \(n\) nudos, hay \(n-1\) ecuaciones de nudo y \(r-(n-1)\) de malla. Elige el método con menos ecuaciones.</p>
-<p><b>Método de las mallas (Maxwell)</b>: se asignan corrientes de malla (todas en el mismo sentido, p. ej. horario) y se plantea para cada una \(\sum E=\sum IR\): en la diagonal, la suma de resistencias de la malla; fuera, menos la resistencia compartida por la corriente vecina. En forma matricial \([R][I]=[E]\) con \([R]\) simétrica. La corriente de rama compartida es la DIFERENCIA de las dos corrientes de malla.</p>
-<p><b>Método de los nudos</b>: se toma un nudo de referencia (masa) y se plantea LCK en los demás en función de los potenciales: \(\left(\sum G\right)V_a-\sum G_{ab}V_b=\sum I_{fuentes}\). Es el dual del anterior y suele ser más corto cuando hay fuentes de corriente.</p>
-<p><b>Superposición</b> (solo en circuitos lineales): la respuesta con varias fuentes es la suma de las respuestas con cada una por separado, <b>anulando</b> las demás: las fuentes de tensión se cortocircuitan y las de corriente se abren. Ojo: la potencia NO se puede superponer (es cuadrática).</p>
-<p><b>Thévenin</b>: cualquier red lineal vista desde dos terminales equivale a una fuente \(V_{th}\) (tensión en vacío entre a y b) en serie con \(R_{th}\) (resistencia vista desde a-b con las fuentes anuladas). <b>Norton</b>: la dual, \(I_N=V_{th}/R_{th}\) (corriente de cortocircuito) en paralelo con \(R_{th}\).</p>
-<p><b>Millman</b>: varias ramas con fuente y resistencia en paralelo entre dos nudos: \(V_{ab}=\dfrac{\sum E_i/R_i}{\sum1/R_i}\) (es el método de nudos con un solo nudo).</p>
-<p><b>Máxima transferencia de potencia</b>: con la carga \(R_L=R_{th}\), \(P_{max}=\dfrac{V_{th}^2}{4R_{th}}\) y el rendimiento es solo del 50 %. Es el apartado b) de casi todos los problemas de los boletines 3 y 7.</p></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Resolver circuitos por mallas (Maxwell) y por nudos, y aplicar superposición, Thévenin, Norton, Millman y la máxima transferencia de potencia.</p><p class="run"><b>Número de ecuaciones independientes:</b> con \(r\) ramas y \(n\) nudos, hay \(n-1\) ecuaciones de nudo y \(r-(n-1)\) de malla. Elige el método con menos ecuaciones.</p>
+<p class="run"><b>Método de las mallas (Maxwell):</b> se asignan corrientes de malla (todas en el mismo sentido, p. ej. horario) y se plantea para cada una \(\sum E=\sum IR\): en la diagonal, la suma de resistencias de la malla; fuera, menos la resistencia compartida por la corriente vecina. En forma matricial \([R][I]=[E]\) con \([R]\) simétrica. La corriente de rama compartida es la DIFERENCIA de las dos corrientes de malla.</p>
+<p class="run"><b>Método de los nudos:</b> se toma un nudo de referencia (masa) y se plantea LCK en los demás en función de los potenciales: \(\left(\sum G\right)V_a-\sum G_{ab}V_b=\sum I_{fuentes}\). Es el dual del anterior y suele ser más corto cuando hay fuentes de corriente.</p>
+<p class="run"><b>Superposición:</b> (solo en circuitos lineales): la respuesta con varias fuentes es la suma de las respuestas con cada una por separado, <b>anulando</b> las demás: las fuentes de tensión se cortocircuitan y las de corriente se abren. Ojo: la potencia NO se puede superponer (es cuadrática).</p>
+<p class="run"><b>Thévenin:</b> cualquier red lineal vista desde dos terminales equivale a una fuente \(V_{th}\) (tensión en vacío entre a y b) en serie con \(R_{th}\) (resistencia vista desde a-b con las fuentes anuladas). <b>Norton</b>: la dual, \(I_N=V_{th}/R_{th}\) (corriente de cortocircuito) en paralelo con \(R_{th}\).</p>
+<p class="run"><b>Millman:</b> varias ramas con fuente y resistencia en paralelo entre dos nudos: \(V_{ab}=\dfrac{\sum E_i/R_i}{\sum1/R_i}\) (es el método de nudos con un solo nudo).</p>
+<p class="run"><b>Máxima transferencia de potencia:</b> con la carga \(R_L=R_{th}\), \(P_{max}=\dfrac{V_{th}^2}{4R_{th}}\) y el rendimiento es solo del 50 %. Es el apartado b) de casi todos los problemas de los boletines 3 y 7.</p></div>
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Cualquier red lineal se ve desde fuera como una fuente y una resistencia</div><svg viewBox="0 0 560 262" role="img" aria-label="Equivalente de Thévenin" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="24" y="60" width="86" height="100" rx="8" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2.4" opacity="0.1"/><text x="67" y="106" fill="var(--tc,var(--accent))" font-size="13" text-anchor="middle" font-weight="700" opacity="1">red</text><text x="67" y="124" fill="var(--tc,var(--accent))" font-size="13" text-anchor="middle" font-weight="700" opacity="1">lineal</text><line x1="110" y1="80" x2="134" y2="80" stroke="var(--fg)" stroke-width="2" opacity="1" stroke-linecap="round"/><line x1="110" y1="140" x2="134" y2="140" stroke="var(--fg)" stroke-width="2" opacity="1" stroke-linecap="round"/><circle cx="134" cy="80" r="3.5" fill="var(--fg)" stroke="none" stroke-width="1.8" opacity="1"/><circle cx="134" cy="140" r="3.5" fill="var(--fg)" stroke="none" stroke-width="1.8" opacity="1"/><text x="146" y="84" fill="var(--fg)" font-size="12" text-anchor="start" font-weight="700" opacity="1">A</text><text x="146" y="144" fill="var(--fg)" font-size="12" text-anchor="start" font-weight="700" opacity="1">B</text><line x1="166" y1="112" x2="182.8" y2="112" stroke="var(--muted)" stroke-width="2" opacity="1" stroke-linecap="round"/><polygon points="190,112 182.7,115.3 182.7,108.7" fill="var(--muted)"/><line x1="206" y1="70" x2="206" y2="92" stroke="var(--fg)" stroke-width="2" opacity="1" stroke-linecap="round"/><line x1="200" y1="92" x2="200" y2="116" stroke="var(--c5,#c43d63)" stroke-width="2.6" opacity="1" stroke-linecap="round"/><line x1="212" y1="97" x2="212" y2="111" stroke="var(--c5,#c43d63)" stroke-width="2.6" opacity="1" stroke-linecap="round"/><line x1="206" y1="116" x2="206" y2="148" stroke="var(--fg)" stroke-width="2" opacity="1" stroke-linecap="round"/><text x="194" y="108" fill="var(--c5,#c43d63)" font-size="12.5" text-anchor="end" font-weight="700" opacity="1">Vth</text><line x1="206" y1="70" x2="222" y2="70" stroke="var(--fg)" stroke-width="2" opacity="1" stroke-linecap="round"/><polyline points="222,70 227.5,70 230.4,63 236.3,77 242.1,63 247.9,77 253.7,63 259.6,77 262.5,70 268,70" fill="none" stroke="var(--tc,var(--accent))" stroke-width="2.2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="245" y="56" fill="var(--tc,var(--accent))" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">Rth</text><line x1="268" y1="70" x2="284" y2="70" stroke="var(--fg)" stroke-width="2" opacity="1" stroke-linecap="round"/><line x1="206" y1="148" x2="284" y2="148" stroke="var(--fg)" stroke-width="2" opacity="1" stroke-linecap="round"/><circle cx="284" cy="70" r="3.5" fill="var(--fg)" stroke="none" stroke-width="1.8" opacity="1"/><circle cx="284" cy="148" r="3.5" fill="var(--fg)" stroke="none" stroke-width="1.8" opacity="1"/><text x="24" y="214" fill="var(--fg)" font-size="12.5" text-anchor="start" font-weight="600" opacity="1">Vth: tensión en circuito abierto A–B</text><text x="24" y="234" fill="var(--fg)" font-size="12.5" text-anchor="start" font-weight="600" opacity="1">Rth: resistencia vista con fuentes anuladas</text></svg><figcaption>Se mide Vth abriendo los terminales y Rth anulando las fuentes independientes (tensión → cortocircuito, corriente → circuito abierto).</figcaption></figure><figure class="ill"><div class="ill-t">Adaptar la carga a la fuente</div><svg viewBox="0 0 560 262" role="img" aria-label="Máxima transferencia de potencia" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="36" y1="214" x2="282.8" y2="214" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="290,214 282.7,217.3 282.7,210.7" fill="var(--muted)"/><line x1="36" y1="214" x2="36" y2="37.2" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="36,30 39.3,37.3 32.7,37.3" fill="var(--muted)"/><text x="42" y="28" fill="var(--muted)" font-size="12" text-anchor="start" font-style="italic" opacity="1">P</text><text x="290" y="232" fill="var(--muted)" font-size="12" text-anchor="end" font-style="italic" opacity="1">R_L</text><path d="M37.2,200.9 L38.4,188.9 L39.6,177.8 L40.8,167.5 L42,158 L43.2,149.2 L44.4,141 L45.6,133.4 L46.8,126.4 L47.9,119.8 L49.1,113.8 L50.3,108.2 L51.5,102.9 L52.7,98.1 L53.9,93.6 L55.1,89.4 L56.3,85.5 L57.5,81.9 L58.7,78.6 L59.9,75.5 L61.1,72.6 L62.3,70 L63.5,67.5 L64.7,65.2 L65.9,63.1 L67,61.2 L68.2,59.4 L69.4,57.7 L70.6,56.2 L71.8,54.8 L73,53.5 L74.2,52.4 L75.4,51.3 L76.6,50.3 L77.8,49.4 L79,48.6 L80.2,47.9 L81.4,47.3 L82.6,46.7 L83.8,46.2 L85,45.7 L86.2,45.4 L87.3,45 L88.5,44.7 L89.7,44.5 L90.9,44.3 L92.1,44.2 L93.3,44.1 L94.5,44 L95.7,44 L96.9,44 L98.1,44.1 L99.3,44.1 L100.5,44.2 L101.7,44.3 L102.9,44.5 L104.1,44.7 L105.3,44.9 L106.5,45.1 L107.6,45.3 L108.8,45.6 L110,45.9 L111.2,46.2 L112.4,46.5 L113.6,46.8 L114.8,47.1 L116,47.5 L117.2,47.8 L118.4,48.2 L119.6,48.6 L120.8,49 L122,49.4 L123.2,49.8 L124.4,50.2 L125.6,50.6 L126.8,51.1 L127.9,51.5 L129.1,52 L130.3,52.4 L131.5,52.9 L132.7,53.3 L133.9,53.8 L135.1,54.3 L136.3,54.7 L137.5,55.2 L138.7,55.7 L139.9,56.2 L141.1,56.7 L142.3,57.2 L143.5,57.7 L144.7,58.2 L145.9,58.6 L147,59.1 L148.2,59.6 L149.4,60.1 L150.6,60.6 L151.8,61.1 L153,61.6 L154.2,62.1 L155.4,62.6 L156.6,63.1 L157.8,63.6 L159,64.1 L160.2,64.6 L161.4,65.1 L162.6,65.6 L163.8,66.1 L165,66.6 L166.2,67.1 L167.3,67.6 L168.5,68.1 L169.7,68.6 L170.9,69.1 L172.1,69.6 L173.3,70.1 L174.5,70.6 L175.7,71.1 L176.9,71.6 L178.1,72.1 L179.3,72.5 L180.5,73 L181.7,73.5 L182.9,74 L184.1,74.5 L185.3,74.9 L186.4,75.4 L187.6,75.9 L188.8,76.3 L190,76.8 L191.2,77.3 L192.4,77.7 L193.6,78.2 L194.8,78.7 L196,79.1 L197.2,79.6 L198.4,80 L199.6,80.5 L200.8,80.9 L202,81.4 L203.2,81.8 L204.4,82.3 L205.6,82.7 L206.7,83.2 L207.9,83.6 L209.1,84 L210.3,84.5 L211.5,84.9 L212.7,85.3 L213.9,85.8 L215.1,86.2 L216.3,86.6 L217.5,87 L218.7,87.4 L219.9,87.9 L221.1,88.3 L222.3,88.7 L223.5,89.1 L224.7,89.5 L225.9,89.9 L227,90.3 L228.2,90.7 L229.4,91.1 L230.6,91.5 L231.8,91.9 L233,92.3 L234.2,92.7 L235.4,93.1 L236.6,93.5 L237.8,93.9 L239,94.3 L240.2,94.6 L241.4,95 L242.6,95.4 L243.8,95.8 L245,96.1 L246.2,96.5 L247.3,96.9 L248.5,97.3 L249.7,97.6 L250.9,98 L252.1,98.3 L253.3,98.7 L254.5,99.1 L255.7,99.4 L256.9,99.8 L258.1,100.1 L259.3,100.5 L260.5,100.8 L261.7,101.2 L262.9,101.5 L264.1,101.9 L265.3,102.2 L266.4,102.5 L267.6,102.9 L268.8,103.2 L270,103.6 L271.2,103.9 L272.4,104.2 L273.6,104.5 L274.8,104.9 L276,105.2" fill="none" stroke="var(--tc,var(--accent))" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><line x1="96" y1="214" x2="96" y2="44" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><circle cx="96" cy="44" r="5" fill="var(--warn,#b8730c)" stroke="none" stroke-width="1.8" opacity="1"/><text x="96" y="232" fill="var(--warn,#b8730c)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">R_th</text><text x="110" y="34" fill="var(--warn,#b8730c)" font-size="12.5" text-anchor="start" font-weight="700" opacity="1">P_máx = Vth²/(4·Rth)</text><text x="318" y="56" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">La carga recibe la</text><text x="318" y="78" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">máxima potencia cuando</text><text x="318" y="100" fill="var(--tc,var(--accent))" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">R_L = R_th.</text><text x="318" y="133" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">Entonces el rendimiento</text><text x="318" y="155" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">es solo del 50 %.</text><text x="318" y="188" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">Útil en señales débiles;</text><text x="318" y="210" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">no en energía.</text></svg><figcaption>Si la carga es mucho menor o mucho mayor que R_th, la potencia entregada cae; el máximo aparece cuando son iguales.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 3 <span class="src">5 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">[R][I]=[E]</td><td>Sistema de mallas (matriz simetrica)</td><td class="u"></td></tr><tr><td class="sym">G</td><td>Conductancia para el metodo nodal</td><td class="u">S</td></tr><tr><td class="sym">Vth, Rth</td><td>Equivalente Thevenin</td><td class="u">V; Ohm</td></tr><tr><td class="sym">IN</td><td>Corriente Norton = Vth/Rth</td><td class="u">A</td></tr><tr><td class="sym">MTP</td><td>R_L = R_th, P = Vth^2/4Rth</td><td class="u"></td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - Thevenin, Norton y maxima transferencia</p><div data-sim="thevenin"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Mallas y nudos: sistematizar</p><p>Cuando el circuito es grande, se plantea un sistema de ecuaciones. <b>Mallas:</b> asigna una corriente cíclica a cada malla; en la ecuación de cada una, el coeficiente de su propia corriente es la <b>suma de resistencias</b> de la malla (positivo) y el de las vecinas es <b>menos la resistencia compartida</b>; el término independiente es la suma de las fuentes que ayudan a su corriente. <b>Nudos:</b> eliges un nudo de referencia y escribes LCK en los demás con conductancias.</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Mallas y nudos: sistematizar</p><p class="lede">Cuando el circuito es grande, se plantea un sistema de ecuaciones. <b>Mallas:</b> asigna una corriente cíclica a cada malla; en la ecuación de cada una, el coeficiente de su propia corriente es la <b>suma de resistencias</b> de la malla (positivo) y el de las vecinas es <b>menos la resistencia compartida</b>; el término independiente es la suma de las fuentes que ayudan a su corriente. <b>Nudos:</b> eliges un nudo de referencia y escribes LCK en los demás con conductancias.</p>
 <p>Elige mallas si hay pocas mallas y fuentes de tensión; nudos si hay pocos nudos y fuentes de corriente.</p><p class="ft">Thévenin, Norton y máxima transferencia</p><p>Cualquier parte lineal de un circuito vista desde dos terminales equivale a una fuente \(V_{th}\) con una resistencia \(R_{th}\) en serie. <b>\(V_{th}\)</b> = tensión entre los terminales en vacío; <b>\(R_{th}\)</b> = resistencia vista con las fuentes anuladas (fuentes de tensión → cortocircuito; de corriente → abiertas). Norton es lo mismo en forma de fuente de corriente \(I_N=V_{th}/R_{th}\).</p>
 <p>Se usa para estudiar cómo se comporta una carga variable: la corriente es \(V_{th}/(R_{th}+R_L)\). La <b>potencia máxima</b> en la carga se obtiene con \(R_L=R_{th}\) y vale \(V_{th}^2/(4R_{th})\) (con un rendimiento del 50 %).</p></div><!--/amp1--><!--manim:ac-t3--><figure class="fig manim-fig" id="anim-ac-t3"><p class="ft">Animación · Thévenin y máxima transferencia de potencia</p><div class="manim" data-anim="ac-t3"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
 <!--deep--><h3 id="t3-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
 <!--manim:ac-t3b--><figure class="fig manim-fig" id="anim-ac-t3b"><p class="ft">Animación · Superposición</p><div class="manim" data-anim="ac-t3b"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
-<h4>1. Superposición</h4>
+<h4><span class="hn">1</span>Superposición</h4>
 <div class="box key deepnote"><b>Idea clave.</b> en un circuito <b>lineal</b>, la respuesta total es la suma de las respuestas a cada fuente por separado.</div>
 <ol class="pasos"><li>Deja <b>una</b> fuente activa y anula las demás: las de tensión se sustituyen por un <b>cortocircuito</b>; las de corriente, por un <b>circuito abierto</b>.</li><li>Calcula el efecto buscado.</li><li>Suma los efectos, con su signo.</li></ol>
 <div class="box trap deepnote"><b>Cuidado.</b> La superposición <b>no vale para potencias</b>, porque son cuadráticas. Calcula primero la tensión o corriente total y luego la potencia.</div>
-<h4>2. Thévenin y Norton</h4>
+<h4><span class="hn">2</span>Thévenin y Norton</h4>
 <div class="box key deepnote"><b>Idea clave.</b> cualquier parte lineal del circuito, vista desde dos terminales, equivale a una <b>fuente de tensión con una resistencia en serie</b> (Thévenin) o a una <b>fuente de corriente con una resistencia en paralelo</b> (Norton).</div>
 <div class="eqd">\[V_{Th}=V_{ab}^{\,\text{abierto}},\qquad R_{Th}=\frac{V_{Th}}{I_{N}},\qquad I_N=I_{cc}\]</div>
 <ol class="pasos"><li>Quita la carga y calcula \(V_{Th}\): la tensión en los terminales en abierto.</li><li>Calcula \(R_{Th}\): anula las fuentes independientes y mira la resistencia desde los terminales (o usa \(V_{Th}/I_{cc}\)).</li><li>Vuelve a conectar la carga al equivalente: es un circuito de una sola malla.</li></ol>

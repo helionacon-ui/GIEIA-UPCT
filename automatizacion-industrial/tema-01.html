@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -51,9 +114,6 @@ details>summary{line-height:1.7;padding-block:.5em}
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
 <script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
-
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body>
@@ -64,12 +124,21 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
 <div class="sh"><span aria-hidden="true" class="badge">1</span><div class="shx"><p class="kick">Neumática · Tema 1</p><h2 id="t1">Elementos neumáticos y su simbología</h2><div class="tags"><span class="tag">Neumática</span><span class="tag">Neumática</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Leer un esquema neumático: saber qué hace cada símbolo, qué significa «válvula 5/2» y de dónde sale la fuerza del cilindro.</p><p class="ft">El aire comprimido como fuente de energía</p><p>Un circuito neumático empieza siempre en el <b>compresor</b> y pasa por la <b>unidad de mantenimiento</b> (filtro, regulador de presión y a veces lubricador), que en los esquemas se dibuja simplificada como un rombo con una flecha. La presión de trabajo habitual en la industria es de <b>6 bar</b>.</p><p>La ventaja del aire es que es barato, limpio y no se calienta; el inconveniente es que es <b>compresible</b>, así que la posición intermedia de un cilindro neumático nunca es precisa y la velocidad depende de la carga. Para posicionar con exactitud se usa hidráulica o un servomotor, no neumática.</p><p class="ft">Cilindros: simple y doble efecto</p><p>El <b>cilindro de simple efecto</b> recibe aire por una sola cámara y vuelve por un muelle: sólo trabaja en un sentido. El <b>cilindro de doble efecto</b> recibe aire por las dos cámaras y empuja en ambos sentidos, que es el que se usa casi siempre.</p><p>Se nombran con el formato <b>1A1</b>: el primer número es el grupo o cadena de mando, la letra <b>A</b> indica que es un actuador y el último número lo distingue dentro del grupo. Con ese mismo criterio, <b>1V2</b> es una válvula del grupo 1, <b>1S3</b> un elemento de señal y <b>1R1</b> un elemento de regulación.</p><p>La fuerza no es la misma en los dos sentidos: al retroceder, el vástago ocupa parte del émbolo y el área útil es menor.</p><p class="ft">Válvulas distribuidoras: la notación n/m</p><p>Es la notación que más se pregunta. Una <b>válvula n/m</b> tiene <b>n vías</b> (orificios de conexión) y <b>m posiciones</b> (cuadros del símbolo).</p><ul><li><b>3/2</b>: tres vías (presión, utilización y escape) y dos posiciones. Es la de los pulsadores y los finales de carrera.</li><li><b>5/2</b>: cinco vías (presión, dos utilizaciones y dos escapes) y dos posiciones. Es la que manda un cilindro de doble efecto.</li><li><b>4/3</b>: cuatro vías y tres posiciones, con una posición central que puede ser cerrada, a escape o a presión.</li></ul><p>Además hay que mirar <b>cómo se acciona</b> cada lado: pulsador, pedal, rodillo (final de carrera), pilotaje neumático o <b>solenoide</b> (electroválvula). Si un lado tiene muelle, la válvula es <b>monoestable</b> y vuelve sola; si los dos lados son pilotados, es <b>biestable</b> y recuerda la última orden.</p><p class="ft">Válvulas auxiliares</p><p>Tres aparecen en casi todos los circuitos:</p><ul><li><b>Válvula selectora (O lógico)</b>: deja pasar la señal que llegue por cualquiera de sus dos entradas. Es la que permite mandar el cilindro desde un pulsador <i>o</i> desde un pedal.</li><li><b>Válvula de simultaneidad (Y lógico)</b>: sólo deja pasar si llega señal por las dos entradas. Se usa en mandos a dos manos por seguridad.</li><li><b>Válvula antirretorno estranguladora</b> (1R1): deja pasar libremente en un sentido y estrangula en el otro. Es la forma de regular la velocidad <b>de un solo sentido</b> de la marcha.</li></ul></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Leer un esquema neumático: saber qué hace cada símbolo, qué significa «válvula 5/2» y de dónde sale la fuerza del cilindro.</p><p class="ft">El aire comprimido como fuente de energía</p><p class="lede">Un circuito neumático empieza siempre en el <b>compresor</b> y pasa por la <b>unidad de mantenimiento</b> (filtro, regulador de presión y a veces lubricador), que en los esquemas se dibuja simplificada como un rombo con una flecha. La presión de trabajo habitual en la industria es de <b>6 bar</b>.</p><p>La ventaja del aire es que es barato, limpio y no se calienta; el inconveniente es que es <b>compresible</b>, así que la posición intermedia de un cilindro neumático nunca es precisa y la velocidad depende de la carga. Para posicionar con exactitud se usa hidráulica o un servomotor, no neumática.</p><p class="ft">Cilindros: simple y doble efecto</p><p>El <b>cilindro de simple efecto</b> recibe aire por una sola cámara y vuelve por un muelle: sólo trabaja en un sentido. El <b>cilindro de doble efecto</b> recibe aire por las dos cámaras y empuja en ambos sentidos, que es el que se usa casi siempre.</p><p>Se nombran con el formato <b>1A1</b>: el primer número es el grupo o cadena de mando, la letra <b>A</b> indica que es un actuador y el último número lo distingue dentro del grupo. Con ese mismo criterio, <b>1V2</b> es una válvula del grupo 1, <b>1S3</b> un elemento de señal y <b>1R1</b> un elemento de regulación.</p><p>La fuerza no es la misma en los dos sentidos: al retroceder, el vástago ocupa parte del émbolo y el área útil es menor.</p><p class="ft">Válvulas distribuidoras: la notación n/m</p><p>Es la notación que más se pregunta. Una <b>válvula n/m</b> tiene <b>n vías</b> (orificios de conexión) y <b>m posiciones</b> (cuadros del símbolo).</p><ul><li><b>3/2</b>: tres vías (presión, utilización y escape) y dos posiciones. Es la de los pulsadores y los finales de carrera.</li><li><b>5/2</b>: cinco vías (presión, dos utilizaciones y dos escapes) y dos posiciones. Es la que manda un cilindro de doble efecto.</li><li><b>4/3</b>: cuatro vías y tres posiciones, con una posición central que puede ser cerrada, a escape o a presión.</li></ul><p>Además hay que mirar <b>cómo se acciona</b> cada lado: pulsador, pedal, rodillo (final de carrera), pilotaje neumático o <b>solenoide</b> (electroválvula). Si un lado tiene muelle, la válvula es <b>monoestable</b> y vuelve sola; si los dos lados son pilotados, es <b>biestable</b> y recuerda la última orden.</p><p class="ft">Válvulas auxiliares</p><p>Tres aparecen en casi todos los circuitos:</p><ul><li><b>Válvula selectora (O lógico)</b>: deja pasar la señal que llegue por cualquiera de sus dos entradas. Es la que permite mandar el cilindro desde un pulsador <i>o</i> desde un pedal.</li><li><b>Válvula de simultaneidad (Y lógico)</b>: sólo deja pasar si llega señal por las dos entradas. Se usa en mandos a dos manos por seguridad.</li><li><b>Válvula antirretorno estranguladora</b> (1R1): deja pasar libremente en un sentido y estrangula en el otro. Es la forma de regular la velocidad <b>de un solo sentido</b> de la marcha.</li></ul></div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 1 <span class="src">9 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">n/m</td><td>vías / posiciones</td><td class="u">5/2, 3/2</td></tr><tr><td class="sym">1A1</td><td>actuador</td><td class="u">cilindro</td></tr><tr><td class="sym">1V1</td><td>válvula</td><td class="u"></td></tr><tr><td class="sym">1S1</td><td>elemento de señal</td><td class="u">pulsador, rodillo</td></tr><tr><td class="sym">1R1</td><td>regulación</td><td class="u">estranguladora</td></tr><tr><td class="sym">monoestable</td><td>con muelle</td><td class="u">vuelve sola</td></tr><tr><td class="sym">biestable</td><td>dos pilotajes</td><td class="u">recuerda</td></tr><tr><td class="sym">D / d</td><td>émbolo / vástago</td><td class="u"></td></tr><tr><td class="sym">6 bar</td><td>presión típica</td><td class="u"></td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - simbologia de valvulas y fuerzas del cilindro</p><div data-sim="valvula"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Cómo funciona un cilindro neumático</p><p>Un cilindro es un tubo con un émbolo: el aire comprimido empuja el émbolo y este mueve el vástago. La idea clave es la de la presión sobre un área: <b>fuerza = presión × superficie</b>. Un <b>cilindro de simple efecto</b> solo se empuja con aire en un sentido (vuelve con un muelle); uno de <b>doble efecto</b> se empuja con aire en los dos sentidos y necesita una válvula 5/2 para mandarlo. En el avance el aire actúa sobre toda la cara del émbolo (diámetro \(D\)); en el retroceso, el vástago ocupa parte de esa cara y el área útil es una corona (\(D^2-d^2\)), así que la fuerza de retroceso es siempre algo menor. Y hay que descontar el rozamiento con un rendimiento \(\eta\approx0{,}85\)–0,9.</p><p class="ft">Leer una válvula y estimar el consumo de aire</p><p>El símbolo de una válvula se lee como «cuadros»: cada cuadro es una posición, las flechas dicen por dónde pasa el aire y el nombre «5/2» significa 5 vías y 2 posiciones («3/2»: 3 vías y 2 posiciones, para simple efecto). Cuenta los orificios que salen de un cuadro y los cuadros: eso da el nombre. El <b>consumo de aire</b> se mide en litros normales (aire a presión atmosférica): el cilindro llena cada ciclo un volumen igual a su sección por la carrera, pero ese aire está comprimido, así que se multiplica por la relación de presiones \(\dfrac{p+1{,}013}{1{,}013}\) (con \(p\) en bar relativos). Después se multiplica por los ciclos por minuto \(n\). Con este dato se dimensiona el compresor y la tubería.</p></div><!--/amp1--><!--manim:ai-t1--><figure class="fig manim-fig" id="anim-ai-t1"><p class="ft">Animación · Cilindro de doble efecto</p><div class="manim" data-anim="ai-t1"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
-<h3 id="t1-formulas">Fórmulas y conceptos que hay que saber</h3>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Cómo funciona un cilindro neumático</p><p class="lede">Un cilindro es un tubo con un émbolo: el aire comprimido empuja el émbolo y este mueve el vástago. La idea clave es la de la presión sobre un área: <b>fuerza = presión × superficie</b>. Un <b>cilindro de simple efecto</b> solo se empuja con aire en un sentido (vuelve con un muelle); uno de <b>doble efecto</b> se empuja con aire en los dos sentidos y necesita una válvula 5/2 para mandarlo. En el avance el aire actúa sobre toda la cara del émbolo (diámetro \(D\)); en el retroceso, el vástago ocupa parte de esa cara y el área útil es una corona (\(D^2-d^2\)), así que la fuerza de retroceso es siempre algo menor. Y hay que descontar el rozamiento con un rendimiento \(\eta\approx0{,}85\)–0,9.</p><p class="ft">Leer una válvula y estimar el consumo de aire</p><p>El símbolo de una válvula se lee como «cuadros»: cada cuadro es una posición, las flechas dicen por dónde pasa el aire y el nombre «5/2» significa 5 vías y 2 posiciones («3/2»: 3 vías y 2 posiciones, para simple efecto). Cuenta los orificios que salen de un cuadro y los cuadros: eso da el nombre. El <b>consumo de aire</b> se mide en litros normales (aire a presión atmosférica): el cilindro llena cada ciclo un volumen igual a su sección por la carrera, pero ese aire está comprimido, así que se multiplica por la relación de presiones \(\dfrac{p+1{,}013}{1{,}013}\) (con \(p\) en bar relativos). Después se multiplica por los ciclos por minuto \(n\). Con este dato se dimensiona el compresor y la tubería.</p></div><!--/amp1--><!--manim:ai-t1--><figure class="fig manim-fig" id="anim-ai-t1"><p class="ft">Animación · Cilindro de doble efecto</p><div class="manim" data-anim="ai-t1"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t1-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Qué es un circuito neumático</h4>
+<div class="box key deepnote"><b>Idea clave.</b> un circuito neumático usa aire comprimido para mover actuadores. Tiene una fuente de presión, unos elementos de mando y unos actuadores que transforman la presión en fuerza y movimiento.</div>
+<ul><li><b>Fuente</b>: compresor, depósito, filtro, regulador y lubricador.</li><li><b>Válvulas</b>: distribuidoras (dirigen el aire), de bloqueo y de presión.</li><li><b>Actuadores</b>: cilindros de simple o doble efecto, y motores.</li></ul>
+<details class="dem"><summary><span class="pn">∴</span>Fuerza de un cilindro</summary><div class="inner"><div class="eqd">\[F=p\,A\,\eta\]</div>
+<p>En el cilindro de doble efecto, la carrera de avance usa el área completa del émbolo y la de retroceso el área menos el vástago. El rendimiento \(\eta\) recoge la fricción.</p>
+<div class="box trap deepnote"><b>Cuidado.</b> El aire comprimido es compresible: los cilindros neumáticos no se detienen en una posición intermedia con precisión.</div></div></details>
+<h4><span class="hn">2</span>Simbología</h4>
+<p>Cada elemento se dibuja con un símbolo normalizado (ISO 1219). Una válvula distribuidora se nombra por sus vías y posiciones: 3/2 significa tres vías y dos posiciones.</p>
+</div><!--/deep--><h3 id="t1-formulas">Fórmulas y conceptos que hay que saber</h3>
 <div class="box key"><div class="tw"><table><tr><th>Expresión</th><th>Qué es</th></tr><tr><td>\(F_{\text{avance}}=p\cdot\dfrac{\pi D^{2}}{4}\)</td><td>fuerza de empuje del cilindro</td></tr><tr><td>\(F_{\text{retroceso}}=p\cdot\dfrac{\pi(D^{2}-d^{2})}{4}\)</td><td>menor: el vástago resta área</td></tr><tr><td>\(\eta\approx0{,}85\!-\!0{,}9\)</td><td>rendimiento por rozamiento</td></tr><tr><td>\(Q=\left(A_{av}+A_{ret}\right)\cdot c\cdot n\cdot\dfrac{p+1{,}013}{1{,}013}\)</td><td>consumo de aire en litros normales</td></tr></table></div></div>
 <h3 id="t1-metodo">Método paso a paso</h3>
 <ol class="steps"><li>Identifica el <b>actuador</b>: ¿simple o doble efecto? Eso ya dice si la válvula de mando es 3/2 o 5/2.</li><li>Cuenta las <b>vías</b> del símbolo de la válvula (los orificios que salen del cuadro) y las <b>posiciones</b> (los cuadros).</li><li>Mira los <b>accionamientos</b> de los extremos: con muelle a un lado es monoestable, con pilotaje en los dos es biestable.</li><li>Sigue el aire desde la fuente de presión a través de cada posición de la válvula, cuadro a cuadro, y anota qué cámara se llena.</li><li>Para la fuerza, usa el diámetro del <b>émbolo</b> en el avance y resta el del <b>vástago</b> en el retroceso.</li></ol>

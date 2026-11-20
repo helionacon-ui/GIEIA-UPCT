@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -51,9 +114,6 @@ details>summary{line-height:1.7;padding-block:.5em}
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
 <script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
-
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body>
@@ -64,30 +124,30 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
 <div class="sh"><span aria-hidden="true" class="badge">1</span><div class="shx"><p class="kick">UD1 · Descriptiva y probabilidad · Tema 1</p><h2 id="t1">Estadística descriptiva</h2><div class="tags"><span class="tag">UD1 · Descriptiva y probabilidad</span><span class="tag">Primer parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Organizar datos en tablas y gráficos, calcular medidas de centralización, posición y dispersión, e interpretar el diagrama de caja y bigotes detectando atípicos.</p><p><b>Población</b>: todos los individuos objeto de estudio. <b>Muestra</b>: subconjunto representativo (se estudia por muestreo cuando el censo es inviable). <b>Característica</b>: lo que se observa; puede ser <b>cualitativa</b> (atributo: sexo, tipo de defecto) o <b>cuantitativa</b> (variable estadística), y esta última <b>discreta</b> (número de piezas defectuosas) o <b>continua</b> (longitud, tiempo).</p>
-<p><b>Tabla de frecuencias</b>: para cada valor \(x_i\), la frecuencia absoluta \(n_i\) (veces que aparece, \(\sum n_i=n\)), la relativa \(f_i=n_i/n\) (\(\sum f_i=1\)) y sus acumuladas \(N_i\) y \(F_i\). Con muchos valores distintos se agrupa en <b>intervalos de clase</b> y se trabaja con la <b>marca de clase</b> \(c_i\) (punto medio).</p>
-<p><b>Gráficos</b>: diagrama de barras y de sectores (cualitativas), diagrama de barras o de líneas (discretas), <b>histograma</b> y polígono de frecuencias (continuas agrupadas), ojiva (acumuladas) y <b>diagrama de caja y bigotes</b>.</p>
-<p><b>Medidas de centralización</b>: media \(\bar x=\frac1n\sum n_ix_i\) (muy sensible a los atípicos), <b>mediana</b> \(Me\) (valor que deja el 50 % a cada lado; robusta) y <b>moda</b> (valor más frecuente).</p>
-<p><b>Medidas de posición</b>: <b>cuantiles</b>. Los <b>cuartiles</b> \(Q_1,Q_2=Me,Q_3\) dejan por debajo el 25, 50 y 75 %; los percentiles, el k %.</p>
-<p><b>Medidas de dispersión</b>: recorrido \(x_{max}-x_{min}\), <b>recorrido intercuartílico</b> \(RI=Q_3-Q_1\) (robusto), <b>varianza muestral</b> \(\tau^2=\frac1n\sum n_i(x_i-\bar x)^2\), <b>cuasivarianza</b> \(S^2=\frac{n}{n-1}\tau^2\) (la que usa R y el formulario) y el <b>coeficiente de variación</b> \(CV=s/\bar x\), que permite comparar dispersiones de variables con distinta unidad o escala.</p>
-<p><b>Diagrama de caja</b>: la caja va de \(Q_1\) a \(Q_3\) con la mediana dentro; los <b>bigotes</b> llegan hasta el dato más extremo que queda dentro de \([Q_1-1{,}5\,RI,\ Q_3+1{,}5\,RI]\). Todo lo que cae fuera es un <b>dato atípico</b> y se dibuja como punto suelto. Es exactamente lo que pide el examen de prácticas: «indicar el valor numérico de las líneas que aparecen en el gráfico» y «¿cuáles serían los valores admisibles entre los que se encontrarían los datos no atípicos?».</p>
-<p><b>Forma</b>: el coeficiente de asimetría (positiva si la cola larga está a la derecha) y el de curtosis. Con asimetría fuerte, la media se desplaza hacia la cola y conviene describir con mediana y RI.</p></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Organizar datos en tablas y gráficos, calcular medidas de centralización, posición y dispersión, e interpretar el diagrama de caja y bigotes detectando atípicos.</p><p class="run"><b>Población:</b> todos los individuos objeto de estudio. <b>Muestra</b>: subconjunto representativo (se estudia por muestreo cuando el censo es inviable). <b>Característica</b>: lo que se observa; puede ser <b>cualitativa</b> (atributo: sexo, tipo de defecto) o <b>cuantitativa</b> (variable estadística), y esta última <b>discreta</b> (número de piezas defectuosas) o <b>continua</b> (longitud, tiempo).</p>
+<p class="run"><b>Tabla de frecuencias:</b> para cada valor \(x_i\), la frecuencia absoluta \(n_i\) (veces que aparece, \(\sum n_i=n\)), la relativa \(f_i=n_i/n\) (\(\sum f_i=1\)) y sus acumuladas \(N_i\) y \(F_i\). Con muchos valores distintos se agrupa en <b>intervalos de clase</b> y se trabaja con la <b>marca de clase</b> \(c_i\) (punto medio).</p>
+<p class="run"><b>Gráficos:</b> diagrama de barras y de sectores (cualitativas), diagrama de barras o de líneas (discretas), <b>histograma</b> y polígono de frecuencias (continuas agrupadas), ojiva (acumuladas) y <b>diagrama de caja y bigotes</b>.</p>
+<p class="run"><b>Medidas de centralización:</b> media \(\bar x=\frac1n\sum n_ix_i\) (muy sensible a los atípicos), <b>mediana</b> \(Me\) (valor que deja el 50 % a cada lado; robusta) y <b>moda</b> (valor más frecuente).</p>
+<p class="run"><b>Medidas de posición:</b> <b>cuantiles</b>. Los <b>cuartiles</b> \(Q_1,Q_2=Me,Q_3\) dejan por debajo el 25, 50 y 75 %; los percentiles, el k %.</p>
+<p class="run"><b>Medidas de dispersión:</b> recorrido \(x_{max}-x_{min}\), <b>recorrido intercuartílico</b> \(RI=Q_3-Q_1\) (robusto), <b>varianza muestral</b> \(\tau^2=\frac1n\sum n_i(x_i-\bar x)^2\), <b>cuasivarianza</b> \(S^2=\frac{n}{n-1}\tau^2\) (la que usa R y el formulario) y el <b>coeficiente de variación</b> \(CV=s/\bar x\), que permite comparar dispersiones de variables con distinta unidad o escala.</p>
+<p class="run"><b>Diagrama de caja:</b> la caja va de \(Q_1\) a \(Q_3\) con la mediana dentro; los <b>bigotes</b> llegan hasta el dato más extremo que queda dentro de \([Q_1-1{,}5\,RI,\ Q_3+1{,}5\,RI]\). Todo lo que cae fuera es un <b>dato atípico</b> y se dibuja como punto suelto. Es exactamente lo que pide el examen de prácticas: «indicar el valor numérico de las líneas que aparecen en el gráfico» y «¿cuáles serían los valores admisibles entre los que se encontrarían los datos no atípicos?».</p>
+<p class="run"><b>Forma:</b> el coeficiente de asimetría (positiva si la cola larga está a la derecha) y el de curtosis. Con asimetría fuerte, la media se desplaza hacia la cola y conviene describir con mediana y RI.</p></div>
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Tres formas de decir «el valor típico»</div><svg viewBox="0 0 560 262" role="img" aria-label="Histograma y medidas de centralización" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="36" y1="214" x2="282.8" y2="214" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="290,214 282.7,217.3 282.7,210.7" fill="var(--muted)"/><line x1="36" y1="214" x2="36" y2="37.2" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="36,30 39.3,37.3 32.7,37.3" fill="var(--muted)"/><text x="42" y="28" fill="var(--muted)" font-size="12" text-anchor="start" font-style="italic" opacity="1">frecuencia</text><text x="290" y="232" fill="var(--muted)" font-size="12" text-anchor="end" font-style="italic" opacity="1">x</text><rect x="44" y="184" width="22" height="30" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="0.25"/><rect x="68" y="112" width="22" height="102" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="0.25"/><rect x="92" y="58" width="22" height="156" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="0.25"/><rect x="116" y="82" width="22" height="132" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="0.25"/><rect x="140" y="118" width="22" height="96" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="0.25"/><rect x="164" y="142" width="22" height="72" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="0.25"/><rect x="188" y="166" width="22" height="48" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="0.25"/><rect x="212" y="184" width="22" height="30" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="0.25"/><rect x="236" y="196" width="22" height="18" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="0.25"/><rect x="260" y="205" width="22" height="9" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="0.25"/><line x1="128" y1="214" x2="128" y2="52" stroke="var(--c6,#2c8a52)" stroke-width="2" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><line x1="154" y1="214" x2="154" y2="52" stroke="var(--c5,#c43d63)" stroke-width="2" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><line x1="174" y1="214" x2="174" y2="52" stroke="var(--warn,#b8730c)" stroke-width="2" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><text x="103" y="50" fill="var(--c6,#2c8a52)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">moda</text><text x="135" y="34" fill="var(--c5,#c43d63)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">mediana</text><text x="167" y="50" fill="var(--warn,#b8730c)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">media</text><line x1="103" y1="56" x2="103" y2="214" stroke="var(--c6,#2c8a52)" stroke-width="2" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><line x1="135" y1="40" x2="135" y2="214" stroke="var(--c5,#c43d63)" stroke-width="2" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><line x1="167" y1="56" x2="167" y2="214" stroke="var(--warn,#b8730c)" stroke-width="2" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><text x="318" y="56" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">Cola a la derecha:</text><text x="318" y="78" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">moda &lt; mediana &lt; media.</text><text x="318" y="111" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">La media es sensible</text><text x="318" y="133" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">a valores extremos;</text><text x="318" y="155" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">la mediana, no.</text></svg><figcaption>En una distribución asimétrica la media se desplaza hacia la cola; por eso para datos con valores extremos se prefiere la mediana.</figcaption></figure><figure class="ill"><div class="ill-t">Cinco números y los valores atípicos</div><svg viewBox="0 0 560 262" role="img" aria-label="Diagrama de caja" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="54" y1="120" x2="258" y2="120" stroke="var(--fg)" stroke-width="2" opacity="1" stroke-linecap="round"/><rect x="102" y="90" width="96" height="60" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2.4" opacity="0.18"/><line x1="154.8" y1="90" x2="154.8" y2="150" stroke="var(--warn,#b8730c)" stroke-width="3.2" opacity="1" stroke-linecap="round"/><line x1="54" y1="106" x2="54" y2="134" stroke="var(--fg)" stroke-width="2" opacity="1" stroke-linecap="round"/><line x1="258" y1="106" x2="258" y2="134" stroke="var(--fg)" stroke-width="2" opacity="1" stroke-linecap="round"/><circle cx="289.2" cy="120" r="4" fill="none" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="1"/><text x="54" y="172" fill="var(--muted)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">mín</text><text x="102" y="172" fill="var(--tc,var(--accent))" font-size="12" text-anchor="middle" font-weight="700" opacity="1">Q₁</text><text x="154.8" y="172" fill="var(--warn,#b8730c)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">Q₂</text><text x="198" y="172" fill="var(--tc,var(--accent))" font-size="12" text-anchor="middle" font-weight="700" opacity="1">Q₃</text><text x="258" y="172" fill="var(--muted)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">máx</text><line x1="102" y1="76" x2="198" y2="76" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><line x1="102" y1="70" x2="102" y2="82" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><line x1="198" y1="70" x2="198" y2="82" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><text x="150" y="68" fill="var(--muted)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">RIC = Q₃ − Q₁</text><text x="289.2" y="106" fill="var(--c6,#2c8a52)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">atípico</text><text x="318" y="56" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">La caja encierra el 50 %</text><text x="318" y="78" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">central de los datos.</text><text x="318" y="111" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">Atípico: fuera de</text><text x="318" y="133" fill="var(--c6,#2c8a52)" font-size="14" text-anchor="start" font-weight="700" opacity="1">Q₁ − 1,5·RIC o</text><text x="318" y="155" fill="var(--c6,#2c8a52)" font-size="14" text-anchor="start" font-weight="700" opacity="1">Q₃ + 1,5·RIC.</text></svg><figcaption>El diagrama de caja resume mínimo, cuartiles y máximo; los puntos aislados fuera de los bigotes son candidatos a valores atípicos.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 1 <span class="src">7 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">n, nᵢ, fᵢ</td><td>Tamaño, frecuencia absoluta y relativa</td><td class="u"></td></tr><tr><td class="sym">x̄</td><td>Media aritmética</td><td class="u"></td></tr><tr><td class="sym">Me, Q₁, Q₃</td><td>Mediana y cuartiles</td><td class="u"></td></tr><tr><td class="sym">τ²</td><td>Varianza muestral (divide entre n)</td><td class="u"></td></tr><tr><td class="sym">S²</td><td>Cuasivarianza (divide entre n−1): la de R</td><td class="u"></td></tr><tr><td class="sym">RI</td><td>Recorrido intercuartílico Q₃ − Q₁</td><td class="u"></td></tr><tr><td class="sym">CV</td><td>Coeficiente de variación s/x̄</td><td class="u">adimensional</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - histograma, caja y bigotes y deteccion de atipicos</p><div data-sim="descriptiva"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Resumir datos: centro y dispersión</p><p>Los datos sueltos no dicen nada; hay que resumirlos con un número que dé el <b>centro</b> y otro que dé la <b>dispersión</b>. Centro: la <b>media</b> \(\bar x\) (sensible a valores extremos) y la <b>mediana</b> (el valor central, robusta). Dispersión: la <b>varianza</b> (media de los cuadrados de las desviaciones respecto de la media) y su raíz, la desviación típica, en las mismas unidades que los datos.</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Resumir datos: centro y dispersión</p><p class="lede">Los datos sueltos no dicen nada; hay que resumirlos con un número que dé el <b>centro</b> y otro que dé la <b>dispersión</b>. Centro: la <b>media</b> \(\bar x\) (sensible a valores extremos) y la <b>mediana</b> (el valor central, robusta). Dispersión: la <b>varianza</b> (media de los cuadrados de las desviaciones respecto de la media) y su raíz, la desviación típica, en las mismas unidades que los datos.</p>
 <p>Cuidado con las dos varianzas: \(\tau^2\) (divide entre \(n\)) describe la muestra; la <b>cuasivarianza</b> \(S^2\) (divide entre \(n-1\)) es la que se usa para <b>estimar</b> la varianza de la población.</p><p class="ft">Cuantiles, atípicos y forma</p><p>Los <b>cuartiles</b> \(Q_1,Q_2,Q_3\) dividen los datos ordenados en cuatro partes iguales; el rango intercuartílico \(RI=Q_3-Q_1\) mide la dispersión del 50 % central y no se ve afectado por extremos. Regla del diagrama de caja: un dato es <b>atípico</b> si está por debajo de \(Q_1-1{,}5\,RI\) o por encima de \(Q_3+1{,}5\,RI\).</p>
 <p>La <b>asimetría</b> indica hacia dónde se estira la cola (positiva: hacia la derecha, y entonces media &gt; mediana) y la <b>curtosis</b> compara el apuntamiento con la normal.</p></div><!--/amp1--><!--manim:est-t1--><figure class="fig manim-fig" id="anim-est-t1"><p class="ft">Animación · Histograma, media y mediana</p><div class="manim" data-anim="est-t1"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
 <!--deep--><h3 id="t1-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Qué resume cada medida</h4>
+<h4><span class="hn">1</span>Qué resume cada medida</h4>
 <ul><li><b>Posición:</b> media \(\bar x\), mediana y moda. La <b>media</b> usa todos los datos y es sensible a valores extremos; la <b>mediana</b> (valor central) no lo es.</li><li><b>Dispersión:</b> varianza \(s^2=\dfrac1{n}\sum(x_i-\bar x)^2\) y desviación típica \(s\). Mide cuánto se alejan los datos de la media, en las mismas unidades que los datos (la desviación).</li><li><b>Cuartiles:</b> \(Q_1,Q_2,Q_3\) dejan a su izquierda el 25 %, 50 % y 75 %. El <b>rango intercuartílico</b> \(Q_3-Q_1\) es una dispersión robusta.</li></ul>
 <div class="box trap deepnote"><b>Cuidado.</b> En muestras, el estimador de la varianza suele dividir entre \(n-1\) (cuasivarianza \(s^2_{n-1}\)). Mira qué definición usa tu enunciado.</div>
 <details class="dem"><summary><span class="pn">∴</span>Un atajo útil para la varianza</summary><div class="inner"><div class="eqd">\[s^2=\overline{x^2}-\bar x^2\]</div>
 <p>«La media de los cuadrados menos el cuadrado de la media». Se demuestra desarrollando \(\sum(x_i-\bar x)^2\). Es más rápido con calculadora.</p>
 <ul><li>Si sumas una constante a todos los datos, la media se desplaza igual y la <b>varianza no cambia</b>.</li><li>Si multiplicas por \(k\), la media se multiplica por \(k\) y la varianza por \(k^2\).</li></ul></div></details>
-<h4>2. Cómo mirar los datos</h4>
+<h4><span class="hn">2</span>Cómo mirar los datos</h4>
 <ul><li><b>Histograma:</b> el <b>área</b> de cada barra (no la altura) es proporcional a la frecuencia; con intervalos de distinta amplitud importa.</li><li><b>Diagrama de caja:</b> mediana, cuartiles y «bigotes»; los puntos fuera de \(Q_1-1{,}5\,\mathrm{RIC}\) y \(Q_3+1{,}5\,\mathrm{RIC}\) se marcan como atípicos.</li><li><b>Asimetría:</b> si la media es mayor que la mediana, la cola es larga hacia la derecha.</li></ul>
-<h4>3. Datos de dos variables</h4>
+<h4><span class="hn">3</span>Datos de dos variables</h4>
 <div class="eqd">\[r=\frac{s_{xy}}{s_xs_y},\qquad s_{xy}=\overline{xy}-\bar x\,\bar y\]</div>
 <ul><li>\(r\) está entre −1 y 1 y mide solo la relación <b>lineal</b>.</li><li>\(r=0\) <b>no</b> significa independencia: puede haber una relación curva perfecta.</li><li>Correlación <b>no es</b> causalidad.</li></ul>
 </div><!--/deep--><h3 id="t1-formulas">Lo que tienes que saber</h3>

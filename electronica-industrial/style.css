@@ -522,3 +522,8 @@ figure.ill figcaption{margin:10px 2px 0;font-size:14px;line-height:1.5;color:var
 /* --- ampliación --- */
 details.paso>summary{overflow-x:auto;overflow-y:hidden}
 .prob .enun mjx-container[display="true"],.prob .inner mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;max-width:100%}
+/* opciones de test resuelto */
+ol.opts{margin:8px 0 12px;padding-left:1.5em}
+ol.opts li{margin:.35em 0}
+ol.opts li.ok{font-weight:700;color:var(--tc,var(--accent))}
+ol.opts li.ok::marker{font-weight:700;color:var(--tc,var(--accent))}

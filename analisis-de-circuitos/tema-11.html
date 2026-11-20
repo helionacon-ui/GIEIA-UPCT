@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T11 Redes de dos puertas (cuadripolos) · Análisis de Circuitos · Apuntes</title>
+<meta name="description" content="Análisis de Circuitos (GIEyA): tema 11, Redes de dos puertas (cuadripolos)">
+
+
+<script>window.MathJax={loader:{load:['ui/lazy']},tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<script src="asig-nav.js" defer></script>
+
+<style id="lectura">
+@media screen{
+:root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
+body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
+figure.fig{margin-block:34px}
+.toc a{font-size:16.5px;padding:8px 0 8px 10px}
+svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
+details>summary{line-height:1.7;padding-block:.5em}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
+}
+</style>
+
+<script>(function(){try{var d=document.documentElement,s=localStorage,p=s.getItem("apuntes-piel");if(p==="min")d.setAttribute("data-piel","min");var t=s.getItem("apuntes-tema");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);var f=s.getItem("apuntes-fondo");if(f)d.setAttribute("data-fondo",f);}catch(e){}})();</script>
+<link rel="stylesheet" href="piel.css?v=4">
+<script src="piel.js?v=4" defer></script>
+<script src="sugerencias.js?v=2" defer></script>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#b06a00">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Circuitos">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+<script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, boletines y prácticas) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Análisis de Circuitos</a><span class="sep">›</span><span>Cuadripolos y elementos no lineales</span><span class="sep">›</span><span>T11 · Redes de dos puertas (cuadripolos)</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Primer parcial · continua y fasores</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes eléctricas</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos de corriente continua: reducción de redes</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Teoremas fundamentales en continua</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Ondas periódicas, señal senoidal y fasor</a><a href="tema-05.html" style="--tc:var(--c6)">T5 R, L y C en alterna: impedancia y admitancia</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Potencia en corriente alterna</a><div class="grp">Segundo parcial · alterna, transitorios y trifásica</div><a href="tema-07.html" style="--tc:var(--c8)">T7 Teoremas fundamentales en alterna</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Régimen transitorio</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Sistemas trifásicos equilibrados</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Potencia en sistemas trifásicos</a><div class="grp">Cuadripolos y elementos no lineales</div><a href="tema-11.html" class="on" aria-current="page" style="--tc:var(--c4)">T11 Redes de dos puertas (cuadripolos)</a><a href="tema-12.html" style="--tc:var(--c5)">T12 Elementos no lineales: diodos y transistores</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
+<div class="sh"><span aria-hidden="true" class="badge">11</span><div class="shx"><p class="kick">Cuadripolos y elementos no lineales · Tema 11</p><h2 id="t11">Redes de dos puertas (cuadripolos)</h2><div class="tags"><span class="tag">Cuadripolos y elementos no lineales</span><span class="tag">Segundo parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> describir un bloque de dos terminales de entrada y dos de salida con los parámetros z, y, h y g, saber cuándo usar cada juego y combinar cuadripolos en serie y en paralelo.</p>
+<p class="lede">Un <b>cuadripolo</b> (o red de dos puertas) es una caja con un par de bornes de entrada y otro de salida. No importa lo que haya dentro: basta con cuatro números que relacionen \(V_1, I_1, V_2, I_2\). Es la forma de analizar un amplificador, un filtro o una línea sin repetir todo el circuito interno.</p>
+<p class="run"><b>Convenio:</b> las dos corrientes entran por el terminal superior de su puerta. De las cuatro magnitudes, dos son independientes y dos dependientes; según cuáles elijas sale un juego de parámetros distinto.</p>
+<p class="run"><b>Impedancia (z):</b> \(V=\mathbf{z}I\), se miden dejando puertas en <b>abierto</b>. <b>Admitancia (y):</b> \(I=\mathbf{y}V\), en <b>cortocircuito</b>. <b>Híbridos (h):</b> mezclan \(V_1, I_2\) en función de \(I_1, V_2\): son los del transistor. <b>Inversos (g):</b> los contrarios de h.</p>
+<p class="run"><b>Asociación:</b> en serie se suman las matrices <b>z</b>; en paralelo, las <b>y</b>; en cascada, se multiplican las matrices de transmisión <b>ABCD</b>.</p>
+</div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 11 <span class="src">6 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">z₁₁, z₁₂, z₂₁, z₂₂</td><td>Parámetros de impedancia</td><td class="u">Ω; con puertas en abierto</td></tr><tr><td class="sym">y₁₁ … y₂₂</td><td>Parámetros de admitancia</td><td class="u">S; con puertas en cortocircuito</td></tr><tr><td class="sym">h₁₁, h₁₂, h₂₁, h₂₂</td><td>Parámetros híbridos</td><td class="u">Ω, –, –, S</td></tr><tr><td class="sym">A, B, C, D</td><td>Parámetros de transmisión</td><td class="u">para cascada</td></tr><tr><td class="sym">Recíproco</td><td>z₁₂ = z₂₁ (sin fuentes dependientes)</td><td class="u">—</td></tr><tr><td class="sym">Simétrico</td><td>z₁₁ = z₂₂</td><td class="u">—</td></tr></table></div></div></details>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Cómo se mide cada parámetro</p><p class="lede">Todos los juegos se obtienen igual: se anula una variable y se mide el cociente. Lo único que cambia es <b>qué</b> se anula.</p>
+<div class="tw"><table><tr><th>Parámetro</th><th>Definición</th><th>Ensayo</th></tr><tr><td>z₁₁</td><td>V₁/I₁ con I₂ = 0</td><td>Salida en <b>abierto</b></td></tr><tr><td>z₂₁</td><td>V₂/I₁ con I₂ = 0</td><td>Salida en abierto</td></tr><tr><td>y₁₁</td><td>I₁/V₁ con V₂ = 0</td><td>Salida en <b>cortocircuito</b></td></tr><tr><td>h₁₁</td><td>V₁/I₁ con V₂ = 0</td><td>Salida en cortocircuito</td></tr><tr><td>h₂₂</td><td>I₂/V₂ con I₁ = 0</td><td>Entrada en <b>abierto</b></td></tr></table></div><p class="run"><b>Regla para no perderse:</b> si el subíndice de la variable que anulas es una <b>corriente</b> (I = 0), la puerta va en <b>abierto</b>; si es una <b>tensión</b> (V = 0), va en <b>cortocircuito</b>.</p>
+<div class="box trap deepnote"><b>Cuidado.</b> El signo de \(I_2\) es la fuente de error número uno. Con el convenio estándar \(I_2\) <b>entra</b> en la red por el borne superior de la puerta 2. Si en el problema la dibujan saliendo, hay que cambiarle el signo en las cuatro ecuaciones, no solo en una.</div>
+</div><!--/amp1--><!--manim:ac-t11--><figure class="fig manim-fig" id="anim-ac-t11"><p class="ft">Animación · Parámetros Z de un cuadripolo</p><div class="manim" data-anim="ac-t11"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t11-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Las cuatro descripciones</h4>
+<div class="box key deepnote"><b>Idea clave.</b> un cuadripolo lineal y sin fuentes independientes internas queda descrito por <b>cuatro</b> números complejos. Cuál de los cuatro juegos usar es una cuestión de comodidad, no de física: todos describen la misma caja.</div>
+<div class="eqd">\[\begin{bmatrix}V_1\\V_2\end{bmatrix}=\begin{bmatrix}z_{11}&z_{12}\\z_{21}&z_{22}\end{bmatrix}\begin{bmatrix}I_1\\I_2\end{bmatrix}\qquad\begin{bmatrix}I_1\\I_2\end{bmatrix}=\begin{bmatrix}y_{11}&y_{12}\\y_{21}&y_{22}\end{bmatrix}\begin{bmatrix}V_1\\V_2\end{bmatrix}\]</div>
+<div class="eqd">\[\begin{bmatrix}V_1\\I_2\end{bmatrix}=\begin{bmatrix}h_{11}&h_{12}\\h_{21}&h_{22}\end{bmatrix}\begin{bmatrix}I_1\\V_2\end{bmatrix}\]</div>
+<p>Las matrices <b>z</b> e <b>y</b> son inversas una de la otra, \(\mathbf{y}=\mathbf{z}^{-1}\), siempre que ninguna sea singular. Hay redes para las que uno de los juegos <b>no existe</b>: un transformador ideal, por ejemplo, no tiene parámetros z ni y, pero sí ABCD.</p>
+<h4><span class="hn">2</span>Reciprocidad y simetría</h4>
+<ul><li><b>Recíproca:</b> \(z_{12}=z_{21}\) (equivalentemente \(y_{12}=y_{21}\), \(h_{12}=-h_{21}\)). Lo son todas las redes hechas solo de R, L, C y transformadores: no hay fuentes dependientes dentro. Es la traducción en cuadripolos del teorema de reciprocidad del tema 3.</li><li><b>Simétrica:</b> \(z_{11}=z_{22}\). La red se ve igual desde las dos puertas; se puede dar la vuelta sin que nada cambie.</li></ul>
+<div class="box key deepnote"><b>Idea clave.</b> un amplificador con transistor <b>no</b> es recíproco: \(h_{21}=\beta\) es grande y \(h_{12}\) casi cero. Esa asimetría es justo lo que lo hace amplificar en un sentido y no en el otro.</div>
+<h4><span class="hn">3</span>Equivalentes en T y en π</h4>
+<p>Cualquier cuadripolo recíproco se puede sustituir por tres impedancias. En <b>T</b>, con \(Z_a\) y \(Z_b\) en serie y \(Z_c\) en la rama común:</p>
+<div class="eqd">\[z_{11}=Z_a+Z_c\qquad z_{22}=Z_b+Z_c\qquad z_{12}=z_{21}=Z_c\]</div>
+<p>Y al revés: \(Z_a=z_{11}-z_{12}\), \(Z_b=z_{22}-z_{12}\), \(Z_c=z_{12}\). El equivalente en <b>π</b> sale igual de las admitancias: \(Y_1=y_{11}+y_{12}\), \(Y_2=y_{22}+y_{12}\), \(Y_3=-y_{12}\).</p>
+<p>Si la red <b>no</b> es recíproca hace falta una cuarta rama: una fuente dependiente. Es exactamente el modelo híbrido del transistor del que se habla en Electrónica Analógica.</p>
+<h4><span class="hn">4</span>Asociación de cuadripolos</h4>
+<div class="tw"><table><tr><th>Conexión</th><th>Qué se suma</th><th>Condición</th></tr><tr><td>Serie-serie</td><td>Matrices <b>z</b></td><td>Prueba de Brune</td></tr><tr><td>Paralelo-paralelo</td><td>Matrices <b>y</b></td><td>Prueba de Brune</td></tr><tr><td>Serie-paralelo</td><td>Matrices <b>h</b></td><td>—</td></tr><tr><td>Cascada</td><td>Se <b>multiplican</b> las ABCD</td><td>Siempre vale</td></tr></table></div><div class="box trap deepnote"><b>Cuidado.</b> Sumar matrices solo es legítimo si al conectar las redes <b>no se altera</b> el funcionamiento interno de ninguna (la llamada prueba de Brune). Con masas comunes mal colocadas la suma falla. La cascada con ABCD no tiene ese problema, y por eso es la que se usa en líneas de transmisión y filtros en escalera.</div>
+<div class="eqd">\[\begin{bmatrix}V_1\\I_1\end{bmatrix}=\begin{bmatrix}A&B\\C&D\end{bmatrix}\begin{bmatrix}V_2\\-I_2\end{bmatrix}\qquad \mathbf{T}_{\text{total}}=\mathbf{T}_1\mathbf{T}_2\cdots\mathbf{T}_n\]</div>
+<h4><span class="hn">5</span>Funciones de un cuadripolo cargado</h4>
+<p>Con una carga \(Z_L\) en la salida y una fuente de impedancia \(Z_S\) en la entrada:</p>
+<div class="eqd">\[Z_{in}=z_{11}-\frac{z_{12}z_{21}}{z_{22}+Z_L}\qquad Z_{out}=z_{22}-\frac{z_{12}z_{21}}{z_{11}+Z_S}\]</div>
+<div class="eqd">\[A_v=\frac{V_2}{V_1}=\frac{z_{21}Z_L}{z_{11}(z_{22}+Z_L)-z_{12}z_{21}}\]</div>
+<p>El segundo término de \(Z_{in}\) es el <b>efecto de la carga reflejado a la entrada</b>: si la red es unilateral (\(z_{12}=0\)), desaparece y la entrada no se entera de lo que haya en la salida. Esa es la ventaja de los circuitos unilaterales.</p>
+</div><!--/deep--><h3 id="t11-ejercicios">Ejercicios tipo, paso a paso</h3><details class="paso"><summary><span class="pn">1</span>Red en T con Z_a = 10 Ω, Z_b = 20 Ω, Z_c = 30 Ω: parámetros z.</summary><div class="inner"><p>\(z_{11}=10+30=40\ \Omega\); \(z_{22}=20+30=50\ \Omega\); \(z_{12}=z_{21}=30\ \Omega\). Es recíproca (solo resistencias) pero no simétrica (\(z_{11}\neq z_{22}\)).</p></div></details><details class="paso"><summary><span class="pn">2</span>Esa misma red cargada con R_L = 50 Ω: impedancia de entrada.</summary><div class="inner"><p>\(Z_{in}=40-\dfrac{30\times30}{50+50}=40-9=31\ \Omega\). Sin carga (\(Z_L\to\infty\)) sería \(z_{11}=40\ \Omega\): la carga la baja.</p></div></details><details class="paso"><summary><span class="pn">3</span>Convertir z a y en la misma red.</summary><div class="inner"><p>\(\Delta z=z_{11}z_{22}-z_{12}z_{21}=40(50)-900=1100\). \(y_{11}=z_{22}/\Delta z=50/1100=45{,}5\) mS; \(y_{22}=40/1100=36{,}4\) mS; \(y_{12}=y_{21}=-30/1100=-27{,}3\) mS. Sigue siendo recíproca, como debía.</p></div></details><details class="paso"><summary><span class="pn">4</span>Dos cuadripolos iguales en cascada, cada uno con A=2, B=3, C=1, D=2.</summary><div class="inner"><p>Se multiplican las matrices: \(A_t=2(2)+3(1)=7\); \(B_t=2(3)+3(2)=12\); \(C_t=1(2)+2(1)=4\); \(D_t=1(3)+2(2)=7\). Comprobación: \(AD-BC=49-48=1\), como corresponde a una red recíproca.</p></div></details>
+<h3 id="t11-trucos">Trucos de examen y errores típicos</h3><div class="deep"><div class="box key deepnote"><b>Truco.</b> Regla única para medir parámetros: si anulas una <b>corriente</b> (I = 0), la puerta va en <b>abierto</b>; si anulas una <b>tensión</b> (V = 0), en <b>cortocircuito</b>. De ahí salen los cuatro juegos sin memorizar nada más.</div><div class="box key deepnote"><b>Truco.</b> Comprueba la reciprocidad al terminar: si la red solo tiene R, L, C y transformadores, tiene que salir \(z_{12}=z_{21}\). Si no sale, hay un error de signo.</div><div class="box key deepnote"><b>Truco.</b> Red en T: \(z_{11}=Z_a+Z_c\), \(z_{22}=Z_b+Z_c\), \(z_{12}=z_{21}=Z_c\). La rama común es directamente el parámetro cruzado.</div><div class="box key deepnote"><b>Truco.</b> Para pasar de z a y, invierte la matriz: \(y_{11}=z_{22}/\Delta z\), \(y_{22}=z_{11}/\Delta z\), \(y_{12}=-z_{12}/\Delta z\). Fíjate en el <b>cruce</b> de subíndices y en el signo menos.</div><div class="box key deepnote"><b>Truco.</b> En cascada se multiplican las ABCD, y en una red recíproca debe cumplirse \(AD-BC=1\). Es la comprobación más rápida que existe.</div><div class="box trap deepnote"><b>Error típico.</b> Dibujar \(I_2\) saliendo de la red. El convenio estándar la pone <b>entrando</b>; si el enunciado la dibuja al revés hay que cambiar el signo en las cuatro ecuaciones.</div><div class="box trap deepnote"><b>Error típico.</b> Sumar matrices z de dos cuadripolos conectados en paralelo. En paralelo se suman las <b>y</b>; en serie, las z.</div><div class="box trap deepnote"><b>Error típico.</b> Olvidar que \(Z_{in}\) depende de la carga: \(Z_{in}=z_{11}-z_{12}z_{21}/(z_{22}+Z_L)\). Solo vale \(z_{11}\) si la salida está en abierto.</div></div>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-10.html"><small>← Anterior</small>T10 Potencia en sistemas trifásicos</a><a class="nx" href="tema-12.html"><small>Siguiente →</small>T12 · Elementos no lineales: diodos y transistores</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Análisis de Circuitos (GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, boletines y prácticas) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+<script src="anim-manim.js?v=31215" defer></script>
+<script src="anim-temas.js?v=31215" defer></script>
+</body>
+</html>

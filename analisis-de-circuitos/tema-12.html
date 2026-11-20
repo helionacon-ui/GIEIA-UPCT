@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T12 Elementos no lineales: diodos y transistores · Análisis de Circuitos · Apuntes</title>
+<meta name="description" content="Análisis de Circuitos (GIEyA): tema 12, Elementos no lineales: diodos y transistores">
+
+
+<script>window.MathJax={loader:{load:['ui/lazy']},tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<script src="asig-nav.js" defer></script>
+
+<style id="lectura">
+@media screen{
+:root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
+body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
+figure.fig{margin-block:34px}
+.toc a{font-size:16.5px;padding:8px 0 8px 10px}
+svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
+details>summary{line-height:1.7;padding-block:.5em}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
+}
+</style>
+
+<script>(function(){try{var d=document.documentElement,s=localStorage,p=s.getItem("apuntes-piel");if(p==="min")d.setAttribute("data-piel","min");var t=s.getItem("apuntes-tema");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);var f=s.getItem("apuntes-fondo");if(f)d.setAttribute("data-fondo",f);}catch(e){}})();</script>
+<link rel="stylesheet" href="piel.css?v=4">
+<script src="piel.js?v=4" defer></script>
+<script src="sugerencias.js?v=2" defer></script>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#b06a00">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Circuitos">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+<script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, boletines y prácticas) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Análisis de Circuitos</a><span class="sep">›</span><span>Cuadripolos y elementos no lineales</span><span class="sep">›</span><span>T12 · Elementos no lineales: diodos y transistores</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Primer parcial · continua y fasores</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes eléctricas</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos de corriente continua: reducción de redes</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Teoremas fundamentales en continua</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Ondas periódicas, señal senoidal y fasor</a><a href="tema-05.html" style="--tc:var(--c6)">T5 R, L y C en alterna: impedancia y admitancia</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Potencia en corriente alterna</a><div class="grp">Segundo parcial · alterna, transitorios y trifásica</div><a href="tema-07.html" style="--tc:var(--c8)">T7 Teoremas fundamentales en alterna</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Régimen transitorio</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Sistemas trifásicos equilibrados</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Potencia en sistemas trifásicos</a><div class="grp">Cuadripolos y elementos no lineales</div><a href="tema-11.html" style="--tc:var(--c4)">T11 Redes de dos puertas (cuadripolos)</a><a href="tema-12.html" class="on" aria-current="page" style="--tc:var(--c5)">T12 Elementos no lineales: diodos y transistores</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c5);--tcs:var(--c5s)">
+<div class="sh"><span aria-hidden="true" class="badge">12</span><div class="shx"><p class="kick">Cuadripolos y elementos no lineales · Tema 12</p><h2 id="t12">Elementos no lineales: diodos y transistores</h2><div class="tags"><span class="tag">Cuadripolos y elementos no lineales</span><span class="tag">Segundo parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> analizar circuitos con diodos por tramos, reconocer los montajes rectificadores, polarizar un transistor bipolar y saber qué hace un FET o un MOSFET.</p>
+<p class="lede">Hasta aquí todos los elementos eran <b>lineales</b>: su característica \(v\)-\(i\) es una recta y valen la superposición y Thévenin. Un <b>diodo</b> o un <b>transistor</b> no lo son, así que hay que cambiar de método.</p>
+<p class="run"><b>Diodo ideal:</b> cortocircuito en directa y circuito abierto en inversa. <b>Modelo de 0,7 V:</b> una fuente de 0,7 V en serie con el interruptor; es el que se usa en examen. <b>Modelo con resistencia:</b> añade \(r_d\) en serie.</p>
+<p class="run"><b>Método de análisis:</b> se <b>supone</b> un estado para cada diodo, se resuelve el circuito lineal que resulta y se <b>comprueba</b> la hipótesis (corriente positiva si lo supusiste conduciendo, tensión menor que 0,7 V si lo supusiste cortado). Si falla, se cambia la hipótesis.</p>
+<p class="run"><b>Rectificadores:</b> media onda \(V_{dc}=V_p/\pi\); onda completa \(V_{dc}=2V_p/\pi\); con condensador de filtro, el rizado es \(V_r\approx I_{dc}/(fC)\) en media onda y \(I_{dc}/(2fC)\) en onda completa.</p>
+<p class="run"><b>Transistor bipolar:</b> tres zonas (corte, activa, saturación). En activa, \(I_C=\beta I_B\) y \(V_{BE}\approx0{,}7\) V. <b>FET/MOSFET:</b> controlado por tensión, la puerta no consume corriente.</p>
+</div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 12 <span class="src">6 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">V_γ</td><td>Tensión umbral del diodo</td><td class="u">0,7 V en silicio; 0,3 V en germanio</td></tr><tr><td class="sym">r_d</td><td>Resistencia dinámica del diodo</td><td class="u">Ω; r_d = V_T/I_D</td></tr><tr><td class="sym">V_dc</td><td>Valor medio tras rectificar</td><td class="u">V; V_p/π en media onda</td></tr><tr><td class="sym">V_r</td><td>Rizado pico a pico con filtro</td><td class="u">V; ≈ I/(2fC) en onda completa</td></tr><tr><td class="sym">β (h_FE)</td><td>Ganancia de corriente del BJT</td><td class="u">adimensional; 50-400</td></tr><tr><td class="sym">V_GS, V_T</td><td>Tensión puerta-fuente y umbral del MOSFET</td><td class="u">V</td></tr></table></div></div></details>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué deja de valer la superposición</p><p class="lede">La superposición, Thévenin, Norton y Millman se demuestran todos a partir de la linealidad. Con un diodo en el circuito, ninguno vale directamente: la respuesta a dos fuentes no es la suma de las respuestas.</p>
+<p>La salida es trabajar <b>por tramos</b>. Una vez fijado el estado de cada diodo, el circuito <b>sí</b> es lineal, y dentro de ese tramo se puede usar todo el arsenal de los temas 2 y 3. El trabajo está en acertar el tramo.</p>
+<p class="ft">El método de prueba y comprobación, con orden</p><ol class="pasos"><li>Cuenta los diodos: con \(n\) diodos hay \(2^n\) combinaciones posibles, pero casi siempre solo una es coherente.</li><li>Haz una hipótesis razonable mirando las polaridades de las fuentes.</li><li>Sustituye: diodo que conduce → fuente de 0,7 V; diodo cortado → circuito abierto.</li><li>Resuelve el circuito lineal resultante.</li><li><b>Comprueba:</b> para los que supusiste conduciendo, \(I_D&gt;0\); para los cortados, \(V_D&lt;0{,}7\) V. Si alguno falla, cambia su hipótesis y repite.</li></ol>
+<div class="box trap deepnote"><b>Cuidado.</b> No te saltes la comprobación. Un circuito con dos diodos puede dar un resultado aparentemente razonable con la hipótesis equivocada, y solo la verificación del signo de la corriente lo delata.</div>
+</div><!--/amp1--><!--manim:ac-t12--><figure class="fig manim-fig" id="anim-ac-t12"><p class="ft">Animación · Diodo y recta de carga</p><div class="manim" data-anim="ac-t12"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t12-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>La unión PN</h4>
+<p>Al unir un semiconductor tipo p con uno tipo n, los portadores difunden y dejan una <b>zona de deplexión</b> con un campo interno que frena la difusión. La característica resultante es la ecuación de Shockley:</p>
+<div class="eqd">\[i_D=I_S\left(e^{v_D/\eta V_T}-1\right)\qquad V_T=\frac{kT}{q}\approx25\ \text{mV a }300\ \text{K}\]</div>
+<ul><li><b>Directa</b> (\(v_D&gt;0\)): la exponencial domina; la corriente crece muy deprisa a partir de unos 0,6-0,7 V en silicio.</li><li><b>Inversa:</b> queda \(-I_S\), del orden de nanoamperios: prácticamente abierto.</li><li><b>Ruptura:</b> por debajo de \(-V_Z\) conduce bruscamente. En un <b>zener</b> eso no lo destruye y se aprovecha para regular tensión.</li></ul>
+<div class="box key deepnote"><b>Idea clave.</b> la pendiente de la exponencial en el punto de trabajo da la <b>resistencia dinámica</b> \(r_d=\eta V_T/I_D\): a 1 mA son unos 25 Ω. Es lo que ve una señal pequeña superpuesta.</div>
+<h4><span class="hn">2</span>Rectificación y filtrado</h4>
+<div class="tw"><table><tr><th>Montaje</th><th>V_dc</th><th>V_eficaz</th><th>f rizado</th><th>PIV</th></tr><tr><td>Media onda</td><td>V_p/π = 0,318 V_p</td><td>V_p/2</td><td>f</td><td>V_p</td></tr><tr><td>Onda completa, toma media</td><td>2V_p/π = 0,637 V_p</td><td>V_p/√2</td><td>2f</td><td>2V_p</td></tr><tr><td>Puente de Graetz</td><td>2V_p/π</td><td>V_p/√2</td><td>2f</td><td>V_p</td></tr></table></div><p>El <b>puente</b> gana en casi todo: mismo valor medio que la toma media, con la mitad de tensión inversa de pico que soportar y sin necesidad de transformador con punto medio. A cambio hay dos diodos en serie conduciendo, así que se pierden 1,4 V en vez de 0,7 V.</p>
+<p>Con condensador en paralelo con la carga, el rizado pico a pico es aproximadamente</p>
+<div class="eqd">\[V_r\simeq\frac{I_{dc}}{2fC}\ \ (\text{onda completa})\qquad V_{dc}\simeq V_p-\frac{V_r}{2}\]</div>
+<div class="box trap deepnote"><b>Cuidado.</b> El condensador hace que los diodos conduzcan solo en picos muy estrechos, así que la corriente de pico es mucho mayor que la media. Es la razón de que haya que mirar \(I_{FSM}\) en la hoja de características y no solo la corriente media.</div>
+<h4><span class="hn">3</span>Recortadores, fijadores y multiplicadores</h4>
+<ul><li><b>Recortador (clipper):</b> un diodo con una fuente en serie corta la señal por encima o por debajo de un nivel. Protege entradas y conforma ondas.</li><li><b>Fijador (clamper):</b> un condensador en serie y un diodo a masa desplazan toda la onda sin deformarla, hasta que un extremo queda fijado en 0 V (o en el nivel que marque una fuente).</li><li><b>Doblador de tensión:</b> dos fijadores encadenados dan \(2V_p\) en continua. Encadenando más etapas se construye un multiplicador de Cockcroft-Walton.</li></ul>
+<p><b>Zener como regulador:</b> con una resistencia serie \(R_S\), la tensión de salida se mantiene en \(V_Z\) mientras la corriente por el zener se mantenga entre un mínimo (unos miliamperios, para que siga en ruptura) y el máximo que permita su potencia \(P_Z=V_ZI_{Z\max}\). El peor caso de diseño es <b>entrada máxima con carga mínima</b>.</p>
+<h4><span class="hn">4</span>El transistor bipolar</h4>
+<div class="tw"><table><tr><th>Zona</th><th>Unión B-E</th><th>Unión B-C</th><th>Relación</th><th>Uso</th></tr><tr><td>Corte</td><td>Inversa</td><td>Inversa</td><td>I_C ≈ 0</td><td>Interruptor abierto</td></tr><tr><td>Activa</td><td>Directa</td><td>Inversa</td><td>I_C = βI_B</td><td>Amplificador</td></tr><tr><td>Saturación</td><td>Directa</td><td>Directa</td><td>V_CE ≈ 0,2 V</td><td>Interruptor cerrado</td></tr></table></div><p>Para resolver un circuito con BJT se <b>supone activa</b>, se calcula y se comprueba: si sale \(V_{CE}&lt;0{,}2\) V, en realidad estaba saturado y hay que rehacerlo con \(V_{CE}=0{,}2\) V (y entonces \(I_C&lt;\beta I_B\)). Es el mismo método de hipótesis y comprobación que con los diodos.</p>
+<div class="eqd">\[I_E=I_B+I_C\qquad I_C=\beta I_B\qquad \alpha=\frac{\beta}{\beta+1}\approx0{,}99\]</div>
+<div class="box key deepnote"><b>Idea clave.</b> como interruptor se trabaja <b>a propósito</b> en saturación, forzando una corriente de base bastante mayor que \(I_C/\beta\) (factor de sobreexcitación de 2 a 10). Así se garantiza que conmute aunque \(\beta\) varíe de un ejemplar a otro.</div>
+<h4><span class="hn">5</span>FET y MOSFET</h4>
+<ul><li><b>JFET:</b> la puerta es una unión polarizada en inversa; se controla con \(V_{GS}&lt;0\) hasta el estrangulamiento \(V_P\). \(I_D=I_{DSS}(1-V_{GS}/V_P)^2\).</li><li><b>MOSFET de enriquecimiento:</b> la puerta está aislada por óxido. Conduce al superar la tensión umbral: \(I_D=\tfrac12k(V_{GS}-V_T)^2\) en saturación.</li><li>En la zona <b>óhmica</b> (\(V_{DS}\) pequeña) se comporta como una resistencia controlada por \(V_{GS}\); es el modo en que trabaja como interruptor, con una \(R_{DS(on)}\) de miliohmios.</li></ul>
+<p>Diferencia clave con el BJT: el FET se controla por <b>tensión</b> y no consume corriente de puerta, así que su impedancia de entrada es enorme. Por eso es la base de la electrónica digital CMOS y de la conmutación de potencia moderna.</p>
+<div class="box trap deepnote"><b>Cuidado.</b> El óxido de puerta de un MOSFET se perfora con unas pocas decenas de voltios, y la electricidad estática de una persona llega a kilovoltios. De ahí las precauciones antiestáticas al manipularlos.</div>
+</div><!--/deep--><h3 id="t12-ejercicios">Ejercicios tipo, paso a paso</h3><details class="paso"><summary><span class="pn">1</span>Diodo de silicio en serie con 1 kΩ y fuente de 10 V.</summary><div class="inner"><p>Hipótesis: conduce. Entonces \(I=(10-0{,}7)/1000=9{,}3\) mA, positiva: hipótesis correcta. Tensión en la resistencia: 9,3 V.</p></div></details><details class="paso"><summary><span class="pn">2</span>Puente rectificador con transformador de 24 V eficaces y carga de 500 Ω, C = 1000 µF, 50 Hz.</summary><div class="inner"><p>\(V_p=24\sqrt2=33{,}9\) V; descontando dos diodos, \(33{,}9-1{,}4=32{,}5\) V. \(I_{dc}\approx32{,}5/500=65\) mA. Rizado: \(V_r=I/(2fC)=0{,}065/(2\times50\times10^{-3})=0{,}65\) V. Salida ≈ 32,2 V con 0,65 V de rizado.</p></div></details><details class="paso"><summary><span class="pn">3</span>Zener de 5,1 V y 1 W con R_S = 220 Ω desde 12 V: ¿corriente máxima y potencia?</summary><div class="inner"><p>Sin carga, toda la corriente va al zener: \(I_Z=(12-5{,}1)/220=31{,}4\) mA. \(P_Z=5{,}1\times0{,}0314=0{,}16\) W, muy por debajo del vatio: seguro. La corriente máxima que admite es \(1/5{,}1=196\) mA.</p></div></details><details class="paso"><summary><span class="pn">4</span>BJT con V_CC = 12 V, R_C = 1 k, R_B = 220 k, V_BB = 5 V, β = 100.</summary><div class="inner"><p>\(I_B=(5-0{,}7)/220000=19{,}5\ \mu\)A. Suponiendo activa: \(I_C=100\times19{,}5\ \mu\text{A}=1{,}95\) mA; \(V_{CE}=12-1{,}95=10{,}05\) V &gt; 0,2 V: <b>activa confirmada</b>.</p></div></details><details class="paso"><summary><span class="pn">5</span>El mismo circuito con R_B = 22 kΩ: ¿sigue en activa?</summary><div class="inner"><p>\(I_B=4{,}3/22000=195\ \mu\)A; activa daría \(I_C=19{,}5\) mA y \(V_{CE}=12-19{,}5=-7{,}5\) V, imposible. Luego está <b>saturado</b>: \(V_{CE}=0{,}2\) V y \(I_C=(12-0{,}2)/1000=11{,}8\) mA. El factor de sobreexcitación es \(195/118=1{,}65\).</p></div></details>
+<h3 id="t12-trucos">Trucos de examen y errores típicos</h3><div class="deep"><div class="box key deepnote"><b>Truco.</b> Con diodos, el método es <b>suponer, resolver y comprobar</b>. Escribe la hipótesis en el margen antes de calcular: te obliga a verificarla al final.</div><div class="box key deepnote"><b>Truco.</b> Comprobación: diodo que supusiste conduciendo debe dar \(I_D&gt;0\); diodo cortado debe dar \(V_D&lt;0{,}7\) V. Si falla uno, cambia solo ese y repite.</div><div class="box key deepnote"><b>Truco.</b> Rectificadores: media onda \(V_p/\pi\), onda completa \(2V_p/\pi\). Con puente restas <b>1,4 V</b> (dos diodos), con toma media solo 0,7 V.</div><div class="box key deepnote"><b>Truco.</b> Rizado con filtro: \(V_r\approx I/(2fC)\) en onda completa. La frecuencia del rizado es <b>el doble</b> de la de red: 100 Hz, no 50.</div><div class="box key deepnote"><b>Truco.</b> BJT: supón <b>activa</b>, calcula, y si \(V_{CE}\) sale menor que 0,2 V o negativo, estaba saturado. Rehaz con \(V_{CE}=0{,}2\) V.</div><div class="box key deepnote"><b>Truco.</b> Zener: el peor caso para su potencia es <b>tensión de entrada máxima y carga desconectada</b>, porque toda la corriente pasa por él.</div><div class="box trap deepnote"><b>Error típico.</b> Aplicar superposición o Thévenin con un diodo dentro. Solo valen <b>después</b> de fijar el estado de cada diodo.</div><div class="box trap deepnote"><b>Error típico.</b> Dar \(I_C=\beta I_B\) en saturación. Ahí la relación ya no se cumple: \(I_C\) la fija el circuito exterior.</div></div>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-11.html"><small>← Anterior</small>T11 · Redes de dos puertas (cuadripolos)</a><a class="nx" href="cuestiones.html"><small>Siguiente →</small>Cuestiones de teoría</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Análisis de Circuitos (GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, boletines y prácticas) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+<script src="anim-manim.js?v=31215" defer></script>
+<script src="anim-temas.js?v=31215" defer></script>
+</body>
+</html>

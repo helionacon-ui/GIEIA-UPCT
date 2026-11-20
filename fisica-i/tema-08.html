@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -51,41 +114,38 @@ details>summary{line-height:1.7;padding-block:.5em}
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
 <script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
-
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body>
 <div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p></div>
 <div class="crumb"><a href="index.html">Física I</a><span class="sep">›</span><span>Parcial 2</span><span class="sep">›</span><span>T8 · Estática del sólido rígido</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
 <div class="wrap" id="top">
-<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Parcial 1</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes, unidades y vectores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Cinemática y movimiento relativo</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Dinámica, fuerzas de inercia y gravitación</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Trabajo y energía</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Movimiento oscilatorio</a><div class="grp">Parcial 2</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Sistemas de partículas</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Dinámica y estática del sólido rígido</a><a href="tema-08.html" style="--tc:var(--c1)" class="on" aria-current="page">T8 Estática del sólido rígido</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Estática de fluidos</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Equilibrio termodinámico y temperatura</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Primer y segundo principio de la termodinámica</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones teóricas de examen</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Recopilación por temas</a><a href="laboratorio.html" style="--tc:var(--c7)">Laboratorio y prácticas</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Parcial 1</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes, unidades y vectores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Cinemática y movimiento relativo</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Dinámica, fuerzas de inercia y gravitación</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Trabajo y energía</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Movimiento oscilatorio</a><div class="grp">Parcial 2</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Sistemas de partículas</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Dinámica del sólido rígido. Sistemas de fuerzas</a><a href="tema-08.html" style="--tc:var(--c1)" class="on" aria-current="page">T8 Estática del sólido rígido</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Estática de fluidos</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Equilibrio termodinámico y temperatura</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Primer y segundo principio de la termodinámica</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones teóricas de examen</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Recopilación por temas</a><a href="laboratorio.html" style="--tc:var(--c7)">Laboratorio y prácticas</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
 <main>
 <section class="sec tema" style="--tc:var(--c1);--tcs:var(--c1s)">
 <div class="sh"><span aria-hidden="true" class="badge">8</span><div class="shx"><p class="kick">Parcial 2 · Tema 8</p><h2 id="t8">Estática del sólido rígido</h2><div class="tags"><span class="tag">Parcial 2</span><span class="tag">Problemas</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Calcular reacciones en apoyos y equilibrar sólidos sometidos a fuerzas y pares.</p><p>La estática es el caso particular de la dinámica con \(\sum\vec F=0\) y \(\sum\vec M=0\) (fuerzas y momentos externos). Es básica en estructuras, por eso se estudia aparte.</p>
-<p><b>Ligaduras</b>: fuerzas que limitan el movimiento (3.ª ley): normal, tensión, y las de los apoyos: rodillo o superficie lisa (una fuerza de dirección conocida), articulación o pasador (fuerza de dirección desconocida: dos componentes), superficie rugosa (normal + rozamiento), empotramiento (fuerza y par), bisagra (3 fuerzas y 2 momentos, no soporta carga axial).</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Calcular reacciones en apoyos y equilibrar sólidos sometidos a fuerzas y pares.</p><p class="lede">La estática es el caso particular de la dinámica con \(\sum\vec F=0\) y \(\sum\vec M=0\) (fuerzas y momentos externos). Es básica en estructuras, por eso se estudia aparte.</p>
+<p class="run"><b>Ligaduras:</b> fuerzas que limitan el movimiento (3.ª ley): normal, tensión, y las de los apoyos: rodillo o superficie lisa (una fuerza de dirección conocida), articulación o pasador (fuerza de dirección desconocida: dos componentes), superficie rugosa (normal + rozamiento), empotramiento (fuerza y par), bisagra (3 fuerzas y 2 momentos, no soporta carga axial).</p>
 <p>Herramienta clave: el <b>diagrama de sólido libre</b>.</p></div>
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Dos ecuaciones de fuerza y una de momentos</div><svg viewBox="0 0 560 262" role="img" aria-label="Viga con apoyos y carga" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="34" y="100" width="256" height="12" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.35"/><polygon points="70,112 54,140 86,140" fill="var(--surface,#fff)" stroke="var(--fg)" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><polygon points="260,112 244,140 276,140" fill="var(--surface,#fff)" stroke="var(--fg)" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><line x1="150" y1="38" x2="150" y2="89.2" stroke="var(--warn,#b8730c)" stroke-width="3.2" opacity="1" stroke-linecap="round"/><polygon points="150,100 145.1,89 154.9,89" fill="var(--warn,#b8730c)"/><text x="160" y="60" fill="var(--warn,#b8730c)" font-size="16" text-anchor="start" font-weight="700" opacity="1">P</text><line x1="70" y1="196" x2="70" y2="152.8" stroke="var(--c6,#2c8a52)" stroke-width="3.2" opacity="1" stroke-linecap="round"/><polygon points="70,142 74.9,153 65.1,153" fill="var(--c6,#2c8a52)"/><text x="80" y="196" fill="var(--c6,#2c8a52)" font-size="15" text-anchor="start" font-weight="700" opacity="1">R_A</text><line x1="260" y1="196" x2="260" y2="152.8" stroke="var(--c6,#2c8a52)" stroke-width="3.2" opacity="1" stroke-linecap="round"/><polygon points="260,142 264.9,153 255.1,153" fill="var(--c6,#2c8a52)"/><text x="270" y="196" fill="var(--c6,#2c8a52)" font-size="15" text-anchor="start" font-weight="700" opacity="1">R_B</text><line x1="70" y1="222" x2="150" y2="222" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><line x1="150" y1="222" x2="260" y2="222" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><line x1="70" y1="216" x2="70" y2="228" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><line x1="150" y1="216" x2="150" y2="228" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><line x1="260" y1="216" x2="260" y2="228" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><text x="110" y="240" fill="var(--muted)" font-size="14" text-anchor="middle" font-weight="700" opacity="1">a</text><text x="205" y="240" fill="var(--muted)" font-size="14" text-anchor="middle" font-weight="700" opacity="1">b</text><text x="312" y="62" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">Equilibrio estático:</text><text x="312" y="95" fill="var(--tc,var(--accent))" font-size="15" text-anchor="start" font-weight="700" opacity="1">Σ F = 0</text><text x="312" y="117" fill="var(--fg)" font-size="14.5" text-anchor="start" opacity="1">R_A + R_B = P</text><text x="312" y="150" fill="var(--tc,var(--accent))" font-size="15" text-anchor="start" font-weight="700" opacity="1">Σ M_A = 0</text><text x="312" y="172" fill="var(--fg)" font-size="14.5" text-anchor="start" opacity="1">R_B (a + b) = P a</text><text x="312" y="205" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">Toma momentos respecto</text><text x="312" y="227" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">a un punto desconocido.</text></svg><figcaption>La carga se reparte entre los apoyos en proporción inversa a su distancia: el apoyo más cercano a P soporta más.</figcaption></figure><figure class="ill"><div class="ill-t">Importa la distancia perpendicular, no la longitud de r</div><svg viewBox="0 0 560 262" role="img" aria-label="Momento de una fuerza" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="70" y1="108" x2="230" y2="108" stroke="var(--fg)" stroke-width="6" opacity="1" stroke-linecap="round"/><circle cx="70" cy="108" r="7" fill="var(--surface,#fff)" stroke="var(--fg)" stroke-width="2.4" opacity="1"/><text x="62" y="96" fill="var(--fg)" font-size="14" text-anchor="end" font-weight="700" opacity="1">O</text><line x1="192.1" y1="162.1" x2="281.6" y2="34.3" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="6 4" opacity="1" stroke-linecap="round"/><line x1="230" y1="108" x2="256.6" y2="70.1" stroke="var(--warn,#b8730c)" stroke-width="3.4" opacity="1" stroke-linecap="round"/><polygon points="263.3,60.5 260.8,73.3 252.1,67.2" fill="var(--warn,#b8730c)"/><text x="271.9" y="55.9" fill="var(--warn,#b8730c)" font-size="17" text-anchor="start" font-weight="700" opacity="1">F</text><line x1="70" y1="108" x2="177.4" y2="183.2" stroke="var(--tc,var(--accent))" stroke-width="2.4" opacity="1" stroke-linecap="round"/><text x="115.7" y="149.6" fill="var(--tc,var(--accent))" font-size="15" text-anchor="end" font-weight="700" opacity="1">d</text><text x="150" y="92" fill="var(--muted)" font-size="15" text-anchor="middle" font-weight="700" opacity="1">r</text><path d="M260,108 A30,30 0 0 0 247.2,83.4" fill="none" stroke="var(--warn,#b8730c)" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="266" y="102" fill="var(--warn,#b8730c)" font-size="14" text-anchor="start" font-style="italic" opacity="1">θ</text><text x="312" y="64" fill="var(--tc,var(--accent))" font-size="16.5" text-anchor="start" font-weight="700" opacity="1">τ = r × F</text><text x="312" y="86" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="600" opacity="1">|τ| = r F senθ</text><text x="312" y="108" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="600" opacity="1">     = F · d</text><text x="312" y="141" fill="var(--muted)" font-size="14" text-anchor="start" opacity="1">d = brazo de palanca:</text><text x="312" y="163" fill="var(--muted)" font-size="14" text-anchor="start" opacity="1">distancia del eje a la</text><text x="312" y="185" fill="var(--muted)" font-size="14" text-anchor="start" opacity="1">línea de acción de F.</text><text x="312" y="218" fill="var(--warn,#b8730c)" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">Máximo si F ⟂ r.</text></svg><figcaption>Si empujas hacia el eje (θ = 0) no giras nada. Cuanto más perpendicular y más lejos del eje, mayor es el giro.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 8 <span class="src">4 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(R_A,R_B\)</td><td>Reacciones en apoyos</td><td class="u">N</td></tr><tr><td class="sym">\(M\)</td><td>Momento de una fuerza o par</td><td class="u">N·m</td></tr><tr><td class="sym">\(d\)</td><td>Brazo del par</td><td class="u">m</td></tr><tr><td class="sym">\(\mu_e\)</td><td>Rozamiento estático</td><td class="u">sin dimensiones</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Simulador · reacciones de una viga apoyada</p><div data-sim="viga"></div><figcaption>Mueve los controles y observa cómo cambian las magnitudes del recuadro.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Equilibrio: dos condiciones</p><p>Un sólido rígido está en equilibrio estático si \(\sum\vec F=0\) (no se traslada) y \(\sum\vec\tau=0\) respecto a <b>cualquier</b> punto (no gira). En 2D son tres ecuaciones: \(\sum F_x=0\), \(\sum F_y=0\) y \(\sum M=0\).</p>
-<p><b>Truco:</b> toma momentos respecto al punto donde se cruzan más fuerzas desconocidas; así esas fuerzas no aparecen y la ecuación sale directa.</p><p class="ft">Apoyos, articulaciones y rozamiento</p><p>Cada tipo de ligadura aporta reacciones concretas: un <b>apoyo liso</b> da una fuerza perpendicular a la superficie; una <b>articulación</b> da dos componentes; un <b>empotramiento</b> da dos fuerzas y un momento; un <b>cable</b> da una tensión a lo largo suya. Un peso uniforme actúa en el centro de la pieza.</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Equilibrio: dos condiciones</p><p class="lede">Un sólido rígido está en equilibrio estático si \(\sum\vec F=0\) (no se traslada) y \(\sum\vec\tau=0\) respecto a <b>cualquier</b> punto (no gira). En 2D son tres ecuaciones: \(\sum F_x=0\), \(\sum F_y=0\) y \(\sum M=0\).</p>
+<p class="run"><b>Truco:</b> toma momentos respecto al punto donde se cruzan más fuerzas desconocidas; así esas fuerzas no aparecen y la ecuación sale directa.</p><p class="ft">Apoyos, articulaciones y rozamiento</p><p>Cada tipo de ligadura aporta reacciones concretas: un <b>apoyo liso</b> da una fuerza perpendicular a la superficie; una <b>articulación</b> da dos componentes; un <b>empotramiento</b> da dos fuerzas y un momento; un <b>cable</b> da una tensión a lo largo suya. Un peso uniforme actúa en el centro de la pieza.</p>
 <p>Cuando hay rozamiento estático, la fuerza de rozamiento es la que necesita el equilibrio, siempre que no supere \(\mu N\); el valor límite define el ángulo mínimo o la posición máxima.</p></div><!--/amp1--><!--manim:fis1-t8--><figure class="fig manim-fig" id="anim-fis1-t8"><p class="ft">Animación · Reacciones en una viga apoyada</p><div class="manim" data-anim="fis1-t8"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
 <!--deep--><h3 id="t8-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Condiciones de equilibrio</h4>
+<h4><span class="hn">1</span>Condiciones de equilibrio</h4>
 <div class="eqd">\[\sum\vec F=0,\qquad \sum\vec M=0\]</div>
 <p>Puedes tomar momentos respecto a <b>cualquier punto</b>. Conviene elegir el que elimine más incógnitas.</p>
 <details class="dem"><summary><span class="pn">∴</span>Por qué da igual el punto elegido</summary><div class="inner"><ol class="pasos"><li>El momento respecto a \(O'\) es \(\vec M_{O'}=\vec M_O-\vec r_{O'}\times\sum\vec F_i\).</li><li>Si \(\sum\vec F=0\), el segundo término desaparece: \(\vec M_{O'}=\vec M_O\).</li></ol>
 <p>Si las fuerzas suman cero, el momento neto es el mismo en todos los puntos. Un <b>par de fuerzas</b> (iguales, opuestas y no alineadas) cumple \(\sum\vec F=0\) y su momento, \(F\cdot d\), es el mismo respecto a cualquier punto.</p></div></details>
-<h4>2. Centro de gravedad y centroides</h4>
+<h4><span class="hn">2</span>Centro de gravedad y centroides</h4>
 <ol class="pasos"><li>Momento total de los pesos: \(\sum\vec r_i\times m_i\vec g=\Big(\sum m_i\vec r_i\Big)\times\vec g=M\,\vec r_{cm}\times\vec g\).</li><li>Equivale al de una sola fuerza \(M\vec g\) aplicada en el <b>centro de gravedad</b>.</li></ol>
 <p>Coincide con el centro de masas mientras \(\vec g\) sea uniforme.</p>
 <details class="dem"><summary><span class="pn">∴</span>Centroide de un triángulo</summary><div class="inner"><p>Triángulo de base \(b\) y altura \(h\). La franja a altura \(y\) tiene ancho \(w(y)=b\,(1-y/h)\).</p>
 <div class="eqd">\[\bar y=\frac{\int_0^h y\,w\,\mathrm dy}{\int_0^h w\,\mathrm dy}=\frac{b\,(h^2/2-h^2/3)}{bh/2}=\frac h3\]</div>
 <p>medido desde la base. En figuras compuestas, \(\bar x=\sum A_ix_i/\sum A_i\), y los huecos cuentan como área negativa.</p></div></details>
-<h4>3. Apoyos y ligaduras</h4>
+<h4><span class="hn">3</span>Apoyos y ligaduras</h4>
 <ul><li><b>Rodillo o superficie lisa:</b> 1 incógnita (fuerza perpendicular).</li><li><b>Articulación:</b> 2 incógnitas (componentes de la fuerza).</li><li><b>Empotramiento:</b> 3 incógnitas (dos fuerzas y un momento).</li></ul>
 <p>En el plano hay 3 ecuaciones. Si las incógnitas son iguales a las ecuaciones, el problema es <b>isostático</b>; si hay más, es <b>hiperestático</b> y hacen falta las deformaciones (resistencia de materiales).</p>
 <details class="dem"><summary><span class="pn">∴</span>Escalera apoyada: ¿cuándo resbala?</summary><div class="inner"><p>Escalera de peso \(W\) y longitud \(L\), ángulo \(\theta\) con el suelo, pared lisa y rozamiento \(\mu\) en el suelo.</p>
@@ -115,7 +175,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <p><b>Reacción.</b> Horizontal: \(H=T\cos30^\circ=476\) N hacia la pared. Vertical: \(V=150+200-T\sin30^\circ=75\) N.</p></div></details></div><!--/amp2--><!--vid--><div class="vids"><p class="vids-h">Vídeos para aprender y practicar</p><p class="vm" style="margin:0 0 10px">Vídeos de YouTube de distintos canales que explican el mismo tema o resuelven ejercicios parecidos paso a paso. Son material externo de otros autores: úsalos para ver el método en acción y compara siempre con las fórmulas de esta guía. Pulsa sobre el vídeo para reproducirlo sin salir de la página.</p><div class="vgrid"><div class="vcard"><button class="vthumb" type="button" data-v="7dTOQBQGsFE" data-t="Estatica del solido rígido-problema de una gr…" aria-label="Reproducir: Estatica del solido rígido-problema de una gr…"><img src="https://i.ytimg.com/vi/7dTOQBQGsFE/hqdefault.jpg" alt="" loading="lazy"><span class="vplay"></span><span class="vdur">11:25</span></button><div class="vtx"><a class="vt" href="https://www.youtube.com/watch?v=7dTOQBQGsFE" target="_blank" rel="noopener">Estatica del solido rígido-problema de una gr…</a><p class="vm">Física Virtual A · YouTube</p></div></div><div class="vcard"><button class="vthumb" type="button" data-v="XdHDaH3Y1nA" data-t="Equilibrio de Cuerpo Rígido, Determinar Reacci…" aria-label="Reproducir: Equilibrio de Cuerpo Rígido, Determinar Reacci…"><img src="https://i.ytimg.com/vi/XdHDaH3Y1nA/hqdefault.jpg" alt="" loading="lazy"><span class="vplay"></span><span class="vdur">10:41</span></button><div class="vtx"><a class="vt" href="https://www.youtube.com/watch?v=XdHDaH3Y1nA" target="_blank" rel="noopener">Equilibrio de Cuerpo Rígido, Determinar Reacci…</a><p class="vm">Salvador FI Facu · YouTube</p></div></div><div class="vcard"><button class="vthumb" type="button" data-v="iCD4uS_-sTg" data-t="FÍSICA - EJERCICIO DE EQUILIBRIO DE CUERPO RÍG…" aria-label="Reproducir: FÍSICA - EJERCICIO DE EQUILIBRIO DE CUERPO RÍG…"><img src="https://i.ytimg.com/vi/iCD4uS_-sTg/hqdefault.jpg" alt="" loading="lazy"><span class="vplay"></span><span class="vdur">16:52</span></button><div class="vtx"><a class="vt" href="https://www.youtube.com/watch?v=iCD4uS_-sTg" target="_blank" rel="noopener">FÍSICA - EJERCICIO DE EQUILIBRIO DE CUERPO RÍG…</a><p class="vm">PROFE JN El cana · YouTube</p></div></div></div><script>if(!window.__vp){window.__vp=1;document.addEventListener('click',function(e){var b=e.target.closest('.vthumb');if(!b)return;var c=b.closest('.vcard');var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.v+'?rel=0&autoplay=1';f.title=b.dataset.t;f.allow='accelerometer;autoplay;encrypted-media;picture-in-picture;fullscreen';f.allowFullscreen=true;c.replaceChild(f,b);});}</script></div><!--/vid--><h3 id="t8-auto">Autoevaluación</h3>
 <p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Qué reacciones da una bisagra que no soporta carga axial?</summary><div class="inner"><p>Dos fuerzas perpendiculares a su eje y los momentos que impidan girar fuera de su eje; ninguna fuerza a lo largo del eje.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Por qué conviene tomar momentos en la articulación?</summary><div class="inner"><p>Porque sus dos componentes de reacción tienen brazo nulo y desaparecen de la ecuación.</p></div></details>
 </section>
-<nav class="pager" aria-label="Páginas"><a href="tema-07.html"><small>← Anterior</small>T7 · Dinámica y estática del sólido rígido</a><a class="nx" href="tema-09.html"><small>Siguiente →</small>T9 · Estática de fluidos</a></nav>
+<nav class="pager" aria-label="Páginas"><a href="tema-07.html"><small>← Anterior</small>T7 · Dinámica del sólido rígido. Sistemas de fuerzas</a><a class="nx" href="tema-09.html"><small>Siguiente →</small>T9 · Estática de fluidos</a></nav>
 <p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Física I (GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>
 </main>
 </div>

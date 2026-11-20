@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T10 Óptica geométrica · Física II · Apuntes</title>
+<meta name="description" content="Física II (GIEyA): tema 10, Óptica geométrica">
+
+
+<script>window.MathJax={loader:{load:['ui/lazy']},tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<script src="asig-nav.js" defer></script>
+
+<style id="lectura">
+@media screen{
+:root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
+body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
+figure.fig{margin-block:34px}
+.toc a{font-size:16.5px;padding:8px 0 8px 10px}
+svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
+details>summary{line-height:1.7;padding-block:.5em}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
+}
+</style>
+
+<script>(function(){try{var d=document.documentElement,s=localStorage,p=s.getItem("apuntes-piel");if(p==="min")d.setAttribute("data-piel","min");var t=s.getItem("apuntes-tema");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);var f=s.getItem("apuntes-fondo");if(f)d.setAttribute("data-fondo",f);}catch(e){}})();</script>
+<link rel="stylesheet" href="piel.css?v=4">
+<script src="piel.js?v=4" defer></script>
+<script src="sugerencias.js?v=2" defer></script>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#b4232f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Física II">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+<script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en los cursos <time datetime="2021-09">2021/22</time> y <time datetime="2024-01">2023/24</time> (apuntes y exámenes) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Física II</a><span class="sep">›</span><span>UD4 · Óptica</span><span class="sep">›</span><span>T10 · Óptica geométrica</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">UD1 · Electrostática y continua</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Campo electrostático</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Potencial electrostático y energía</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conductores, condensadores y dieléctricos</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Corriente continua y circuitos</a><div class="grp">UD2 · Magnetismo y alterna</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Campo magnético</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Inducción electromagnética</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Magnetismo en la materia</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Corriente alterna</a><div class="grp">UD3 · Ondas</div><a href="tema-09.html" style="--tc:var(--c2)">T9 Movimiento ondulatorio y ondas</a><div class="grp">UD4 · Óptica</div><a href="tema-10.html" class="on" aria-current="page" style="--tc:var(--c3)">T10 Óptica geométrica</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Óptica física</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Teoría de examen respondida (el 30 %)</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Las hojas oficiales con resultado</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
+<div class="sh"><span aria-hidden="true" class="badge">10</span><div class="shx"><p class="kick">UD4 · Óptica · Tema 10</p><h2 id="t10">Óptica geométrica</h2><div class="tags"><span class="tag">UD4 · Óptica</span><span class="tag">Segundo parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> manejar la reflexión y la refracción, la reflexión total, los espejos y las lentes delgadas con el convenio de signos, y resolver sistemas de varias superficies.</p>
+<p class="lede">La <b>óptica geométrica</b> sustituye la onda por un <b>rayo</b>: una línea que marca por dónde viaja la energía. Vale mientras los objetos sean mucho mayores que la longitud de onda (si no, hay difracción y hace falta el tema 11).</p>
+<p class="run"><b>Índice de refracción:</b> \(n=c/v\): cuánto más lenta va la luz en ese medio que en el vacío. Aire \(n\approx1\); agua 1,33; vidrio 1,5. Al cambiar de medio, la frecuencia <b>no cambia</b>, pero \(\lambda\) y \(v\) sí.</p>
+<p class="run"><b>Reflexión:</b> \(\theta_i=\theta_r\). <b>Refracción (Snell):</b> \(n_1\operatorname{sen}\theta_1=n_2\operatorname{sen}\theta_2\). Al pasar a un medio más denso (n mayor) el rayo <b>se acerca</b> a la normal.</p>
+<p class="run"><b>Reflexión total:</b> solo de medio denso a menos denso. El ángulo límite cumple \(\operatorname{sen}\theta_L=n_2/n_1\); por encima de él no hay rayo refractado. Es el principio de la <b>fibra óptica</b>.</p>
+<p class="run"><b>Espejos esféricos:</b> \(f=R/2\) y \(\frac1{s§}+\frac1s=\frac1f\). <b>Lentes delgadas:</b> \(\frac1{s§}-\frac1s=\frac1f\) con \(\frac1f=(n-1)\left(\frac1{R_1}-\frac1{R_2}\right)\) (ecuación del constructor). <b>Aumento:</b> \(m=y§/y=-s§/s\) en lentes.</p>
+</div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 10 <span class="src">6 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">n</td><td>Índice de refracción, c/v</td><td class="u">adimensional; agua 1,33</td></tr><tr><td class="sym">θ_L</td><td>Ángulo límite de reflexión total</td><td class="u">sen θ_L = n₂/n₁</td></tr><tr><td class="sym">s, s&#8242;</td><td>Distancia objeto y distancia imagen</td><td class="u">m; signo según convenio</td></tr><tr><td class="sym">f</td><td>Distancia focal</td><td class="u">m; f = R/2 en espejos</td></tr><tr><td class="sym">P</td><td>Potencia de una lente, 1/f</td><td class="u">dioptrías (m⁻¹)</td></tr><tr><td class="sym">m</td><td>Aumento lateral y&#8242;/y</td><td class="u">adimensional; m&lt;0 = invertida</td></tr></table></div></div></details>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">El convenio de signos, que es donde se falla</p><p class="lede">Casi todos los fallos en los problemas de espejos y lentes no son de fórmula, sino de <b>signo</b>. El convenio habitual (DIN) coloca el origen en el vértice de la superficie y toma la luz viajando de izquierda a derecha:</p>
+<ul><li><b>Distancias a la izquierda del vértice: negativas.</b> Un objeto real siempre está delante, así que \(s&lt;0\).</li><li><b>Distancias a la derecha: positivas.</b> Una imagen real en una lente sale detrás, \(s§&gt;0\).</li><li>Alturas hacia arriba positivas: si sale \(y§&lt;0\), la imagen está <b>invertida</b>.</li><li>Radio \(R\) positivo si el centro de curvatura queda a la derecha del vértice.</li></ul>
+<div class="box trap deepnote"><b>Cuidado.</b> Si te dan la distancia objeto como un número positivo («un objeto a 30 cm de la lente»), tienes que meterlo en la fórmula como \(s=-30\) cm. Es el error más repetido en examen.</div>
+<p class="ft">Cómo interpretar el resultado</p><p>Una vez despejada \(s§\), la lectura es inmediata: si \(s§&gt;0\) en una lente la imagen es <b>real</b> (se recoge en una pantalla) y está detrás; si \(s§&lt;0\) es <b>virtual</b> y está del lado del objeto. En un espejo es al revés: la imagen real se forma delante, donde está la luz.</p>
+<p>El aumento \(m\) remata la descripción: su signo dice si está derecha o invertida y su valor absoluto si es mayor o menor que el objeto. Un problema bien resuelto termina siempre con una frase del tipo «imagen real, invertida y reducida a la mitad», no solo con un número.</p>
+</div><!--/amp1--><!--manim:fis2-t10--><figure class="fig manim-fig" id="anim-fis2-t10"><p class="ft">Animación · Lente convergente</p><div class="manim" data-anim="fis2-t10"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t10-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Del frente de onda al rayo</h4>
+<div class="box key deepnote"><b>Idea clave.</b> un <b>rayo</b> es la línea perpendicular al frente de onda. La óptica geométrica es el límite de la óptica ondulatoria cuando \(\lambda\to0\) frente al tamaño de los objetos.</div>
+<p>Todo el tema sale de un único principio, el <b>principio de Fermat</b>: entre dos puntos, la luz sigue el camino que hace estacionario el tiempo de recorrido. De ahí se deducen tanto la ley de la reflexión como la de Snell, sin postular ninguna de las dos.</p>
+<details class="dem"><summary><span class="pn">∴</span>Snell a partir de Fermat</summary><div class="inner"><p>Sea un rayo que va de \(A\) (medio 1) a \(B\) (medio 2) cruzando la frontera en un punto a distancia \(x\) del pie de la perpendicular desde A. El tiempo es</p>
+<div class="eqd">\[t(x)=\frac{\sqrt{a^2+x^2}}{v_1}+\frac{\sqrt{b^2+(d-x)^2}}{v_2}\]</div>
+<p>Imponiendo \(dt/dx=0\):</p>
+<div class="eqd">\[\frac{x}{v_1\sqrt{a^2+x^2}}=\frac{d-x}{v_2\sqrt{b^2+(d-x)^2}}\;\Longrightarrow\;\frac{\operatorname{sen}\theta_1}{v_1}=\frac{\operatorname{sen}\theta_2}{v_2}\]</div>
+<p>y como \(v=c/n\), queda \(n_1\operatorname{sen}\theta_1=n_2\operatorname{sen}\theta_2\).</p></div></details>
+<h4><span class="hn">2</span>Reflexión total y fibra óptica</h4>
+<p>Al pasar de un medio denso a otro menos denso (\(n_1&gt;n_2\)), el rayo se <b>aleja</b> de la normal. Existe un ángulo de incidencia para el que el refractado sale rasante (\(\theta_2=90^\circ\)): es el <b>ángulo límite</b>.</p>
+<div class="eqd">\[\operatorname{sen}\theta_L=\frac{n_2}{n_1}\qquad (n_1>n_2)\]</div>
+<p>Por encima de \(\theta_L\) no hay rayo refractado: toda la energía se refleja. En una fibra óptica el núcleo tiene \(n_1\) ligeramente mayor que la cubierta \(n_2\), y la luz que entra dentro del <b>cono de aceptación</b> queda atrapada rebotando sin pérdidas por refracción.</p>
+<div class="eqd">\[\mathrm{AN}=n_0\operatorname{sen}\theta_{\max}=\sqrt{n_1^2-n_2^2}\]</div>
+<div class="box trap deepnote"><b>Cuidado.</b> La reflexión total <b>solo</b> ocurre yendo de mayor a menor índice. Si en un problema te sale \(\operatorname{sen}\theta_L&gt;1\), es que has puesto los índices al revés.</div>
+<h4><span class="hn">3</span>Dioptrio esférico: la fórmula madre</h4>
+<p>Una superficie esférica que separa dos medios cumple, en aproximación paraxial (rayos poco inclinados, \(\operatorname{sen}\theta\approx\theta\)):</p>
+<div class="eqd">\[\frac{n_2}{s\,\prime}-\frac{n_1}{s}=\frac{n_2-n_1}{R}\]</div>
+<p>De aquí sale todo lo demás. Si \(n_1=n_2=n\) y la superficie es reflectante se obtiene el <b>espejo esférico</b>; si se encadenan dos dioptrios separados un espesor despreciable, la <b>lente delgada</b>.</p>
+<ul><li><b>Focal objeto</b> \(f=-n_1R/(n_2-n_1)\): el punto cuyos rayos salen paralelos.</li><li><b>Focal imagen</b> \(f'=n_2R/(n_2-n_1)\): donde convergen los rayos que entran paralelos.</li><li>Se cumple siempre \(f'/f=-n_2/n_1\).</li></ul>
+<!--manim:fis2-t10b--><figure class="fig manim-fig" id="anim-fis2-t10b"><p class="ft">Animación · Espejo cóncavo</p><div class="manim" data-anim="fis2-t10b"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
+<h4><span class="hn">4</span>Espejos esféricos</h4>
+<div class="eqd">\[\frac{1}{s\,\prime}+\frac{1}{s}=\frac{1}{f}=\frac{2}{R}\qquad m=-\frac{s\,\prime}{s}\]</div>
+<ul><li><b>Cóncavo</b> (\(f&gt;0\) con el convenio de centro a la izquierda): converge. Da imagen real e invertida si el objeto está más allá del foco; virtual, derecha y aumentada si está dentro.</li><li><b>Convexo</b>: diverge siempre. Imagen virtual, derecha y reducida, pase lo que pase. Es el espejo retrovisor y el de vigilancia.</li></ul>
+<p><b>Los tres rayos de construcción</b> para dibujarlo sin cuentas: el paralelo al eje sale por el foco; el que pasa por el foco sale paralelo; el que va al centro de curvatura vuelve sobre sí mismo.</p>
+<h4><span class="hn">5</span>Lentes delgadas y potencia</h4>
+<div class="eqd">\[\frac{1}{s\,\prime}-\frac{1}{s}=\frac{1}{f\,\prime}\qquad \frac{1}{f\,\prime}=(n-1)\left(\frac{1}{R_1}-\frac{1}{R_2}\right)\]</div>
+<p>La segunda es la <b>ecuación del constructor de lentes</b>: relaciona la focal con la geometría y el material. La <b>potencia</b> \(P=1/f'\) se mide en dioptrías (m⁻¹) y es la magnitud que aparece en una receta de gafas: −2 dioptrías es una lente divergente de 50 cm de focal.</p>
+<ul><li><b>Convergente</b> (\(f'&gt;0\), más gruesa en el centro): imagen real e invertida si el objeto está más lejos del foco; <b>lupa</b> (virtual, derecha, aumentada) si está dentro.</li><li><b>Divergente</b> (\(f'&lt;0\)): siempre imagen virtual, derecha y reducida.</li></ul>
+<details class="dem"><summary><span class="pn">∴</span>Lentes en contacto</summary><div class="inner"><p>Dos lentes delgadas pegadas se comportan como una sola de potencia la suma:</p>
+<div class="eqd">\[P_{\text{eq}}=P_1+P_2\qquad\Longleftrightarrow\qquad \frac{1}{f_{\text{eq}}}=\frac{1}{f_1}+\frac{1}{f_2}\]</div>
+<p>Si están separadas una distancia \(d\), ya no vale: hay que aplicar la fórmula a la primera, tomar su imagen como objeto de la segunda y repetir.</p></div></details>
+<h4><span class="hn">6</span>Sistemas de varias superficies: el método</h4>
+<ol class="pasos"><li>Resuelve la <b>primera</b> superficie o lente con el objeto real dado.</li><li>La imagen obtenida es el <b>objeto de la siguiente</b>. Traslada el origen al nuevo vértice: la nueva \(s\) es la anterior \(s'\) menos la separación.</li><li>Si la imagen intermedia cae <b>detrás</b> de la segunda superficie, es un <b>objeto virtual</b> y entra con el signo cambiado. No es un error: es un caso legítimo.</li><li>Repite hasta la última. El <b>aumento total</b> es el producto: \(m=m_1m_2\cdots m_n\).</li></ol>
+<div class="box trap deepnote"><b>Cuidado.</b> No se pueden sumar distancias de dos superficies distintas sin cambiar el origen. Casi todos los fallos de los problemas de dos lentes vienen de ahí.</div>
+<h4><span class="hn">7</span>El ojo y los instrumentos</h4>
+<ul><li><b>Ojo normal:</b> enfoca desde el infinito (punto remoto) hasta unos 25 cm (punto próximo). El cristalino cambia su focal: <b>acomodación</b>.</li><li><b>Miopía:</b> el ojo es demasiado largo y el remoto está a distancia finita. Se corrige con lente <b>divergente</b> de focal igual a esa distancia.</li><li><b>Hipermetropía y presbicia:</b> el próximo está demasiado lejos. Lente <b>convergente</b>.</li><li><b>Lupa:</b> aumento angular \(M=25\,\text{cm}/f\) con la imagen en el infinito.</li><li><b>Microscopio:</b> \(M=-\dfrac{L\cdot 25}{f_{ob}f_{oc}}\), con \(L\) la longitud del tubo.</li><li><b>Telescopio:</b> \(M=-f_{ob}/f_{oc}\): interesa objetivo de focal larga y ocular corta.</li></ul>
+</div><!--/deep--><h3 id="t10-ejercicios">Ejercicios tipo, paso a paso</h3><p>Las cuentas están hechas; intenta el planteamiento antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Reflexión total en una fibra: núcleo n₁ = 1,50 y cubierta n₂ = 1,45. ¿Ángulo límite y apertura numérica?</summary><div class="inner"><p>\(\operatorname{sen}\theta_L=1{,}45/1{,}50=0{,}967\Rightarrow\theta_L=75{,}2^\circ\) (medido desde la normal a la pared del núcleo).</p>
+<p>Apertura numérica: \(\mathrm{AN}=\sqrt{1{,}50^2-1{,}45^2}=\sqrt{0{,}1475}=0{,}384\), es decir un cono de aceptación de \(\theta_{\max}=22{,}6^\circ\) desde el aire.</p></div></details><details class="paso"><summary><span class="pn">2</span>Objeto a 30 cm de una lente convergente de 10 cm de focal. ¿Dónde está la imagen y cómo es?</summary><div class="inner"><p>Con el convenio, \(s=-30\) cm y \(f§=+10\) cm:</p>
+<div class="eqd">\[\frac{1}{s\,\prime}=\frac{1}{f\,\prime}+\frac{1}{s}=\frac{1}{10}-\frac{1}{30}=\frac{2}{30}\;\Longrightarrow\;s\,\prime=+15\ \text{cm}\]</div>
+<p>\(m=-s§/s=-15/(-30)=+0{,}5\)… ojo: con el convenio DIN el aumento es \(m=s§/s=15/(-30)=-0{,}5\). Imagen <b>real</b> (detrás), <b>invertida</b> y <b>reducida a la mitad</b>.</p></div></details><details class="paso"><summary><span class="pn">3</span>La misma lente con el objeto a 5 cm (dentro del foco): la lupa.</summary><div class="inner"><p>\(s=-5\) cm: \(1/s§=1/10-1/5=-1/10\Rightarrow s§=-10\) cm. Negativo: imagen <b>virtual</b>, del mismo lado que el objeto. \(m=s§/s=(-10)/(-5)=+2\): <b>derecha y doble de grande</b>. Eso es exactamente lo que hace una lupa.</p></div></details><details class="paso"><summary><span class="pn">4</span>Espejo convexo de R = 2 m (retrovisor). Un coche a 10 m: ¿dónde se ve y de qué tamaño?</summary><div class="inner"><p>Espejo convexo: \(f=R/2=-1\) m con el convenio (centro detrás). \(1/s§=1/f-1/s=-1-(-1/10)\)… operando con \(s=-10\) m: \(1/s§ = -1 + 0{,}1 = -0{,}9 \Rightarrow s§=-1{,}11\) m.</p>
+<p>Imagen <b>virtual</b> (detrás del espejo), a poco más de un metro, con \(m=-s§/s=-(-1{,}11)/(-10)=-0{,}11\): muy reducida. Por eso el retrovisor avisa de que «los objetos están más cerca de lo que parecen».</p></div></details><details class="paso"><summary><span class="pn">5</span>Gafas para un miope cuyo punto remoto está a 50 cm.</summary><div class="inner"><p>Hay que llevar el infinito hasta 50 cm: \(s=-\infty\), \(s§=-0{,}5\) m. Entonces \(1/f§=1/s§-1/s=-2-0=-2\) m⁻¹.</p>
+<p>Lente <b>divergente de −2 dioptrías</b> (focal 50 cm).</p></div></details>
+<h3 id="t10-trucos">Trucos de examen y errores típicos</h3><div class="deep"><div class="box key deepnote"><b>Truco.</b> Antes de tocar la calculadora, <b>dibuja los tres rayos</b>. El dibujo te dice ya si la imagen es real o virtual, derecha o invertida, mayor o menor. Si la cuenta contradice al dibujo, la cuenta está mal.</div><div class="box key deepnote"><b>Truco.</b> Objeto real siempre con \(s&lt;0\). Apúntalo en el margen del examen antes de empezar: es el signo que más puntos cuesta.</div><div class="box key deepnote"><b>Truco.</b> Lectura instantánea del resultado en una <b>lente</b>: \(s§&gt;0\) → real, detrás, invertida. \(s§&lt;0\) → virtual, delante, derecha. En un <b>espejo</b> es justo al revés, porque la luz vuelve por donde vino.</div><div class="box key deepnote"><b>Truco.</b> Si el objeto está <b>dentro</b> del foco de una convergente, ya sabes el resultado sin calcular: virtual, derecha y aumentada. Es la lupa.</div><div class="box key deepnote"><b>Truco.</b> Convexo y divergente <b>nunca</b> dan imagen real: siempre virtual, derecha y reducida. Si te sale otra cosa, revisa el signo de \(f\).</div><div class="box key deepnote"><b>Truco.</b> En dos lentes, escribe en una tabla \(s_1, s_1§, s_2, s_2§\) y la separación. El aumento total es el <b>producto</b>, nunca la suma.</div><div class="box trap deepnote"><b>Error típico.</b> Meter la distancia objeto como número positivo. «Un objeto a 30 cm» es \(s=-30\) cm.</div><div class="box trap deepnote"><b>Error típico.</b> Olvidar cambiar el origen al pasar a la segunda lente: la nueva \(s\) es la \(s§\) anterior menos la separación, no la \(s§\) a secas.</div><div class="box trap deepnote"><b>Error típico.</b> Buscar reflexión total de aire a vidrio. Solo existe de <b>denso a menos denso</b>; si \(\operatorname{sen}\theta_L&gt;1\) has invertido los índices.</div><div class="box trap deepnote"><b>Error típico.</b> Dar la potencia en dioptrías con la focal en centímetros. \(P=1/f§\) exige metros: 50 cm son 2 dioptrías, no 0,02.</div></div>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-09.html"><small>← Anterior</small>T9 · Movimiento ondulatorio y ondas</a><a class="nx" href="tema-11.html"><small>Siguiente →</small>T11 · Óptica física</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Física II (GIEyA) · Datos tomados en los cursos <time datetime="2021-09">2021/22</time> y <time datetime="2024-01">2023/24</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+<script src="anim-manim.js?v=31215" defer></script>
+<script src="anim-temas.js?v=31215" defer></script>
+</body>
+</html>

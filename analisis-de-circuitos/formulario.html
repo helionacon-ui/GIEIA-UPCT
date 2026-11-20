@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -51,16 +114,13 @@ details>summary{line-height:1.7;padding-block:.5em}
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
 <script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
-
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body>
 <div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, boletines y prácticas) · página creada en noviembre de 2026</p></div>
 <div class="crumb"><a href="index.html">Análisis de Circuitos</a><span class="sep">›</span><span>Practicar</span><span class="sep">›</span><span>Formulario</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
 <div class="wrap" id="top">
-<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Primer parcial · continua y fasores</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes eléctricas</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos de corriente continua: reducción de redes</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Teoremas fundamentales en continua</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Ondas periódicas, señal senoidal y fasor</a><a href="tema-05.html" style="--tc:var(--c6)">T5 R, L y C en alterna: impedancia y admitancia</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Potencia en corriente alterna</a><div class="grp">Segundo parcial · alterna, transitorios y trifásica</div><a href="tema-07.html" style="--tc:var(--c8)">T7 Teoremas fundamentales en alterna</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Régimen transitorio</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Sistemas trifásicos equilibrados</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Potencia en sistemas trifásicos</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)" class="on" aria-current="page">Formulario</a></nav>
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Primer parcial · continua y fasores</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes eléctricas</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos de corriente continua: reducción de redes</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Teoremas fundamentales en continua</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Ondas periódicas, señal senoidal y fasor</a><a href="tema-05.html" style="--tc:var(--c6)">T5 R, L y C en alterna: impedancia y admitancia</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Potencia en corriente alterna</a><div class="grp">Segundo parcial · alterna, transitorios y trifásica</div><a href="tema-07.html" style="--tc:var(--c8)">T7 Teoremas fundamentales en alterna</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Régimen transitorio</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Sistemas trifásicos equilibrados</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Potencia en sistemas trifásicos</a><div class="grp">Cuadripolos y elementos no lineales</div><a href="tema-11.html" style="--tc:var(--c4)">T11 Redes de dos puertas (cuadripolos)</a><a href="tema-12.html" style="--tc:var(--c5)">T12 Elementos no lineales: diodos y transistores</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" class="on" aria-current="page" style="--tc:var(--c8)">Formulario</a></nav>
 <main>
 <section class="sec" style="--tc:var(--c8);--tcs:var(--c8s)"><div class="sh"><span aria-hidden="true" class="badge">∑</span><div class="shx"><p class="kick">Practicar</p><h2 id="form">Formulario</h2></div></div><div class="fcards"><div class="box"><h4>Magnitudes (T1)</h4><ul><li>\(i=dq/dt\); \(p=vi\); \(R=\rho l/S\); \(G=1/R\)</li><li>\(V=RI\); \(P=VI=I^2R=V^2/R\)</li><li>\(i_C=C\,dv/dt\), \(w=\tfrac12Cv^2\)</li><li>\(v_L=L\,di/dt\), \(w=\tfrac12Li^2\)</li><li>Continua: C = abierto, L = cable</li></ul></div><div class="box"><h4>Redes en continua (T2)</h4><ul><li>Serie \(R_{eq}=\sum R\) · paralelo \(\left(\sum1/R\right)^{-1}\)</li><li>Dos: \(\dfrac{R_1R_2}{R_1+R_2}\)</li><li>Divisor V: \(V_i=V\dfrac{R_i}{\sum R}\)</li><li>Divisor I: \(I_1=I\dfrac{R_2}{R_1+R_2}\)</li><li>Fuentes: \(E\leftrightarrow I=E/R\) (serie ↔ paralelo)</li><li>Kennelly: \(R_a=\dfrac{R_{ab}R_{ca}}{\sum R_\triangle}\); iguales \(R_\triangle=3R_Y\)</li></ul></div><div class="box"><h4>Teoremas (T3, T7)</h4><ul><li>Mallas: \([R][I]=[E]\) simétrica</li><li>Nudos: \(\left(\sum G\right)V_a-\sum GV_b=\sum I\)</li><li>Thévenin: \(V_{th}\) en vacío, \(R_{th}\) con fuentes anuladas</li><li>Norton: \(I_N=V_{th}/R_{th}\)</li><li>Millman: \(V=\dfrac{\sum E_i/R_i}{\sum1/R_i}\)</li><li>MTP: \(R_L=R_{th}\) (alterna: \(\overline Z_L=\overline Z_{th}^*\)), \(P=\dfrac{V_{th}^2}{4R_{th}}\)</li></ul></div><div class="box"><h4>Fasores (T4)</h4><ul><li>\(\omega=2\pi f\); \(V=V_m/\sqrt2\)</li><li>\(v=V_m\operatorname{sen}(\omega t+\varphi)\Rightarrow\overline V=V\angle\varphi\)</li><li>\(d/dt\to j\omega\); \(\int\to1/j\omega\)</li><li>Polar para ×÷, binómica para +−</li><li>\(k_f=1{,}11\), \(k_c=\sqrt2\); medio semiperiodo \(2V_m/\pi\)</li></ul></div><div class="box"><h4>Impedancia (T5)</h4><ul><li>\(X_L=\omega L\), \(X_C=1/\omega C\)</li><li>\(\overline Z=R+j(X_L-X_C)\); \(\varphi=\arctan(X/R)\)</li><li>\(\overline Y=1/\overline Z=G+jB\)</li><li>\(V^2=V_R^2+(V_L-V_C)^2\)</li><li>Resonancia \(f_0=\dfrac1{2\pi\sqrt{LC}}\), \(Q=\dfrac{\omega_0L}{R}\)</li></ul></div><div class="box"><h4>Potencia (T6)</h4><ul><li>\(P=VI\cos\varphi\) (W), \(Q=VI\operatorname{sen}\varphi\) (var), \(S=VI\) (VA)</li><li>\(\overline S=\overline V\,\overline I^*=P+jQ\); \(P=I^2R\), \(Q=I^2X\)</li><li>Boucherot: se suman P y Q, nunca S</li><li>\(\cos\varphi=P/S\)</li><li>Corrección: \(Q_C=P(\tan\varphi_1-\tan\varphi_2)\), \(C=\dfrac{Q_C}{\omega V^2}\)</li></ul></div><div class="box"><h4>Transitorios (T8)</h4><ul><li>\(v_C\) e \(i_L\) NO saltan</li><li>1.er orden: \(x=x_\infty+[x_0-x_\infty]e^{-t/\tau}\)</li><li>\(\tau=RC\) o \(L/R\); 63,2 % en τ, 99 % en 5τ</li><li>2.º orden: \(\alpha=\dfrac{R}{2L}\), \(\omega_0=\dfrac1{\sqrt{LC}}\)</li><li>\(\alpha>\omega_0\) sobre · \(=\) crítico (\(R_c=2\sqrt{L/C}\)) · \(<\) sub con \(\omega_d=\sqrt{\omega_0^2-\alpha^2}\)</li></ul></div><div class="box"><h4>Trifásica (T9-T10)</h4><ul><li>Estrella: \(V_L=\sqrt3V_F\angle{+}30^\circ\), \(I_L=I_F\)</li><li>Triángulo: \(V_L=V_F\), \(I_L=\sqrt3I_F\angle{-}30^\circ\)</li><li>\(\overline Z_Y=\overline Z_\triangle/3\)</li><li>\(P=\sqrt3V_LI_L\cos\varphi=3I_F^2R\)</li><li>Aarón: \(P=W_1+W_2\), \(Q=\sqrt3(W_1-W_2)\)</li><li>\(C_\triangle=\dfrac{Q_C}{3\omega V_L^2}\), \(C_Y=\dfrac{Q_C}{\omega V_L^2}\)</li></ul></div><div class="box"><h4>Números complejos</h4><ul><li>\(a+jb=A\angle\theta\): \(A=\sqrt{a^2+b^2}\), \(\theta=\arctan(b/a)\)</li><li>\(A\angle\alpha\cdot B\angle\beta=AB\angle(\alpha+\beta)\)</li><li>\(\dfrac{A\angle\alpha}{B\angle\beta}=\dfrac AB\angle(\alpha-\beta)\)</li><li>\(j=1\angle90^\circ\), \(j^2=-1\), \(1/j=-j\)</li><li>Conjugado: \(\overline Z^*=R-jX\)</li></ul></div></div></section><nav class="pager" aria-label="Páginas"><a href="laboratorio.html"><small>← Anterior</small>Prácticas</a><a class="nx" href="index.html"><small>Siguiente →</small>Portada</a></nav><p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Análisis de Circuitos (GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, boletines y prácticas) · página creada en noviembre de 2026</p>
 </main>

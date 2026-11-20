@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -51,30 +114,27 @@ details>summary{line-height:1.7;padding-block:.5em}
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
 <script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
-
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body>
 <div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p></div>
 <div class="crumb"><a href="index.html">Física I</a><span class="sep">›</span><span>Parcial 2</span><span class="sep">›</span><span>T9 · Estática de fluidos</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
 <div class="wrap" id="top">
-<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Parcial 1</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes, unidades y vectores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Cinemática y movimiento relativo</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Dinámica, fuerzas de inercia y gravitación</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Trabajo y energía</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Movimiento oscilatorio</a><div class="grp">Parcial 2</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Sistemas de partículas</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Dinámica y estática del sólido rígido</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Estática del sólido rígido</a><a href="tema-09.html" style="--tc:var(--c2)" class="on" aria-current="page">T9 Estática de fluidos</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Equilibrio termodinámico y temperatura</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Primer y segundo principio de la termodinámica</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones teóricas de examen</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Recopilación por temas</a><a href="laboratorio.html" style="--tc:var(--c7)">Laboratorio y prácticas</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Parcial 1</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes, unidades y vectores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Cinemática y movimiento relativo</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Dinámica, fuerzas de inercia y gravitación</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Trabajo y energía</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Movimiento oscilatorio</a><div class="grp">Parcial 2</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Sistemas de partículas</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Dinámica del sólido rígido. Sistemas de fuerzas</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Estática del sólido rígido</a><a href="tema-09.html" style="--tc:var(--c2)" class="on" aria-current="page">T9 Estática de fluidos</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Equilibrio termodinámico y temperatura</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Primer y segundo principio de la termodinámica</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones teóricas de examen</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Recopilación por temas</a><a href="laboratorio.html" style="--tc:var(--c7)">Laboratorio y prácticas</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
 <main>
 <section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
 <div class="sh"><span aria-hidden="true" class="badge">9</span><div class="shx"><p class="kick">Parcial 2 · Tema 9</p><h2 id="t9">Estática de fluidos</h2><div class="tags"><span class="tag">Parcial 2</span><span class="tag">Problemas</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Calcular presiones, fuerzas sobre superficies y el empuje de Arquímedes.</p><p>La <b>presión</b> es la fuerza normal por unidad de superficie que un fluido en reposo ejerce sobre cualquier superficie; se mide en Pa (1 atm = 101 325 Pa = 760 mmHg = 1,013 bar). Aunque se debe al peso de la columna de fluido, actúa en todas direcciones.</p>
-<p><b>Pascal</b>: un cambio de presión se transmite íntegro a todo el líquido (prensa hidráulica). <b>Paradoja hidrostática</b>: la presión solo depende de la profundidad, no de la forma del recipiente (vasos comunicantes). <b>Torricelli</b> midió la presión atmosférica con la columna de 760 mm de mercurio; el manómetro de tubo abierto usa \(p=p_{atm}+\rho gh\).</p>
-<p><b>Arquímedes</b>: empuje vertical hacia arriba igual al peso del fluido desalojado. Se hunde si \(\rho_c>\rho_f\); flota con fracción sumergida \(\rho_c/\rho_f\).</p></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Calcular presiones, fuerzas sobre superficies y el empuje de Arquímedes.</p><p class="lede">La <b>presión</b> es la fuerza normal por unidad de superficie que un fluido en reposo ejerce sobre cualquier superficie; se mide en Pa (1 atm = 101 325 Pa = 760 mmHg = 1,013 bar). Aunque se debe al peso de la columna de fluido, actúa en todas direcciones.</p>
+<p class="run"><b>Pascal:</b> un cambio de presión se transmite íntegro a todo el líquido (prensa hidráulica). <b>Paradoja hidrostática</b>: la presión solo depende de la profundidad, no de la forma del recipiente (vasos comunicantes). <b>Torricelli</b> midió la presión atmosférica con la columna de 760 mm de mercurio; el manómetro de tubo abierto usa \(p=p_{atm}+\rho gh\).</p>
+<p class="run"><b>Arquímedes:</b> empuje vertical hacia arriba igual al peso del fluido desalojado. Se hunde si \(\rho_c>\rho_f\); flota con fracción sumergida \(\rho_c/\rho_f\).</p></div>
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Más profundo, más presión</div><svg viewBox="0 0 560 262" role="img" aria-label="Presión en un líquido en reposo" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="100" y="56" width="170" height="170" rx="0" fill="var(--c2,#3a63c4)" stroke="none" stroke-width="1.5" opacity="0.14"/><line x1="100" y1="36" x2="100" y2="226" stroke="var(--fg)" stroke-width="2.4" opacity="1" stroke-linecap="round"/><line x1="100" y1="226" x2="270" y2="226" stroke="var(--fg)" stroke-width="2.4" opacity="1" stroke-linecap="round"/><line x1="270" y1="226" x2="270" y2="36" stroke="var(--fg)" stroke-width="2.4" opacity="1" stroke-linecap="round"/><line x1="100" y1="56" x2="270" y2="56" stroke="var(--c2,#3a63c4)" stroke-width="2" opacity="1" stroke-linecap="round"/><line x1="150" y1="26" x2="150" y2="47.7" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="150,54 147.1,47.6 152.9,47.6" fill="var(--muted)"/><line x1="200" y1="26" x2="200" y2="47.7" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="200,54 197.1,47.6 202.9,47.6" fill="var(--muted)"/><line x1="250" y1="26" x2="250" y2="47.7" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="250,54 247.1,47.6 252.9,47.6" fill="var(--muted)"/><text x="150" y="22" fill="var(--muted)" font-size="13.5" text-anchor="middle" font-weight="700" opacity="1">p₀</text><line x1="100" y1="84" x2="83.1" y2="84" stroke="var(--tc,var(--accent))" stroke-width="2.4" opacity="1" stroke-linecap="round"/><polygon points="75.9,84 83.2,80.7 83.2,87.3" fill="var(--tc,var(--accent))"/><line x1="100" y1="120" x2="70.2" y2="120" stroke="var(--tc,var(--accent))" stroke-width="2.4" opacity="1" stroke-linecap="round"/><polygon points="63,120 70.3,116.7 70.3,123.3" fill="var(--tc,var(--accent))"/><line x1="100" y1="156" x2="57.2" y2="156" stroke="var(--tc,var(--accent))" stroke-width="2.4" opacity="1" stroke-linecap="round"/><polygon points="50,156 57.3,152.7 57.3,159.3" fill="var(--tc,var(--accent))"/><line x1="100" y1="192" x2="44.2" y2="192" stroke="var(--tc,var(--accent))" stroke-width="2.4" opacity="1" stroke-linecap="round"/><polygon points="37,192 44.3,188.7 44.3,195.3" fill="var(--tc,var(--accent))"/><line x1="100" y1="56" x2="33" y2="192" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 4" opacity="1" stroke-linecap="round"/><line x1="284" y1="56" x2="284" y2="226" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><line x1="279" y1="56" x2="289" y2="56" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><line x1="279" y1="226" x2="289" y2="226" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><text x="292" y="146" fill="var(--muted)" font-size="15" text-anchor="start" font-weight="700" opacity="1">h</text><text x="330" y="64" fill="var(--tc,var(--accent))" font-size="16.5" text-anchor="start" font-weight="700" opacity="1">p = p₀ + ρ g h</text><text x="330" y="97" fill="var(--fg)" font-size="14.5" text-anchor="start" opacity="1">Crece linealmente</text><text x="330" y="119" fill="var(--fg)" font-size="14.5" text-anchor="start" opacity="1">con la profundidad.</text><text x="330" y="152" fill="var(--fg)" font-size="14.5" text-anchor="start" opacity="1">Actúa ⟂ a cualquier</text><text x="330" y="174" fill="var(--fg)" font-size="14.5" text-anchor="start" opacity="1">pared y en todas</text><text x="330" y="196" fill="var(--fg)" font-size="14.5" text-anchor="start" opacity="1">direcciones.</text><text x="330" y="229" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">No depende de la forma</text><text x="330" y="251" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">del recipiente.</text></svg><figcaption>Cada flecha es la fuerza por unidad de área sobre la pared. Crecen en proporción a la profundidad h porque soportan el peso de más líquido.</figcaption></figure><figure class="ill"><div class="ill-t">El empuje es el peso del líquido desalojado</div><svg viewBox="0 0 560 262" role="img" aria-label="Principio de Arquímedes" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="34" y="112" width="236" height="120" rx="0" fill="var(--c2,#3a63c4)" stroke="none" stroke-width="1.5" opacity="0.16"/><line x1="34" y1="60" x2="34" y2="232" stroke="var(--fg)" stroke-width="2.4" opacity="1" stroke-linecap="round"/><line x1="34" y1="232" x2="270" y2="232" stroke="var(--fg)" stroke-width="2.4" opacity="1" stroke-linecap="round"/><line x1="270" y1="232" x2="270" y2="60" stroke="var(--fg)" stroke-width="2.4" opacity="1" stroke-linecap="round"/><line x1="34" y1="112" x2="270" y2="112" stroke="var(--c2,#3a63c4)" stroke-width="2" opacity="1" stroke-linecap="round"/><rect x="124" y="84" width="92" height="72" rx="0" fill="var(--surface,#fff)" stroke="var(--fg)" stroke-width="2.4" opacity="1"/><rect x="124" y="112" width="92" height="44" rx="0" fill="var(--c2,#3a63c4)" stroke="none" stroke-width="1.5" opacity="0.25"/><line x1="150" y1="120" x2="150" y2="201.2" stroke="var(--warn,#b8730c)" stroke-width="3.2" opacity="1" stroke-linecap="round"/><polygon points="150,212 145.1,201 154.9,201" fill="var(--warn,#b8730c)"/><text x="158" y="206" fill="var(--warn,#b8730c)" font-size="16" text-anchor="start" font-weight="700" opacity="1">W</text><line x1="190" y1="140" x2="190" y2="74.8" stroke="var(--c6,#2c8a52)" stroke-width="3.2" opacity="1" stroke-linecap="round"/><polygon points="190,64 194.9,75 185.1,75" fill="var(--c6,#2c8a52)"/><text x="198" y="76" fill="var(--c6,#2c8a52)" font-size="16" text-anchor="start" font-weight="700" opacity="1">E</text><text x="224" y="140" fill="var(--c2,#3a63c4)" font-size="12.5" text-anchor="start" opacity="1">V sum.</text><text x="312" y="64" fill="var(--tc,var(--accent))" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">E = ρ_fl · g · V_sumergido</text><text x="312" y="97" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="600" opacity="1">Flota en equilibrio</text><text x="312" y="119" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="600" opacity="1">cuando E = W:</text><text x="312" y="152" fill="var(--warn,#b8730c)" font-size="14" text-anchor="start" font-weight="700" opacity="1">V_sum / V = ρ_cuerpo / ρ_fl</text><text x="312" y="185" fill="var(--muted)" font-size="14" text-anchor="start" opacity="1">E es el peso del fluido</text><text x="312" y="207" fill="var(--muted)" font-size="14" text-anchor="start" opacity="1">que el cuerpo desaloja.</text></svg><figcaption>Un cuerpo flotante se hunde justo lo necesario para desalojar un peso de agua igual al suyo; la fracción sumergida es el cociente de densidades.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 9 <span class="src">5 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(p,p_0\)</td><td>Presión y presión atmosférica</td><td class="u">Pa</td></tr><tr><td class="sym">\(\rho\)</td><td>Densidad</td><td class="u">kg/m³</td></tr><tr><td class="sym">\(h\)</td><td>Profundidad</td><td class="u">m</td></tr><tr><td class="sym">\(E\)</td><td>Empuje</td><td class="u">N</td></tr><tr><td class="sym">\(h_{cg}\)</td><td>Profundidad del centro de gravedad de la superficie</td><td class="u">m</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Simulador · flotación y presión con la profundidad</p><div data-sim="fluidos"></div><figcaption>Mueve los controles y observa cómo cambian las magnitudes del recuadro.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Presión y principio fundamental de la hidrostática</p><p>La presión es fuerza por unidad de área, \(p=F/A\) (pascal). En un fluido en reposo, aumenta con la profundidad: \(p=p_0+\rho g h\). Dos consecuencias: (1) todos los puntos a la <b>misma profundidad</b> y en el mismo fluido tienen la misma presión, sea cual sea la forma del recipiente; (2) la presión no depende del volumen total, solo de la altura de la columna.</p>
-<p>Atención con la presión <b>manométrica</b> (\(\rho gh\), sin sumar \(p_0\)) frente a la <b>absoluta</b>.</p><p class="ft">Pascal y Arquímedes</p><p><b>Pascal:</b> un aumento de presión en un fluido encerrado se transmite íntegro a todos sus puntos: de ahí la prensa hidráulica, \(F_2=F_1\,A_2/A_1\) (con desplazamientos inversos, de modo que el trabajo se conserva).</p>
-<p><b>Arquímedes:</b> todo cuerpo sumergido recibe un empuje vertical igual al peso del fluido desalojado, \(E=\rho_{fl}\,V_{sum}\,g\). Si la densidad del cuerpo es menor que la del fluido, flota con una fracción sumergida \(\rho_{cuerpo}/\rho_{fl}\).</p></div><!--/amp1--><!--manim:fis1-t9--><figure class="fig manim-fig" id="anim-fis1-t9"><p class="ft">Animación · Empuje de Arquímedes</p><div class="manim" data-anim="fis1-t9"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Presión y principio fundamental de la hidrostática</p><p class="lede">La presión es fuerza por unidad de área, \(p=F/A\) (pascal). En un fluido en reposo, aumenta con la profundidad: \(p=p_0+\rho g h\). Dos consecuencias: (1) todos los puntos a la <b>misma profundidad</b> y en el mismo fluido tienen la misma presión, sea cual sea la forma del recipiente; (2) la presión no depende del volumen total, solo de la altura de la columna.</p>
+<p>Atención con la presión <b>manométrica</b> (\(\rho gh\), sin sumar \(p_0\)) frente a la <b>absoluta</b>.</p><p class="ft">Pascal y Arquímedes</p><p class="run"><b>Pascal:</b> un aumento de presión en un fluido encerrado se transmite íntegro a todos sus puntos: de ahí la prensa hidráulica, \(F_2=F_1\,A_2/A_1\) (con desplazamientos inversos, de modo que el trabajo se conserva).</p>
+<p class="run"><b>Arquímedes:</b> todo cuerpo sumergido recibe un empuje vertical igual al peso del fluido desalojado, \(E=\rho_{fl}\,V_{sum}\,g\). Si la densidad del cuerpo es menor que la del fluido, flota con una fracción sumergida \(\rho_{cuerpo}/\rho_{fl}\).</p></div><!--/amp1--><!--manim:fis1-t9--><figure class="fig manim-fig" id="anim-fis1-t9"><p class="ft">Animación · Empuje de Arquímedes</p><div class="manim" data-anim="fis1-t9"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
 <!--deep--><h3 id="t9-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Presión y principio de Pascal</h4>
+<h4><span class="hn">1</span>Presión y principio de Pascal</h4>
 <p>La presión es fuerza normal por unidad de área. En un fluido en reposo es <b>la misma en todas las direcciones</b>: no hay fuerzas tangenciales, y las normales sobre un elemento triangular infinitesimal deben compensarse en cualquier orientación.</p>
 <details class="dem"><summary><span class="pn">∴</span>Ecuación fundamental \(\mathrm dp/\mathrm dz=-\rho g\)</summary><div class="inner"><ol class="pasos"><li>Una lámina de fluido de área \(A\) y espesor \(\mathrm dz\) está en equilibrio: \(pA-(p+\mathrm dp)A-\rho gA\,\mathrm dz=0\).</li><li>Simplificando:</li></ol>
 <div class="eqd">\[\frac{\mathrm dp}{\mathrm dz}=-\rho g\]</div>
@@ -82,12 +142,12 @@ details>summary{line-height:1.7;padding-block:.5em}
 <details class="dem"><summary><span class="pn">∴</span>Atmósfera isoterma</summary><div class="inner"><ol class="pasos"><li>Gas ideal: \(\rho=pM/RT\). Sustituimos: \(\dfrac{\mathrm dp}{p}=-\dfrac{Mg}{RT}\,\mathrm dz\).</li><li>Integrando:</li></ol>
 <div class="eqd">\[p=p_0\,e^{-z/H},\qquad H=\frac{RT}{Mg}\approx8{,}4\ \mathrm{km}\ \ (288\ \mathrm K)\]</div>
 <p>Cada \(\approx5{,}8\) km la presión se reduce a la mitad.</p></div></details>
-<h4>2. Empuje de Arquímedes</h4>
+<h4><span class="hn">2</span>Empuje de Arquímedes</h4>
 <div class="box key deepnote"><b>Idea clave.</b> el empuje es igual al peso del fluido desalojado.</div>
 <ol class="pasos"><li>La presión sobre la superficie del cuerpo es la <b>misma</b> que si el cuerpo fuese sustituido por fluido.</li><li>Ese trozo de fluido estaba en equilibrio, así que el empuje compensa su peso.</li></ol>
 <div class="eqd">\[E=\rho_f\,V_{sum}\,g\]</div>
 <p>Se aplica en el centro de gravedad del fluido desalojado (centro de carena). Si flota, \(V_{sum}/V=\rho_c/\rho_f\).</p>
-<h4>3. Fuerza sobre una pared plana sumergida</h4>
+<h4><span class="hn">3</span>Fuerza sobre una pared plana sumergida</h4>
 <p>La presión crece con la profundidad, así que la resultante <b>no</b> se aplica en el centro.</p>
 <details class="dem"><summary><span class="pn">∴</span>Fuerza y centro de presiones</summary><div class="inner"><ol class="pasos"><li>Con \(y\) medido a lo largo de la pared desde la superficie: \(F=\int\rho g\,y\sin\alpha\,\mathrm dA=\rho g\,h_{cg}A\).</li><li>Es decir, <b>presión en el centroide por el área</b>.</li><li>El punto de aplicación queda más abajo:</li></ol>
 <div class="eqd">\[y_{cp}=y_{cg}+\frac{I_{cg}}{y_{cg}A}\]</div>

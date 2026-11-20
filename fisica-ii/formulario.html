@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -51,16 +114,13 @@ details>summary{line-height:1.7;padding-block:.5em}
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
 <script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
-
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body>
 <div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en los cursos <time datetime="2021-09">2021/22</time> y <time datetime="2024-01">2023/24</time> (apuntes y exámenes) · página creada en noviembre de 2026</p></div>
 <div class="crumb"><a href="index.html">Física II</a><span class="sep">›</span><span>Practicar</span><span class="sep">›</span><span>Formulario</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
 <div class="wrap" id="top">
-<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">UD1 · Electrostática y continua</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Campo electrostático</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Potencial electrostático y energía</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conductores, condensadores y dieléctricos</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Corriente continua y circuitos</a><div class="grp">UD2 · Magnetismo y alterna</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Campo magnético</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Inducción electromagnética</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Magnetismo en la materia</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Corriente alterna</a><div class="grp">UD3 · Ondas</div><a href="tema-09.html" style="--tc:var(--c2)">T9 Movimiento ondulatorio y ondas</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Teoría de examen respondida (el 30 %)</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Las hojas oficiales con resultado</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)" class="on" aria-current="page">Formulario</a></nav>
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">UD1 · Electrostática y continua</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Campo electrostático</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Potencial electrostático y energía</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conductores, condensadores y dieléctricos</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Corriente continua y circuitos</a><div class="grp">UD2 · Magnetismo y alterna</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Campo magnético</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Inducción electromagnética</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Magnetismo en la materia</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Corriente alterna</a><div class="grp">UD3 · Ondas</div><a href="tema-09.html" style="--tc:var(--c2)">T9 Movimiento ondulatorio y ondas</a><div class="grp">UD4 · Óptica</div><a href="tema-10.html" style="--tc:var(--c3)">T10 Óptica geométrica</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Óptica física</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Teoría de examen respondida (el 30 %)</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Las hojas oficiales con resultado</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" class="on" aria-current="page" style="--tc:var(--c8)">Formulario</a></nav>
 <main>
 <section class="sec" style="--tc:var(--c8);--tcs:var(--c8s)"><div class="sh"><span aria-hidden="true" class="badge">∑</span><div class="shx"><p class="kick">Practicar</p><h2 id="form">Formulario</h2></div></div><p class="muted">Como el formulario que circula del primer parcial, pero completo y ordenado por temas.</p><div class="fcards"><div class="box"><h4>Electrostática (T1-T2)</h4><ul><li>\(F=kq_1q_2/r^2\); \(E=kQ/r^2\); \(V=kQ/r\); \(W=q\Delta V\)</li><li>Gauss: \(\oint\vec E d\vec A=Q/\varepsilon_0\)</li><li>Esfera: fuera \(kQ/r^2\); dentro \(kQr/R^3\) (uniforme) o 0 (conductora)</li><li>Hilo: \(2k\lambda/r\) · plano: \(\sigma/2\varepsilon_0\)</li><li>\(U=\sum kq_iq_j/r_{ij}\); \(u=\tfrac12\varepsilon_0E^2\)</li></ul></div><div class="box"><h4>Condensadores (T3)</h4><ul><li>\(C=Q/V\); plano \(\varepsilon_0\varepsilon_rA/d\); esférico \(4\pi\varepsilon_0\frac{R_1R_2}{R_2-R_1}\)</li><li>Paralelo \(\sum C_i\) · serie \(\sum 1/C_i\)</li><li>\(U=Q^2/2C=\tfrac12CV^2\)</li><li>Dieléctrico: Q cte → V, E, U ÷ εr · V cte → Q, U × εr</li><li>\(\sigma_{lig}=\sigma(1-1/\varepsilon_r)\); ruptura aire 3×10⁶ V/m</li></ul></div><div class="box"><h4>Continua (T4)</h4><ul><li>\(R=\rho L/A\); \(\rho=\rho_0[1+\alpha\Delta T]\); \(V=IR\)</li><li>\(P=VI=I^2R=V^2/R\); batería \(V=\varepsilon-Ir\)</li><li>Kirchhoff: \(\sum I=0\); \(\sum\varepsilon=\sum IR\)</li><li>RC: \(\tau=RC\); \(t_{90\%}=\tau\ln10\); \(t_{1/2}=\tau\ln2\)</li><li>t=0: C descargado = cable · t=∞: C = abierto</li></ul></div><div class="box"><h4>Campo magnético (T5)</h4><ul><li>\(\vec F=q\vec v\times\vec B\); \(r=mv/qB\); \(T=2\pi m/qB\)</li><li>\(\vec F=I\vec L\times\vec B\); \(\vec\tau=\vec m\times\vec B\), \(m=NIA\)</li><li>Hilo \(\mu_0I/2\pi r\) · espira \(\mu_0I/2R\) · solenoide \(\mu_0nI\)</li><li>Ampère: \(\oint\vec Bd\vec l=\mu_0I_{enc}\)</li><li>Entre hilos: \(F/L=\mu_0I_1I_2/2\pi d\)</li></ul></div><div class="box"><h4>Inducción (T6)</h4><ul><li>\(\varepsilon=-N\,d\Phi/dt\); \(\varepsilon=BLv\); generador \(NBA\omega\)</li><li>\(\varepsilon_L=-L\,dI/dt\); solenoide \(L=\mu_0n^2V\)</li><li>RL: \(\tau=L/R\); cierre \(1-e^{-t/\tau}\), apertura \(e^{-t/\tau}\)</li><li>\(U=\tfrac12LI^2\); \(u=B^2/2\mu_0\)</li><li>Lenz: se opone a la VARIACIÓN del flujo</li></ul></div><div class="box"><h4>Materia magnética (T7)</h4><ul><li>\(B=\mu_0(H+M)\); \(M=\chi H\); \(\mu_r=1+\chi\)</li><li>Solenoide con núcleo: \(B=\mu_r\mu_0nI\)</li><li>Dia χ<0 · para χ>0 pequeño · ferro: histéresis</li><li>Blando = ciclo estrecho (transformadores) · duro = imanes</li><li>Corriente de Ampère superficial: I = M·espesor</li></ul></div><div class="box"><h4>Alterna (T8)</h4><ul><li>\(V_e=V_0/\sqrt2\); \(X_L=\omega L\); \(X_C=1/\omega C\)</li><li>\(Z=\sqrt{R^2+(X_L-X_C)^2}\); \(\tan\varphi=(X_L-X_C)/R\)</li><li>\(V^2=V_R^2+(V_L-V_C)^2\) (¡fasores!)</li><li>Resonancia: \(\omega_0=1/\sqrt{LC}\); Z = R; \(Q=\omega_0L/R\)</li><li>\(P=V_eI_e\cos\varphi=I_e^2R\)</li></ul></div><div class="box"><h4>Ondas (T9-T10)</h4><ul><li>\(v=\lambda f\); \(y=A\operatorname{sen}(kx-\omega t)\); cuerda \(v=\sqrt{T/\mu}\)</li><li>\(\beta=10\log(I/I_0)\), \(I_0=10^{-12}\) W/m²; \(I=P/4\pi r^2\)</li><li>Estacionarias: \(f_n=nv/2L\) (o nv/4L impar)</li><li>Doppler: \(f_{percibida}=f(v\pm v_o)/(v\mp v_f)\)</li><li>OEM: \(E=cB\); \(I=E_0^2/2\mu_0c\); presión \(I/c\); \(\vec S=\vec E\times\vec B/\mu_0\)</li></ul></div><div class="box"><h4>Constantes</h4><ul><li>\(k=9\times10^9\); \(\varepsilon_0=8{,}85\times10^{-12}\); \(\mu_0=4\pi\times10^{-7}\)</li><li>\(e=1{,}602\times10^{-19}\) C; \(m_e=9{,}11\times10^{-31}\) kg; \(m_p=1{,}67\times10^{-27}\) kg</li><li>\(c=3\times10^8\) m/s; sonido en aire ≈ 340 m/s</li><li>µ=10⁻⁶ · n=10⁻⁹ · p=10⁻¹²</li></ul></div></div></section><nav class="pager" aria-label="Páginas"><a href="laboratorio.html"><small>← Anterior</small>Prácticas</a><a class="nx" href="index.html"><small>Siguiente →</small>Portada</a></nav><p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Física II (GIEyA) · Datos tomados en los cursos <time datetime="2021-09">2021/22</time> y <time datetime="2024-01">2023/24</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>
 </main>

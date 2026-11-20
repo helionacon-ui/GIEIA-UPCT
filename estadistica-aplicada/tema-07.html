@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -51,9 +114,6 @@ details>summary{line-height:1.7;padding-block:.5em}
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
 <script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
-
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body>
@@ -64,34 +124,34 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c8);--tcs:var(--c8s)">
 <div class="sh"><span aria-hidden="true" class="badge">7</span><div class="shx"><p class="kick">UD3 · Muestreo e inferencia · Tema 7</p><h2 id="t7">Contrastes de hipótesis y bondad de ajuste</h2><div class="tags"><span class="tag">UD3 · Muestreo e inferencia</span><span class="tag">Segundo parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Plantear hipótesis y regiones críticas, decidir con el p-valor, aplicar los contrastes para una y dos poblaciones y usar los test de bondad de ajuste (ji-cuadrado, Kolmogorov-Smirnov y Shapiro-Wilk).</p><p><b>Hipótesis nula \(H_0\)</b>: la que se supone cierta mientras no haya evidencia en contra (siempre con el signo =). <b>Hipótesis alternativa \(H_1\)</b>: lo que se quiere demostrar. Si el enunciado dice «¿se puede afirmar que mejora / supera / es superior a…?», eso va en \(H_1\) y el contraste es <b>unilateral</b>.</p>
-<p><b>Errores</b>: <b>tipo I</b> (rechazar \(H_0\) siendo cierta), con probabilidad \(\alpha\) = <b>nivel de significación</b>; <b>tipo II</b> (no rechazar siendo falsa), con probabilidad \(\beta\). La <b>potencia</b> es \(1-\beta\). Bajar α sube β: sólo subiendo n mejoran los dos.</p>
-<p><b>Dos formas de decidir</b> (equivalentes):</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Plantear hipótesis y regiones críticas, decidir con el p-valor, aplicar los contrastes para una y dos poblaciones y usar los test de bondad de ajuste (ji-cuadrado, Kolmogorov-Smirnov y Shapiro-Wilk).</p><p class="run"><b>Hipótesis nula \(H_0\):</b> la que se supone cierta mientras no haya evidencia en contra (siempre con el signo =). <b>Hipótesis alternativa \(H_1\)</b>: lo que se quiere demostrar. Si el enunciado dice «¿se puede afirmar que mejora / supera / es superior a…?», eso va en \(H_1\) y el contraste es <b>unilateral</b>.</p>
+<p class="run"><b>Errores:</b> <b>tipo I</b> (rechazar \(H_0\) siendo cierta), con probabilidad \(\alpha\) = <b>nivel de significación</b>; <b>tipo II</b> (no rechazar siendo falsa), con probabilidad \(\beta\). La <b>potencia</b> es \(1-\beta\). Bajar α sube β: sólo subiendo n mejoran los dos.</p>
+<p class="run"><b>Dos formas de decidir:</b> (equivalentes):</p>
 <ul><li><b>Región crítica</b>: se calcula el estadístico de contraste y se compara con el valor crítico (\(z_{1-\alpha}\), \(t_{1-\alpha;n-1}\)…). Si cae en la región crítica, se rechaza \(H_0\).</li>
 <li><b>p-valor</b>: probabilidad de obtener un resultado tan extremo como el observado <b>si \(H_0\) fuera cierta</b>. Regla: <b>p &lt; α ⇒ se rechaza \(H_0\)</b>. Es la forma que piden los exámenes («dar respuesta a partir del p-valor») y la que da R.</li></ul>
-<p>El p-valor <b>no</b> es la probabilidad de que \(H_0\) sea cierta. Y «no rechazar» no es «demostrar que \(H_0\) es cierta»: es que no hay evidencia suficiente.</p>
-<p><b>Contrastes paramétricos más frecuentes</b> (mismo pivote que el intervalo correspondiente):</p>
+<p class="lede">El p-valor <b>no</b> es la probabilidad de que \(H_0\) sea cierta. Y «no rechazar» no es «demostrar que \(H_0\) es cierta»: es que no hay evidencia suficiente.</p>
+<p class="run"><b>Contrastes paramétricos más frecuentes:</b> (mismo pivote que el intervalo correspondiente):</p>
 <ul><li>μ con σ conocida: \(Z=\dfrac{\bar x-\mu_0}{\sigma/\sqrt n}\) · σ desconocida: \(T=\dfrac{\bar x-\mu_0}{S/\sqrt n}\sim t_{n-1}\).</li>
 <li>Proporción: \(Z=\dfrac{\hat p-p_0}{\sqrt{p_0(1-p_0)/n}}\) (ojo: en el denominador va \(p_0\), el valor de \(H_0\)).</li>
 <li>Varianza: \(\chi^2=\dfrac{n\tau^2}{\sigma_0^2}\sim\chi^2_{n-1}\).</li>
 <li>Dos medias con varianzas iguales: \(T=\dfrac{\bar x_1-\bar x_2}{S_p\sqrt{1/n_1+1/n_2}}\sim t_{n_1+n_2-2}\), con \(S_p^2=\dfrac{n_1\tau_1^2+n_2\tau_2^2}{n_1+n_2-2}\).</li>
 <li>Dos varianzas: \(F=S_1^2/S_2^2\sim F_{n_1-1,n_2-1}\) (se hace ANTES del de medias para justificar la hipótesis de igualdad).</li></ul>
-<p><b>Bondad de ajuste</b>: contrastan si los datos proceden de una distribución dada.</p>
+<p class="run"><b>Bondad de ajuste:</b> contrastan si los datos proceden de una distribución dada.</p>
 <ul><li><b>Ji-cuadrado</b>: \(\chi^2=\sum\dfrac{(O_i-E_i)^2}{E_i}\sim\chi^2_{k-1-r}\), con k clases y r parámetros estimados. Requiere \(E_i\ge5\) (si no, se agrupan clases). Vale para datos discretos o agrupados.</li>
 <li><b>Kolmogorov-Smirnov</b>: compara la función de distribución empírica con la teórica, \(D=\max|F_n(x)-F_0(x)|\). Para variables continuas y con los parámetros conocidos (Lilliefors si se estiman).</li>
 <li><b>Shapiro-Wilk</b> y <b>gráfico Q-Q</b>: específicos para normalidad; es lo que se usa en las prácticas de R (p &gt; 0,05 ⇒ se admite normalidad; los puntos del Q-Q se alinean con la recta).</li></ul></div>
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Dos formas de equivocarse al contrastar</div><svg viewBox="0 0 560 262" role="img" aria-label="Errores tipo I y II" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="24" y1="206" x2="288.8" y2="206" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="296,206 288.7,209.3 288.7,202.7" fill="var(--muted)"/><line x1="24" y1="206" x2="24" y2="37.2" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="24,30 27.3,37.3 20.7,37.3" fill="var(--muted)"/><polygon points="145.8,206 145.8,170.7 149.1,176 152.4,180.9 155.8,185.1 159.1,188.8 162.4,192 165.8,194.7 169.1,196.9 172.4,198.8 175.7,200.4 179.1,201.6 182.4,202.6 185.7,203.4 189.1,204.1 192.4,204.5 195.7,204.9 199.1,205.2 202.4,205.4 205.7,205.6 209.1,205.7 212.4,205.8 212.4,206" fill="var(--c6,#2c8a52)" stroke="none" stroke-width="1.8" opacity="0.45" stroke-linejoin="round" stroke-linecap="round"/><polygon points="69.6,206 69.6,205.8 72.1,205.7 74.7,205.6 77.2,205.5 79.8,205.4 82.3,205.3 84.8,205.1 87.4,204.8 89.9,204.5 92.4,204.1 95,203.7 97.5,203.1 100.1,202.5 102.6,201.7 105.1,200.8 107.7,199.7 110.2,198.5 112.8,197 115.3,195.4 117.8,193.4 120.4,191.3 122.9,188.8 125.5,186 128,182.9 130.5,179.5 133.1,175.8 135.6,171.7 138.1,167.3 140.7,162.6 143.2,157.5 145.8,152.2 145.8,206" fill="var(--c5,#c43d63)" stroke="none" stroke-width="1.8" opacity="0.35" stroke-linejoin="round" stroke-linecap="round"/><path d="M-12,204.5 L-10.6,204.3 L-9.2,204.1 L-7.8,203.8 L-6.4,203.6 L-5,203.3 L-3.6,202.9 L-2.2,202.6 L-0.8,202.2 L0.6,201.7 L2,201.2 L3.4,200.7 L4.8,200.1 L6.2,199.5 L7.6,198.8 L9,198 L10.4,197.2 L11.8,196.3 L13.2,195.4 L14.6,194.4 L16.1,193.3 L17.5,192.1 L18.9,190.8 L20.3,189.5 L21.7,188 L23.1,186.5 L24.5,184.8 L25.9,183.1 L27.3,181.3 L28.7,179.3 L30.1,177.3 L31.5,175.2 L32.9,172.9 L34.3,170.6 L35.7,168.1 L37.1,165.6 L38.5,162.9 L39.9,160.2 L41.3,157.4 L42.7,154.5 L44.1,151.5 L45.5,148.4 L46.9,145.3 L48.3,142 L49.7,138.8 L51.1,135.5 L52.5,132.1 L53.9,128.8 L55.3,125.4 L56.7,122 L58.1,118.6 L59.5,115.2 L60.9,111.9 L62.3,108.6 L63.7,105.4 L65.1,102.2 L66.5,99.1 L67.9,96.1 L69.3,93.2 L70.7,90.5 L72.2,87.8 L73.6,85.3 L75,83 L76.4,80.9 L77.8,78.9 L79.2,77.1 L80.6,75.5 L82,74.1 L83.4,72.9 L84.8,72 L86.2,71.2 L87.6,70.7 L89,70.4 L90.4,70.4 L91.8,70.5 L93.2,71 L94.6,71.6 L96,72.5 L97.4,73.5 L98.8,74.8 L100.2,76.3 L101.6,78 L103,79.9 L104.4,82 L105.8,84.3 L107.2,86.7 L108.6,89.2 L110,91.9 L111.4,94.8 L112.8,97.7 L114.2,100.8 L115.6,103.9 L117,107.1 L118.4,110.4 L119.8,113.7 L121.2,117.1 L122.6,120.4 L124,123.8 L125.4,127.2 L126.8,130.6 L128.2,134 L129.7,137.3 L131.1,140.6 L132.5,143.8 L133.9,147 L135.3,150.1 L136.7,153.1 L138.1,156.1 L139.5,158.9 L140.9,161.7 L142.3,164.4 L143.7,167 L145.1,169.5 L146.5,171.9 L147.9,174.2 L149.3,176.3 L150.7,178.4 L152.1,180.4 L153.5,182.3 L154.9,184.1 L156.3,185.7 L157.7,187.3 L159.1,188.8 L160.5,190.2 L161.9,191.5 L163.3,192.7 L164.7,193.9 L166.1,194.9 L167.5,195.9 L168.9,196.8 L170.3,197.7 L171.7,198.5 L173.1,199.2 L174.5,199.8 L175.9,200.4 L177.3,201 L178.7,201.5 L180.1,202 L181.5,202.4 L182.9,202.8 L184.4,203.1 L185.8,203.4 L187.2,203.7 L188.6,204 L190,204.2 L191.4,204.4 L192.8,204.6 L194.2,204.8 L195.6,204.9 L197,205 L198.4,205.2 L199.8,205.3 L201.2,205.4 L202.6,205.4 L204,205.5 L205.4,205.6 L206.8,205.6 L208.2,205.7 L209.6,205.7 L211,205.8 L212.4,205.8" fill="none" stroke="var(--tc,var(--accent))" stroke-width="2.8" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><path d="M69.6,205.8 L71,205.8 L72.4,205.7 L73.8,205.7 L75.2,205.6 L76.6,205.6 L78,205.5 L79.4,205.4 L80.8,205.4 L82.2,205.3 L83.6,205.2 L85,205 L86.4,204.9 L87.8,204.8 L89.2,204.6 L90.6,204.4 L92,204.2 L93.4,204 L94.8,203.7 L96.2,203.4 L97.7,203.1 L99.1,202.8 L100.5,202.4 L101.9,202 L103.3,201.5 L104.7,201 L106.1,200.4 L107.5,199.8 L108.9,199.2 L110.3,198.5 L111.7,197.7 L113.1,196.8 L114.5,195.9 L115.9,194.9 L117.3,193.9 L118.7,192.7 L120.1,191.5 L121.5,190.2 L122.9,188.8 L124.3,187.3 L125.7,185.7 L127.1,184.1 L128.5,182.3 L129.9,180.4 L131.3,178.4 L132.7,176.3 L134.1,174.2 L135.5,171.9 L136.9,169.5 L138.3,167 L139.7,164.4 L141.1,161.7 L142.5,158.9 L143.9,156.1 L145.3,153.1 L146.7,150.1 L148.1,147 L149.5,143.8 L150.9,140.6 L152.3,137.3 L153.8,134 L155.2,130.6 L156.6,127.2 L158,123.8 L159.4,120.4 L160.8,117.1 L162.2,113.7 L163.6,110.4 L165,107.1 L166.4,103.9 L167.8,100.8 L169.2,97.7 L170.6,94.8 L172,91.9 L173.4,89.2 L174.8,86.7 L176.2,84.3 L177.6,82 L179,79.9 L180.4,78 L181.8,76.3 L183.2,74.8 L184.6,73.5 L186,72.5 L187.4,71.6 L188.8,71 L190.2,70.5 L191.6,70.4 L193,70.4 L194.4,70.7 L195.8,71.2 L197.2,72 L198.6,72.9 L200,74.1 L201.4,75.5 L202.8,77.1 L204.2,78.9 L205.6,80.9 L207,83 L208.4,85.3 L209.8,87.8 L211.3,90.5 L212.7,93.2 L214.1,96.1 L215.5,99.1 L216.9,102.2 L218.3,105.4 L219.7,108.6 L221.1,111.9 L222.5,115.2 L223.9,118.6 L225.3,122 L226.7,125.4 L228.1,128.8 L229.5,132.1 L230.9,135.5 L232.3,138.8 L233.7,142 L235.1,145.3 L236.5,148.4 L237.9,151.5 L239.3,154.5 L240.7,157.4 L242.1,160.2 L243.5,162.9 L244.9,165.6 L246.3,168.1 L247.7,170.6 L249.1,172.9 L250.5,175.2 L251.9,177.3 L253.3,179.3 L254.7,181.3 L256.1,183.1 L257.5,184.8 L258.9,186.5 L260.3,188 L261.7,189.5 L263.1,190.8 L264.5,192.1 L266,193.3 L267.4,194.4 L268.8,195.4 L270.2,196.3 L271.6,197.2 L273,198 L274.4,198.8 L275.8,199.5 L277.2,200.1 L278.6,200.7 L280,201.2 L281.4,201.7 L282.8,202.2 L284.2,202.6 L285.6,202.9 L287,203.3 L288.4,203.6 L289.8,203.8 L291.2,204.1 L292.6,204.3 L294,204.5" fill="none" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><line x1="145.8" y1="206" x2="145.8" y2="40" stroke="var(--fg)" stroke-width="1.6" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><text x="90" y="56" fill="var(--tc,var(--accent))" font-size="13" text-anchor="middle" font-weight="700" opacity="1">H₀</text><text x="192" y="56" fill="var(--warn,#b8730c)" font-size="13" text-anchor="middle" font-weight="700" opacity="1">H₁</text><text x="149.8" y="38" fill="var(--muted)" font-size="11" text-anchor="start" font-weight="700" opacity="1">valor crítico</text><text x="330" y="56" fill="var(--c6,#2c8a52)" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">α: rechazar H₀</text><text x="330" y="78" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">siendo cierta.</text><text x="330" y="100" fill="var(--c5,#c43d63)" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">β: no rechazarla</text><text x="330" y="122" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">siendo falsa.</text><text x="330" y="155" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">Potencia = 1 − β.</text><text x="330" y="177" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">Subir α baja β.</text></svg><figcaption>Mover el valor crítico reduce un error a costa del otro; solo aumentar el tamaño de muestra reduce ambos a la vez.</figcaption></figure><figure class="ill"><div class="ill-t">Cuatro resultados posibles del contraste</div><svg viewBox="0 0 560 262" role="img" aria-label="Tabla de decisión" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="106" y="50" width="86" height="30" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="0.2"/><text x="149" y="70" fill="var(--fg)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">H₀ cierta</text><rect x="192" y="50" width="106" height="30" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="0.2"/><text x="245" y="70" fill="var(--fg)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">H₀ falsa</text><text x="100" y="106" fill="var(--fg)" font-size="12" text-anchor="end" font-weight="700" opacity="1">No rechazo</text><rect x="106" y="80" width="86" height="44" rx="0" fill="var(--muted)" stroke="var(--muted)" stroke-width="1.8" opacity="0.14"/><text x="149" y="106" fill="var(--fg)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">correcto</text><rect x="192" y="80" width="106" height="44" rx="0" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="1.8" opacity="0.14"/><text x="245" y="106" fill="var(--fg)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">Error II (β)</text><text x="100" y="150" fill="var(--fg)" font-size="12" text-anchor="end" font-weight="700" opacity="1">Rechazo</text><rect x="106" y="124" width="86" height="44" rx="0" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="1.8" opacity="0.14"/><text x="149" y="150" fill="var(--fg)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">Error I (α)</text><rect x="192" y="124" width="106" height="44" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="1.8" opacity="0.14"/><text x="245" y="150" fill="var(--fg)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">correcto</text><text x="24" y="190" fill="var(--tc,var(--accent))" font-size="13" text-anchor="start" font-weight="700" opacity="1">p-valor &lt; α  →  rechazamos H₀</text><text x="24" y="212" fill="var(--fg)" font-size="12.5" text-anchor="start" font-weight="600" opacity="1">p-valor: probabilidad de ver algo tan raro</text><text x="24" y="230" fill="var(--fg)" font-size="12.5" text-anchor="start" font-weight="600" opacity="1">si H₀ fuese cierta</text></svg><figcaption>Solo hay dos aciertos y dos errores; el p-valor resume cuánta evidencia hay contra H₀ y se compara con el nivel de significación α.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 7 <span class="src">7 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">H₀, H₁</td><td>Hipótesis nula y alternativa</td><td class="u"></td></tr><tr><td class="sym">α</td><td>Nivel de significación = P(error I)</td><td class="u"></td></tr><tr><td class="sym">β</td><td>P(error tipo II)</td><td class="u">potencia = 1 − β</td></tr><tr><td class="sym">p-valor</td><td>P(resultado tan extremo | H₀)</td><td class="u">p < α ⇒ rechazar</td></tr><tr><td class="sym">región crítica</td><td>Valores que llevan a rechazar</td><td class="u"></td></tr><tr><td class="sym">χ² = Σ(O−E)²/E</td><td>Bondad de ajuste</td><td class="u">k−1−r gl</td></tr><tr><td class="sym">Shapiro-Wilk</td><td>Test de normalidad</td><td class="u"></td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - region critica, p-valor y potencia</p><div data-sim="contraste"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">La lógica de un contraste</p><p>Se plantean dos hipótesis: la <b>nula</b> \(H_0\) (el statu quo: «no hay efecto», \(\mu=\mu_0\)) y la <b>alternativa</b> \(H_1\) (lo que se quiere probar). Se calcula un estadístico con los datos y se pregunta: <i>si \(H_0\) fuera cierta, ¿qué probabilidad había de un resultado tan extremo como el observado?</i> Esa probabilidad es el <b>p-valor</b>. Si \(p<\alpha\) (típicamente 0,05) se <b>rechaza</b> \(H_0\); si no, <b>no se rechaza</b> (que no es lo mismo que demostrarla).</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">La lógica de un contraste</p><p class="lede">Se plantean dos hipótesis: la <b>nula</b> \(H_0\) (el statu quo: «no hay efecto», \(\mu=\mu_0\)) y la <b>alternativa</b> \(H_1\) (lo que se quiere probar). Se calcula un estadístico con los datos y se pregunta: <i>si \(H_0\) fuera cierta, ¿qué probabilidad había de un resultado tan extremo como el observado?</i> Esa probabilidad es el <b>p-valor</b>. Si \(p<\alpha\) (típicamente 0,05) se <b>rechaza</b> \(H_0\); si no, <b>no se rechaza</b> (que no es lo mismo que demostrarla).</p>
 <p>Errores: tipo I (rechazar una \(H_0\) cierta, prob. \(\alpha\)) y tipo II (no rechazar una \(H_0\) falsa, prob. \(\beta\)). La <b>potencia</b> es \(1-\beta\).</p><p class="ft">Qué contraste uso</p><p>Media con \(\sigma\) conocida: \(Z\). Media con \(\sigma\) desconocida: \(t\) de Student. Proporción: \(Z\) con \(p_0\). Varianza: \(\chi^2\). Dos medias: \(t\) para muestras independientes (con varianza combinada) o \(t\) apareada si las medidas son del mismo individuo. <b>Bondad de ajuste</b>: \(\chi^2=\sum(O_i-E_i)^2/E_i\) con \(k-1-r\) grados de libertad (\(r\) = parámetros estimados) y \(E_i\ge5\).</p>
 <p>Un contraste bilateral equivale a ver si \(\mu_0\) cae dentro del intervalo de confianza.</p></div><!--/amp1--><!--manim:est-t7--><figure class="fig manim-fig" id="anim-est-t7"><p class="ft">Animación · Contraste bilateral y p-valor</p><div class="manim" data-anim="est-t7"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
 <!--deep--><h3 id="t7-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. La lógica del contraste</h4>
+<h4><span class="hn">1</span>La lógica del contraste</h4>
 <ol class="pasos"><li>Se plantea una <b>hipótesis nula</b> \(H_0\) (lo «de siempre», sin efecto) y una alternativa \(H_1\).</li><li>Se calcula un <b>estadístico</b> que mide cuánto se aleja la muestra de \(H_0\).</li><li>Se decide: si ese resultado sería <b>muy raro</b> bajo \(H_0\), se <b>rechaza</b>.</li></ol>
 <ul><li><b>p-valor:</b> probabilidad, suponiendo \(H_0\) cierta, de obtener un resultado <b>al menos tan extremo</b>. Si \(p<\alpha\), se rechaza \(H_0\).</li><li><b>No rechazar</b> \(H_0\) no prueba que sea cierta: solo que no hay evidencia suficiente en contra.</li></ul>
 <details class="dem"><summary><span class="pn">∴</span>Los dos errores</summary><div class="inner"><ul><li><b>Error tipo I:</b> rechazar \(H_0\) siendo cierta. Su probabilidad es el nivel de significación \(\alpha\).</li><li><b>Error tipo II:</b> no rechazar \(H_0\) siendo falsa, con probabilidad \(\beta\). La <b>potencia</b> es \(1-\beta\).</li><li>Si bajas \(\alpha\), subes \(\beta\); la forma de reducir ambos a la vez es <b>aumentar la muestra</b>.</li></ul></div></details>
-<h4>2. Bondad de ajuste e independencia (chi-cuadrado)</h4>
+<h4><span class="hn">2</span>Bondad de ajuste e independencia (chi-cuadrado)</h4>
 <div class="eqd">\[\chi^2=\sum\frac{(O_i-E_i)^2}{E_i}\]</div>
 <ul><li>Compara las frecuencias <b>observadas</b> \(O_i\) con las <b>esperadas</b> \(E_i\) bajo la hipótesis.</li><li>Grados de libertad: \(k-1-m\) (\(m\) parámetros estimados) en bondad de ajuste; \((f-1)(c-1)\) en una tabla de contingencia.</li><li>Condición: frecuencias esperadas \(\ge5\); si no, agrupa clases.</li></ul>
 <div class="box trap deepnote"><b>Cuidado.</b> El contraste de \(\chi^2\) es <b>unilateral por la derecha</b>: solo un valor grande hace rechazar.</div>
