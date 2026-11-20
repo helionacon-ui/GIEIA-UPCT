@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -61,12 +124,19 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c1);--tcs:var(--c1s)">
 <div class="sh"><span aria-hidden="true" class="badge">8</span><div class="shx"><p class="kick">PLC · Tema 8</p><h2 id="t8">El autómata programable: ciclo de scan y conexionado</h2><div class="tags"><span class="tag">PLC</span><span class="tag">PLC</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Entender cómo ejecuta un PLC el programa y cómo se conectan y direccionan sus entradas y salidas.</p><p class="ft">Qué es un PLC y por qué no es un ordenador</p><p>Un <b>autómata programable</b> es un ordenador industrial que ejecuta el programa <b>cíclicamente y para siempre</b>, con entradas y salidas aisladas galvánicamente y preparadas para el ruido eléctrico de una fábrica.</p><p>La CPU típica de la asignatura es una <b>Siemens S7-1200, CPU 1214C AC/DC/Rly</b>, programada con <b>TIA Portal</b>: alimentación de 230 V alterna, entradas de 24 V continua y salidas por <b>relé</b>, que es lo que permite conmutar cargas de tensiones distintas.</p><p class="ft">El ciclo de scan</p><p>Es <b>el</b> concepto del tema. El PLC no reacciona instantáneamente: repite sin parar cuatro pasos.</p><ol><li><b>Lectura de entradas</b>: copia el estado físico de todas las entradas a la <b>imagen de proceso de entradas</b> (PII).</li><li><b>Ejecución del programa</b>: de arriba abajo y de izquierda a derecha, trabajando <b>sólo con la imagen</b>, no con las patillas.</li><li><b>Escritura de salidas</b>: vuelca la <b>imagen de proceso de salidas</b> (PIQ) a las patillas físicas.</li><li><b>Tareas del sistema</b>: diagnóstico, comunicaciones, vigilancia del tiempo de ciclo.</li></ol><p>Las consecuencias son tres, y las tres se preguntan:</p><ul><li>Un pulso <b>más corto que el ciclo</b> puede no detectarse nunca. Para eso están las entradas de interrupción rápida.</li><li>El tiempo de respuesta en el peor caso es de <b>dos ciclos</b> más los retardos de los módulos.</li><li>Si una salida se escribe dos veces en el programa, <b>sólo vale la última</b>, porque la imagen se vuelca al final.</li></ul><p class="ft">Direccionamiento en Siemens</p><p>La notación es <code>%Áreabyte.bit</code> y hay que manejarla con soltura:</p><div class="tw"><table><tr><th>Área</th><th>Letra</th><th>Ejemplo</th><th>Qué es</th></tr><tr><td>Entradas</td><td><b>I</b></td><td><code>%I0.3</code></td><td>bit 3 del byte 0 de entradas</td></tr><tr><td>Salidas</td><td><b>Q</b></td><td><code>%Q0.1</code></td><td>bit 1 del byte 0 de salidas</td></tr><tr><td>Marcas</td><td><b>M</b></td><td><code>%M0.5</code></td><td>bit interno de memoria</td></tr><tr><td>Datos</td><td><b>DB</b></td><td><code>%DB1.DBX0.0</code></td><td>bloque de datos</td></tr></table></div><p>Las <b>marcas</b> son la memoria del programa: no tienen patilla física y son las que se usan para las <b>etapas del GRAFCET</b>. Una marca especial, <code>%M50.0 "FirstScan"</code>, vale 1 sólo durante el primer ciclo tras el arranque: es la que activa la etapa inicial.</p><p class="ft">Conexionado y tabla de asignación</p><p>Antes de programar hay que hacer la <b>tabla de asignación de variables</b>: una fila por señal con el nombre simbólico, la dirección y el tipo. Es parte de la solución del examen y vale puntos.</p><p>En el esquema de conexionado se dibuja el PLC como un rectángulo con las entradas arriba y las salidas abajo:</p><ul><li>Los <b>pulsadores y sensores</b> van entre los 24 V y la entrada correspondiente.</li><li>Los <b>pilotos, electroválvulas y bobinas de contactor</b> van entre la salida y el 0 V.</li><li>Las <b>emergencias se cablean por hardware</b>, cortando la alimentación de las salidas: una seta de emergencia nunca debe depender de que el programa funcione.</li></ul></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Entender cómo ejecuta un PLC el programa y cómo se conectan y direccionan sus entradas y salidas.</p><p class="ft">Qué es un PLC y por qué no es un ordenador</p><p class="lede">Un <b>autómata programable</b> es un ordenador industrial que ejecuta el programa <b>cíclicamente y para siempre</b>, con entradas y salidas aisladas galvánicamente y preparadas para el ruido eléctrico de una fábrica.</p><p>La CPU típica de la asignatura es una <b>Siemens S7-1200, CPU 1214C AC/DC/Rly</b>, programada con <b>TIA Portal</b>: alimentación de 230 V alterna, entradas de 24 V continua y salidas por <b>relé</b>, que es lo que permite conmutar cargas de tensiones distintas.</p><p class="ft">El ciclo de scan</p><p>Es <b>el</b> concepto del tema. El PLC no reacciona instantáneamente: repite sin parar cuatro pasos.</p><ol><li><b>Lectura de entradas</b>: copia el estado físico de todas las entradas a la <b>imagen de proceso de entradas</b> (PII).</li><li><b>Ejecución del programa</b>: de arriba abajo y de izquierda a derecha, trabajando <b>sólo con la imagen</b>, no con las patillas.</li><li><b>Escritura de salidas</b>: vuelca la <b>imagen de proceso de salidas</b> (PIQ) a las patillas físicas.</li><li><b>Tareas del sistema</b>: diagnóstico, comunicaciones, vigilancia del tiempo de ciclo.</li></ol><p>Las consecuencias son tres, y las tres se preguntan:</p><ul><li>Un pulso <b>más corto que el ciclo</b> puede no detectarse nunca. Para eso están las entradas de interrupción rápida.</li><li>El tiempo de respuesta en el peor caso es de <b>dos ciclos</b> más los retardos de los módulos.</li><li>Si una salida se escribe dos veces en el programa, <b>sólo vale la última</b>, porque la imagen se vuelca al final.</li></ul><p class="ft">Direccionamiento en Siemens</p><p>La notación es <code>%Áreabyte.bit</code> y hay que manejarla con soltura:</p><div class="tw"><table><tr><th>Área</th><th>Letra</th><th>Ejemplo</th><th>Qué es</th></tr><tr><td>Entradas</td><td><b>I</b></td><td><code>%I0.3</code></td><td>bit 3 del byte 0 de entradas</td></tr><tr><td>Salidas</td><td><b>Q</b></td><td><code>%Q0.1</code></td><td>bit 1 del byte 0 de salidas</td></tr><tr><td>Marcas</td><td><b>M</b></td><td><code>%M0.5</code></td><td>bit interno de memoria</td></tr><tr><td>Datos</td><td><b>DB</b></td><td><code>%DB1.DBX0.0</code></td><td>bloque de datos</td></tr></table></div><p>Las <b>marcas</b> son la memoria del programa: no tienen patilla física y son las que se usan para las <b>etapas del GRAFCET</b>. Una marca especial, <code>%M50.0 "FirstScan"</code>, vale 1 sólo durante el primer ciclo tras el arranque: es la que activa la etapa inicial.</p><p class="ft">Conexionado y tabla de asignación</p><p>Antes de programar hay que hacer la <b>tabla de asignación de variables</b>: una fila por señal con el nombre simbólico, la dirección y el tipo. Es parte de la solución del examen y vale puntos.</p><p>En el esquema de conexionado se dibuja el PLC como un rectángulo con las entradas arriba y las salidas abajo:</p><ul><li>Los <b>pulsadores y sensores</b> van entre los 24 V y la entrada correspondiente.</li><li>Los <b>pilotos, electroválvulas y bobinas de contactor</b> van entre la salida y el 0 V.</li><li>Las <b>emergencias se cablean por hardware</b>, cortando la alimentación de las salidas: una seta de emergencia nunca debe depender de que el programa funcione.</li></ul></div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 8 <span class="src">9 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">scan</td><td>ciclo del PLC</td><td class="u"></td></tr><tr><td class="sym">PII</td><td>imagen de entradas</td><td class="u"></td></tr><tr><td class="sym">PIQ</td><td>imagen de salidas</td><td class="u"></td></tr><tr><td class="sym">%I0.3</td><td>entrada, byte 0 bit 3</td><td class="u"></td></tr><tr><td class="sym">%Q0.1</td><td>salida</td><td class="u"></td></tr><tr><td class="sym">%M0.5</td><td>marca interna</td><td class="u"></td></tr><tr><td class="sym">FirstScan</td><td>%M50.0</td><td class="u">primer ciclo</td></tr><tr><td class="sym">Tresp</td><td>2·Tciclo + módulos</td><td class="u"></td></tr><tr><td class="sym">S7-1200</td><td>CPU 1214C</td><td class="u">TIA Portal</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Calculadora interactiva - ciclo de scan y tiempo de respuesta</p><div data-sim="scan"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Cómo piensa un autómata: el ciclo de scan</p><p>Un PLC repite siempre las mismas fases, sin parar: <b>(1)</b> lee todas las entradas y las guarda en una imagen; <b>(2)</b> ejecuta el programa usando esa imagen; <b>(3)</b> escribe las salidas; <b>(4)</b> gestiona comunicaciones y tareas internas. A esa vuelta completa se la llama <b>ciclo de scan</b>: \(T_{ciclo}=T_{lectura}+T_{programa}+T_{escritura}+T_{sistema}\). Consecuencia importante: <em>el programa no ve la entrada «en directo»</em>, sino su foto del principio del ciclo. Una señal que cambia a mitad de ciclo se ve en el siguiente, y la respuesta puede tardar hasta dos ciclos: \(T_{resp}\approx2T_{ciclo}+t_{ent}+t_{sal}\).</p><p class="ft">Direcciones y tabla de asignación</p><p>Antes de programar se hace la <b>tabla de asignación</b>: nombre simbólico, dirección y tipo de cada señal. En Siemens, <code>%I0.3</code> es la entrada del byte 0, bit 3 (8 bits por byte, numerados 0–7); <code>%Q1.5</code> la salida del byte 1, bit 5; <code>%M</code> son marcas (memoria interna). Si el sensor es <b>NC</b> (por seguridad), en reposo da 1: hay que tenerlo en cuenta al programar (y un cable cortado se detecta como «sensor activado»). Un pulso solo se garantiza que se detecta si dura más que el ciclo: \(t_{pulso}>T_{ciclo}\); si no, se necesita una entrada con interrupción o un contador rápido.</p></div><!--/amp1--><!--manim:ai-t8--><figure class="fig manim-fig" id="anim-ai-t8"><p class="ft">Animación · Ciclo de scan</p><div class="manim" data-anim="ai-t8"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
-<h3 id="t8-formulas">Fórmulas y conceptos que hay que saber</h3>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Cómo piensa un autómata: el ciclo de scan</p><p class="lede">Un PLC repite siempre las mismas fases, sin parar: <b>(1)</b> lee todas las entradas y las guarda en una imagen; <b>(2)</b> ejecuta el programa usando esa imagen; <b>(3)</b> escribe las salidas; <b>(4)</b> gestiona comunicaciones y tareas internas. A esa vuelta completa se la llama <b>ciclo de scan</b>: \(T_{ciclo}=T_{lectura}+T_{programa}+T_{escritura}+T_{sistema}\). Consecuencia importante: <em>el programa no ve la entrada «en directo»</em>, sino su foto del principio del ciclo. Una señal que cambia a mitad de ciclo se ve en el siguiente, y la respuesta puede tardar hasta dos ciclos: \(T_{resp}\approx2T_{ciclo}+t_{ent}+t_{sal}\).</p><p class="ft">Direcciones y tabla de asignación</p><p>Antes de programar se hace la <b>tabla de asignación</b>: nombre simbólico, dirección y tipo de cada señal. En Siemens, <code>%I0.3</code> es la entrada del byte 0, bit 3 (8 bits por byte, numerados 0–7); <code>%Q1.5</code> la salida del byte 1, bit 5; <code>%M</code> son marcas (memoria interna). Si el sensor es <b>NC</b> (por seguridad), en reposo da 1: hay que tenerlo en cuenta al programar (y un cable cortado se detecta como «sensor activado»). Un pulso solo se garantiza que se detecta si dura más que el ciclo: \(t_{pulso}>T_{ciclo}\); si no, se necesita una entrada con interrupción o un contador rápido.</p></div><!--/amp1--><!--manim:ai-t8--><figure class="fig manim-fig" id="anim-ai-t8"><p class="ft">Animación · Ciclo de scan</p><div class="manim" data-anim="ai-t8"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t8-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Ciclo de scan del PLC</h4>
+<div class="box key deepnote"><b>Idea clave.</b> un autómata programable (PLC) ejecuta el programa en un bucle cíclico llamado <b>scan</b>. En cada ciclo lee las entradas, ejecuta el programa y actualiza las salidas.</div>
+<ol class="pasos"><li>Lectura de las entradas y copia en la imagen de proceso.</li><li>Ejecución del programa con esos valores.</li><li>Escritura de las salidas.</li><li>Tareas de comunicación y diagnóstico.</li></ol>
+<div class="box trap deepnote"><b>Cuidado.</b> Las entradas se leen una vez por ciclo. Si el programa cambia una entrada a mitad de ciclo, el PLC no la ve hasta el siguiente.</div>
+<h4><span class="hn">2</span>Conexionado</h4>
+<ul><li><b>Entradas digitales</b>: sensores (pulsadores, finales de carrera). Pueden ser NPN o PNP.</li><li><b>Salidas a relé o transistor</b>: accionan contactores y lámparas.</li><li><b>Fuente de alimentación</b> separada para la lógica y para las entradas y salidas.</li></ul>
+</div><!--/deep--><h3 id="t8-formulas">Fórmulas y conceptos que hay que saber</h3>
 <div class="box key"><div class="tw"><table><tr><th>Expresión</th><th>Qué es</th></tr><tr><td>\(T_{ciclo}=T_{lectura}+T_{programa}+T_{escritura}+T_{sistema}\)</td><td>tiempo de scan</td></tr><tr><td>\(T_{\text{respuesta}}\approx2\,T_{ciclo}+t_{\text{entrada}}+t_{\text{salida}}\)</td><td>peor caso</td></tr><tr><td>\(t_{\text{pulso}}>T_{ciclo}\)</td><td>para garantizar la detección</td></tr><tr><td>\(\%I0.3\)</td><td>byte 0, bit 3 del área de entradas</td></tr></table></div></div>
 <h3 id="t8-metodo">Método paso a paso</h3>
 <ol class="steps"><li>Haz la <b>tabla de asignación</b> antes de programar: nombre simbólico, dirección y tipo de cada señal.</li><li>Dibuja el <b>conexionado</b>: entradas con sus pulsadores y su símbolo (NA, NC, detector), salidas con sus cargas.</li><li>Fíjate en si un sensor es <b>NA o NC</b> en el hardware: un final de carrera NC se lee como 1 cuando <b>no</b> está pisado, y hay que negarlo en el programa.</li><li>Reserva un rango de marcas para las etapas (M0.0, M0.1…) y otro para los temporizadores.</li><li>Si hay que calcular tiempos, aplica dos ciclos de scan más los retardos de módulo.</li></ol>

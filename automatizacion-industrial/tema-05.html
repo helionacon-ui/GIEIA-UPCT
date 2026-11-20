@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -62,12 +125,21 @@ details>summary{line-height:1.7;padding-block:.5em}
 <section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
 <div class="sh"><span aria-hidden="true" class="badge">5</span><div class="shx"><p class="kick">Automatismos · Tema 5</p><!--manim:ai-t5b--><figure class="fig manim-fig" id="anim-ai-t5b"><p class="ft">Animación · Inversión de giro</p><div class="manim" data-anim="ai-t5b"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
 <h2 id="t5">Arranque de motores e inversión de giro</h2><div class="tags"><span class="tag">Automatismos</span><span class="tag">Automatismos</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Diseñar los automatismos clásicos: arranque directo, estrella-triángulo y cambio de sentido de giro, con sus enclavamientos.</p><p class="ft">Por qué no siempre vale el arranque directo</p><p>Un motor arrancando directo pide <b>siete veces su corriente nominal</b>. En motores pequeños no importa; a partir de unos 5 kW la caída de tensión en la línea molesta a toda la instalación y las compañías lo limitan.</p><p>La solución clásica es arrancar con <b>menos tensión por fase</b>, aceptando que el par de arranque baje en la misma proporción.</p><p class="ft">El arranque estrella-triángulo</p><p>El motor debe estar preparado para funcionar en <b>triángulo</b> a la tensión de red. Al conectarlo en <b>estrella</b>, cada devanado recibe la tensión de red dividida por √3:</p><p>Eso reduce la corriente <b>a la tercera parte</b>, pero también el par <b>a la tercera parte</b>. Por eso sólo sirve para arranques <b>en vacío o con poca carga</b>: con carga plena el motor no llega a arrancar en estrella.</p><p>Hacen falta <b>tres contactores</b>:</p><ul><li><b>KM1</b> (línea): conecta las tres fases a los principios de los devanados.</li><li><b>KME</b> (estrella): cortocircuita los tres finales entre sí, formando el punto neutro.</li><li><b>KMT</b> (triángulo): une cada final con el principio del devanado siguiente.</li></ul><p>KME y KMT <b>nunca</b> pueden cerrar a la vez: sería un cortocircuito entre fases. El enclavamiento mutuo es obligatorio.</p><p class="ft">La secuencia y el temporizador</p><p>El orden importa y se pregunta:</p><ol><li>Al pulsar marcha cierran <b>KM1 y KME</b> a la vez, y arranca el temporizador.</li><li>Pasados unos segundos (lo que dure el pico), <b>se abre KME</b>.</li><li>Un instante después (una temporización corta, o el propio enclavamiento) <b>cierra KMT</b>.</li></ol><p>Entre abrir estrella y cerrar triángulo tiene que pasar un <b>tiempo muerto</b>, para que se extinga el arco en los contactos de KME. Si cierran a la vez, se cortocircuitan dos fases.</p><p class="ft">Inversión del sentido de giro</p><p>Un motor asíncrono trifásico invierte el giro <b>permutando dos de las tres fases cualesquiera</b>. El montaje son dos contactores:</p><ul><li><b>KM1</b>: conecta R-S-T al motor, giro a derechas.</li><li><b>KM2</b>: conecta T-S-R (dos fases cruzadas), giro a izquierdas.</li></ul><p>Enclavamiento mutuo <b>imprescindible</b>: si cerraran los dos, R y T quedarían unidas a través de los contactos y sería un cortocircuito franco.</p><p>Además, en la práctica se exige pasar por <b>paro</b> antes de invertir, o temporizar la inversión: cambiar el sentido con el motor girando a plena velocidad somete al eje y a la red a un golpe muy fuerte (frenado a contracorriente).</p></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Diseñar los automatismos clásicos: arranque directo, estrella-triángulo y cambio de sentido de giro, con sus enclavamientos.</p><p class="ft">Por qué no siempre vale el arranque directo</p><p class="lede">Un motor arrancando directo pide <b>siete veces su corriente nominal</b>. En motores pequeños no importa; a partir de unos 5 kW la caída de tensión en la línea molesta a toda la instalación y las compañías lo limitan.</p><p>La solución clásica es arrancar con <b>menos tensión por fase</b>, aceptando que el par de arranque baje en la misma proporción.</p><p class="ft">El arranque estrella-triángulo</p><p>El motor debe estar preparado para funcionar en <b>triángulo</b> a la tensión de red. Al conectarlo en <b>estrella</b>, cada devanado recibe la tensión de red dividida por √3:</p><p>Eso reduce la corriente <b>a la tercera parte</b>, pero también el par <b>a la tercera parte</b>. Por eso sólo sirve para arranques <b>en vacío o con poca carga</b>: con carga plena el motor no llega a arrancar en estrella.</p><p>Hacen falta <b>tres contactores</b>:</p><ul><li><b>KM1</b> (línea): conecta las tres fases a los principios de los devanados.</li><li><b>KME</b> (estrella): cortocircuita los tres finales entre sí, formando el punto neutro.</li><li><b>KMT</b> (triángulo): une cada final con el principio del devanado siguiente.</li></ul><p>KME y KMT <b>nunca</b> pueden cerrar a la vez: sería un cortocircuito entre fases. El enclavamiento mutuo es obligatorio.</p><p class="ft">La secuencia y el temporizador</p><p>El orden importa y se pregunta:</p><ol><li>Al pulsar marcha cierran <b>KM1 y KME</b> a la vez, y arranca el temporizador.</li><li>Pasados unos segundos (lo que dure el pico), <b>se abre KME</b>.</li><li>Un instante después (una temporización corta, o el propio enclavamiento) <b>cierra KMT</b>.</li></ol><p>Entre abrir estrella y cerrar triángulo tiene que pasar un <b>tiempo muerto</b>, para que se extinga el arco en los contactos de KME. Si cierran a la vez, se cortocircuitan dos fases.</p><p class="ft">Inversión del sentido de giro</p><p>Un motor asíncrono trifásico invierte el giro <b>permutando dos de las tres fases cualesquiera</b>. El montaje son dos contactores:</p><ul><li><b>KM1</b>: conecta R-S-T al motor, giro a derechas.</li><li><b>KM2</b>: conecta T-S-R (dos fases cruzadas), giro a izquierdas.</li></ul><p>Enclavamiento mutuo <b>imprescindible</b>: si cerraran los dos, R y T quedarían unidas a través de los contactos y sería un cortocircuito franco.</p><p>Además, en la práctica se exige pasar por <b>paro</b> antes de invertir, o temporizar la inversión: cambiar el sentido con el motor girando a plena velocidad somete al eje y a la red a un golpe muy fuerte (frenado a contracorriente).</p></div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 5 <span class="src">9 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">KM1</td><td>contactor de línea</td><td class="u"></td></tr><tr><td class="sym">KME</td><td>contactor de estrella</td><td class="u"></td></tr><tr><td class="sym">KMT</td><td>contactor de triángulo</td><td class="u"></td></tr><tr><td class="sym">U/√3</td><td>tensión en estrella</td><td class="u">231 V</td></tr><tr><td class="sym">I/3</td><td>corriente en estrella</td><td class="u"></td></tr><tr><td class="sym">M/3</td><td>par en estrella</td><td class="u"></td></tr><tr><td class="sym">tiempo muerto</td><td>entre KME y KMT</td><td class="u"></td></tr><tr><td class="sym">inversión</td><td>permutar 2 fases</td><td class="u"></td></tr><tr><td class="sym">ns</td><td>60f/p</td><td class="u">sincronismo</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Calculadora interactiva - arranque estrella-triangulo</p><div data-sim="estrella"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué arrancar en estrella</p><p>Un motor asíncrono trifásico arrancado directamente en triángulo pide de la red unas 5–8 veces su corriente nominal, lo que provoca caídas de tensión y exige protecciones sobredimensionadas. Truco: arrancarlo <b>en estrella</b>. En estrella cada devanado queda sometido a \(U/\sqrt3\) (231 V en una red de 400 V) en lugar de a \(U\); con menos tensión, la corriente se reduce a un tercio. El precio: <b>el par también baja a un tercio</b>. Por eso solo vale si el motor arranca en vacío o con poca carga. Cuando ya ha cogido velocidad, un temporizador pasa a triángulo y el motor trabaja con la tensión normal.</p><p class="ft">Los tres contactores y el temporizador</p><p>Se necesitan tres contactores: <b>KM1</b> (línea, alimenta el motor), <b>KM2</b> (estrella, une los tres finales de devanado) y <b>KM3</b> (triángulo, conecta los devanados entre fases). Secuencia: pulso de marcha ⇒ KM1 y KM2 ⇒ el temporizador cuenta (unos segundos) ⇒ cae KM2, entra KM3 tras un pequeño retardo. KM2 y KM3 jamás pueden estar a la vez (cortocircuito): se evita con un <b>enclavamiento mutuo</b> con contactos NC. Para el cálculo: velocidad de sincronismo \(n_s=60f/p\) (con \(p\) pares de polos) y deslizamiento \(s=(n_s-n)/n_s\): el rotor siempre gira algo más despacio que el campo.</p></div><!--/amp1--><!--manim:ai-t5--><figure class="fig manim-fig" id="anim-ai-t5"><p class="ft">Animación · Arranque estrella-triángulo</p><div class="manim" data-anim="ai-t5"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
-<h3 id="t5-formulas">Fórmulas y conceptos que hay que saber</h3>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué arrancar en estrella</p><p class="lede">Un motor asíncrono trifásico arrancado directamente en triángulo pide de la red unas 5–8 veces su corriente nominal, lo que provoca caídas de tensión y exige protecciones sobredimensionadas. Truco: arrancarlo <b>en estrella</b>. En estrella cada devanado queda sometido a \(U/\sqrt3\) (231 V en una red de 400 V) en lugar de a \(U\); con menos tensión, la corriente se reduce a un tercio. El precio: <b>el par también baja a un tercio</b>. Por eso solo vale si el motor arranca en vacío o con poca carga. Cuando ya ha cogido velocidad, un temporizador pasa a triángulo y el motor trabaja con la tensión normal.</p><p class="ft">Los tres contactores y el temporizador</p><p>Se necesitan tres contactores: <b>KM1</b> (línea, alimenta el motor), <b>KM2</b> (estrella, une los tres finales de devanado) y <b>KM3</b> (triángulo, conecta los devanados entre fases). Secuencia: pulso de marcha ⇒ KM1 y KM2 ⇒ el temporizador cuenta (unos segundos) ⇒ cae KM2, entra KM3 tras un pequeño retardo. KM2 y KM3 jamás pueden estar a la vez (cortocircuito): se evita con un <b>enclavamiento mutuo</b> con contactos NC. Para el cálculo: velocidad de sincronismo \(n_s=60f/p\) (con \(p\) pares de polos) y deslizamiento \(s=(n_s-n)/n_s\): el rotor siempre gira algo más despacio que el campo.</p></div><!--/amp1--><!--manim:ai-t5--><figure class="fig manim-fig" id="anim-ai-t5"><p class="ft">Animación · Arranque estrella-triángulo</p><div class="manim" data-anim="ai-t5"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t5-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Arranque directo</h4>
+<p>El arranque directo conecta el motor a la red a plena tensión. Es sencillo, pero la corriente de arranque puede ser de 5 a 7 veces la nominal.</p>
+<details class="dem"><summary><span class="pn">∴</span>Arranque estrella-triángulo</summary><div class="inner"><p>Al arrancar, el motor se conecta en estrella: cada fase recibe la tensión de red dividida entre \(\sqrt3\), y la corriente de línea se reduce a un tercio. Después se conmuta a triángulo.</p>
+<div class="eqd">\[I_{arr,Y}=\frac{1}{3}\,I_{arr,\Delta}\]</div>
+<div class="box trap deepnote"><b>Cuidado.</b> Este arranque solo sirve si el motor está diseñado para triángulo a la tensión de red. Y el par de arranque también cae a un tercio.</div></div></details>
+<h4><span class="hn">2</span>Inversión de giro</h4>
+<p>Para invertir el giro se intercambian dos fases. Dos contactores se enclavan entre sí para que nunca se cierren a la vez.</p>
+<div class="box trap deepnote"><b>Cuidado.</b> El enclavamiento eléctrico entre contactores es obligatorio. El enclavamiento solo por el pulsador no basta: un contacto soldado puede cerrar dos fases a la vez.</div>
+</div><!--/deep--><h3 id="t5-formulas">Fórmulas y conceptos que hay que saber</h3>
 <div class="box key"><div class="tw"><table><tr><th>Expresión</th><th>Qué es</th></tr><tr><td>\(U_{f,\text{estrella}}=\dfrac{U}{\sqrt3}=\dfrac{400}{\sqrt3}=231\ \text{V}\)</td><td>tensión por devanado en estrella</td></tr><tr><td>\(\dfrac{I_{\text{estrella}}}{I_{\triangle}}=\dfrac13\)</td><td>la corriente se reduce a un tercio</td></tr><tr><td>\(\dfrac{M_{\text{estrella}}}{M_{\triangle}}=\dfrac13\)</td><td>y el par también</td></tr><tr><td>\(n_{s}=\dfrac{60f}{p}\)</td><td>velocidad de sincronismo</td></tr><tr><td>\(s=\dfrac{n_{s}-n}{n_{s}}\)</td><td>deslizamiento</td></tr></table></div></div>
 <h3 id="t5-metodo">Método paso a paso</h3>
 <ol class="steps"><li>Decide cuántos <b>contactores</b> hacen falta: 1 para directo, 2 para inversión, 3 para estrella-triángulo.</li><li>Dibuja el <b>circuito de potencia</b> con las conexiones de cada contactor al motor, con cuidado al cruzar las fases.</li><li>En mando, empieza por el <b>enclavamiento mutuo</b>: contactos NC cruzados entre los contactores incompatibles.</li><li>Añade el <b>enclavamiento de marcha</b> (autoalimentación) y el paro NC en serie con todo.</li><li>Coloca los <b>temporizadores</b> donde haya cambios automáticos: estrella→triángulo, o el tiempo de cada sentido.</li><li>Repasa el <b>contacto del térmico</b> en serie, al principio de la línea de mando.</li></ol>

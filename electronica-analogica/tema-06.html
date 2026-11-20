@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -57,11 +120,11 @@ details>summary{line-height:1.7;padding-block:.5em}
 <div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p></div>
 <div class="crumb"><a href="index.html">Electrónica Analógica</a><span class="sep">›</span><span>Respuesta en frecuencia</span><span class="sep">›</span><span>T6 · Diagramas de Bode y filtros</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
 <div class="wrap" id="top">
-<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">El amplificador operacional</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Introducción a los amplificadores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 El amplificador operacional ideal</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Aplicaciones lineales del operacional</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Aplicaciones no lineales</a><a href="tema-05.html" style="--tc:var(--c6)">T5 El amplificador operacional real</a><div class="grp">Respuesta en frecuencia</div><a href="tema-06.html" style="--tc:var(--c7)" class="on" aria-current="page">T6 Diagramas de Bode y filtros</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Cuadripolos</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Respuesta en frecuencia de amplificadores con transistores</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y simulación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">El amplificador operacional</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Introducción a los amplificadores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 El amplificador operacional ideal</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Aplicaciones lineales del operacional</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Aplicaciones no lineales</a><a href="tema-05.html" style="--tc:var(--c6)">T5 El amplificador operacional real</a><div class="grp">Respuesta en frecuencia</div><a href="tema-06.html" class="on" aria-current="page" style="--tc:var(--c7)">T6 Diagramas de Bode y filtros</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Cuadripolos</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Respuesta en frecuencia de amplificadores con transistores</a><div class="grp">Transistores, realimentación y potencia</div><a href="tema-09.html" style="--tc:var(--c2)">T9 Modelo en pequeña señal del BJT y del FET</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Realimentación</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Circuitos osciladores</a><a href="tema-12.html" style="--tc:var(--c5)">T12 Amplificadores de potencia</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y simulación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
 <main>
 <section class="sec tema" style="--tc:var(--c7);--tcs:var(--c7s)">
 <div class="sh"><span aria-hidden="true" class="badge">6</span><div class="shx"><p class="kick">Respuesta en frecuencia · Tema 6</p><h2 id="t6">Diagramas de Bode y filtros</h2><div class="tags"><span class="tag">Respuesta en frecuencia</span><span class="tag">2.º parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> dibujar el diagrama de Bode asintótico de cualquier función de transferencia y diseñar filtros activos de primer orden.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> dibujar el diagrama de Bode asintótico de cualquier función de transferencia y diseñar filtros activos de primer orden.</p><ul>
 <li>Un circuito con condensadores o bobinas tiene una ganancia que <b>depende de la frecuencia</b>. El <b>diagrama de Bode</b> la representa en dos gráficas con el eje de frecuencias <b>logarítmico</b>: módulo en decibelios y fase en grados.</li>
 <li>La gracia del Bode es que, con ejes logarítmicos, <b>multiplicar se convierte en sumar</b>: la respuesta de una función de transferencia compleja es la suma de las contribuciones de cada polo y cada cero. Por eso se dibuja a mano, sin calcular ni un punto.</li>
 <li>Cada <b>polo</b> simple aporta, a partir de su frecuencia de corte, una pendiente de <b>−20 dB/década</b> y un desfase que va de 0° a −90°. Cada <b>cero</b> aporta <b>+20 dB/década</b> y de 0° a +90°.</li>
@@ -75,8 +138,16 @@ details>summary{line-height:1.7;padding-block:.5em}
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 6 <span class="src">9 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">K</td><td>ganancia estática</td><td class="u"></td></tr><tr><td class="sym">polo</td><td>−20 dB/déc, −90º</td><td class="u"></td></tr><tr><td class="sym">cero</td><td>+20 dB/déc, +90º</td><td class="u"></td></tr><tr><td class="sym">fc</td><td>frecuencia de corte</td><td class="u">1/(2πRC)</td></tr><tr><td class="sym">−3 dB</td><td>error en fc</td><td class="u"></td></tr><tr><td class="sym">década</td><td>×10 en frecuencia</td><td class="u"></td></tr><tr><td class="sym">octava</td><td>×2 en frecuencia</td><td class="u"></td></tr><tr><td class="sym">orden n</td><td>−20n dB/déc</td><td class="u"></td></tr><tr><td class="sym">Q</td><td>factor de calidad</td><td class="u">f0/BW</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - diagrama de Bode de modulo y fase</p><div data-sim="bode"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Bode: dibujar una respuesta en frecuencia a mano</p><p>El diagrama de Bode representa el módulo (en dB) y la fase de \(G(j\omega)\) frente a la frecuencia (escala logarítmica). Se pone la función de transferencia en <b>forma normalizada</b>: constante \(K\) × ceros \((1+j\omega/\omega_z)\) / polos \((1+j\omega/\omega_p)\) × \((j\omega)^m\). Cada factor aporta una pieza sencilla y las piezas <b>se suman en dB</b>: la constante da \(20\log|K|\); un polo simple deja plano hasta \(\omega_p\) y luego baja −20 dB/década; un cero hace lo contrario (+20 dB/década); un polo en el origen es una recta de −20 dB/déc. En \(\omega_c\) la curva real queda 3 dB por debajo (polo) o por encima (cero) de las asíntotas. La fase de un polo va de 0° a −90° pasando por −45° en \(\omega_c\), y se considera casi completa una década antes/después.</p><p class="ft">Pasos para trazar y leer un Bode</p><p>Receta: <b>(1)</b> normaliza y localiza todas las frecuencias de corte, ordenadas; <b>(2)</b> el módulo inicial es \(20\log|K|\) (más la recta del origen si la hay); <b>(3)</b> recorre las frecuencias: en cada polo la pendiente baja 20 dB/déc, en cada cero sube 20; <b>(4)</b> corrige \(\pm3\) dB en cada corte si piden la curva real; <b>(5)</b> la fase es la suma de las de cada factor. Aplicación a filtros: un RC paso bajo tiene \(f_c=1/(2\pi RC)\); un filtro activo inversor paso bajo (C en paralelo con \(R_2\)) tiene ganancia \(-\dfrac{R_2/R_1}{1+j\omega R_2C}\) y la misma frecuencia de corte \(1/(2\pi R_2C)\), con la ganancia de continua que fije \(R_2/R_1\).</p></div><!--/amp1--><!--manim:ea-t6--><figure class="fig manim-fig" id="anim-ea-t6"><p class="ft">Animación · Bode de un paso banda</p><div class="manim" data-anim="ea-t6"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
-<h3 id="t6-formulas">Fórmulas y conceptos que hay que saber</h3>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Bode: dibujar una respuesta en frecuencia a mano</p><p class="lede">El diagrama de Bode representa el módulo (en dB) y la fase de \(G(j\omega)\) frente a la frecuencia (escala logarítmica). Se pone la función de transferencia en <b>forma normalizada</b>: constante \(K\) × ceros \((1+j\omega/\omega_z)\) / polos \((1+j\omega/\omega_p)\) × \((j\omega)^m\). Cada factor aporta una pieza sencilla y las piezas <b>se suman en dB</b>: la constante da \(20\log|K|\); un polo simple deja plano hasta \(\omega_p\) y luego baja −20 dB/década; un cero hace lo contrario (+20 dB/década); un polo en el origen es una recta de −20 dB/déc. En \(\omega_c\) la curva real queda 3 dB por debajo (polo) o por encima (cero) de las asíntotas. La fase de un polo va de 0° a −90° pasando por −45° en \(\omega_c\), y se considera casi completa una década antes/después.</p><p class="ft">Pasos para trazar y leer un Bode</p><p>Receta: <b>(1)</b> normaliza y localiza todas las frecuencias de corte, ordenadas; <b>(2)</b> el módulo inicial es \(20\log|K|\) (más la recta del origen si la hay); <b>(3)</b> recorre las frecuencias: en cada polo la pendiente baja 20 dB/déc, en cada cero sube 20; <b>(4)</b> corrige \(\pm3\) dB en cada corte si piden la curva real; <b>(5)</b> la fase es la suma de las de cada factor. Aplicación a filtros: un RC paso bajo tiene \(f_c=1/(2\pi RC)\); un filtro activo inversor paso bajo (C en paralelo con \(R_2\)) tiene ganancia \(-\dfrac{R_2/R_1}{1+j\omega R_2C}\) y la misma frecuencia de corte \(1/(2\pi R_2C)\), con la ganancia de continua que fije \(R_2/R_1\).</p></div><!--/amp1--><!--manim:ea-t6--><figure class="fig manim-fig" id="anim-ea-t6"><p class="ft">Animación · Bode de un paso banda</p><div class="manim" data-anim="ea-t6"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t6-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Escala logarítmica y diagramas de Bode</h4>
+<div class="box key deepnote"><b>Idea clave.</b> un diagrama de Bode representa la ganancia en dB y la fase en grados frente al logaritmo de la frecuencia. Así una cadena de polos y ceros se dibuja como líneas rectas.</div>
+<ul><li><b>Polo</b> de primer orden: la ganancia cae 20 dB/década a partir de su frecuencia de corte, y la fase baja 90°.</li><li><b>Cero</b>: la ganancia sube 20 dB/década, y la fase sube 90°.</li></ul>
+<details class="dem"><summary><span class="pn">∴</span>Trazado asintótico</summary><div class="inner"><ol class="pasos"><li>Calcula la ganancia en continua (asíntota horizontal).</li><li>En cada frecuencia de polo o cero, cambia la pendiente en \(\pm20\) dB/década.</li><li>Suma las pendientes de todos los polos y ceros a partir de cada frecuencia.</li><li>La fase se aproxima con \(\pm45^\circ\) por década alrededor de la frecuencia de corte.</li></ol></div></details>
+<h4><span class="hn">2</span>Filtros</h4>
+<ul><li><b>Paso bajo</b> de primer orden: \(H(s)=\dfrac{1}{1+s/\omega_c}\).</li><li><b>Paso alto</b>: \(H(s)=\dfrac{s/\omega_c}{1+s/\omega_c}\).</li><li><b>Paso banda</b>: combina un paso alto y un paso bajo.</li></ul>
+<div class="box trap deepnote"><b>Cuidado.</b> Los filtros de orden superior tienen pendiente de 40 dB/década por cada dos polos. El factor de calidad \(Q\) controla el pico de resonancia.</div>
+</div><!--/deep--><h3 id="t6-formulas">Fórmulas y conceptos que hay que saber</h3>
 <div class="box key"><ul>
 <li><b>Forma normalizada</b> de una función de transferencia:</li></ul>
 \[G(j\omega)=K\,\frac{\left(1+\dfrac{j\omega}{\omega_{z1}}\right)\cdots}{(j\omega)^{m}\left(1+\dfrac{j\omega}{\omega_{p1}}\right)\cdots}\]

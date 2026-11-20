@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -57,30 +120,30 @@ details>summary{line-height:1.7;padding-block:.5em}
 <div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes, boletines y prácticas) · página creada en noviembre de 2026</p></div>
 <div class="crumb"><a href="index.html">Análisis de Circuitos</a><span class="sep">›</span><span>Primer parcial · continua y fasores</span><span class="sep">›</span><span>T5 · R, L y C en alterna: impedancia y admitancia</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
 <div class="wrap" id="top">
-<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Primer parcial · continua y fasores</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes eléctricas</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos de corriente continua: reducción de redes</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Teoremas fundamentales en continua</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Ondas periódicas, señal senoidal y fasor</a><a href="tema-05.html" style="--tc:var(--c6)" class="on" aria-current="page">T5 R, L y C en alterna: impedancia y admitancia</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Potencia en corriente alterna</a><div class="grp">Segundo parcial · alterna, transitorios y trifásica</div><a href="tema-07.html" style="--tc:var(--c8)">T7 Teoremas fundamentales en alterna</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Régimen transitorio</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Sistemas trifásicos equilibrados</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Potencia en sistemas trifásicos</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Primer parcial · continua y fasores</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes eléctricas</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Circuitos de corriente continua: reducción de redes</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Teoremas fundamentales en continua</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Ondas periódicas, señal senoidal y fasor</a><a href="tema-05.html" class="on" aria-current="page" style="--tc:var(--c6)">T5 R, L y C en alterna: impedancia y admitancia</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Potencia en corriente alterna</a><div class="grp">Segundo parcial · alterna, transitorios y trifásica</div><a href="tema-07.html" style="--tc:var(--c8)">T7 Teoremas fundamentales en alterna</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Régimen transitorio</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Sistemas trifásicos equilibrados</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Potencia en sistemas trifásicos</a><div class="grp">Cuadripolos y elementos no lineales</div><a href="tema-11.html" style="--tc:var(--c4)">T11 Redes de dos puertas (cuadripolos)</a><a href="tema-12.html" style="--tc:var(--c5)">T12 Elementos no lineales: diodos y transistores</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas tipo resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Los boletines oficiales</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
 <main>
 <section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
 <div class="sh"><span aria-hidden="true" class="badge">5</span><div class="shx"><p class="kick">Primer parcial · continua y fasores · Tema 5</p><h2 id="t5">R, L y C en alterna: impedancia y admitancia</h2><div class="tags"><span class="tag">Primer parcial · continua y fasores</span><span class="tag">Primer parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Relacionar tensión y corriente en resistencia, bobina y condensador, construir la impedancia compleja y resolver circuitos RLC serie y paralelo con fasores, incluida la resonancia.</p><p><b>Resistencia</b>: \(\overline V=R\overline I\), tensión y corriente <b>en fase</b> (comportamiento resistivo o resonante). <b>Bobina</b>: \(\overline V=j\omega L\overline I\), la corriente se <b>retrasa 90°</b> respecto de la tensión (comportamiento inductivo). <b>Condensador</b>: \(\overline V=\dfrac{1}{j\omega C}\overline I\), la corriente se <b>adelanta 90°</b> (comportamiento capacitivo). Regla mnemotécnica: «ELI the ICE man» (en L, E va antes de I; en C, I va antes de E).</p>
-<p><b>Impedancia</b> \(\overline Z=\overline V/\overline I=R+jX\) (Ω), con \(X=X_L-X_C=\omega L-\dfrac1{\omega C}\): \(|Z|=\sqrt{R^2+X^2}\), \(\varphi=\arctan(X/R)\). <b>Admitancia</b> \(\overline Y=1/\overline Z=G+jB\) (S), útil en paralelo. Ojo: \(G\neq1/R\) si hay reactancia: \(G=\dfrac{R}{R^2+X^2}\), \(B=\dfrac{-X}{R^2+X^2}\).</p>
-<p><b>Asociaciones</b>: igual que en continua pero con complejos — serie \(\overline Z=\sum\overline Z_i\), paralelo \(\overline Y=\sum\overline Y_i\) (dos impedancias: producto partido por suma, con números complejos).</p>
-<p><b>Triángulo de impedancias</b>: R horizontal, X vertical, Z la hipotenusa; multiplicado por I da el triángulo de tensiones y por \(I^2\) el de potencias (tema 6). Si φ &gt; 0 el circuito es inductivo; si φ &lt; 0, capacitivo; si φ = 0, resonante.</p>
-<p><b>Resonancia serie</b>: \(X_L=X_C\Rightarrow\omega_0=\dfrac1{\sqrt{LC}}\), \(Z=R\) mínima, corriente máxima y \(V_L=V_C\) (¡pueden superar a la de la fuente!). <b>Resonancia paralelo</b> (antirresonancia): la impedancia se hace máxima y la corriente de línea mínima.</p></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Relacionar tensión y corriente en resistencia, bobina y condensador, construir la impedancia compleja y resolver circuitos RLC serie y paralelo con fasores, incluida la resonancia.</p><p class="run"><b>Resistencia:</b> \(\overline V=R\overline I\), tensión y corriente <b>en fase</b> (comportamiento resistivo o resonante). <b>Bobina</b>: \(\overline V=j\omega L\overline I\), la corriente se <b>retrasa 90°</b> respecto de la tensión (comportamiento inductivo). <b>Condensador</b>: \(\overline V=\dfrac{1}{j\omega C}\overline I\), la corriente se <b>adelanta 90°</b> (comportamiento capacitivo). Regla mnemotécnica: «ELI the ICE man» (en L, E va antes de I; en C, I va antes de E).</p>
+<p class="run"><b>Impedancia:</b> \(\overline Z=\overline V/\overline I=R+jX\) (Ω), con \(X=X_L-X_C=\omega L-\dfrac1{\omega C}\): \(|Z|=\sqrt{R^2+X^2}\), \(\varphi=\arctan(X/R)\). <b>Admitancia</b> \(\overline Y=1/\overline Z=G+jB\) (S), útil en paralelo. Ojo: \(G\neq1/R\) si hay reactancia: \(G=\dfrac{R}{R^2+X^2}\), \(B=\dfrac{-X}{R^2+X^2}\).</p>
+<p class="run"><b>Asociaciones:</b> igual que en continua pero con complejos — serie \(\overline Z=\sum\overline Z_i\), paralelo \(\overline Y=\sum\overline Y_i\) (dos impedancias: producto partido por suma, con números complejos).</p>
+<p class="run"><b>Triángulo de impedancias:</b> R horizontal, X vertical, Z la hipotenusa; multiplicado por I da el triángulo de tensiones y por \(I^2\) el de potencias (tema 6). Si φ &gt; 0 el circuito es inductivo; si φ &lt; 0, capacitivo; si φ = 0, resonante.</p>
+<p class="run"><b>Resonancia serie:</b> \(X_L=X_C\Rightarrow\omega_0=\dfrac1{\sqrt{LC}}\), \(Z=R\) mínima, corriente máxima y \(V_L=V_C\) (¡pueden superar a la de la fuente!). <b>Resonancia paralelo</b> (antirresonancia): la impedancia se hace máxima y la corriente de línea mínima.</p></div>
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Los tres elementos pasivos desfasan distinto</div><svg viewBox="0 0 560 262" role="img" aria-label="Desfases en R, L y C" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="26" y1="110" x2="85.9" y2="110" stroke="var(--c2,#3a63c4)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><polygon points="94,110 85.8,113.7 85.8,106.3" fill="var(--c2,#3a63c4)"/><line x1="26" y1="114" x2="70.8" y2="114" stroke="var(--warn,#b8730c)" stroke-width="2.2" opacity="1" stroke-linecap="round"/><polygon points="78,114 70.7,117.3 70.7,110.7" fill="var(--warn,#b8730c)"/><text x="94" y="102" fill="var(--c2,#3a63c4)" font-size="12.5" text-anchor="end" font-weight="700" opacity="1">V</text><text x="82" y="128" fill="var(--warn,#b8730c)" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">I</text><text x="60" y="176" fill="var(--tc,var(--accent))" font-size="17" text-anchor="middle" font-weight="700" opacity="1">R</text><text x="60" y="196" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-weight="400" opacity="1">I en fase con V</text><line x1="116" y1="110" x2="175.9" y2="110" stroke="var(--c2,#3a63c4)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><polygon points="184,110 175.8,113.7 175.8,106.3" fill="var(--c2,#3a63c4)"/><line x1="116" y1="110" x2="116" y2="147.9" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><polygon points="116,156 112.3,147.8 119.7,147.8" fill="var(--warn,#b8730c)"/><text x="184" y="102" fill="var(--c2,#3a63c4)" font-size="12.5" text-anchor="end" font-weight="700" opacity="1">V</text><text x="124" y="138" fill="var(--warn,#b8730c)" font-size="12.5" text-anchor="start" font-weight="700" opacity="1">I</text><text x="150" y="176" fill="var(--c5,#c43d63)" font-size="17" text-anchor="middle" font-weight="700" opacity="1">L</text><text x="150" y="196" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-weight="400" opacity="1">I retrasa 90°</text><line x1="206" y1="110" x2="265.9" y2="110" stroke="var(--c2,#3a63c4)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><polygon points="274,110 265.8,113.7 265.8,106.3" fill="var(--c2,#3a63c4)"/><line x1="206" y1="110" x2="206" y2="72.1" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><polygon points="206,64 209.7,72.2 202.3,72.2" fill="var(--warn,#b8730c)"/><text x="274" y="102" fill="var(--c2,#3a63c4)" font-size="12.5" text-anchor="end" font-weight="700" opacity="1">V</text><text x="214" y="76" fill="var(--warn,#b8730c)" font-size="12.5" text-anchor="start" font-weight="700" opacity="1">I</text><text x="240" y="176" fill="var(--c6,#2c8a52)" font-size="17" text-anchor="middle" font-weight="700" opacity="1">C</text><text x="240" y="196" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-weight="400" opacity="1">I adelanta 90°</text><text x="24" y="236" fill="var(--tc,var(--accent))" font-size="12.5" text-anchor="start" font-weight="700" opacity="1">V = Z·I :  Z_R = R   Z_L = jωL   Z_C = 1/(jωC)</text></svg><figcaption>Con V como referencia: en R la corriente está en fase, en la bobina se retrasa 90° y en el condensador se adelanta 90°.</figcaption></figure><figure class="ill"><div class="ill-t">Resistencia y reactancia se suman en cuadratura</div><svg viewBox="0 0 560 262" role="img" aria-label="Triángulo de impedancias" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><polygon points="44,190 204,190 204,90" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2.8" opacity="0.12" stroke-linejoin="round" stroke-linecap="round"/><polygon points="44,190 204,190 204,90" fill="none" stroke="var(--tc,var(--accent))" stroke-width="2.8" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="124" y="210" fill="var(--fg)" font-size="14" text-anchor="middle" font-weight="700" opacity="1">R</text><text x="220" y="144" fill="var(--fg)" font-size="14" text-anchor="start" font-weight="700" opacity="1">X</text><text x="114" y="130" fill="var(--tc,var(--accent))" font-size="14" text-anchor="middle" font-weight="700" opacity="1">|Z|</text><path d="M78,190 A34,34 0 0 0 72.8,172" fill="none" stroke="var(--warn,#b8730c)" stroke-width="1.8" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="92" y="180" fill="var(--warn,#b8730c)" font-size="13" text-anchor="middle" font-weight="700" opacity="1">φ</text><text x="318" y="52" fill="var(--tc,var(--accent))" font-size="15" text-anchor="start" font-weight="700" opacity="1">Z = R + jX</text><text x="318" y="74" fill="var(--fg)" font-size="14" text-anchor="start" font-weight="600" opacity="1">|Z| = √(R² + X²)</text><text x="318" y="96" fill="var(--fg)" font-size="14" text-anchor="start" font-weight="600" opacity="1">φ = arctg(X / R)</text><text x="318" y="129" fill="var(--warn,#b8730c)" font-size="14" text-anchor="start" font-weight="700" opacity="1">X = ωL − 1/(ωC)</text><text x="318" y="162" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">X &gt; 0 inductivo.</text><text x="318" y="184" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">X &lt; 0 capacitivo.</text></svg><figcaption>La parte real de Z disipa y la imaginaria almacena; el ángulo φ es el desfase entre tensión y corriente.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 5 <span class="src">5 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">XL, XC</td><td>omega.L y 1/omega.C</td><td class="u">Ohm</td></tr><tr><td class="sym">Z = R + jX</td><td>Impedancia</td><td class="u">Ohm</td></tr><tr><td class="sym">Y = G + jB</td><td>Admitancia</td><td class="u">S</td></tr><tr><td class="sym">phi</td><td>arctan(X/R)</td><td class="u">grados</td></tr><tr><td class="sym">f0</td><td>Resonancia 1/2pi.raiz(LC)</td><td class="u">Hz</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - impedancia, triangulo Z y resonancia</p><div data-sim="impedancia"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Impedancia: la «resistencia» en alterna</p><p>En alterna, una bobina y un condensador se oponen a la corriente en función de la frecuencia: <b>reactancias</b> \(X_L=\omega L\) (crece con \(f\)) y \(X_C=1/\omega C\) (decrece). Con números complejos, la <b>impedancia</b> \(\overline Z=R+jX\) (módulo = oposición, argumento = desfase tensión–corriente) lo unifica todo: \(\overline Z_R=R\), \(\overline Z_L=j\omega L\), \(\overline Z_C=-j/\omega C\). Y valen las <b>mismas fórmulas</b> que en continua (Ohm, serie, paralelo, divisores) sustituyendo \(R\) por \(\overline Z\).</p><p class="ft">Resonancia y filtros</p><p>En un circuito RLC serie, a la frecuencia \(\omega_0=1/\sqrt{LC}\) las reactancias se igualan (\(X_L=X_C\)) y se cancelan: la impedancia es mínima (\(=R\)) y la corriente máxima. El <b>factor de calidad</b> \(Q=\omega_0L/R\) mide lo «afilada» que es la resonancia: a mayor \(Q\), banda más estrecha, pero tensiones mayores en L y C que la de la fuente.</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Impedancia: la «resistencia» en alterna</p><p class="lede">En alterna, una bobina y un condensador se oponen a la corriente en función de la frecuencia: <b>reactancias</b> \(X_L=\omega L\) (crece con \(f\)) y \(X_C=1/\omega C\) (decrece). Con números complejos, la <b>impedancia</b> \(\overline Z=R+jX\) (módulo = oposición, argumento = desfase tensión–corriente) lo unifica todo: \(\overline Z_R=R\), \(\overline Z_L=j\omega L\), \(\overline Z_C=-j/\omega C\). Y valen las <b>mismas fórmulas</b> que en continua (Ohm, serie, paralelo, divisores) sustituyendo \(R\) por \(\overline Z\).</p><p class="ft">Resonancia y filtros</p><p>En un circuito RLC serie, a la frecuencia \(\omega_0=1/\sqrt{LC}\) las reactancias se igualan (\(X_L=X_C\)) y se cancelan: la impedancia es mínima (\(=R\)) y la corriente máxima. El <b>factor de calidad</b> \(Q=\omega_0L/R\) mide lo «afilada» que es la resonancia: a mayor \(Q\), banda más estrecha, pero tensiones mayores en L y C que la de la fuente.</p>
 <p>Un circuito RC es un <b>filtro</b>: su respuesta en frecuencia se ve con un diagrama de Bode (ganancia en dB frente a \(\log f\)). Juega con la figura: a la frecuencia de corte \(f_c=1/2\pi RC\) la ganancia ha caído 3 dB.</p>
 <figure class="fig"><p class="ft">Diagrama de Bode de un filtro RC</p><div data-sim="bode"></div><figcaption>Elige paso bajo o paso alto y mueve R y C; la frecuencia de corte se desplaza. Con el paso bajo, las frecuencias altas se atenúan; con el paso alto, las bajas.</figcaption></figure></div><!--/amp1--><!--manim:ac-t5--><figure class="fig manim-fig" id="anim-ac-t5"><p class="ft">Animación · Impedancia de un circuito RL</p><div class="manim" data-anim="ac-t5"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
 <!--deep--><h3 id="t5-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Impedancia y admitancia</h4>
+<h4><span class="hn">1</span>Impedancia y admitancia</h4>
 <div class="eqd">\[\bar Z=\frac{\bar V}{\bar I}=R+jX,\qquad \bar Y=\frac1{\bar Z}=G+jB\]</div>
 <ul><li><b>Resistencia:</b> \(Z=R\). Tensión y corriente en fase.</li><li><b>Bobina:</b> \(Z=j\omega L\). La tensión <b>adelanta</b> a la corriente 90°. Reactancia \(X_L=\omega L\) (crece con la frecuencia: «deja pasar mal las altas»).</li><li><b>Condensador:</b> \(Z=\dfrac1{j\omega C}=-j\dfrac1{\omega C}\). La corriente <b>adelanta</b> a la tensión 90°. Reactancia \(X_C=-\dfrac1{\omega C}\) (en continua es un abierto).</li></ul>
 <p>Mnemotecnia: <b>ELI the ICE man</b>. En la bobina (L), la tensión (E) va antes que la corriente (I); en el condensador (C), la corriente va antes que la tensión.</p>
 <details class="dem"><summary><span class="pn">∴</span>Todo lo de continua sigue valiendo</summary><div class="inner"><p>Con impedancias complejas, la ley de Ohm \(\bar V=\bar Z\bar I\), Kirchhoff, serie, paralelo, divisores, nudos, mallas, Thévenin y Norton se aplican igual que en continua. Solo cambian los números: ahora son <b>complejos</b>.</p>
 <ul><li><b>Serie:</b> \(\bar Z=\sum\bar Z_i\). <b>Paralelo:</b> \(\bar Y=\sum\bar Y_i\).</li><li>El <b>ángulo</b> de \(\bar Z\) es el desfase entre tensión y corriente: \(\varphi=\arctan(X/R)\).</li><li>Si \(X>0\) el circuito es <b>inductivo</b> (corriente retrasada); si \(X<0\), <b>capacitivo</b>.</li></ul></div></details>
 <!--manim:ac-t5b--><figure class="fig manim-fig" id="anim-ac-t5b"><p class="ft">Animación · Resonancia del RLC serie</p><div class="manim" data-anim="ac-t5b"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
-<h4>2. Resonancia en el circuito RLC serie</h4>
+<h4><span class="hn">2</span>Resonancia en el circuito RLC serie</h4>
 <div class="eqd">\[\omega_0=\frac1{\sqrt{LC}},\qquad Q=\frac{\omega_0L}{R}\]</div>
 <ul><li>A \(\omega_0\), \(X_L+X_C=0\): la impedancia es solo \(R\) (mínima) y la corriente es máxima y está <b>en fase</b>.</li><li>Por encima de \(\omega_0\), el circuito es inductivo; por debajo, capacitivo.</li><li>Un \(Q\) alto significa un pico de resonancia muy estrecho (buena selectividad).</li></ul>
 </div><!--/deep--><h3 id="t5-formulas">Lo que tienes que saber</h3>

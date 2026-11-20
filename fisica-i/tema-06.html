@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -57,36 +120,36 @@ details>summary{line-height:1.7;padding-block:.5em}
 <div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p></div>
 <div class="crumb"><a href="index.html">Física I</a><span class="sep">›</span><span>Parcial 2</span><span class="sep">›</span><span>T6 · Sistemas de partículas</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
 <div class="wrap" id="top">
-<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Parcial 1</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes, unidades y vectores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Cinemática y movimiento relativo</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Dinámica, fuerzas de inercia y gravitación</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Trabajo y energía</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Movimiento oscilatorio</a><div class="grp">Parcial 2</div><a href="tema-06.html" style="--tc:var(--c7)" class="on" aria-current="page">T6 Sistemas de partículas</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Dinámica y estática del sólido rígido</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Estática del sólido rígido</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Estática de fluidos</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Equilibrio termodinámico y temperatura</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Primer y segundo principio de la termodinámica</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones teóricas de examen</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Recopilación por temas</a><a href="laboratorio.html" style="--tc:var(--c7)">Laboratorio y prácticas</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Parcial 1</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Magnitudes, unidades y vectores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Cinemática y movimiento relativo</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Dinámica, fuerzas de inercia y gravitación</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Trabajo y energía</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Movimiento oscilatorio</a><div class="grp">Parcial 2</div><a href="tema-06.html" style="--tc:var(--c7)" class="on" aria-current="page">T6 Sistemas de partículas</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Dinámica del sólido rígido. Sistemas de fuerzas</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Estática del sólido rígido</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Estática de fluidos</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Equilibrio termodinámico y temperatura</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Primer y segundo principio de la termodinámica</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones teóricas de examen</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Recopilación por temas</a><a href="laboratorio.html" style="--tc:var(--c7)">Laboratorio y prácticas</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
 <main>
 <section class="sec tema" style="--tc:var(--c7);--tcs:var(--c7s)">
 <div class="sh"><span aria-hidden="true" class="badge">6</span><div class="shx"><p class="kick">Parcial 2 · Tema 6</p><h2 id="t6">Sistemas de partículas</h2><div class="tags"><span class="tag">Parcial 2</span><span class="tag">Problemas</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Calcular el centro de masas y aplicar la conservación del momento lineal y angular a sistemas y colisiones.</p><p>Las <b>fuerzas internas</b> se cancelan por pares (3.ª ley) en la fuerza total, por eso \(\sum\vec F_{ext}=M\vec a_{CM}\); pero sí cuentan para la energía cinética o la deformación del sistema.</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Calcular el centro de masas y aplicar la conservación del momento lineal y angular a sistemas y colisiones.</p><p class="lede">Las <b>fuerzas internas</b> se cancelan por pares (3.ª ley) en la fuerza total, por eso \(\sum\vec F_{ext}=M\vec a_{CM}\); pero sí cuentan para la energía cinética o la deformación del sistema.</p>
 <p>El <b>centro de masas</b> es el promedio de posiciones ponderado con la masa; en figuras continuas se integra con \(dm=\rho\,dV\), \(\sigma\,dS\) o \(\lambda\,dl\). Ejemplos del curso: triángulo rectángulo \(x_{CM}=a/3\), \(y_{CM}=b/3\); cono \(z_{CM}=3h/4\) desde el vértice (\(h/4\) desde la base); figuras con huecos: masa negativa.</p>
-<p><b>Colisiones</b> (cuestión oficial 13): en todas se conserva \(\vec p\); elástica: también \(E_c\) (\(e=1\)); perfectamente inelástica: quedan juntos, pérdida máxima de \(E_c\) compatible con \(\vec p\) (\(e=0\)); inelástica general: \(0&lt;e&lt;1\) y se usa la ecuación del coeficiente de restitución por componentes.</p></div>
+<p class="run"><b>Colisiones:</b> (cuestión oficial 13): en todas se conserva \(\vec p\); elástica: también \(E_c\) (\(e=1\)); perfectamente inelástica: quedan juntos, pérdida máxima de \(E_c\) compatible con \(\vec p\) (\(e=0\)); inelástica general: \(0&lt;e&lt;1\) y se usa la ecuación del coeficiente de restitución por componentes.</p></div>
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">El punto donde «se equilibra» el sistema</div><svg viewBox="0 0 560 262" role="img" aria-label="Centro de masas" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="40" y1="120" x2="288" y2="120" stroke="var(--muted)" stroke-width="3" opacity="1" stroke-linecap="round"/><circle cx="62" cy="105" r="15" fill="var(--c2,#3a63c4)" stroke="none" stroke-width="1.8" opacity="0.85"/><text x="62" y="110" fill="var(--surface,#fff)" font-size="14" text-anchor="middle" font-weight="700" opacity="1">m₁</text><circle cx="262" cy="95" r="25" fill="var(--warn,#b8730c)" stroke="none" stroke-width="1.8" opacity="0.85"/><text x="262" y="100" fill="var(--surface,#fff)" font-size="15" text-anchor="middle" font-weight="700" opacity="1">m₂</text><polygon points="209.1,122 197.1,146 221.1,146" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="209.1" y="166" fill="var(--tc,var(--accent))" font-size="15" text-anchor="middle" font-weight="700" opacity="1">CM</text><line x1="62" y1="186" x2="209.1" y2="186" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><line x1="209.1" y1="186" x2="262" y2="186" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><line x1="62" y1="180" x2="62" y2="192" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><line x1="209.1" y1="180" x2="209.1" y2="192" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><line x1="262" y1="180" x2="262" y2="192" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><text x="135.5" y="208" fill="var(--muted)" font-size="14" text-anchor="middle" font-weight="700" opacity="1">d₁</text><text x="235.5" y="208" fill="var(--muted)" font-size="14" text-anchor="middle" font-weight="700" opacity="1">d₂</text><text x="150" y="242" fill="var(--tc,var(--accent))" font-size="15" text-anchor="middle" font-weight="700" opacity="1">m₁ d₁ = m₂ d₂</text><text x="312" y="64" fill="var(--tc,var(--accent))" font-size="15.5" text-anchor="start" font-weight="700" opacity="1">r_cm = Σ mᵢ rᵢ / M</text><text x="312" y="97" fill="var(--fg)" font-size="14.5" text-anchor="start" opacity="1">Está más cerca de la</text><text x="312" y="119" fill="var(--fg)" font-size="14.5" text-anchor="start" opacity="1">masa mayor.</text><text x="312" y="152" fill="var(--warn,#b8730c)" font-size="15" text-anchor="start" font-weight="700" opacity="1">M a_cm = Σ F_ext</text><text x="312" y="185" fill="var(--muted)" font-size="14" text-anchor="start" opacity="1">Las fuerzas internas no</text><text x="312" y="207" fill="var(--muted)" font-size="14" text-anchor="start" opacity="1">mueven el centro de masas.</text></svg><figcaption>Un sistema se comporta, respecto al movimiento global, como una partícula de masa M situada en el CM sobre la que actúan solo las fuerzas externas.</figcaption></figure><figure class="ill"><div class="ill-t">El momento se conserva siempre; la energía, solo a veces</div><svg viewBox="0 0 560 262" role="img" aria-label="Choques" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><text x="30" y="36" fill="var(--fg)" font-size="14" text-anchor="start" font-weight="700" opacity="1">Elástica: se conserva p y Ec</text><circle cx="52" cy="74" r="16" fill="var(--c2,#3a63c4)" stroke="none" stroke-width="1.8" opacity="0.85"/><line x1="70" y1="74" x2="117" y2="74" stroke="var(--tc,var(--accent))" stroke-width="2.6" opacity="1" stroke-linecap="round"/><polygon points="126,74 116.9,78.1 116.9,69.9" fill="var(--tc,var(--accent))"/><circle cx="138" cy="74" r="16" fill="var(--warn,#b8730c)" stroke="none" stroke-width="1.8" opacity="0.85"/><text x="172" y="79" fill="var(--muted)" font-size="20" text-anchor="middle" opacity="1">⇒</text><circle cx="208" cy="74" r="16" fill="var(--c2,#3a63c4)" stroke="none" stroke-width="1.8" opacity="0.85"/><circle cx="262" cy="74" r="16" fill="var(--warn,#b8730c)" stroke="none" stroke-width="1.8" opacity="0.85"/><line x1="280" y1="74" x2="291.9" y2="74" stroke="var(--tc,var(--accent))" stroke-width="2.6" opacity="1" stroke-linecap="round"/><polygon points="300,74 291.8,77.7 291.8,70.3" fill="var(--tc,var(--accent))"/><text x="30" y="138" fill="var(--fg)" font-size="14" text-anchor="start" font-weight="700" opacity="1">Inelástica: se conserva solo p</text><circle cx="52" cy="176" r="16" fill="var(--c2,#3a63c4)" stroke="none" stroke-width="1.8" opacity="0.85"/><line x1="70" y1="176" x2="117" y2="176" stroke="var(--tc,var(--accent))" stroke-width="2.6" opacity="1" stroke-linecap="round"/><polygon points="126,176 116.9,180.1 116.9,171.9" fill="var(--tc,var(--accent))"/><circle cx="138" cy="176" r="16" fill="var(--warn,#b8730c)" stroke="none" stroke-width="1.8" opacity="0.85"/><text x="172" y="181" fill="var(--muted)" font-size="20" text-anchor="middle" opacity="1">⇒</text><circle cx="214" cy="176" r="16" fill="var(--c2,#3a63c4)" stroke="none" stroke-width="1.8" opacity="0.85"/><circle cx="244" cy="176" r="16" fill="var(--warn,#b8730c)" stroke="none" stroke-width="1.8" opacity="0.85"/><line x1="262" y1="176" x2="281.9" y2="176" stroke="var(--tc,var(--accent))" stroke-width="2.6" opacity="1" stroke-linecap="round"/><polygon points="290,176 281.8,179.7 281.8,172.3" fill="var(--tc,var(--accent))"/><text x="52" y="102" fill="var(--muted)" font-size="12.5" text-anchor="middle" opacity="1">antes</text><text x="235" y="102" fill="var(--muted)" font-size="12.5" text-anchor="middle" opacity="1">después</text><text x="235" y="204" fill="var(--muted)" font-size="12.5" text-anchor="middle" opacity="1">juntas</text><text x="330" y="56" fill="var(--tc,var(--accent))" font-size="15" text-anchor="start" font-weight="700" opacity="1">p antes = p después</text><text x="330" y="78" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="600" opacity="1">m₁v₁ + m₂v₂ = cte</text><text x="330" y="111" fill="var(--fg)" font-size="14" text-anchor="start" font-weight="600" opacity="1">e = (v₂′ − v₁′)/(v₁ − v₂)</text><text x="330" y="144" fill="var(--c6,#2c8a52)" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">e = 1   elástica</text><text x="330" y="166" fill="var(--warn,#b8730c)" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">0 &lt; e &lt; 1   inelástica</text><text x="330" y="188" fill="var(--c5,#c43d63)" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">e = 0   se pegan</text></svg><figcaption>Aquí, dos masas iguales: en el choque elástico se intercambian las velocidades; si se pegan, la velocidad final es la mitad.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 6 <span class="src">5 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">\(\vec r_{cm}\)</td><td>Centro de masas</td><td class="u">m</td></tr><tr><td class="sym">\(M\)</td><td>Masa total</td><td class="u">kg</td></tr><tr><td class="sym">\(\vec P\)</td><td>Momento lineal total</td><td class="u">kg·m/s</td></tr><tr><td class="sym">\(e\)</td><td>Coeficiente de restitución</td><td class="u">0 a 1</td></tr><tr><td class="sym">\(dm\)</td><td>Elemento de masa (continuo)</td><td class="u">kg</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Simulador · choque en una dimensión</p><div data-sim="choque"></div><figcaption>Mueve los controles y observa cómo cambian las magnitudes del recuadro.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Centro de masas y por qué simplifica todo</p><p>El centro de masas \(\vec r_{cm}=\dfrac{\sum m_i\vec r_i}{\sum m_i}\) es el punto que se mueve como si toda la masa estuviera allí y todas las fuerzas <b>externas</b> actuasen sobre él: \(\sum\vec F_{ext}=M\vec a_{cm}\). Las fuerzas internas, por la 3.ª ley, se cancelan por parejas. Por eso un petardo que explota en el aire no altera la trayectoria de su centro de masas.</p><p class="ft">Momento lineal y choques</p><p>El momento lineal \(\vec p=m\vec v\) cambia solo por fuerzas externas: \(\sum\vec F_{ext}=d\vec p/dt\). En un choque, las fuerzas internas son enormes pero se cancelan y <b>el momento total se conserva</b> (siempre, en ambas componentes).</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Centro de masas y por qué simplifica todo</p><p class="lede">El centro de masas \(\vec r_{cm}=\dfrac{\sum m_i\vec r_i}{\sum m_i}\) es el punto que se mueve como si toda la masa estuviera allí y todas las fuerzas <b>externas</b> actuasen sobre él: \(\sum\vec F_{ext}=M\vec a_{cm}\). Las fuerzas internas, por la 3.ª ley, se cancelan por parejas. Por eso un petardo que explota en el aire no altera la trayectoria de su centro de masas.</p><p class="ft">Momento lineal y choques</p><p>El momento lineal \(\vec p=m\vec v\) cambia solo por fuerzas externas: \(\sum\vec F_{ext}=d\vec p/dt\). En un choque, las fuerzas internas son enormes pero se cancelan y <b>el momento total se conserva</b> (siempre, en ambas componentes).</p>
 <p>La energía cinética, en cambio, solo se conserva en el <b>choque elástico</b>. En el <b>inelástico</b> parte se pierde; en el <b>perfectamente inelástico</b> los cuerpos quedan unidos y la pérdida es máxima. Receta: (1) conserva \(p\); (2) si es elástico, añade \(E_c\) (o usa \(e=1\)); (3) comprueba que la energía final no supera la inicial.</p></div><!--/amp1--><!--manim:fis1-t6--><figure class="fig manim-fig" id="anim-fis1-t6"><p class="ft">Animación · El centro de masas</p><div class="manim" data-anim="fis1-t6"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
 <!--deep--><h3 id="t6-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Centro de masas: las fuerzas internas no cuentan</h4>
+<h4><span class="hn">1</span>Centro de masas: las fuerzas internas no cuentan</h4>
 <div class="eqd">\[\vec r_{cm}=\frac{\sum m_i\vec r_i}{M}\]</div>
 <p>Es el punto que se mueve como si toda la masa estuviese en él y todas las fuerzas <b>externas</b> actuasen sobre él.</p>
 <details class="dem"><summary><span class="pn">∴</span>Demostración de \(\vec F_{ext}=M\vec a_{cm}\)</summary><div class="inner"><ol class="pasos"><li>Sumamos la segunda ley de todas las partículas: \(\sum m_i\vec a_i=\sum\vec F_i^{ext}+\sum_i\sum_{j\ne i}\vec F_{ij}\).</li><li>Por la tercera ley, \(\vec F_{ij}=-\vec F_{ji}\): la doble suma de fuerzas internas se anula por parejas.</li><li>Como \(\sum m_i\vec a_i=M\vec a_{cm}\):</li></ol>
 <div class="eqd">\[\vec F_{ext}=M\vec a_{cm}\]</div>
 <p>Si \(\vec F_{ext}=0\), el momento \(\vec p=M\vec v_{cm}\) es constante: <b>conservación del momento lineal</b>. Una explosión en el aire no cambia la trayectoria del centro de masas.</p></div></details>
-<h4>2. Teorema de König y colisiones</h4>
+<h4><span class="hn">2</span>Teorema de König y colisiones</h4>
 <div class="eqd">\[K=\tfrac12Mv_{cm}^2+K_{rel}\]</div>
 <p>La energía cinética es la del centro de masas más la del movimiento <i>respecto</i> a él. En un choque el momento se conserva, así que \(v_{cm}\) no cambia: <b>solo puede perderse \(K_{rel}\)</b>.</p>
 <details class="dem"><summary><span class="pn">∴</span>Choque elástico y totalmente inelástico (1D)</summary><div class="inner"><ul><li><b>Elástico</b> (se conservan \(p\) y \(K\)): la velocidad relativa se invierte, \(v_1'-v_2'=-(v_1-v_2)\). De ahí:</li></ul>
 <div class="eqd">\[v_1'=\frac{(m_1-m_2)v_1+2m_2v_2}{m_1+m_2}\]</div>
 <ul><li>Con \(m_1=m_2\) intercambian velocidades.</li><li><b>Coeficiente de restitución</b> \(e\): \(v_2'-v_1'=e(v_1-v_2)\). Vale 1 (elástico) o 0 (quedan unidos).</li><li><b>Totalmente inelástico:</b> \(v'=\dfrac{m_1v_1+m_2v_2}{m_1+m_2}\) y la energía perdida es \(\Delta K=\tfrac12\mu v_{rel}^2\), con la masa reducida \(\mu=\dfrac{m_1m_2}{m_1+m_2}\).</li></ul></div></details>
-<h4>3. Masa variable: el cohete</h4>
+<h4><span class="hn">3</span>Masa variable: el cohete</h4>
 <ol class="pasos"><li>El cohete expulsa gas a velocidad \(u\) respecto a él. Sin fuerzas externas, el momento total se conserva.</li><li>Por cada \(\mathrm dm<0\) de masa que pierde: \(m\,\mathrm dv=-u\,\mathrm dm\).</li><li>Integramos de \(m_0\) a \(m_f\):</li></ol>
 <div class="eqd">\[\Delta v=u\ln\frac{m_0}{m_f}\qquad\text{(Tsiolkovski)}\]</div>
 <p>El logaritmo crece despacio: para ganar velocidad hace falta mucho combustible, por eso se usan etapas que se desprenden.</p>
-<h4>4. Momento angular de un sistema</h4>
+<h4><span class="hn">4</span>Momento angular de un sistema</h4>
 <div class="eqd">\[\vec L=\vec L_{cm}+\vec L_{rel},\qquad \frac{\mathrm d\vec L}{\mathrm dt}=\vec\tau_{ext}\]</div>
 <p>Solo los momentos externos lo cambian. Sin momento externo se conserva: la patinadora que recoge los brazos reduce su momento de inercia y <b>gira más rápido</b>.</p>
 </div><!--/deep--><h3 id="t6-formulas">Lo que tienes que saber</h3>
@@ -112,7 +175,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <p><b>Comprobación de momento:</b> \(1\cdot4=1\cdot(-2)+3\cdot2=4\) ✓. <b>De energía:</b> \(8\) J antes y \(8\) J después ✓.</p></div></details></div><!--/amp2--><!--vid--><div class="vids"><p class="vids-h">Vídeos para aprender y practicar</p><p class="vm" style="margin:0 0 10px">Vídeos de YouTube de distintos canales que explican el mismo tema o resuelven ejercicios parecidos paso a paso. Son material externo de otros autores: úsalos para ver el método en acción y compara siempre con las fórmulas de esta guía. Pulsa sobre el vídeo para reproducirlo sin salir de la página.</p><div class="vgrid"><div class="vcard"><button class="vthumb" type="button" data-v="WZ2HsucUqok" data-t="Teoría sistemas de partículas (1): el centro de masas…" aria-label="Reproducir: Teoría sistemas de partículas (1): el centro de masas…"><img src="https://i.ytimg.com/vi/WZ2HsucUqok/hqdefault.jpg" alt="" loading="lazy"><span class="vplay"></span><span class="vdur">10:11</span></button><div class="vtx"><a class="vt" href="https://www.youtube.com/watch?v=WZ2HsucUqok" target="_blank" rel="noopener">Teoría sistemas de partículas (1): el centro de masas…</a><p class="vm">Mario Castro · YouTube</p></div></div><div class="vcard"><button class="vthumb" type="button" data-v="W5c7_8HQS-A" data-t="SISTEMAS DE PARTÍCULAS: CENTRO DE MASA" aria-label="Reproducir: SISTEMAS DE PARTÍCULAS: CENTRO DE MASA"><img src="https://i.ytimg.com/vi/W5c7_8HQS-A/hqdefault.jpg" alt="" loading="lazy"><span class="vplay"></span><span class="vdur">14:36</span></button><div class="vtx"><a class="vt" href="https://www.youtube.com/watch?v=W5c7_8HQS-A" target="_blank" rel="noopener">SISTEMAS DE PARTÍCULAS: CENTRO DE MASA</a><p class="vm">Mr Planck · YouTube</p></div></div></div><script>if(!window.__vp){window.__vp=1;document.addEventListener('click',function(e){var b=e.target.closest('.vthumb');if(!b)return;var c=b.closest('.vcard');var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.v+'?rel=0&autoplay=1';f.title=b.dataset.t;f.allow='accelerometer;autoplay;encrypted-media;picture-in-picture;fullscreen';f.allowFullscreen=true;c.replaceChild(f,b);});}</script></div><!--/vid--><h3 id="t6-auto">Autoevaluación</h3>
 <p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Se conserva la energía cinética de un sistema sin fuerzas externas? (cuestión 18b)</summary><div class="inner"><p>No necesariamente: las fuerzas internas pueden transformarla (explosión, choque inelástico). Lo que se conserva es \(\vec p\).</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Es nulo el momento lineal respecto al sistema del centro de masas? (cuestión 18d)</summary><div class="inner"><p>Verdadero: \(\vec P'=\sum m_i\vec v_i'=M\vec v_{CM}'=0\).</p></div></details><details class="paso"><summary><span class="pn">3</span>Tipos de colisiones y ecuaciones (cuestión 13).</summary><div class="inner"><p>Elástica: \(\vec p\) y \(E_c\). Perfectamente inelástica: \(\vec p\) y \(\vec v_1'=\vec v_2'\). Inelástica: \(\vec p\) y \(e=(v_2'-v_1')/(v_1-v_2)\).</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Dónde está el centro de masas de un cono macizo de altura h?</summary><div class="inner"><p>A \(3h/4\) del vértice (\(h/4\) de la base), integrando discos \(dm=\rho\pi r^2dz\) con \(r=Rz/h\).</p></div></details>
 </section>
-<nav class="pager" aria-label="Páginas"><a href="tema-05.html"><small>← Anterior</small>T5 · Movimiento oscilatorio</a><a class="nx" href="tema-07.html"><small>Siguiente →</small>T7 · Dinámica y estática del sólido rígido</a></nav>
+<nav class="pager" aria-label="Páginas"><a href="tema-05.html"><small>← Anterior</small>T5 · Movimiento oscilatorio</a><a class="nx" href="tema-07.html"><small>Siguiente →</small>T7 · Dinámica del sólido rígido. Sistemas de fuerzas</a></nav>
 <p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Física I (GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>
 </main>
 </div>

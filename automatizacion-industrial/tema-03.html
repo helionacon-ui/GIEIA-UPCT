@@ -17,23 +17,86 @@
 @media screen{
 :root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
 body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:18.5px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:16.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 
@@ -61,14 +124,22 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
 <div class="sh"><span aria-hidden="true" class="badge">3</span><div class="shx"><p class="kick">Neumática · Tema 3</p><h2 id="t3">Electroneumática: relés, enclavamiento y temporizadores</h2><div class="tags"><span class="tag">Neumática</span><span class="tag">Neumática</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Pasar del circuito todo-neumático al electroneumático: separar el circuito de mando eléctrico del de potencia neumática.</p><p class="ft">Los dos circuitos</p><p>En electroneumática hay <b>dos esquemas separados</b> que hay que dibujar por separado y no mezclar:</p><ul><li>El <b>circuito neumático</b>: cilindro, válvulas, unidad de mantenimiento. Lo único que cambia respecto al anterior es que la válvula 5/2 se pilota con <b>solenoides</b> (E1, E2) en vez de con aire.</li><li>El <b>circuito de mando eléctrico</b>: a 24 V, con pulsadores, relés, temporizadores, finales de carrera eléctricos y los solenoides como cargas.</li></ul><p>Se dibuja el de mando en vertical, con la línea de 24 V arriba y la de 0 V abajo, y una «rama» por cada función.</p><p class="ft">Contactos y la función del relé</p><p>Un <b>relé</b> (R1) es una bobina que, al excitarse, cierra o abre sus contactos. Hay dos tipos, y los enunciados los llaman por su nombre:</p><ul><li><b>Obturador</b> o contacto normalmente abierto (NA): se cierra cuando el relé está activo.</li><li><b>Franqueador</b> o contacto normalmente cerrado (NC): se abre cuando el relé está activo.</li></ul><p>La clave es que un relé puede tener <b>varios contactos</b>, y ahí está toda su utilidad: una sola bobina gobierna tres o cuatro ramas distintas del esquema.</p><p class="ft">El enclavamiento: el circuito de marcha-paro</p><p>Es <b>el</b> montaje fundamental de toda la asignatura. Con un pulsador que sólo da señal mientras se aprieta, se consigue un funcionamiento permanente:</p><div class="code">   24 V ──┬── P ──┬── (parada) ── [R1] ── 0 V
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Pasar del circuito todo-neumático al electroneumático: separar el circuito de mando eléctrico del de potencia neumática.</p><p class="ft">Los dos circuitos</p><p class="lede">En electroneumática hay <b>dos esquemas separados</b> que hay que dibujar por separado y no mezclar:</p><ul><li>El <b>circuito neumático</b>: cilindro, válvulas, unidad de mantenimiento. Lo único que cambia respecto al anterior es que la válvula 5/2 se pilota con <b>solenoides</b> (E1, E2) en vez de con aire.</li><li>El <b>circuito de mando eléctrico</b>: a 24 V, con pulsadores, relés, temporizadores, finales de carrera eléctricos y los solenoides como cargas.</li></ul><p>Se dibuja el de mando en vertical, con la línea de 24 V arriba y la de 0 V abajo, y una «rama» por cada función.</p><p class="ft">Contactos y la función del relé</p><p>Un <b>relé</b> (R1) es una bobina que, al excitarse, cierra o abre sus contactos. Hay dos tipos, y los enunciados los llaman por su nombre:</p><ul><li><b>Obturador</b> o contacto normalmente abierto (NA): se cierra cuando el relé está activo.</li><li><b>Franqueador</b> o contacto normalmente cerrado (NC): se abre cuando el relé está activo.</li></ul><p>La clave es que un relé puede tener <b>varios contactos</b>, y ahí está toda su utilidad: una sola bobina gobierna tres o cuatro ramas distintas del esquema.</p><p class="ft">El enclavamiento: el circuito de marcha-paro</p><p>Es <b>el</b> montaje fundamental de toda la asignatura. Con un pulsador que sólo da señal mientras se aprieta, se consigue un funcionamiento permanente:</p><div class="code">   24 V ──┬── P ──┬── (parada) ── [R1] ── 0 V
           │       │
           └─ R1 ──┘      ← contacto propio en paralelo</div><p>Al pulsar P se excita R1; uno de sus contactos NA se cierra <b>en paralelo con P</b> y mantiene la bobina alimentada aunque se suelte el pulsador. Se le llama <b>realimentación</b> o <b>autoalimentación</b>. Para parar hay que abrir la rama con un contacto NC.</p><p>El pulsador de <b>parada siempre va en serie y siempre es NC</b>: así, si se corta el cable, el sistema se para en vez de quedarse bloqueado en marcha.</p><p class="ft">Temporizadores</p><p>Dos tipos, y la diferencia se pregunta:</p><ul><li><b>Con retardo a la conexión</b> («relé con deceleración de arranque», TON): se alimenta la bobina, pasan los segundos programados y <b>entonces</b> conmutan los contactos. Es el habitual.</li><li><b>Con retardo a la desconexión</b> (TOFF): conmuta al momento y vuelve a su posición pasado el tiempo tras cortar la alimentación.</li></ul><p>En el esquema aparece como un rectángulo con el símbolo de un paracaídas y el tiempo escrito al lado. Sus contactos se marcan con el mismo nombre que la bobina: T1.</p></div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 3 <span class="src">8 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">obturador</td><td>contacto NA</td><td class="u">cierra al activar</td></tr><tr><td class="sym">franqueador</td><td>contacto NC</td><td class="u">abre al activar</td></tr><tr><td class="sym">enclavamiento</td><td>contacto propio en paralelo</td><td class="u">autoalimentación</td></tr><tr><td class="sym">TON</td><td>retardo a la conexión</td><td class="u"></td></tr><tr><td class="sym">TOFF</td><td>retardo a la desconexión</td><td class="u"></td></tr><tr><td class="sym">solenoide</td><td>pilotaje eléctrico</td><td class="u">E, E1, E2</td></tr><tr><td class="sym">24 V</td><td>tensión de mando</td><td class="u"></td></tr><tr><td class="sym">paro</td><td>siempre NC y en serie</td><td class="u"></td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Simulador interactivo - enclavamiento, temporizador y paro NC</p><div data-sim="enclavamiento"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Qué es un enclavamiento (autorretención)</p><p>Un pulsador de marcha solo da un pulso, pero el motor tiene que seguir funcionando cuando lo sueltas. Solución: el relé que arranca se «<b>agarra a sí mismo</b>» con un contacto auxiliar en paralelo con el pulsador. Así se recuerda que «ya se dio marcha». Se corta con un pulsador de paro normalmente cerrado en serie. La ecuación es \(\text{Marcha}=(P+R_1)\cdot\overline{\text{Paro}}\): el relé se activa si hay pulso <b>o</b> ya estaba activo, <b>y</b> no hay paro. En esa ecuación el paro está en serie con todo, por eso el paro <b>domina</b> (aunque pulses marcha, si está pulsado el paro, no arranca). Es la «memoria» más simple de la automatización.</p><p class="ft">Contactos NA y NC, relés y temporizadores</p><p>Un contacto <b>NA</b> (normalmente abierto) cierra cuando el relé se activa; uno <b>NC</b> (normalmente cerrado) abre. Un relé tiene una bobina (que consume potencia, \(P=UI\)) y varios contactos que repiten su estado. Un <b>temporizador a la conexión</b> (TON) cierra su contacto \(t\) segundos <em>después</em> de que se le dé tensión, y se usa para arranques escalonados o para conmutar estrella-triángulo. En el esquema de mando se dibuja una <b>rama por cada salida</b> (relé, temporizador, solenoide, piloto), todas entre las dos líneas de alimentación; esta organización hace que cualquier esquema, por grande que sea, se lea rama a rama.</p></div><!--/amp1--><!--manim:ai-t3--><figure class="fig manim-fig" id="anim-ai-t3"><p class="ft">Animación · Relé con autorretención</p><div class="manim" data-anim="ai-t3"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
-<h3 id="t3-formulas">Fórmulas y conceptos que hay que saber</h3>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Qué es un enclavamiento (autorretención)</p><p class="lede">Un pulsador de marcha solo da un pulso, pero el motor tiene que seguir funcionando cuando lo sueltas. Solución: el relé que arranca se «<b>agarra a sí mismo</b>» con un contacto auxiliar en paralelo con el pulsador. Así se recuerda que «ya se dio marcha». Se corta con un pulsador de paro normalmente cerrado en serie. La ecuación es \(\text{Marcha}=(P+R_1)\cdot\overline{\text{Paro}}\): el relé se activa si hay pulso <b>o</b> ya estaba activo, <b>y</b> no hay paro. En esa ecuación el paro está en serie con todo, por eso el paro <b>domina</b> (aunque pulses marcha, si está pulsado el paro, no arranca). Es la «memoria» más simple de la automatización.</p><p class="ft">Contactos NA y NC, relés y temporizadores</p><p>Un contacto <b>NA</b> (normalmente abierto) cierra cuando el relé se activa; uno <b>NC</b> (normalmente cerrado) abre. Un relé tiene una bobina (que consume potencia, \(P=UI\)) y varios contactos que repiten su estado. Un <b>temporizador a la conexión</b> (TON) cierra su contacto \(t\) segundos <em>después</em> de que se le dé tensión, y se usa para arranques escalonados o para conmutar estrella-triángulo. En el esquema de mando se dibuja una <b>rama por cada salida</b> (relé, temporizador, solenoide, piloto), todas entre las dos líneas de alimentación; esta organización hace que cualquier esquema, por grande que sea, se lea rama a rama.</p></div><!--/amp1--><!--manim:ai-t3--><figure class="fig manim-fig" id="anim-ai-t3"><p class="ft">Animación · Relé con autorretención</p><div class="manim" data-anim="ai-t3"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t3-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Electroneumática</h4>
+<div class="box key deepnote"><b>Idea clave.</b> en la electroneumática, las válvulas se accionan con electroimanes. Un señal eléctrica manda y el aire actúa. Así el mando puede estar lejos de la máquina y ser más flexible.</div>
+<details class="dem"><summary><span class="pn">∴</span>Autorretención o enclavamiento</summary><div class="inner"><p>Un relé se mantiene activo gracias a un contacto propio en paralelo con el pulsador de marcha. Se libera con el pulsador de paro, en serie.</p>
+<ol class="pasos"><li>El pulsador de marcha cierra el circuito del relé.</li><li>El contacto auxiliar del relé se cierra y mantiene la alimentación.</li><li>El pulsador de paro abre el circuito y el relé cae.</li></ol>
+<div class="box trap deepnote"><b>Cuidado.</b> El pulsador de paro debe ser normalmente cerrado (NC). Si es NA, un fallo de cable deja el sistema siempre en marcha sin posibilidad de parar.</div></div></details>
+<h4><span class="hn">2</span>Temporizadores</h4>
+<ul><li><b>Temporizador a la conexión</b> (retardo a la conexión, TON): el contacto cambia tras el tiempo de retardo.</li><li><b>Temporizador a la desconexión</b> (TOFF): el contacto se mantiene un tiempo tras la desconexión.</li></ul>
+</div><!--/deep--><h3 id="t3-formulas">Fórmulas y conceptos que hay que saber</h3>
 <div class="box key"><div class="tw"><table><tr><th>Expresión</th><th>Qué es</th></tr><tr><td>\(\text{Marcha} = (P + R1)\cdot\overline{\text{Paro}}\)</td><td>ecuación del enclavamiento</td></tr><tr><td>\(\text{NA (obturador): } 0\to1\)</td><td>cerrado con el relé activo</td></tr><tr><td>\(\text{NC (franqueador): } 1\to0\)</td><td>abierto con el relé activo</td></tr><tr><td>\(\text{TON: salida tras } t\)</td><td>retardo a la conexión</td></tr></table></div></div>
 <h3 id="t3-metodo">Método paso a paso</h3>
 <ol class="steps"><li>Dibuja <b>dos esquemas</b>: el neumático con los solenoides y el eléctrico de mando.</li><li>En el de mando, pon una <b>rama por salida</b>: una para cada relé, una para cada temporizador, una para cada solenoide y una para cada piloto.</li><li>Empieza por el <b>enclavamiento</b>: pulsador de marcha en paralelo con un contacto propio del relé, y paro NC en serie.</li><li>Añade los <b>finales de carrera</b> como contactos en las ramas donde deban actuar; un mismo FC puede aparecer varias veces, NA en una rama y NC en otra.</li><li>Coloca los <b>temporizadores</b> alimentados por el contacto que arranca la cuenta, y usa sus contactos en la rama que debe esperar.</li><li>Repasa la <b>lista de piezas</b>: el examen la pide, con marca y denominación.</li></ol>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T11 Óptica física · Física II · Apuntes</title>
+<meta name="description" content="Física II (GIEyA): tema 11, Óptica física">
+
+
+<script>window.MathJax={loader:{load:['ui/lazy']},tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<script src="asig-nav.js" defer></script>
+
+<style id="lectura">
+@media screen{
+:root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
+body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
+figure.fig{margin-block:34px}
+.toc a{font-size:16.5px;padding:8px 0 8px 10px}
+svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
+details>summary{line-height:1.7;padding-block:.5em}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
+}
+</style>
+
+<script>(function(){try{var d=document.documentElement,s=localStorage,p=s.getItem("apuntes-piel");if(p==="min")d.setAttribute("data-piel","min");var t=s.getItem("apuntes-tema");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);var f=s.getItem("apuntes-fondo");if(f)d.setAttribute("data-fondo",f);}catch(e){}})();</script>
+<link rel="stylesheet" href="piel.css?v=4">
+<script src="piel.js?v=4" defer></script>
+<script src="sugerencias.js?v=2" defer></script>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#b4232f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Física II">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+<script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados en los cursos <time datetime="2021-09">2021/22</time> y <time datetime="2024-01">2023/24</time> (apuntes y exámenes) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Física II</a><span class="sep">›</span><span>UD4 · Óptica</span><span class="sep">›</span><span>T11 · Óptica física</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">UD1 · Electrostática y continua</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Campo electrostático</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Potencial electrostático y energía</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conductores, condensadores y dieléctricos</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Corriente continua y circuitos</a><div class="grp">UD2 · Magnetismo y alterna</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Campo magnético</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Inducción electromagnética</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Magnetismo en la materia</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Corriente alterna</a><div class="grp">UD3 · Ondas</div><a href="tema-09.html" style="--tc:var(--c2)">T9 Movimiento ondulatorio y ondas</a><div class="grp">UD4 · Óptica</div><a href="tema-10.html" style="--tc:var(--c3)">T10 Óptica geométrica</a><a href="tema-11.html" class="on" aria-current="page" style="--tc:var(--c4)">T11 Óptica física</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Teoría de examen respondida (el 30 %)</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Las hojas oficiales con resultado</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de laboratorio</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
+<div class="sh"><span aria-hidden="true" class="badge">11</span><div class="shx"><p class="kick">UD4 · Óptica · Tema 11</p><h2 id="t11">Óptica física</h2><div class="tags"><span class="tag">UD4 · Óptica</span><span class="tag">Segundo parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> entender la interferencia (Young, láminas delgadas), la difracción por rendija y por red, el poder de resolución y la polarización con la ley de Malus y el ángulo de Brewster.</p>
+<p class="lede">La óptica física aparece cuando el tamaño de los obstáculos es comparable a \(\lambda\). Entonces los rayos ya no bastan y hay que sumar <b>ondas</b>, con su fase.</p>
+<p class="run"><b>Interferencia:</b> dos focos coherentes (misma frecuencia y desfase constante) se refuerzan si la diferencia de camino es múltiplo entero de \(\lambda\) y se anulan si es múltiplo impar de \(\lambda/2\).</p>
+<p class="run"><b>Young (doble rendija):</b> máximos en \(d\operatorname{sen}\theta=m\lambda\); en la pantalla, franjas separadas \(\Delta y=\lambda L/d\).</p>
+<p class="run"><b>Láminas delgadas:</b> (pompa de jabón, antirreflejos): el camino extra es \(2nt\), y hay que sumar <b>λ/2</b> por cada reflexión en un medio de índice mayor.</p>
+<p class="run"><b>Difracción por rendija:</b> de anchura \(a\): <b>mínimos</b> en \(a\operatorname{sen}\theta=m\lambda\) (ojo: aquí la fórmula con \(m\lambda\) da los ceros, no los máximos). <b>Red de difracción</b> de \(N\) rendijas: máximos en \(d\operatorname{sen}\theta=m\lambda\), muy estrechos, con poder de resolución \(R=mN\).</p>
+<p class="run"><b>Polarización:</b> Malus \(I=I_0\cos^2\theta\); luz natural tras un polarizador, \(I_0/2\). Ángulo de Brewster \(\tan\theta_B=n_2/n_1\): el reflejado sale totalmente polarizado.</p>
+</div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 11 <span class="src">6 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">δ</td><td>Diferencia de camino óptico</td><td class="u">m; δ = d·sen θ</td></tr><tr><td class="sym">d</td><td>Separación entre rendijas o paso de red</td><td class="u">m; red de 600 líneas/mm → d = 1,67 µm</td></tr><tr><td class="sym">a</td><td>Anchura de una rendija</td><td class="u">m</td></tr><tr><td class="sym">m</td><td>Orden de interferencia o difracción</td><td class="u">entero</td></tr><tr><td class="sym">R</td><td>Poder de resolución λ/Δλ</td><td class="u">R = mN en una red</td></tr><tr><td class="sym">θ_B</td><td>Ángulo de Brewster</td><td class="u">tan θ_B = n₂/n₁</td></tr></table></div></div></details>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué hace falta coherencia</p><p class="lede">Dos bombillas no producen franjas. La razón es que cada átomo emite trenes de onda de unos nanosegundos con fase al azar: el desfase entre los dos focos cambia millones de veces por segundo y la figura de interferencia se promedia a gris uniforme.</p>
+<p>Por eso Young usó <b>una</b> fuente y la dividió en dos con las rendijas: así ambas copias comparten el origen y mantienen el desfase. Un láser lo consigue por construcción, y de ahí que en el laboratorio se use siempre.</p>
+<p class="ft">Interferencia y difracción son lo mismo</p><p>La separación entre «interferencia» (pocos focos) y «difracción» (infinitos puntos de una abertura) es histórica, no física: en los dos casos se suman ondas con fases distintas.</p>
+<p>En la doble rendija real se ven las dos a la vez: las franjas finas de interferencia (\(d\operatorname{sen}\theta=m\lambda\)) moduladas por la <b>envolvente</b> ancha de la difracción de cada rendija (\(a\operatorname{sen}\theta=m\lambda\) para los ceros). Cuando un mínimo de difracción cae sobre un máximo de interferencia, ese orden <b>desaparece</b>: es el llamado orden ausente, y sale cuando \(d/a\) es entero.</p>
+</div><!--/amp1--><!--manim:fis2-t11--><figure class="fig manim-fig" id="anim-fis2-t11"><p class="ft">Animación · Interferencia de Young</p><div class="manim" data-anim="fis2-t11"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t11-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Suma de ondas y condición de interferencia</h4>
+<div class="box key deepnote"><b>Idea clave.</b> dos ondas coherentes de igual amplitud desfasadas \(\varphi\) dan una resultante de amplitud \(A=2A_0\cos(\varphi/2)\), luego la intensidad es \(I=4I_0\cos^2(\varphi/2)\).</div>
+<p>El desfase viene de la diferencia de camino óptico \(\delta\):</p>
+<div class="eqd">\[\varphi=\frac{2\pi}{\lambda}\,\delta\]</div>
+<ul><li><b>Constructiva:</b> \(\delta=m\lambda\) (\(m=0,\pm1,\pm2\dots\)), intensidad \(4I_0\).</li><li><b>Destructiva:</b> \(\delta=(m+\tfrac12)\lambda\), intensidad nula.</li></ul>
+<div class="box trap deepnote"><b>Cuidado.</b> La intensidad máxima es <b>cuatro</b> veces la de un foco, no dos. No se suman intensidades, se suman amplitudes y luego se eleva al cuadrado. La energía total se conserva: lo que sobra en los máximos falta en los mínimos.</div>
+<h4><span class="hn">2</span>Experimento de Young</h4>
+<p>Dos rendijas separadas \(d\) iluminadas en fase, pantalla a distancia \(L\gg d\). La diferencia de camino hacia un punto que se ve bajo ángulo \(\theta\) es \(\delta=d\operatorname{sen}\theta\):</p>
+<div class="eqd">\[d\operatorname{sen}\theta=m\lambda\ \ (\text{máximos})\qquad d\operatorname{sen}\theta=\left(m+\tfrac12\right)\lambda\ \ (\text{mínimos})\]</div>
+<p>Para ángulos pequeños \(\operatorname{sen}\theta\approx y/L\), así que las franjas son equidistantes:</p>
+<div class="eqd">\[y_m=\frac{m\lambda L}{d}\qquad \Delta y=\frac{\lambda L}{d}\]</div>
+<p>Esta última es la fórmula que se usa en laboratorio para <b>medir \(\lambda\)</b>: se cuentan franjas, se mide su separación y se despeja.</p>
+<h4><span class="hn">3</span>Láminas delgadas y el salto de fase</h4>
+<p>En una lámina de índice \(n\) y espesor \(t\), el rayo que entra y vuelve recorre \(2nt\) de camino óptico de más que el que se refleja en la cara superior. Pero hay un detalle decisivo:</p>
+<div class="box key deepnote"><b>Idea clave.</b> toda reflexión en un medio de <b>mayor</b> índice añade un salto de fase de \(\pi\), equivalente a <b>media longitud de onda</b>. La reflexión en un medio de menor índice no añade nada.</div>
+<p>Para una pompa de jabón en aire (aire–agua–aire) solo la primera reflexión salta, así que la condición se invierte respecto a la intuitiva:</p>
+<div class="eqd">\[2nt=\left(m+\tfrac12\right)\lambda\ \ (\text{máximo de reflexión})\qquad 2nt=m\lambda\ \ (\text{mínimo})\]</div>
+<p><b>Capa antirreflejos</b> de una lente: se busca el <b>mínimo</b> en reflexión. Si el índice de la capa está entre el del aire y el del vidrio, saltan las dos reflexiones, los saltos se cancelan y la condición de mínimo vuelve a ser \(2nt=(m+\tfrac12)\lambda\); el espesor más fino es \(t=\lambda/4n\), de ahí el nombre de «capa de cuarto de onda».</p>
+<div class="box trap deepnote"><b>Cuidado.</b> Antes de escribir la condición, cuenta <b>cuántas</b> de las dos reflexiones ocurren contra un índice mayor. Si saltan las dos o ninguna, la condición es la directa; si salta solo una, se invierte. Este es el punto que más se falla del tema.</div>
+<!--manim:fis2-t11b--><figure class="fig manim-fig" id="anim-fis2-t11b"><p class="ft">Animación · Difracción por una rendija</p><div class="manim" data-anim="fis2-t11b"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
+<h4><span class="hn">4</span>Difracción por una rendija</h4>
+<p>Una rendija de anchura \(a\) no da un punto, sino una mancha central ancha con máximos laterales débiles. Dividiendo la rendija en parejas de puntos que se cancelan se obtiene la condición de <b>mínimo</b>:</p>
+<div class="eqd">\[a\operatorname{sen}\theta=m\lambda\qquad m=\pm1,\pm2,\dots\]</div>
+<p>El máximo central tiene anchura angular \(2\lambda/a\) y concentra el 84 % de la energía. Cuanto más estrecha es la rendija, <b>más</b> se abre la luz: es contraintuitivo pero es la clave de todo el tema.</p>
+<ul><li>Para una abertura circular de diámetro \(D\), el primer anillo oscuro está en \(\operatorname{sen}\theta=1{,}22\lambda/D\).</li><li><b>Criterio de Rayleigh:</b> dos fuentes se distinguen si su separación angular supera ese valor. Es lo que limita la resolución de un telescopio o de un microscopio.</li></ul>
+<h4><span class="hn">5</span>Red de difracción y poder de resolución</h4>
+<p>Con \(N\) rendijas los máximos están en el mismo sitio que con dos (\(d\operatorname{sen}\theta=m\lambda\)), pero se vuelven <b>mucho más estrechos</b>: la anchura es proporcional a \(1/N\). Por eso una red separa colores que una doble rendija no distingue.</p>
+<div class="eqd">\[R=\frac{\lambda}{\Delta\lambda}=mN\]</div>
+<p>Con una red de 600 líneas/mm y 2 cm iluminados hay \(N=12000\) rendijas; en segundo orden \(R=24000\), suficiente para resolver el doblete del sodio (589,0 y 589,6 nm, que exige \(R\approx1000\)).</p>
+<details class="dem"><summary><span class="pn">∴</span>Número máximo de órdenes visibles</summary><div class="inner"><p>Como \(\operatorname{sen}\theta\le1\), de \(d\operatorname{sen}\theta=m\lambda\) sale \(m_{\max}=\lfloor d/\lambda\rfloor\). Con \(d=1{,}67\) µm y \(\lambda=600\) nm, \(m_{\max}=2\): solo se ven los órdenes 0, ±1 y ±2.</p></div></details>
+<h4><span class="hn">6</span>Polarización</h4>
+<p>La luz es una onda transversal, así que el campo \(\vec E\) puede oscilar en cualquier dirección perpendicular a la propagación. La luz natural es una mezcla al azar de todas.</p>
+<ul><li><b>Por absorción (polaroid):</b> deja pasar una dirección. Luz natural de intensidad \(I_0\) sale con \(I_0/2\).</li><li><b>Ley de Malus:</b> luz ya polarizada que atraviesa un segundo polarizador girado \(\theta\): \(I=I_0\cos^2\theta\).</li><li><b>Por reflexión:</b> en el ángulo de Brewster el rayo reflejado sale totalmente polarizado paralelo a la superficie.</li></ul>
+<div class="eqd">\[\tan\theta_B=\frac{n_2}{n_1}\]</div>
+<p>En ese ángulo el rayo reflejado y el refractado forman exactamente 90°. Es la razón de que las gafas de sol polarizadas eliminen el reflejo del asfalto o del agua: filtran la componente horizontal, que es justamente la que domina en ese reflejo.</p>
+<div class="box trap deepnote"><b>Cuidado.</b> Con <b>tres</b> polarizadores a 0°, 45° y 90° pasa luz, aunque el primero y el tercero estén cruzados: \(I=\tfrac12I_0\cos^245^\circ\cos^245^\circ=I_0/8\). Quitando el del medio no pasa nada. Es la pregunta de teoría clásica del tema.</div>
+</div><!--/deep--><h3 id="t11-ejercicios">Ejercicios tipo, paso a paso</h3><p>Las cuentas están hechas; intenta el planteamiento antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>Young con d = 0,2 mm, L = 2 m y λ = 600 nm: ¿separación entre franjas?</summary><div class="inner"><p>\(\Delta y=\lambda L/d=(600\times10^{-9})(2)/(0{,}2\times10^{-3})=6\times10^{-3}\) m = <b>6 mm</b>. Son perfectamente visibles a simple vista, que es lo que hace útil el montaje para medir \(\lambda\).</p></div></details><details class="paso"><summary><span class="pn">2</span>Pompa de jabón (n = 1,33) que se ve verde (λ = 550 nm) en reflexión: espesor mínimo.</summary><div class="inner"><p>Aire–agua–aire: solo salta la primera reflexión, luego el <b>máximo</b> cumple \(2nt=(m+\tfrac12)\lambda\). Con \(m=0\):</p>
+<div class="eqd">\[t=\frac{\lambda}{4n}=\frac{550\times10^{-9}}{4(1{,}33)}=103\ \text{nm}\]</div></div></details><details class="paso"><summary><span class="pn">3</span>Capa antirreflejos de MgF₂ (n = 1,38) sobre vidrio (n = 1,52) para λ = 550 nm.</summary><div class="inner"><p>Ahora \(1&lt;1{,}38&lt;1{,}52\): saltan <b>las dos</b> reflexiones, los saltos se cancelan y el <b>mínimo</b> en reflexión exige \(2nt=(m+\tfrac12)\lambda\). Espesor mínimo:</p>
+<div class="eqd">\[t=\frac{\lambda}{4n}=\frac{550\times10^{-9}}{4(1{,}38)}=99{,}6\ \text{nm}\]</div>
+<p>Casi el mismo número que antes, pero por un camino lógico distinto. Es la comparación que suele pedirse en el examen de teoría.</p></div></details><details class="paso"><summary><span class="pn">4</span>Rendija de 0,1 mm, λ = 500 nm, pantalla a 3 m: anchura del máximo central.</summary><div class="inner"><p>Primer mínimo en \(\operatorname{sen}\theta=\lambda/a=5\times10^{-3}\). En la pantalla, \(y_1=L\lambda/a=3(5\times10^{-3})=15\) mm. El máximo central va de \(-y_1\) a \(+y_1\): <b>30 mm de ancho</b>.</p></div></details><details class="paso"><summary><span class="pn">5</span>Red de 600 líneas/mm con λ = 589 nm: ¿a qué ángulo sale el primer orden y cuántos se ven?</summary><div class="inner"><p>\(d=1/600\) mm \(=1{,}667\) µm. Primer orden: \(\operatorname{sen}\theta=\lambda/d=589/1667=0{,}353\Rightarrow\theta=20{,}7^\circ\).</p>
+<p>\(m_{\max}=\lfloor d/\lambda\rfloor=\lfloor2{,}83\rfloor=2\): se ven los órdenes 0, ±1 y ±2.</p></div></details><details class="paso"><summary><span class="pn">6</span>Luz natural de 100 W/m² por dos polarizadores cruzados a 60°.</summary><div class="inner"><p>Tras el primero: \(100/2=50\) W/m². Tras el segundo (ley de Malus): \(50\cos^260^\circ=50(0{,}25)=\) <b>12,5 W/m²</b>.</p></div></details><details class="paso"><summary><span class="pn">7</span>Ángulo de Brewster aire–agua (n = 1,33).</summary><div class="inner"><p>\(\tan\theta_B=1{,}33\Rightarrow\theta_B=53{,}1^\circ\) desde la normal. El reflejado sale polarizado horizontalmente; unas gafas polarizadas con el eje vertical lo eliminan.</p></div></details>
+<h3 id="t11-trucos">Trucos de examen y errores típicos</h3><div class="deep"><div class="box key deepnote"><b>Truco.</b> Antes de escribir nada, decide si el fenómeno es de <b>interferencia</b> (dos o pocos focos, fórmula con \(d\)) o de <b>difracción</b> (una abertura, fórmula con \(a\)). El símbolo que uses delante del seno delata si lo has entendido.</div><div class="box key deepnote"><b>Truco.</b> Memoriza el cruce: con \(d\) (rendijas o red), \(m\lambda\) son <b>máximos</b>; con \(a\) (anchura de una rendija), \(m\lambda\) son <b>mínimos</b>. Es lo contrario de lo que parece.</div><div class="box key deepnote"><b>Truco.</b> En láminas delgadas, <b>cuenta las reflexiones contra índice mayor</b> antes de nada. Una sola → la condición se invierte. Dos o ninguna → condición directa. Escríbelo en el margen.</div><div class="box key deepnote"><b>Truco.</b> El espesor mínimo de una capa de cuarto de onda es siempre \(t=\lambda/4n\), tanto para el máximo de la pompa como para el mínimo del antirreflejos. Cambia el razonamiento, no el número.</div><div class="box key deepnote"><b>Truco.</b> Órdenes visibles en una red: \(m_{\max}=\lfloor d/\lambda\rfloor\), sin más. Te ahorra tantear.</div><div class="box key deepnote"><b>Truco.</b> Polarizadores en cadena: multiplica. Luz natural → \(\times\tfrac12\) en el primero y \(\times\cos^2\theta\) en cada uno de los siguientes, con \(\theta\) medido respecto al <b>anterior</b>, no al primero.</div><div class="box trap deepnote"><b>Error típico.</b> Usar \(\lambda\) en nanómetros y \(d\) en milímetros en la misma fórmula. Pasa todo a metros de entrada.</div><div class="box trap deepnote"><b>Error típico.</b> Medir el ángulo del segundo polarizador desde el primero cuando hay tres. Siempre respecto al inmediatamente anterior.</div><div class="box trap deepnote"><b>Error típico.</b> Decir que el máximo central de la difracción vale \(y_1\) de ancho. Vale \(2y_1\): va de \(-y_1\) a \(+y_1\).</div><div class="box trap deepnote"><b>Error típico.</b> Sumar intensidades en interferencia. Se suman <b>amplitudes</b> y luego se eleva al cuadrado; por eso el máximo es \(4I_0\) y no \(2I_0\).</div></div>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-10.html"><small>← Anterior</small>T10 · Óptica geométrica</a><a class="nx" href="cuestiones.html"><small>Siguiente →</small>Teoría de examen</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Física II (GIEyA) · Datos tomados en los cursos <time datetime="2021-09">2021/22</time> y <time datetime="2024-01">2023/24</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+<script src="anim-manim.js?v=31215" defer></script>
+<script src="anim-temas.js?v=31215" defer></script>
+</body>
+</html>

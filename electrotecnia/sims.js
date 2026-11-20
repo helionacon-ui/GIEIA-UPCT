@@ -1088,6 +1088,187 @@ SIMS.vhz = el => build(el, {
       + '<br>Las curvas grises son las demás frecuencias: el motor asíncrono con variador es una familia de curvas que se desplaza.');
   }
 });
+/* =============================================================== T2
+   Relación de transformación y balance de amperivueltas             */
+SIMS.vueltas = el => build(el, {
+  w: 680, h: 400,
+  sliders: [{ k: 'N1', v: 400, min: 50, max: 800, step: 10, l: 'Espiras del primario N₁', u: '' },
+            { k: 'N2', v: 200, min: 50, max: 800, step: 10, l: 'Espiras del secundario N₂', u: '' },
+            { k: 'V1', v: 230, min: 50, max: 400, step: 5, l: 'Tensión del primario V₁', u: 'V' },
+            { k: 'R', v: 23, min: 2, max: 200, step: 1, l: 'Carga R', u: 'Ω' }],
+  draw(a) {
+    const st = a.st, S = nxPal(a), g = a.g, rt = st.N1 / st.N2;
+    const V2 = st.V1 / rt, I2 = V2 / st.R, I1 = I2 / rt, P = V2 * I2;
+    a.clear();
+    // núcleo y devanados
+    const X = 150, Y = 40, W = 220, H = 170, e = 28;
+    g.strokeStyle = C.muted; g.lineWidth = 2; g.strokeRect(X, Y, W, H); g.strokeRect(X + e, Y + e, W - 2 * e, H - 2 * e);
+    const bob = (x, n, col) => { const k = Math.max(3, Math.round(n / 50)), paso = (H - 2 * e - 8) / k;
+      for (let j = 0; j < k; j++) { const yy = Y + e + 6 + j * paso; a.line(x - 8, yy + 5, x + e + 8, yy - 3, col, 2.4); } };
+    bob(X, st.N1, S.rojo); bob(X + W - e, st.N2, S.azul);
+    a.txt('N₁ = ' + st.N1, X - 12, Y - 8, S.rojo, 12.5, 'right'); a.txt('N₂ = ' + st.N2, X + W + 12, Y - 8, S.azul, 12.5);
+    a.arrow(X + W / 2 - 24, Y + e / 2, X + W / 2 + 24, Y + e / 2, S.morado, 2.2);
+    a.txt('mismo flujo Φ', X + W / 2, Y + e + 22, S.morado, 12, 'center');
+    a.txt('V₁ = ' + nf(st.V1, 0) + ' V', X - 16, Y + 80, S.rojo, 13, 'right'); a.txt('I₁ = ' + nf(I1) + ' A', X - 16, Y + 100, S.rojo, 13, 'right');
+    a.txt('V₂ = ' + nf(V2, 1) + ' V', X + W + 16, Y + 80, S.azul, 13); a.txt('I₂ = ' + nf(I2) + ' A', X + W + 16, Y + 100, S.azul, 13);
+    a.txt('R = ' + nf(st.R, 0) + ' Ω', X + W + 16, Y + 124, C.muted, 12);
+    // barras comparadas
+    const fila = (y, tit, v1, v2, u, d) => { const m = Math.max(v1, v2), w = 210;
+      a.txt(tit, 40, y + 16, C.text, 12.5);
+      g.fillStyle = S.rojo; g.fillRect(190, y, v1 / m * w, 11); g.fillStyle = S.azul; g.fillRect(190, y + 13, v2 / m * w, 11);
+      a.txt(nf(v1, d) + ' ' + u, 196 + v1 / m * w, y + 10, S.rojo, 11.5); a.txt(nf(v2, d) + ' ' + u, 196 + v2 / m * w, y + 23, S.azul, 11.5); };
+    fila(250, 'Tensión', st.V1, V2, 'V', 1);
+    fila(290, 'Intensidad', I1, I2, 'A', 2);
+    fila(330, 'Amperivueltas N·I', st.N1 * I1, st.N2 * I2, 'A·v', 0);
+    a.txt('Potencia:  V₁·I₁ = V₂·I₂ = ' + nf(P, 0) + ' W', 40, 384, C.text, 12.5);
+    a.html('Relación de transformación r_t = N₁/N₂ = <b>' + nf(rt) + '</b> · V₂ = V₁/r_t = <b>' + nf(V2, 1) + ' V</b> · '
+      + 'I₂ = V₂/R = <b>' + nf(I2) + ' A</b> · I₁ = I₂/r_t = <b>' + nf(I1) + ' A</b><br>'
+      + 'El mismo flujo abraza las dos bobinas, así que cada espira lleva los mismos voltios: la tensión va <b>con</b> las espiras. '
+      + 'La intensidad va <b>al revés</b>, porque los amperivueltas de los dos lados se equilibran: N₁I₁ = N₂I₂ = ' + nf(st.N1 * I1, 0) + ' A·v.<br>'
+      + 'Por eso la potencia que entra es la que sale (transformador ideal), y desde el primario la carga se ve como R·r_t² = <b>'
+      + nf(st.R * rt * rt, 1) + ' Ω</b>.');
+  }
+});
+
+/* =============================================================== T3
+   Coenergía y par                                                   */
+SIMS.coenergia = el => build(el, {
+  w: 680, h: 420,
+  sliders: [{ k: 'i', v: 8, min: 1, max: 20, step: 0.5, l: 'Intensidad i', u: 'A' },
+            { k: 'x', v: 0.5, min: 0, max: 1, step: 0.02, l: 'Posición (0 desalineado · 1 alineado)', u: '' },
+            { k: 'ls', v: 0.6, min: 0.3, max: 3, step: 0.05, l: 'Flujo de saturación λ_sat', u: 'Wb' }],
+  draw(a) {
+    const st = a.st, S = nxPal(a), g = a.g, Lmin = 0.01, Lmax = 0.08, dth = Math.PI / 6;
+    const lam = (L, i) => st.ls * Math.tanh(L * i / st.ls);
+    const Wc = (L, i) => st.ls * st.ls / L * Math.log(Math.cosh(L * i / st.ls));
+    const L = Lmin + (Lmax - Lmin) * st.x, K = (Lmax - Lmin) / dth, u = L * st.i / st.ls;
+    const T = (-(st.ls * st.ls / (L * L)) * Math.log(Math.cosh(u)) + (st.ls * st.i / L) * Math.tanh(u)) * K;
+    const Tlin = 0.5 * st.i * st.i * K, lm = lam(L, st.i), wc = Wc(L, st.i), wf = lm * st.i - wc;
+    a.clear();
+    const ytop = Math.max(0.2, Math.min(st.ls, Lmax * 20) * 1.12);
+    const P = nxPlot(a, { x: 66, y: 28, w: 400, h: 320, xmin: 0, xmax: 20, ymin: 0, ymax: ytop,
+                          xlab: 'i (A)', ylab: 'λ (Wb)', nx: 4, ny: 4, xt: [5, 10, 15, 20] });
+    const cur = Lx => { const o = []; for (let k = 0; k <= 100; k++) { const i = k / 5; o.push([i, lam(Lx, i)]); } return o; };
+    // áreas: coenergía (bajo la curva) y energía (entre la curva y λ)
+    g.save(); g.beginPath(); g.rect(P.L.x, P.L.y, P.L.w, P.L.h); g.clip();
+    g.globalAlpha = .28; g.fillStyle = S.azul; g.beginPath(); g.moveTo(P.X(0), P.Y(0));
+    for (let k = 0; k <= 60; k++) { const i = st.i * k / 60; g.lineTo(P.X(i), P.Y(lam(L, i))); }
+    g.lineTo(P.X(st.i), P.Y(0)); g.closePath(); g.fill();
+    g.fillStyle = S.naranja; g.beginPath(); g.moveTo(P.X(0), P.Y(0));
+    for (let k = 0; k <= 60; k++) { const i = st.i * k / 60; g.lineTo(P.X(i), P.Y(lam(L, i))); }
+    g.lineTo(P.X(0), P.Y(lm)); g.closePath(); g.fill(); g.restore();
+    nxCurva(a, P, cur(Lmin), C.muted, 1.5, [5, 4]); nxCurva(a, P, cur(Lmax), C.muted, 1.5, [5, 4]);
+    nxCurva(a, P, cur(L), C.text, 2.8);
+    a.txt('alineado', P.X(20) - 4, P.Y(lam(Lmax, 20)) - 8, C.muted, 11, 'right');
+    a.txt('desalineado', P.X(20) - 4, P.Y(lam(Lmin, 20)) - 8, C.muted, 11, 'right');
+    a.circ(P.X(st.i), P.Y(lm), 6, C.text, true);
+    nxLeyenda(a, 486, 60, [[S.azul, "coenergía W'"], [S.naranja, 'energía W_f']]);
+    a.txt("W' = " + nf(wc) + ' J', 486, 116, S.azul, 12.5); a.txt('W_f = ' + nf(wf) + ' J', 486, 136, S.naranja, 12.5);
+    a.txt('Par = ∂W′/∂θ', 486, 180, C.text, 12.5);
+    const w = 150, m = Math.max(Tlin, 0.01);
+    g.fillStyle = C.grid; g.fillRect(486, 192, w, 14); g.fillStyle = S.rojo; g.fillRect(486, 192, T / m * w, 14);
+    a.txt(nf(T) + ' N·m', 486, 226, S.rojo, 13);
+    a.txt('sin saturar: ' + nf(Tlin) + ' N·m', 486, 246, C.muted, 11.5);
+    a.html('λ = <b>' + nf(lm, 3) + ' Wb</b> · coenergía W′ = ∫λ·di = <b>' + nf(wc) + ' J</b> · energía W_f = ∫i·dλ = <b>' + nf(wf) + ' J</b> · '
+      + 'par T = ∂W′/∂θ = <b>' + nf(T) + ' N·m</b><br>'
+      + 'Mueve la posición: la curva sube del tramo desalineado al alineado y <b>el par es lo que crece el área azul por cada radián</b>, a corriente constante. '
+      + 'Con el circuito lineal las dos áreas son iguales y T = ½·i²·dL/dθ = ' + nf(Tlin) + ' N·m.<br>'
+      + (T < 0.9 * Tlin ? 'Aquí el hierro satura: la curva se tumba, la coenergía supera a la energía y el par real se queda en el <b>'
+          + nf(100 * T / Tlin, 0) + ' %</b> del lineal. Con saturación hay que usar la coenergía, no ½Li².'
+        : 'Sube la intensidad o baja λ_sat y verás que con saturación las dos áreas dejan de coincidir.'));
+  }
+});
+
+/* =============================================================== T7
+   Plano i_d - i_q: límites de corriente y de tensión                */
+SIMS.idiq = el => build(el, {
+  w: 680, h: 430,
+  sliders: [{ k: 'id', v: 0, min: -60, max: 20, step: 1, l: 'i_d', u: 'A' },
+            { k: 'iq', v: 40, min: 0, max: 60, step: 1, l: 'i_q', u: 'A' },
+            { k: 'n', v: 2000, min: 200, max: 6000, step: 50, l: 'Velocidad n', u: 'rpm' },
+            { k: 'r', v: 1, min: 1, max: 3, step: 0.1, l: 'Saliencia L_q / L_d', u: '' }],
+  draw(a) {
+    const st = a.st, S = nxPal(a), g = a.g, p = 4, psi = 0.1, Ld = 1e-3, Lq = Ld * st.r, Imax = 50, Vmax = 100;
+    const we = p * 2 * Math.PI * st.n / 60, T = 1.5 * p * (psi * st.iq + (Ld - Lq) * st.id * st.iq);
+    const I = Math.hypot(st.id, st.iq), V = we * Math.hypot(psi + Ld * st.id, Lq * st.iq);
+    const okI = I <= Imax + 1e-9, okV = V <= Vmax + 1e-9;
+    a.clear();
+    const P = nxPlot(a, { x: 60, y: 26, w: 400, h: 330, xmin: -120, xmax: 40, ymin: -6, ymax: 126,
+                          xlab: 'i_d (A)', ylab: 'i_q (A)', nx: 8, ny: 6, xt: [-100, -50], yt: [50, 100] });
+    const elip = (rx, ry, cx0, col, wd, dash) => { const o = []; for (let k = 0; k <= 180; k++) { const t = k / 180 * 2 * Math.PI; o.push([cx0 + rx * Math.cos(t), ry * Math.sin(t)]); } nxCurva(a, P, o, col, wd, dash); };
+    elip(Imax, Imax, 0, S.azul, 2.4);
+    const lim = Vmax / we;                                      // flujo máximo que deja la tensión
+    elip(lim / Ld, lim / Lq, -psi / Ld, S.rojo, 2.4);
+    [0.5, 2].forEach(f => elip(lim / f / Ld, lim / f / Lq, -psi / Ld, S.rojo, 1, [4, 4]));
+    // MTPA
+    const mt = []; for (let k = 0; k <= 60; k++) { const iq = k; const dL = Lq - Ld;
+      mt.push([dL > 1e-9 ? (psi - Math.sqrt(psi * psi + 4 * dL * dL * iq * iq)) / (2 * dL) : 0, iq]); }
+    nxCurva(a, P, mt, S.verde, 2, [7, 4]);
+    a.circ(P.X(-psi / Ld), P.Y(0), 4, S.rojo, true); a.txt('centro −ψ_m/L_d', P.X(-psi / Ld), P.Y(0) - 10, S.rojo, 11, 'center');
+    a.circ(P.X(st.id), P.Y(st.iq), 6.5, C.text, true); a.circ(P.X(st.id), P.Y(st.iq), 10.5, (okI && okV) ? S.verde : S.rojo, false);
+    nxLeyenda(a, 480, 50, [[S.azul, 'límite de corriente'], [S.rojo, 'límite de tensión'], [S.verde, 'máximo par por amperio']]);
+    a.txt('a ' + nf(st.n, 0) + ' rpm', 506, 104, C.muted, 11);
+    a.txt('T = ' + nf(T, 1) + ' N·m', 480, 150, C.text, 14);
+    a.txt('|I| = ' + nf(I, 1) + ' / ' + Imax + ' A', 480, 176, okI ? C.text : S.rojo, 12.5);
+    a.txt('|V| = ' + nf(V, 1) + ' / ' + Vmax + ' V', 480, 196, okV ? C.text : S.rojo, 12.5);
+    a.txt((okI && okV) ? 'Punto alcanzable' : 'Punto NO alcanzable', 480, 226, (okI && okV) ? S.verde : S.rojo, 13);
+    a.html('T = (3/2)·p·[ψ_m·i_q + (L_d − L_q)·i_d·i_q] = <b>' + nf(T, 1) + ' N·m</b> · |I| = <b>' + nf(I, 1) + ' A</b> · '
+      + '|V| = ω_e·√((ψ_m + L_d·i_d)² + (L_q·i_q)²) = <b>' + nf(V, 1) + ' V</b><br>'
+      + 'El punto tiene que caer <b>dentro del círculo azul</b> (el inversor no da más corriente) y <b>dentro de la elipse roja</b> (no da más tensión). '
+      + 'Sube la velocidad: la elipse se encoge hacia su centro y acaba dejando fuera el eje i_d = 0. '
+      + 'Para seguir hay que meter <b>i_d negativa</b>, que resta flujo al imán: eso es el debilitamiento de campo.<br>'
+      + (st.r > 1.05 ? 'Con saliencia (L_q > L_d) una i_d negativa además da par de reluctancia, y por eso la curva verde se tuerce a la izquierda.'
+                     : 'Sin saliencia el par sólo depende de i_q, así que lo óptimo a baja velocidad es i_d = 0 (la recta verde).'));
+  }
+});
+
+/* =============================================================== T8
+   Reluctancia conmutada: reparto de fases y rizado de par           */
+SIMS.conmutacion = el => build(el, {
+  w: 680, h: 440,
+  sliders: [{ k: 'on', v: 0, min: 0, max: 30, step: 1, l: 'Ángulo de encendido θ_on', u: '°' },
+            { k: 'dur', v: 30, min: 5, max: 60, step: 1, l: 'Duración de la conducción', u: '°' },
+            { k: 'i', v: 10, min: 2, max: 20, step: 0.5, l: 'Corriente de fase', u: 'A' }],
+  selects: [{ k: 'm', v: '3', l: 'Máquina', opts: [['3', '6/4 · tres fases'], ['4', '8/6 · cuatro fases']] }],
+  draw(a) {
+    const st = a.st, S = nxPal(a), g = a.g, m = +st.m, per = m === 3 ? 90 : 60, sub = m === 3 ? 30 : 20;
+    const Lmin = 0.01, Lmax = 0.08, K = (Lmax - Lmin) / (sub * Math.PI / 180), COL = [S.azul, S.naranja, S.verde, S.morado];
+    const top = sub + per / 9, baj = top + sub;                 // sube, meseta, baja, valle
+    const loc = (th, k) => (((th - k * per / m) % per) + per) % per;
+    const Lde = t => t < sub ? Lmin + (Lmax - Lmin) * t / sub : t < top ? Lmax : t < baj ? Lmax - (Lmax - Lmin) * (t - top) / sub : Lmin;
+    const pend = t => t < sub ? K : t < top ? 0 : t < baj ? -K : 0;
+    const cond = t => t >= st.on && t < st.on + st.dur;
+    const Tk = (th, k) => { const t = loc(th, k); return cond(t) ? 0.5 * st.i * st.i * pend(t) : 0; };
+    const Tt = th => { let s = 0; for (let k = 0; k < m; k++) s += Tk(th, k); return s; };
+    let med = 0, mn = 1e9, mx = -1e9; const N = 900;
+    for (let j = 0; j < N; j++) { const v = Tt(j / N * per); med += v / N; mn = Math.min(mn, v); mx = Math.max(mx, v); }
+    a.clear();
+    const X0 = 60, WW = 580;
+    const P1 = nxPlot(a, { x: X0, y: 26, w: WW, h: 96, xmin: 0, xmax: per, ymin: 0, ymax: 0.095, nx: 6, ny: 2 });
+    a.txt('Inductancia de cada fase L(θ)', X0, 18, C.text, 12.5);
+    for (let k = 0; k < m; k++) { const o = []; for (let j = 0; j <= 360; j++) { const th = j / 360 * per; o.push([th, Lde(loc(th, k))]); } nxCurva(a, P1, o, COL[k], 2.2); }
+    // ventanas de conducción
+    a.txt('Qué fase conduce', X0, 150, C.text, 12.5);
+    for (let k = 0; k < m; k++) { const y = 158 + k * 13;
+      for (let j = 0; j < 360; j++) { const th = j / 360 * per; if (cond(loc(th, k))) { g.fillStyle = COL[k]; g.fillRect(X0 + j / 360 * WW, y, WW / 360 + .6, 9); } } }
+    const Tm = 0.5 * st.i * st.i * K * 2.3, y3 = 158 + m * 13 + 34;
+    const P3 = nxPlot(a, { x: X0, y: y3, w: WW, h: 150, xmin: 0, xmax: per, ymin: -Tm * 0.5, ymax: Tm, nx: 6, ny: 3,
+                           xt: [per / 3, 2 * per / 3], xsuf: '°' });
+    a.txt('Par de cada fase y par total', X0, y3 - 10, C.text, 12.5);
+    for (let k = 0; k < m; k++) { const o = []; for (let j = 0; j <= 720; j++) { const th = j / 720 * per; o.push([th, Tk(th, k)]); } nxCurva(a, P3, o, COL[k], 1.4); }
+    const tot = []; for (let j = 0; j <= 720; j++) { const th = j / 720 * per; tot.push([th, Tt(th)]); }
+    nxCurva(a, P3, tot, C.text, 2.8);
+    nxCurva(a, P3, [[0, med], [per, med]], S.rojo, 1.4, [6, 4]);
+    a.txt('media ' + nf(med) + ' N·m', X0 + WW - 4, P3.Y(med) - 6, S.rojo, 11.5, 'right');
+    const riz = med > 1e-6 ? 100 * (mx - mn) / med : 0;
+    a.html('Par de una fase: T = ½·i²·dL/dθ · par medio = <b>' + nf(med) + ' N·m</b> · rizado (máx − mín)/media = <b>' + nf(riz, 0) + ' %</b><br>'
+      + 'El par no depende del signo de la corriente, sólo de <b>si L sube o baja</b> mientras la fase conduce: con L subiendo empuja, con L bajando frena. '
+      + (mn < -1e-6 ? '<b>Ahora mismo una fase sigue conduciendo cuando su inductancia ya baja</b> y da par negativo: apágala antes.'
+        : riz < 5 ? 'Con este reparto cada fase releva a la anterior justo a tiempo y el par sale liso.'
+        : 'Los huecos y los solapes entre fases son los que hacen el rizado: es el punto débil de esta máquina y por eso el control cuida tanto los ángulos.')
+      + '<br>Aquí cada fase tiene ' + sub + '° de subida de inductancia y las fases van desplazadas ' + nf(per / m, 0) + '°.');
+  }
+});
 /* ---- fin nuevos sims ---- */
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();
